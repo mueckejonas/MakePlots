@@ -544,8 +544,8 @@ int RootToHist()
     btagDeepFlavB3.Write();
     nConstituents3.Write();
     //Write quantities to Root
-    outHistFile1->mkdir("SimKinematics");
-    outHistFile1->cd("SimKinematics");
+    outHistFile1->mkdir("Kinematics");
+    outHistFile1->cd("Kinematics");
     MjjHist.Write();
     YBoostHist.Write();
     ChiHist.Write();
@@ -577,7 +577,7 @@ int RootToHist()
     genphi3.Write();
     genmass3.Write();
     //Write genjet quantities to Root
-    outHistFile2->mkdir("genKinematics");
+    outHistFile2->mkdir("Kinematics");
     outHistFile2->cd("Kinematics");
     genMjjHist.Write();
     genYBoostHist.Write();
