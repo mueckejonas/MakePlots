@@ -44,9 +44,10 @@ def RootHisttoPdf(outFileName,data1,logyScale,dataNumber,yAxisTitle,xAxisTitle,t
     canvas.Print(outFileName)
 
 #define directory
-inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/PlotJetKInematics/Root/"
-outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/PlotJetKInematics/Pdf/Together/"
-inFileName = inDirectory+"Hists_Run2023B.root"
+inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Root/"
+outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Pdf/"
+pdfnames = "PlotJetKinematics_Run2023B_"
+inFileName = inDirectory+"PlotJetKinematics_Run2023B.root"
 #Get Jets and Kinematics
 histFile = ROOT.TFile.Open(inFileName,"READ")
 Jet1 = histFile.Get("Jet1Data")
@@ -59,21 +60,21 @@ XaxisArray = np.array(["Pt [GeV]","Y","Eta","Phi","Mass [Gev]","Jec","Muf","Nhf"
 
 #create Jet pdfs
 for i in range(0,14):
-    data1 = Jet1.Get("data"+JetNameArray[i]+"1")
-    data2 = Jet2.Get("data"+JetNameArray[i]+"2")
-    data3 = Jet3.Get("data"+JetNameArray[i]+"3")
+    data1 = Jet1.Get("data_"+JetNameArray[i]+"1")
+    data2 = Jet2.Get("data_"+JetNameArray[i]+"2")
+    data3 = Jet3.Get("data_"+JetNameArray[i]+"3")
 
     if JetNameArray[i] == "pt" or JetNameArray[i] == "mass":
-        RootHisttoPdf(outDirectory+JetNameArray[i]+".pdf",data1,True,3,"N",XaxisArray[i],XaxisArray[i]+" values",data2,data3)
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+".pdf",data1,True,3,"N",XaxisArray[i],XaxisArray[i]+" values",data2,data3)
     else:
-        RootHisttoPdf(outDirectory+JetNameArray[i]+".pdf",data1,False,3,"N",XaxisArray[i],XaxisArray[i]+" values",data2,data3)
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+".pdf",data1,False,3,"N",XaxisArray[i],XaxisArray[i]+" values",data2,data3)
 
 #create yboost pdf
-yboostData = Kinematics.Get("datayboost")
-RootHisttoPdf(outDirectory+"yboost.pdf",yboostData,False,1,"N","Yboost","Yboost values",None,None,"Yboost")
+yboostData = Kinematics.Get("data_yboost")
+RootHisttoPdf(outDirectory+pdfnames+"yboost.pdf",yboostData,False,1,"N","Yboost","Yboost values",None,None,"Yboost")
 #create chi pdf
-chiData = Kinematics.Get("datachi")
-RootHisttoPdf(outDirectory+"chi.pdf",chiData,False,1,"N","Chi","Chi values",None,None,"Chi")
+chiData = Kinematics.Get("data_chi")
+RootHisttoPdf(outDirectory+pdfnames+"chi.pdf",chiData,False,1,"N","Chi","Chi values",None,None,"Chi")
 #create mjj pdf
-mjjData = Kinematics.Get("datamjj")
-RootHisttoPdf(outDirectory+"mjj.pdf",mjjData,True,1,"N","Mjj [GeV]","Mjj values",None,None,"Mjj")
+mjjData = Kinematics.Get("data_mjj")
+RootHisttoPdf(outDirectory+pdfnames+"mjj.pdf",mjjData,True,1,"N","Mjj [GeV]","Mjj values",None,None,"Mjj")
