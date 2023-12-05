@@ -1,9 +1,9 @@
 int TreeToHist()
 {
   //define folders of Root Tree File and where to write Hist Files
-  char rootFile1[] = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/PlotJetKInematics/Root/JetMET0_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
-  char rootFile2[] = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/PlotJetKInematics/Root/JetMET1_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
-  char outName[] = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/PlotJetKInematics/Root/Hists_Run2023B.root";
+  char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
+  char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
+  char outName[] = "/nfs/dust/cms/user/mueckejo/RootTempStorage/PlotJetKinematics_Run2023B.root";
 
 
    TChain tree("Events");   // name of the tree is the argument
@@ -46,33 +46,33 @@ int TreeToHist()
   //(["pt","y","eta","phi","mass","jec","muf","nhf","chf","area","nemf","cemf","btagDeepFlavB","nConstituents","yboost","chi","mjj"])
   //([[0,4000],[-6,6],[-6,6],[-4,4],[0,500],[0.5,1.5],[0,1],[0,1],[0,1],[0.3,0.6],[0,1],[0,1],[0,1],[0,100],[0,3],[0,20],[0,10000]])
 
-  TH1D pt1("datapt1","pt for jet1 data",50,0,4000);
+  TH1D pt1("data_pt1","pt for jet1 data",20,0,4000);
   pt1.Sumw2();
-  TH1D y1("datay1","y for jet1 data",50,-6,6);
+  TH1D y1("data_y1","y for jet1 data",30,-6,6);
   y1.Sumw2();
-  TH1D eta1("dataeta1","eta for jet1 data",50,-6,6);
+  TH1D eta1("data_eta1","eta for jet1 data",30,-6,6);
   eta1.Sumw2();
-  TH1D phi1("dataphi1","phi for jet1 data",50,-4,4);
+  TH1D phi1("data_phi1","phi for jet1 data",20,-4,4);
   phi1.Sumw2();
-  TH1D mass1("datamass1","mass for jet1 data",50,0,500);
+  TH1D mass1("data_mass1","mass for jet1 data",20,0,500);
   mass1.Sumw2();
-  TH1D jec1("datajec1","jec for jet1 data",50,0.5,1);
+  TH1D jec1("data_jec1","jec for jet1 data",20,0.5,1);
   jec1.Sumw2();
-  TH1D muf1("datamuf1","muf for jet1 data",50,0,1);
+  TH1D muf1("data_muf1","muf for jet1 data",20,0,1);
   muf1.Sumw2();
-  TH1D nhf1("datanhf1","nhf for jet1 data",50,0,1);
+  TH1D nhf1("data_nhf1","nhf for jet1 data",20,0,1);
   nhf1.Sumw2();
-  TH1D chf1("datachf1","chf for jet1 data",50,0,1);
+  TH1D chf1("data_chf1","chf for jet1 data",20,0,1);
   chf1.Sumw2();
-  TH1D area1("dataarea1","area for jet1 data",50,0.3,0.6);
+  TH1D area1("data_area1","area for jet1 data",20,0.3,0.6);
   area1.Sumw2();
-  TH1D nemf1("datanemf1","nemf for jet1 data",50,0,1);
+  TH1D nemf1("data_nemf1","nemf for jet1 data",20,0,1);
   nemf1.Sumw2();
-  TH1D cemf1("datacemf1","cemf for jet1 data",50,0,1);
+  TH1D cemf1("data_cemf1","cemf for jet1 data",20,0,1);
   cemf1.Sumw2();
-  TH1D btagDeepFlavB1("databtagDeepFlavB1","btagDeepFlavB for jet1 data",50,0,1);
+  TH1D btagDeepFlavB1("data_btagDeepFlavB1","btagDeepFlavB for jet1 data",20,0,1);
   btagDeepFlavB1.Sumw2();
-  TH1D nConstituents1("datanConstituents1","nConstituents for jet1 data",50,0,100);
+  TH1D nConstituents1("data_nConstituents1","nConstituents for jet1 data",20,0,100);
   nConstituents1.Sumw2();
 
   //variables of Jet2
@@ -106,33 +106,33 @@ int TreeToHist()
   tree.SetBranchAddress("jetAK4_btagDeepFlavB2",&btagDeepFlavB2Num);
   tree.SetBranchAddress("jetAK4_nConstituents2",&nConstituents2Num);
 
-  TH1D pt2("datapt2","pt for jet2 data",50,0,4000);
+  TH1D pt2("data_pt2","pt for jet2 data",20,0,4000);
   pt2.Sumw2();
-  TH1D y2("datay2","y for jet2 data",50,-6,6);
+  TH1D y2("data_y2","y for jet2 data",30,-6,6);
   y2.Sumw2();
-  TH1D eta2("dataeta2","eta for jet2 data",50,-6,6);
+  TH1D eta2("data_eta2","eta for jet2 data",30,-6,6);
   eta2.Sumw2();
-  TH1D phi2("dataphi2","phi for jet2 data",50,-4,4);
+  TH1D phi2("data_phi2","phi for jet2 data",20,-4,4);
   phi2.Sumw2();
-  TH1D mass2("datamass2","mass for jet2 data",50,0,500);
+  TH1D mass2("data_mass2","mass for jet2 data",20,0,500);
   mass2.Sumw2();
-  TH1D jec2("datajec2","jec for jet2 data",50,0.5,1);
+  TH1D jec2("data_jec2","jec for jet2 data",20,0.5,1);
   jec2.Sumw2();
-  TH1D muf2("datamuf2","muf for jet2 data",50,0,1);
+  TH1D muf2("data_muf2","muf for jet2 data",20,0,1);
   muf2.Sumw2();
-  TH1D nhf2("datanhf2","nhf for jet2 data",50,0,1);
+  TH1D nhf2("data_nhf2","nhf for jet2 data",20,0,1);
   nhf2.Sumw2();
-  TH1D chf2("datachf2","chf for jet2 data",50,0,1);
+  TH1D chf2("data_chf2","chf for jet2 data",20,0,1);
   chf2.Sumw2();
-  TH1D area2("dataarea2","area for jet2 data",50,0.3,0.6);
+  TH1D area2("data_area2","area for jet2 data",20,0.3,0.6);
   area2.Sumw2();
-  TH1D nemf2("datanemf2","nemf for jet2 data",50,0,1);
+  TH1D nemf2("data_nemf2","nemf for jet2 data",20,0,1);
   nemf2.Sumw2();
-  TH1D cemf2("datacemf2","cemf for jet2 data",50,0,1);
+  TH1D cemf2("data_cemf2","cemf for jet2 data",20,0,1);
   cemf2.Sumw2();
-  TH1D btagDeepFlavB2("databtagDeepFlavB2","btagDeepFlavB for jet2 data",50,0,1);
+  TH1D btagDeepFlavB2("data_btagDeepFlavB2","btagDeepFlavB for jet2 data",20,0,1);
   btagDeepFlavB2.Sumw2();
-  TH1D nConstituents2("datanConstituents2","nConstituents for jet2 data",50,0,100);
+  TH1D nConstituents2("data_nConstituents2","nConstituents for jet2 data",20,0,100);
   nConstituents2.Sumw2();
 
   //variables of Jet3
@@ -166,43 +166,43 @@ int TreeToHist()
   tree.SetBranchAddress("jetAK4_btagDeepFlavB3",&btagDeepFlavB3Num);
   tree.SetBranchAddress("jetAK4_nConstituents3",&nConstituents3Num);
 
-  TH1D pt3("datapt3","pt for jet3 data",50,0,4000);
+  TH1D pt3("data_pt3","pt for jet3 data",20,0,4000);
   pt3.Sumw2();
-  TH1D y3("datay3","y for jet3 data",50,-6,6);
+  TH1D y3("data_y3","y for jet3 data",30,-6,6);
   y3.Sumw2();
-  TH1D eta3("dataeta3","eta for jet3 data",50,-6,6);
+  TH1D eta3("data_eta3","eta for jet3 data",30,-6,6);
   eta3.Sumw2();
-  TH1D phi3("dataphi3","phi for jet3 data",50,-4,4);
+  TH1D phi3("data_phi3","phi for jet3 data",20,-4,4);
   phi3.Sumw2();
-  TH1D mass3("datamass3","mass for jet3 data",50,0,500);
+  TH1D mass3("data_mass3","mass for jet3 data",20,0,500);
   mass3.Sumw2();
-  TH1D jec3("datajec3","jec for jet3 data",50,0.5,1);
+  TH1D jec3("data_jec3","jec for jet3 data",20,0.5,1);
   jec3.Sumw2();
-  TH1D muf3("datamuf3","muf for jet3 data",50,0,1);
+  TH1D muf3("data_muf3","muf for jet3 data",20,0,1);
   muf3.Sumw2();
-  TH1D nhf3("datanhf3","nhf for jet3 data",50,0,1);
+  TH1D nhf3("data_nhf3","nhf for jet3 data",20,0,1);
   nhf3.Sumw2();
-  TH1D chf3("datachf3","chf for jet3 data",50,0,1);
+  TH1D chf3("data_chf3","chf for jet3 data",20,0,1);
   chf3.Sumw2();
-  TH1D area3("dataarea3","area for jet3 data",50,0.3,0.6);
+  TH1D area3("data_area3","area for jet3 data",20,0.3,0.6);
   area3.Sumw2();
-  TH1D nemf3("datanemf3","nemf for jet3 data",50,0,1);
+  TH1D nemf3("data_nemf3","nemf for jet3 data",20,0,1);
   nemf3.Sumw2();
-  TH1D cemf3("datacemf3","cemf for jet3 data",50,0,1);
+  TH1D cemf3("data_cemf3","cemf for jet3 data",20,0,1);
   cemf3.Sumw2();
-  TH1D btagDeepFlavB3("databtagDeepFlavB3","btagDeepFlavB for jet3 data",50,0,1);
+  TH1D btagDeepFlavB3("data_btagDeepFlavB3","btagDeepFlavB for jet3 data",20,0,1);
   btagDeepFlavB3.Sumw2();
-  TH1D nConstituents3("datanConstituents3","nConstituents for jet3 data",50,0,100);
+  TH1D nConstituents3("data_nConstituents3","nConstituents for jet3 data",20,0,100);
   nConstituents3.Sumw2();
 
   //Create quantities calculated from variables
-  TH1D MjjHist("datamjj","Mjj [Gev]",50,0,10000);
+  TH1D MjjHist("data_mjj","Mjj [Gev]",20,0,10000);
   MjjHist.Sumw2();
 
-  TH1D YBoostHist("datayboost","YBoost",50,0,3);
+  TH1D YBoostHist("data_yboost","YBoost",20,0,3);
   YBoostHist.Sumw2();
 
-  TH1D ChiHist("datachi","Chi",50,0,20);
+  TH1D ChiHist("data_chi","Chi",20,0,20);
   ChiHist.Sumw2();
 
   //Fill the Hists with Root Tree Data
