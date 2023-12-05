@@ -29,6 +29,7 @@ int RootToHistSim()
     float cemf1Num[eventNum];
     float btagDeepFlavB1Num[eventNum];
     float nConstituents1Num[eventNum];
+    float TightID1[eventNum];
 
     tree->SetBranchAddress("jetAK4_pt1",&pt1Num);
     tree->SetBranchAddress("jetAK4_y1",&y1Num);
@@ -44,6 +45,7 @@ int RootToHistSim()
     tree->SetBranchAddress("jetAK4_cemf1",&cemf1Num);
     tree->SetBranchAddress("jetAK4_btagDeepFlavB1",&btagDeepFlavB1Num);
     tree->SetBranchAddress("jetAK4_nConstituents1",&nConstituents1Num);
+    tree->SetBranchAddress("jetAK4_TightID1",&TightID1);
 
     TH1D pt1("Simpt1","pt for jet1 Sim",20,0,4000);
     pt1.Sumw2();
@@ -89,6 +91,7 @@ int RootToHistSim()
     float cemf2Num[eventNum];
     float btagDeepFlavB2Num[eventNum];
     float nConstituents2Num[eventNum];
+    float TightID2[eventNum];
 
     tree->SetBranchAddress("jetAK4_pt2",&pt2Num);
     tree->SetBranchAddress("jetAK4_y2",&y2Num);
@@ -104,6 +107,7 @@ int RootToHistSim()
     tree->SetBranchAddress("jetAK4_cemf2",&cemf2Num);
     tree->SetBranchAddress("jetAK4_btagDeepFlavB2",&btagDeepFlavB2Num);
     tree->SetBranchAddress("jetAK4_nConstituents2",&nConstituents2Num);
+    tree->SetBranchAddress("jetAK4_TightID2",&TightID2);
 
     TH1D pt2("Simpt2","pt for jet2 Sim",20,0,4000);
     pt2.Sumw2();
@@ -149,6 +153,7 @@ int RootToHistSim()
     float cemf3Num[eventNum];
     float btagDeepFlavB3Num[eventNum];
     float nConstituents3Num[eventNum];
+    float TightID3[eventNum];
 
     tree->SetBranchAddress("jetAK4_pt3",&pt3Num);
     tree->SetBranchAddress("jetAK4_y3",&y3Num);
@@ -164,6 +169,7 @@ int RootToHistSim()
     tree->SetBranchAddress("jetAK4_cemf3",&cemf3Num);
     tree->SetBranchAddress("jetAK4_btagDeepFlavB3",&btagDeepFlavB3Num);
     tree->SetBranchAddress("jetAK4_nConstituents3",&nConstituents3Num);
+    tree->SetBranchAddress("jetAK4_TightID3",&TightID3);
 
     TH1D pt3("Simpt3","pt for jet3 Sim",20,0,4000);
     pt3.Sumw2();
@@ -301,61 +307,73 @@ int RootToHistSim()
       if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11)
       {
         //Fill SimJet1
-        pt1.Fill(pt1Num[0]);
-        y1.Fill(y1Num[0]);
-        eta1.Fill(eta1Num[0]);
-        phi1.Fill(phi1Num[0]);
-        mass1.Fill(mass1Num[0]);
-        jec1.Fill(jec1Num[0]);
-        muf1.Fill(muf1Num[0]);
-        nhf1.Fill(nhf1Num[0]);
-        chf1.Fill(chf1Num[0]);
-        area1.Fill(area1Num[0]);
-        nemf1.Fill(nemf1Num[0]);
-        cemf1.Fill(cemf1Num[0]);
-        btagDeepFlavB1.Fill(btagDeepFlavB1Num[0]);
-        nConstituents1.Fill(nConstituents1Num[0]);
+        if(TightID1[0] == 1)
+        {
+          pt1.Fill(pt1Num[0]);
+          y1.Fill(y1Num[0]);
+          eta1.Fill(eta1Num[0]);
+          phi1.Fill(phi1Num[0]);
+          mass1.Fill(mass1Num[0]);
+          jec1.Fill(jec1Num[0]);
+          muf1.Fill(muf1Num[0]);
+          nhf1.Fill(nhf1Num[0]);
+          chf1.Fill(chf1Num[0]);
+          area1.Fill(area1Num[0]);
+          nemf1.Fill(nemf1Num[0]);
+          cemf1.Fill(cemf1Num[0]);
+          btagDeepFlavB1.Fill(btagDeepFlavB1Num[0]);
+          nConstituents1.Fill(nConstituents1Num[0]);
+        }
 
         //Fill SimJet2
-        pt2.Fill(pt2Num[0]);
-        y2.Fill(y2Num[0]);
-        eta2.Fill(eta2Num[0]);
-        phi2.Fill(phi2Num[0]);
-        mass2.Fill(mass2Num[0]);
-        jec2.Fill(jec2Num[0]);
-        muf2.Fill(muf2Num[0]);
-        nhf2.Fill(nhf2Num[0]);
-        chf2.Fill(chf2Num[0]);
-        area2.Fill(area2Num[0]);
-        nemf2.Fill(nemf2Num[0]);
-        cemf2.Fill(cemf2Num[0]);
-        btagDeepFlavB2.Fill(btagDeepFlavB2Num[0]);
-        nConstituents2.Fill(nConstituents2Num[0]);
+        if(TightID2[0] == 1)
+        {
+          pt2.Fill(pt2Num[0]);
+          y2.Fill(y2Num[0]);
+          eta2.Fill(eta2Num[0]);
+          phi2.Fill(phi2Num[0]);
+          mass2.Fill(mass2Num[0]);
+          jec2.Fill(jec2Num[0]);
+          muf2.Fill(muf2Num[0]);
+          nhf2.Fill(nhf2Num[0]);
+          chf2.Fill(chf2Num[0]);
+          area2.Fill(area2Num[0]);
+          nemf2.Fill(nemf2Num[0]);
+          cemf2.Fill(cemf2Num[0]);
+          btagDeepFlavB2.Fill(btagDeepFlavB2Num[0]);
+          nConstituents2.Fill(nConstituents2Num[0]);
+        }
 
         //Fill SimJet3
-        pt3.Fill(pt3Num[0]);
-        y3.Fill(y3Num[0]);
-        eta3.Fill(eta3Num[0]);
-        phi3.Fill(phi3Num[0]);
-        mass3.Fill(mass3Num[0]);
-        jec3.Fill(jec3Num[0]);
-        muf3.Fill(muf3Num[0]);
-        nhf3.Fill(nhf3Num[0]);
-        chf3.Fill(chf3Num[0]);
-        area3.Fill(area3Num[0]);
-        nemf3.Fill(nemf3Num[0]);
-        cemf3.Fill(cemf3Num[0]);
-        btagDeepFlavB3.Fill(btagDeepFlavB3Num[0]);
-        nConstituents3.Fill(nConstituents3Num[0]);
+        if(TightID3[0] == 1)
+        {
+          pt3.Fill(pt3Num[0]);
+          y3.Fill(y3Num[0]);
+          eta3.Fill(eta3Num[0]);
+          phi3.Fill(phi3Num[0]);
+          mass3.Fill(mass3Num[0]);
+          jec3.Fill(jec3Num[0]);
+          muf3.Fill(muf3Num[0]);
+          nhf3.Fill(nhf3Num[0]);
+          chf3.Fill(chf3Num[0]);
+          area3.Fill(area3Num[0]);
+          nemf3.Fill(nemf3Num[0]);
+          cemf3.Fill(cemf3Num[0]);
+          btagDeepFlavB3.Fill(btagDeepFlavB3Num[0]);
+          nConstituents3.Fill(nConstituents3Num[0]);
+        }
 
-        //fill Simyboost
-        YBoostHist.Fill(YBoostValue);
+        if(TightID1[0] == 1 && TightID2[0] == 1)
+        {
+          //fill Simyboost
+          YBoostHist.Fill(YBoostValue);
 
-        //fill SimMjj
-        MjjHist.Fill(MjjValue);
+          //fill SimMjj
+          MjjHist.Fill(MjjValue);
 
-        //fill Simchi
-        ChiHist.Fill(ChiValue);
+          //fill Simchi
+          ChiHist.Fill(ChiValue);
+        }
       }
 
       //Calculate Mjj
