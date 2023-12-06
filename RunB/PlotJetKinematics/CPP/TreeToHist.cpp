@@ -3,7 +3,7 @@ int TreeToHist()
   //define folders of Root Tree File and where to write Hist Files
   char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
   char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
-  char outName[] = "/nfs/dust/cms/user/mueckejo/RootTempStorage/PlotJetKinematics_Run2023B.root";
+  char outName[] = "/nfs/dust/cms/user/mueckejo/Root/PlotJetKinematics_Run2023B.root";
 
 
    TChain tree("Events");   // name of the tree is the argument
@@ -26,7 +26,7 @@ int TreeToHist()
   float nemf1Num[eventNum];
   float cemf1Num[eventNum];
   float btagDeepFlavB1Num[eventNum];
-  float nConstituents1Num[eventNum];
+  int nConstituents1Num[eventNum];
 
   tree.SetBranchAddress("jetAK4_pt1",&pt1Num);
   tree.SetBranchAddress("jetAK4_y1",&y1Num);
@@ -89,7 +89,7 @@ int TreeToHist()
   float nemf2Num[eventNum];
   float cemf2Num[eventNum];
   float btagDeepFlavB2Num[eventNum];
-  float nConstituents2Num[eventNum];
+  int nConstituents2Num[eventNum];
 
   tree.SetBranchAddress("jetAK4_pt2",&pt2Num);
   tree.SetBranchAddress("jetAK4_y2",&y2Num);
@@ -149,7 +149,7 @@ int TreeToHist()
   float nemf3Num[eventNum];
   float cemf3Num[eventNum];
   float btagDeepFlavB3Num[eventNum];
-  float nConstituents3Num[eventNum];
+  int nConstituents3Num[eventNum];
 
   tree.SetBranchAddress("jetAK4_pt3",&pt3Num);
   tree.SetBranchAddress("jetAK4_y3",&y3Num);
