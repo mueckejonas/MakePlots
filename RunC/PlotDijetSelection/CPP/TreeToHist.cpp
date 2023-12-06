@@ -1,14 +1,26 @@
 int TreeToHist()
 {
   //define folders of Root Tree File and where to write Hist Files
-  char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
-  char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
-  char outName[] = "/nfs/dust/cms/user/mueckejo/RootB/PlotDijetSelection_Run2023B.root";
+  char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023C-22Sep2023_v1-v1_NANOAOD.root";
+  char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023C-22Sep2023_v2-v1_NANOAOD.root";
+  char rootFile3[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023C-22Sep2023_v3-v1_NANOAOD.root";
+  char rootFile4[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023C-22Sep2023_v4-v1_NANOAOD.root";
+  char rootFile5[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023C-22Sep2023_v1-v1_NANOAOD.root";
+  char rootFile6[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023C-22Sep2023_v2-v1_NANOAOD.root";
+  char rootFile7[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023C-22Sep2023_v3-v1_NANOAOD.root";
+  char rootFile8[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023C-22Sep2023_v4-v1_NANOAOD.root";
+  char outName[] = "/nfs/dust/cms/user/mueckejo/RootC/PlotDijetSelection_Run2023C.root";
 
 
-   TChain tree("Events");   // name of the tree is the argument
-   tree.Add(rootFile1);
-   tree.Add(rootFile2);
+  TChain tree("Events");   // name of the tree is the argument
+  tree.Add(rootFile1);
+  tree.Add(rootFile2);
+  tree.Add(rootFile3);
+  tree.Add(rootFile4);
+  tree.Add(rootFile5);
+  tree.Add(rootFile6);
+  tree.Add(rootFile7);
+  tree.Add(rootFile8);
 
   //declare variables to Load from Root Tree
   const unsigned int eventNum = 1;

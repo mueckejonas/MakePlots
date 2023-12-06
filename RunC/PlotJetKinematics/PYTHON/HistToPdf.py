@@ -44,10 +44,10 @@ def RootHisttoPdf(outFileName,data1,logyScale,dataNumber,yAxisTitle,xAxisTitle,t
     canvas.Print(outFileName)
 
 #define directory
-inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/RootB/"
-outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Pdf/"
-pdfnames = "PlotDijetSelection_Run2023B_"
-inFileName = inDirectory+"PlotDijetSelection_Run2023B.root"
+inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunC/RootC/"
+outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunC/Pdf/"
+pdfnames = "PlotJetKinematics_Run2023C_"
+inFileName = inDirectory+"PlotJetKinematics_Run2023C.root"
 #Get Jets and Kinematics
 histFile = ROOT.TFile.Open(inFileName,"READ")
 Jet1 = histFile.Get("Jet1")
@@ -55,7 +55,7 @@ Jet2 = histFile.Get("Jet2")
 Jet3 = histFile.Get("Jet3")
 Kinematics = histFile.Get("Kinematics")
 
-JetNameArray = np.array(["pt","y","eta","phi","mass","jec","muf","nhf","chf","area","nemf","cemf","btagDeepFlavB","nConstituents"])
+JetNameArray = np.array(["pt","y","eta","phi","mass","jec","muf","nhf","chf","area","nemf","cemf","btagDeepFlavB","nConstituents","yboost","chi","mjj"])
 XaxisArray = np.array(["Pt [GeV]","Y","Eta","Phi","Mass [Gev]","Jec","Muf","Nhf","Chf","Area","Nemf","Cemf","BtagDeepFlavB","NConstituents"])
 
 #create Jet pdfs
@@ -71,7 +71,7 @@ for i in range(0,14):
 
 #create yboost pdf
 yboostData = Kinematics.Get("data_yboost")
-RootHisttoPdf(outDirectory+pdfnames+"yboost.pdf",yboostData,False,1,"N","Yboost","Yboost values","Yboost")
+RootHisttoPdf(outDirectory+pdfnames+"yboost.pdf",yboostData,False,1,"N","Yboost","Yboost values",None,None,"Yboost")
 #create chi pdf
 chiData = Kinematics.Get("data_chi")
 RootHisttoPdf(outDirectory+pdfnames+"chi.pdf",chiData,False,1,"N","Chi","Chi values",None,None,"Chi")

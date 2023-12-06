@@ -1,14 +1,18 @@
 int TreeToHist()
 {
   //define folders of Root Tree File and where to write Hist Files
-  char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
-  char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
-  char outName[] = "/nfs/dust/cms/user/mueckejo/RootB/PlotDijetSelection_Run2023B.root";
+  char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023D-22Sep2023_v1-v1_NANOAOD.root";
+  char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023D-22Sep2023_v2-v1_NANOAOD.root";
+  char rootFile3[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023D-22Sep2023_v1-v1_NANOAOD.root";
+  char rootFile4[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023D-22Sep2023_v2-v1_NANOAOD.root";
+  char outName[] = "/nfs/dust/cms/user/mueckejo/RootD/PlotDijetSelection_Run2023D.root";
 
 
-   TChain tree("Events");   // name of the tree is the argument
-   tree.Add(rootFile1);
-   tree.Add(rootFile2);
+  TChain tree("Events");   // name of the tree is the argument
+  tree.Add(rootFile1);
+  tree.Add(rootFile2);
+  tree.Add(rootFile3);
+  tree.Add(rootFile4);
 
   //declare variables to Load from Root Tree
   const unsigned int eventNum = 1;

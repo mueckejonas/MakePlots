@@ -1,14 +1,26 @@
 int TreeToHist()
 {
   //define folders of Root Tree File and where to write Hist Files
-  char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
-  char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
-  char outName[] = "/nfs/dust/cms/user/mueckejo/RootB/PlotDijetSelection_Run2023B.root";
+  char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023C-22Sep2023_v1-v1_NANOAOD.root";
+  char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023C-22Sep2023_v2-v1_NANOAOD.root";
+  char rootFile3[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023C-22Sep2023_v3-v1_NANOAOD.root";
+  char rootFile4[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023C-22Sep2023_v4-v1_NANOAOD.root";
+  char rootFile5[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023C-22Sep2023_v1-v1_NANOAOD.root";
+  char rootFile6[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023C-22Sep2023_v2-v1_NANOAOD.root";
+  char rootFile7[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023C-22Sep2023_v3-v1_NANOAOD.root";
+  char rootFile8[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023C-22Sep2023_v4-v1_NANOAOD.root";
+  char outName[] = "/nfs/dust/cms/user/mueckejo/RootC/PlotJetKinematics_Run2023C.root";
 
 
    TChain tree("Events");   // name of the tree is the argument
    tree.Add(rootFile1);
    tree.Add(rootFile2);
+   tree.Add(rootFile3);
+   tree.Add(rootFile4);
+   tree.Add(rootFile5);
+   tree.Add(rootFile6);
+   tree.Add(rootFile7);
+   tree.Add(rootFile8);
 
   //declare variables to Load from Root Tree
   const unsigned int eventNum = 1;
@@ -42,6 +54,9 @@ int TreeToHist()
   tree.SetBranchAddress("jetAK4_cemf1",&cemf1Num);
   tree.SetBranchAddress("jetAK4_btagDeepFlavB1",&btagDeepFlavB1Num);
   tree.SetBranchAddress("jetAK4_nConstituents1",&nConstituents1Num);
+
+  //(["pt","y","eta","phi","mass","jec","muf","nhf","chf","area","nemf","cemf","btagDeepFlavB","nConstituents","yboost","chi","mjj"])
+  //([[0,4000],[-6,6],[-6,6],[-4,4],[0,500],[0.5,1.3.5],[0,1],[0,1],[0,1],[0.2,1],[0,1],[0,1],[0,1],[0,100],[0,3],[0,20],[0,10000]])
 
   TH1D pt1("data_pt1","pt for jet1 data",20,0,4000);
   pt1.Sumw2();
@@ -206,79 +221,69 @@ int TreeToHist()
   for (Long64_t entry = 0; entry < tree.GetEntries(); ++entry)
   {
     tree.GetEntry(entry);
+    //Fill Jet1
+    pt1.Fill(pt1Num[0]);
+    y1.Fill(y1Num[0]);
+    eta1.Fill(eta1Num[0]);
+    phi1.Fill(phi1Num[0]);
+    mass1.Fill(mass1Num[0]);
+    jec1.Fill(jec1Num[0]);
+    muf1.Fill(muf1Num[0]);
+    nhf1.Fill(nhf1Num[0]);
+    chf1.Fill(chf1Num[0]);
+    area1.Fill(area1Num[0]);
+    nemf1.Fill(nemf1Num[0]);
+    cemf1.Fill(cemf1Num[0]);
+    btagDeepFlavB1.Fill(btagDeepFlavB1Num[0]);
+    nConstituents1.Fill(nConstituents1Num[0]);
 
-    //Calculate Mjj
+    //Fill Jet2
+    pt2.Fill(pt2Num[0]);
+    y2.Fill(y2Num[0]);
+    eta2.Fill(eta2Num[0]);
+    phi2.Fill(phi2Num[0]);
+    mass2.Fill(mass2Num[0]);
+    jec2.Fill(jec2Num[0]);
+    muf2.Fill(muf2Num[0]);
+    nhf2.Fill(nhf2Num[0]);
+    chf2.Fill(chf2Num[0]);
+    area2.Fill(area2Num[0]);
+    nemf2.Fill(nemf2Num[0]);
+    cemf2.Fill(cemf2Num[0]);
+    btagDeepFlavB2.Fill(btagDeepFlavB2Num[0]);
+    nConstituents2.Fill(nConstituents2Num[0]);
+
+    //Fill Jet3
+    pt3.Fill(pt3Num[0]);
+    y3.Fill(y3Num[0]);
+    eta3.Fill(eta3Num[0]);
+    phi3.Fill(phi3Num[0]);
+    mass3.Fill(mass3Num[0]);
+    jec3.Fill(jec3Num[0]);
+    muf3.Fill(muf3Num[0]);
+    nhf3.Fill(nhf3Num[0]);
+    chf3.Fill(chf3Num[0]);
+    area3.Fill(area3Num[0]);
+    nemf3.Fill(nemf3Num[0]);
+    cemf3.Fill(cemf3Num[0]);
+    btagDeepFlavB3.Fill(btagDeepFlavB3Num[0]);
+    nConstituents3.Fill(nConstituents3Num[0]);
+
+    //Calculate and fill Mjj
     TLorentzVector Lorentz0, Lorentz1;
     Lorentz0.SetPtEtaPhiM(pt1Num[0],eta1Num[0],phi1Num[0],mass1Num[0]);
     Lorentz1.SetPtEtaPhiM(pt2Num[0],eta2Num[0],phi2Num[0],mass2Num[0]);
     TLorentzVector MjjSum = Lorentz0 + Lorentz1;
     double MjjValue = MjjSum.M();
+    MjjHist.Fill(MjjValue);
 
-    //Calculate chi
-    double ChiValue = exp(abs(y1Num[0]-y2Num[0]));
-
-    //Calculate yboost
+    //Calculate and fill yboost
     double YBoostValue = (y1Num[0]+y2Num[0])/2;
+    YBoostHist.Fill(YBoostValue);
 
-    if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11)
-    {
-      //Fill Jet1
-      pt1.Fill(pt1Num[0]);
-      y1.Fill(y1Num[0]);
-      eta1.Fill(eta1Num[0]);
-      phi1.Fill(phi1Num[0]);
-      mass1.Fill(mass1Num[0]);
-      jec1.Fill(jec1Num[0]);
-      muf1.Fill(muf1Num[0]);
-      nhf1.Fill(nhf1Num[0]);
-      chf1.Fill(chf1Num[0]);
-      area1.Fill(area1Num[0]);
-      nemf1.Fill(nemf1Num[0]);
-      cemf1.Fill(cemf1Num[0]);
-      btagDeepFlavB1.Fill(btagDeepFlavB1Num[0]);
-      nConstituents1.Fill(nConstituents1Num[0]);
-
-      //Fill Jet2
-      pt2.Fill(pt2Num[0]);
-      y2.Fill(y2Num[0]);
-      eta2.Fill(eta2Num[0]);
-      phi2.Fill(phi2Num[0]);
-      mass2.Fill(mass2Num[0]);
-      jec2.Fill(jec2Num[0]);
-      muf2.Fill(muf2Num[0]);
-      nhf2.Fill(nhf2Num[0]);
-      chf2.Fill(chf2Num[0]);
-      area2.Fill(area2Num[0]);
-      nemf2.Fill(nemf2Num[0]);
-      cemf2.Fill(cemf2Num[0]);
-      btagDeepFlavB2.Fill(btagDeepFlavB2Num[0]);
-      nConstituents2.Fill(nConstituents2Num[0]);
-
-      //Fill Jet3
-      pt3.Fill(pt3Num[0]);
-      y3.Fill(y3Num[0]);
-      eta3.Fill(eta3Num[0]);
-      phi3.Fill(phi3Num[0]);
-      mass3.Fill(mass3Num[0]);
-      jec3.Fill(jec3Num[0]);
-      muf3.Fill(muf3Num[0]);
-      nhf3.Fill(nhf3Num[0]);
-      chf3.Fill(chf3Num[0]);
-      area3.Fill(area3Num[0]);
-      nemf3.Fill(nemf3Num[0]);
-      cemf3.Fill(cemf3Num[0]);
-      btagDeepFlavB3.Fill(btagDeepFlavB3Num[0]);
-      nConstituents3.Fill(nConstituents3Num[0]);
-
-      //fill yboost
-      YBoostHist.Fill(YBoostValue);
-
-      //fill Mjj
-      MjjHist.Fill(MjjValue);
-
-      //fill chi
-      ChiHist.Fill(ChiValue);
-    }
+    //Calculate and fill chi
+    double ChiValue = exp(abs(y1Num[0]-y2Num[0]));
+    ChiHist.Fill(ChiValue);
   }
 
   //Neccesary so files dont get lost

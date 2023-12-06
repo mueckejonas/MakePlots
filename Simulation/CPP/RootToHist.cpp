@@ -6,8 +6,8 @@ int RootToHist()
   for (int i = 0; i < 13; i++)
   {
     string rootFile = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-"+ranges[i]+"_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
-    string outName1 = "/nfs/dust/cms/user/mueckejo/Root/"+ranges[i]+"_PlotSimulation_Run32023_MC.root";
-    string outName2 = "/nfs/dust/cms/user/mueckejo/Root/"+ranges[i]+"_PlotSimulation_Run32023_Gen.root";
+    string outName1 = "/nfs/dust/cms/user/mueckejo/RootS/"+ranges[i]+"_PlotSimulation_Run32023_MC.root";
+    string outName2 = "/nfs/dust/cms/user/mueckejo/RootS/"+ranges[i]+"_PlotSimulation_Run32023_Gen.root";
 
     TFile* inFile = TFile::Open(rootFile.c_str(),"READ");
     TTree* tree = (TTree*)inFile->Get("Events");

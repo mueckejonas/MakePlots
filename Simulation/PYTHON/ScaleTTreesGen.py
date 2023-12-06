@@ -1,8 +1,8 @@
 import ROOT
 
-inDirectory ="/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Root/"
-outDirectory ="/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Pdf/"
-outRootDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Root/"
+inDirectory ="/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/RootS/"
+outDirectory ="/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/Pdf/"
+outRootDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/RootS/"
 pdfnames = "PlotSimulation_Run32023_Gen_All_"
 
 #load tree data

@@ -76,11 +76,11 @@ def RootHisttoPdf(outFileName,data,simulation,logyScale,yAxisTitle,xAxisTitle,ti
 
 
 #define directories
-InDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/RootB/"
-outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Pdf/"
-dataInFileName = InDirectory+"PlotDijetSelection_Run2023B.root"
+InDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunC/RootC/"
+outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunC/Pdf/"
+dataInFileName = InDirectory+"PlotDijetSelection_Run2023C.root"
 simInFileName = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/RootS/_PlotSimulation_WithScale_Run32023_MC.root"
-pdfnames = "PlotData(NoJedID)AndSimulation(JedID)_RunB32023_"
+pdfnames = "PlotData(NoJedID)AndSimulation(JedID)_RunC32023_"
 
 #Get data Jets and Kinematics
 dataHistFile = ROOT.TFile.Open(dataInFileName,"READ")
@@ -114,24 +114,24 @@ for i in range(0,14):
 
     #create and save pdf files
     if JetNameArray[i] == "pt" or JetNameArray[i] == "mass":
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"1.pdf",data1,sim1,True,"#sigma [pb]",XaxisArray[i],"Run3 B 2023",JetNameArray[i]+" Jet1")
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"2.pdf",data2,sim2,True,"#sigma [pb]",XaxisArray[i],"Run3 B 2023",JetNameArray[i]+" Jet2")
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"3.pdf",data3,sim3,True,"#sigma [pb]",XaxisArray[i],"Run3 B 2023",JetNameArray[i]+" Jet3")
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"1.pdf",data1,sim1,True,"#sigma [pb]",XaxisArray[i],"Run3 C 2023",JetNameArray[i]+" Jet1")
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"2.pdf",data2,sim2,True,"#sigma [pb]",XaxisArray[i],"Run3 C 2023",JetNameArray[i]+" Jet2")
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"3.pdf",data3,sim3,True,"#sigma [pb]",XaxisArray[i],"Run3 C 2023",JetNameArray[i]+" Jet3")
     else:
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"1.pdf",data1,sim1,False,"#sigma [pb]",XaxisArray[i],"Run3 B 2023",JetNameArray[i]+" Jet1")
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"2.pdf",data2,sim2,False,"#sigma [pb]",XaxisArray[i],"Run3 B 2023",JetNameArray[i]+" Jet2")
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"3.pdf",data3,sim3,False,"#sigma [pb]",XaxisArray[i],"Run3 B 2023",JetNameArray[i]+" Jet3")
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"1.pdf",data1,sim1,False,"#sigma [pb]",XaxisArray[i],"Run3 C 2023",JetNameArray[i]+" Jet1")
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"2.pdf",data2,sim2,False,"#sigma [pb]",XaxisArray[i],"Run3 C 2023",JetNameArray[i]+" Jet2")
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"3.pdf",data3,sim3,False,"#sigma [pb]",XaxisArray[i],"Run3 C 2023",JetNameArray[i]+" Jet3")
 
 
 #create yboost pdf
 datayboost = dataKinematics.Get("data_yboost")
 simyboost = simKinematics.Get("yboostsim_hist")
-RootHisttoPdf(outDirectory+pdfnames+"yboostDataandSim.pdf",datayboost,simyboost,False,"#sigma [pb]","Yboost","Run3 B 2023","Yboost")
+RootHisttoPdf(outDirectory+pdfnames+"yboostDataandSim.pdf",datayboost,simyboost,False,"#sigma [pb]","Yboost","Run3 C 2023","Yboost")
 #create chi pdf
 datachi = dataKinematics.Get("data_chi")
 simchi = simKinematics.Get("chisim_hist")
-RootHisttoPdf(outDirectory+pdfnames+"chiDataandSim.pdf",datachi,simchi,False,"#sigma [pb]","Chi","Run3 B 2023","Chi")
+RootHisttoPdf(outDirectory+pdfnames+"chiDataandSim.pdf",datachi,simchi,False,"#sigma [pb]","Chi","Run3 C 2023","Chi")
 #create mjj pdf
 datamjj = dataKinematics.Get("data_mjj")
 simmjj = simKinematics.Get("mjjsim_hist")
-RootHisttoPdf(outDirectory+pdfnames+"mjjDataandSim.pdf",datamjj,simmjj,True,"#sigma [pb]","Mjj [GeV]","Run3 B 2023","Mjj")
+RootHisttoPdf(outDirectory+pdfnames+"mjjDataandSim.pdf",datamjj,simmjj,True,"#sigma [pb]","Mjj [GeV]","Run3 C 2023","Mjj")

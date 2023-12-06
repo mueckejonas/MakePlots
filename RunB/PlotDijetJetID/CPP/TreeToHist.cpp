@@ -3,7 +3,7 @@ int TreeToHist()
   //define folders of Root Tree File and where to write Hist Files
   char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
   char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
-  char outName[] = "/nfs/dust/cms/user/mueckejo/Root/PlotDijetJetID_Run2023B.root";
+  char outName[] = "/nfs/dust/cms/user/mueckejo/RootB/PlotDijetJetID_Run2023B.root";
 
 
    TChain tree("Events");   // name of the tree is the argument
