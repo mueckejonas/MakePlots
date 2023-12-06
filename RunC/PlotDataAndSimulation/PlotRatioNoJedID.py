@@ -42,7 +42,7 @@ def RootHisttoPdf(outFileName,data,simulation,logyScale,yAxisTitle,xAxisTitle,ti
     simulation.GetXaxis().SetTitleSize(0)
     simulation.GetXaxis().SetLabelSize(0)
     data.SetTitle("")
-    data.Scale(1./1206)
+    data.Scale(1./18.6)
     #simulation.Scale(data.Integral()/simulation.Integral())
     simulation.Draw("h")
     data.Draw("pe,same")
