@@ -4,7 +4,7 @@ import numpy as np
 inDirectory ="/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Root/"
 outDirectory ="/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Pdf/"
 outRootDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Root/"
-pdfnames = "_PlotSimulation_Run32023_MC_All_"
+pdfnames = "PlotSimulation_Run32023_MC_All_"
 
 #load tree data
 

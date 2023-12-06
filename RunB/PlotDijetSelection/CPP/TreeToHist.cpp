@@ -171,7 +171,7 @@ int TreeToHist()
   eta3.Sumw2();
   TH1D phi3("data_phi3","phi for jet3 data",20,-4,4);
   phi3.Sumw2();
-  TH1D mass3("data_mass3","mass for jet3 data",20,0,200);
+  TH1D mass3("data_mass3","mass for jet3 data",20,0,500);
   mass3.Sumw2();
   TH1D jec3("data_jec3","jec for jet3 data",20,0.5,1.3);
   jec3.Sumw2();

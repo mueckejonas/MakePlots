@@ -53,7 +53,7 @@ genJet1 = histFile.Get("Jet1")
 genJet2 = histFile.Get("Jet2")
 genJet3 = histFile.Get("Jet3")
 Kinematics = histFile.Get("Kinematics")
-pdfnames = "_PlotSimulation_Run32023_Gen_AddedHist_"
+pdfnames = "PlotSimulation_Run32023_Gen_AddedHist_"
 
 genJetNameArray = np.array(["pt","y","eta","phi","mass"])
 XaxisArray = np.array(["Pt [GeV]","Y","Eta","Phi","Mass [Gev]"])
@@ -65,16 +65,16 @@ for i in range(0,5):
     gen3 = genJet3.Get(genJetNameArray[i]+"3gen_hist")
 
     if genJetNameArray[i] == "pt" or genJetNameArray[i] == "mass":
-        RootHisttoPdf(outDirectory+pdfnames+genJetNameArray[i]+".pdf",gen1,True,3,"N",XaxisArray[i],XaxisArray[i]+" generated",gen2,gen3)
+        RootHisttoPdf(outDirectory+pdfnames+genJetNameArray[i]+".pdf",gen1,True,3,"#sigma [pb]",XaxisArray[i],XaxisArray[i]+" generated",gen2,gen3)
     else:
-        RootHisttoPdf(outDirectory+pdfnames+genJetNameArray[i]+".pdf",gen1,False,3,"N",XaxisArray[i],XaxisArray[i]+" generated",gen2,gen3)
+        RootHisttoPdf(outDirectory+pdfnames+genJetNameArray[i]+".pdf",gen1,False,3,"#sigma [pb]",XaxisArray[i],XaxisArray[i]+" generated",gen2,gen3)
 
 #create yboost pdf
 yboostData = Kinematics.Get("yboostgen_hist")
-RootHisttoPdf(outDirectory+pdfnames+"yboost.pdf",yboostData,False,1,"N","Yboost","Yboost generated","generated Yboost")
+RootHisttoPdf(outDirectory+pdfnames+"yboost.pdf",yboostData,False,1,"#sigma [pb]","Yboost","Yboost generated","generated Yboost")
 #create chi pdf
 chiData = Kinematics.Get("chigen_hist")
-RootHisttoPdf(outDirectory+pdfnames+"chi.pdf",chiData,False,1,"N","Chi","Chi generated",None,None,"generated Chi")
+RootHisttoPdf(outDirectory+pdfnames+"chi.pdf",chiData,False,1,"#sigma [pb]","Chi","Chi generated",None,None,"generated Chi")
 #create mjj pdf
 mjjData = Kinematics.Get("mjjgen_hist")
-RootHisttoPdf(outDirectory+pdfnames+"mjj.pdf",mjjData,True,1,"N","Mjj [GeV]","Mjj generated",None,None,"generated Mjj")
+RootHisttoPdf(outDirectory+pdfnames+"mjj.pdf",mjjData,True,1,"#sigma [pb]","Mjj [GeV]","Mjj generated",None,None,"generated Mjj")

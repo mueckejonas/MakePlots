@@ -53,7 +53,7 @@ MCJet1 = histFile.Get("Jet1")
 MCJet2 = histFile.Get("Jet2")
 MCJet3 = histFile.Get("Jet3")
 Kinematics = histFile.Get("Kinematics")
-pdfnames = "_PlotSimulation_Run32023_MC_AddedHist_"
+pdfnames = "PlotSimulation_Run32023_MC_AddedHist_"
 
 MCJetNameArray = np.array(["pt","y","eta","phi","mass","jec","muf","nhf","chf","area","nemf","cemf","btagDeepFlavB","nConstituents"])
 XaxisArray = np.array(["Pt [GeV]","Y","Eta","Phi","Mass [Gev]","Jec","Muf","Nhf","Chf","Area","Nemf","Cemf","BtagDeepFlavB","NConstituents"])
@@ -65,16 +65,16 @@ for i in range(0,14):
     MC3 = MCJet3.Get(MCJetNameArray[i]+"3sim_hist")
 
     if MCJetNameArray[i] == "pt" or MCJetNameArray[i] == "mass":
-        RootHisttoPdf(outDirectory+pdfnames+MCJetNameArray[i]+".pdf",MC1,True,3,"N",XaxisArray[i],XaxisArray[i]+" simulation",MC2,MC3)
+        RootHisttoPdf(outDirectory+pdfnames+MCJetNameArray[i]+".pdf",MC1,True,3,"#sigma [pb]",XaxisArray[i],XaxisArray[i]+" simulation",MC2,MC3)
     else:
-        RootHisttoPdf(outDirectory+pdfnames+MCJetNameArray[i]+".pdf",MC1,False,3,"N",XaxisArray[i],XaxisArray[i]+" simulation",MC2,MC3)
+        RootHisttoPdf(outDirectory+pdfnames+MCJetNameArray[i]+".pdf",MC1,False,3,"#sigma [pb]",XaxisArray[i],XaxisArray[i]+" simulation",MC2,MC3)
 
 #create yboost pdf
 yboostData = Kinematics.Get("yboostsim_hist")
-RootHisttoPdf(outDirectory+pdfnames+"yboost.pdf",yboostData,False,1,"N","Yboost","Yboost simulation","simulated Yboost")
+RootHisttoPdf(outDirectory+pdfnames+"yboost.pdf",yboostData,False,1,"#sigma [pb]","Yboost","Yboost simulation","simulated Yboost")
 #create chi pdf
 chiData = Kinematics.Get("chisim_hist")
-RootHisttoPdf(outDirectory+pdfnames+"chi.pdf",chiData,False,1,"N","Chi","Chi simulation",None,None,"simulated Chi")
+RootHisttoPdf(outDirectory+pdfnames+"chi.pdf",chiData,False,1,"#sigma [pb]","Chi","Chi simulation",None,None,"simulated Chi")
 #create mjj pdf
 mjjData = Kinematics.Get("mjjsim_hist")
-RootHisttoPdf(outDirectory+pdfnames+"mjj.pdf",mjjData,True,1,"N","Mjj [GeV]","Mjj simulation",None,None,"simulated Mjj")
+RootHisttoPdf(outDirectory+pdfnames+"mjj.pdf",mjjData,True,1,"#sigma [pb]","Mjj [GeV]","Mjj simulation",None,None,"simulated Mjj")

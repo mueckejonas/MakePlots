@@ -3,48 +3,48 @@ import ROOT
 inDirectory ="/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Root/"
 outDirectory ="/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Pdf/"
 outRootDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Root/"
-pdfnames = "_PlotSimulation_Run32023_Gen_All_"
+pdfnames = "PlotSimulation_Run32023_Gen_All_"
 
 #load tree data
 
 root50to80 = ROOT.TFile.Open(inDirectory+"50to80_PlotSimulation_Run32023_Gen.root")
-scale50to80 = ((1.679e+07)/(11988000))*10e9
+scale50to80 = ((1.679e+07)/(11988000))
 print(scale50to80)
 root80to120 = ROOT.TFile.Open(inDirectory+"80to120_PlotSimulation_Run32023_Gen.root")
-scale80to120 = ((2.513e+06)/(17979000))*10e9
+scale80to120 = ((2.513e+06)/(17979000))
 print(scale80to120)
 root120to170 = ROOT.TFile.Open(inDirectory+"120to170_PlotSimulation_Run32023_Gen.root")
-scale120to170 = ((4.574e+05)/(17964000))*10e9
+scale120to170 = ((4.574e+05)/(17964000))
 print(scale120to170)
 root170to300 = ROOT.TFile.Open(inDirectory+"170to300_PlotSimulation_Run32023_Gen.root")
-scale170to300 = ((1.162e+05)/(17889000))*10e9
+scale170to300 = ((1.162e+05)/(17889000))
 print(scale170to300)
 root300to470 = ROOT.TFile.Open(inDirectory+"300to470_PlotSimulation_Run32023_Gen.root")
-scale300to470 = ((7.584e+03)/(34626000))*10e9
+scale300to470 = ((7.584e+03)/(34626000))
 print(scale300to470)
 root470to600 = ROOT.TFile.Open(inDirectory+"470to600_PlotSimulation_Run32023_Gen.root")
-scale470to600 = ((6.490e+02)/(16766000))*10e9
+scale470to600 = ((6.490e+02)/(16766000))
 print(scale470to600)
 root600to800 = ROOT.TFile.Open(inDirectory+"600to800_PlotSimulation_Run32023_Gen.root")
-scale600to800 = ((1.809e+02)/(40468000))*10e9
+scale600to800 = ((1.809e+02)/(40468000))
 print(scale600to800)
 root800to1000 = ROOT.TFile.Open(inDirectory+"800to1000_PlotSimulation_Run32023_Gen.root")
-scale800to1000 = ((3.105e+01)/(23908000))*10e9
+scale800to1000 = ((3.105e+01)/(23908000))
 print(scale800to1000)
 root1000to1400 = ROOT.TFile.Open(inDirectory+"1000to1400_PlotSimulation_Run32023_Gen.root")
-scale1000to1400 = ((8.829e+00)/(11956000))*10e9
+scale1000to1400 = ((8.829e+00)/(11956000))
 print(scale1000to1400)
 root1400to1800 = ROOT.TFile.Open(inDirectory+"1400to1800_PlotSimulation_Run32023_Gen.root")
-scale1400to1800 = ((7.952e-01)/(3596000))*10e9
+scale1400to1800 = ((7.952e-01)/(3596000))
 print(scale1400to1800)
 root1800to2400 = ROOT.TFile.Open(inDirectory+"1800to2400_PlotSimulation_Run32023_Gen.root")
-scale1800to2400 = ((1.147e-01)/(1792000))*10e9
+scale1800to2400 = ((1.147e-01)/(1792000))
 print(scale1800to2400)
 root2400to3200 = ROOT.TFile.Open(inDirectory+"2400to3200_PlotSimulation_Run32023_Gen.root")
-scale2400to3200 = ((7.619e-03)/(1200000))*10e9
+scale2400to3200 = ((7.619e-03)/(1200000))
 print(scale2400to3200)
 root3200 = ROOT.TFile.Open(inDirectory+"3200_PlotSimulation_Run32023_Gen.root")
-scale3200 = ((2.331e-04)/(478000))*10e9
+scale3200 = ((2.331e-04)/(478000))
 print(scale3200)
 """
 QCD_PT-50to80_TuneCP5_13p6TeV_pythia8 1.679e+07 11988000

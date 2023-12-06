@@ -262,7 +262,7 @@ int RootToHist()
     geneta2.Sumw2();
     TH1D genphi2("Genphi2","phi for genJet2",20,-4,4);
     genphi2.Sumw2();
-    TH1D genmass2("Genmass2","mass for genJet2",20,0,200);
+    TH1D genmass2("Genmass2","mass for genJet2",20,0,500);
     genmass2.Sumw2();
     TH1D genpt3("Genpt3","pt for genJet3",20,0,4000);
     genpt3.Sumw2();
@@ -272,7 +272,7 @@ int RootToHist()
     geneta3.Sumw2();
     TH1D genphi3("Genphi3","phi for genJet3",20,-4,4);
     genphi3.Sumw2();
-    TH1D genmass3("Genmass3","mass for genJet3",20,0,200);
+    TH1D genmass3("Genmass3","mass for genJet3",20,0,500);
     genmass3.Sumw2();
 
     //caulculate qunatities from variables of gen jets
