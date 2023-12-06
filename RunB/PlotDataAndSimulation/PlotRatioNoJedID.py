@@ -84,9 +84,9 @@ pdfnames = "PlotData(NoJedID)AndSimulation(JedID)_Run32023_"
 
 #Get data Jets and Kinematics
 dataHistFile = ROOT.TFile.Open(dataInFileName,"READ")
-dataJet1 = dataHistFile.Get("Jet1Data")
-dataJet2 = dataHistFile.Get("Jet2Data")
-dataJet3 = dataHistFile.Get("Jet3Data")
+dataJet1 = dataHistFile.Get("Jet1")
+dataJet2 = dataHistFile.Get("Jet2")
+dataJet3 = dataHistFile.Get("Jet3")
 dataKinematics = dataHistFile.Get("Kinematics")
 
 #Get Sim Jets and Kinematics
