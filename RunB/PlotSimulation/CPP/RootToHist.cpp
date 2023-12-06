@@ -28,8 +28,8 @@ int RootToHist()
     float nemf1Num[eventNum];
     float cemf1Num[eventNum];
     float btagDeepFlavB1Num[eventNum];
-    float nConstituents1Num[eventNum];
-    float TightID1[eventNum];
+    int nConstituents1Num[eventNum];
+    int TightID1[eventNum];
 
     tree->SetBranchAddress("jetAK4_pt1",&pt1Num);
     tree->SetBranchAddress("jetAK4_y1",&y1Num);
@@ -90,8 +90,8 @@ int RootToHist()
     float nemf2Num[eventNum];
     float cemf2Num[eventNum];
     float btagDeepFlavB2Num[eventNum];
-    float nConstituents2Num[eventNum];
-    float TightID2[eventNum];
+    int nConstituents2Num[eventNum];
+    int TightID2[eventNum];
 
     tree->SetBranchAddress("jetAK4_pt2",&pt2Num);
     tree->SetBranchAddress("jetAK4_y2",&y2Num);
@@ -152,8 +152,8 @@ int RootToHist()
     float nemf3Num[eventNum];
     float cemf3Num[eventNum];
     float btagDeepFlavB3Num[eventNum];
-    float nConstituents3Num[eventNum];
-    float TightID3[eventNum];
+    int nConstituents3Num[eventNum];
+    int TightID3[eventNum];
 
     tree->SetBranchAddress("jetAK4_pt3",&pt3Num);
     tree->SetBranchAddress("jetAK4_y3",&y3Num);
@@ -307,8 +307,7 @@ int RootToHist()
       if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11)
       {
         //Fill SimJet1
-        if(TightID1[0] == 1)
-        {
+        if(TightID1[0] == 1){
           pt1.Fill(pt1Num[0]);
           y1.Fill(y1Num[0]);
           eta1.Fill(eta1Num[0]);
@@ -326,8 +325,7 @@ int RootToHist()
         }
 
         //Fill SimJet2
-        if(TightID2[0] == 1)
-        {
+        if(TightID2[0] == 1){
           pt2.Fill(pt2Num[0]);
           y2.Fill(y2Num[0]);
           eta2.Fill(eta2Num[0]);
@@ -345,8 +343,7 @@ int RootToHist()
         }
 
         //Fill SimJet3
-        if(TightID3[0] == 1)
-        {
+        if(TightID3[0] == 1){
           pt3.Fill(pt3Num[0]);
           y3.Fill(y3Num[0]);
           eta3.Fill(eta3Num[0]);
@@ -363,8 +360,7 @@ int RootToHist()
           nConstituents3.Fill(nConstituents3Num[0]);
         }
 
-        if(TightID1[0] == 1 && TightID2[0] == 1)
-        {
+        if(TightID1[0] == 1 && TightID2[0] == 1){
           //fill Simyboost
           YBoostHist.Fill(YBoostValue);
 

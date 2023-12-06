@@ -760,7 +760,7 @@ pt1_50to80.Draw("pe,same")
 #pt1_50to80.GetYaxis().SetRangeUser(0,10e8)
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"Pt1 Generation")
-canvas.Print(outDirectory+pdfnames+"/pt1gen.pdf")
+canvas.Print(outDirectory+pdfnames+"pt1gen.pdf")
 canvas.Clear()
 """
 #add hists together
@@ -806,7 +806,7 @@ pt1gen_hist.SetTitle("")
 pt1gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"Pt1 Generation")
-canvas.Print(outDirectory+pdfnames+"/pt1gen.pdf")
+canvas.Print(outDirectory+pdfnames+"pt1gen.pdf")
 canvas.Clear()
 #add hists together
 #add y1 hists together
@@ -849,7 +849,7 @@ y1gen_hist.SetTitle("")
 y1gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"y1 Generation")
-canvas.Print(outDirectory+pdfnames+"/y1gen.pdf")
+canvas.Print(outDirectory+pdfnames+"y1gen.pdf")
 canvas.Clear()
 #add hists together
 #add eta1 hists together
@@ -892,7 +892,7 @@ eta1gen_hist.SetTitle("")
 eta1gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"eta1 Generation")
-canvas.Print(outDirectory+pdfnames+"/eta1gen.pdf")
+canvas.Print(outDirectory+pdfnames+"eta1gen.pdf")
 canvas.Clear()
 #add hists together
 #add phi1 hists together
@@ -935,7 +935,7 @@ phi1gen_hist.SetTitle("")
 phi1gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"phi1 Generation")
-canvas.Print(outDirectory+pdfnames+"/phi1gen.pdf")
+canvas.Print(outDirectory+pdfnames+"phi1gen.pdf")
 canvas.Clear()
 #add hists together
 #add mass1 hists together
@@ -979,7 +979,7 @@ mass1gen_hist.SetTitle("")
 mass1gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"mass1 Generation")
-canvas.Print(outDirectory+pdfnames+"/mass1gen.pdf")
+canvas.Print(outDirectory+pdfnames+"mass1gen.pdf")
 canvas.Clear()
 
 
@@ -1025,7 +1025,7 @@ pt2gen_hist.SetTitle("")
 pt2gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"pt2 Generation")
-canvas.Print(outDirectory+pdfnames+"/pt2gen.pdf")
+canvas.Print(outDirectory+pdfnames+"pt2gen.pdf")
 canvas.Clear()
 #add hists together
 #add y2 hists together
@@ -1068,7 +1068,7 @@ y2gen_hist.SetTitle("")
 y2gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"y2 Generation")
-canvas.Print(outDirectory+pdfnames+"/y2gen.pdf")
+canvas.Print(outDirectory+pdfnames+"y2gen.pdf")
 canvas.Clear()
 #add hists together
 #add eta2 hists together
@@ -1111,7 +1111,7 @@ eta2gen_hist.SetTitle("")
 eta2gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"eta2 Generation")
-canvas.Print(outDirectory+pdfnames+"/eta2gen.pdf")
+canvas.Print(outDirectory+pdfnames+"eta2gen.pdf")
 canvas.Clear()
 #add hists together
 #add phi2 hists together
@@ -1154,7 +1154,7 @@ phi2gen_hist.SetTitle("")
 phi2gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"phi2 Generation")
-canvas.Print(outDirectory+pdfnames+"/phi2gen.pdf")
+canvas.Print(outDirectory+pdfnames+"phi2gen.pdf")
 canvas.Clear()
 #add hists together
 #add mass2 hists together
@@ -1198,7 +1198,7 @@ mass2gen_hist.SetTitle("")
 mass2gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"mass2 Generation")
-canvas.Print(outDirectory+pdfnames+"/mass2gen.pdf")
+canvas.Print(outDirectory+pdfnames+"mass2gen.pdf")
 canvas.Clear()
 
 
@@ -1244,7 +1244,7 @@ pt3gen_hist.SetTitle("")
 pt3gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"pt3 Generation")
-canvas.Print(outDirectory+pdfnames+"/pt3gen.pdf")
+canvas.Print(outDirectory+pdfnames+"pt3gen.pdf")
 canvas.Clear()
 #add hists together
 #add y3 hists together
@@ -1287,7 +1287,7 @@ y3gen_hist.SetTitle("")
 y3gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"y3 Generation")
-canvas.Print(outDirectory+pdfnames+"/y3gen.pdf")
+canvas.Print(outDirectory+pdfnames+"y3gen.pdf")
 canvas.Clear()
 #add hists together
 #add eta3 hists together
@@ -1330,7 +1330,7 @@ eta3gen_hist.SetTitle("")
 eta3gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"eta3 Generation")
-canvas.Print(outDirectory+pdfnames+"/eta3gen.pdf")
+canvas.Print(outDirectory+pdfnames+"eta3gen.pdf")
 canvas.Clear()
 #add hists together
 #add phi3 hists together
@@ -1373,7 +1373,7 @@ phi3gen_hist.SetTitle("")
 phi3gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"phi3 Generation")
-canvas.Print(outDirectory+pdfnames+"/phi3gen.pdf")
+canvas.Print(outDirectory+pdfnames+"phi3gen.pdf")
 canvas.Clear()
 #add hists together
 #add mass3 hists together
@@ -1417,7 +1417,7 @@ mass3gen_hist.SetTitle("")
 mass3gen_hist.Draw("pe")
 legend.Draw("same")
 latex.DrawText(0.7,0.8,"mass3 Generation")
-canvas.Print(outDirectory+pdfnames+"/mass3gen.pdf")
+canvas.Print(outDirectory+pdfnames+"mass3gen.pdf")
 canvas.Clear()
 
 #add and plot kinematics together
