@@ -60,9 +60,9 @@ XaxisArray = np.array(["Pt [GeV]","Y","Eta","Phi","Mass [Gev]","Jec","Muf","Nhf"
 
 #create Jet pdfs
 for i in range(0,14):
-    MC1 = MCJet1.Get("Sim"+MCJetNameArray[i]+"1")
-    MC2 = MCJet2.Get("Sim"+MCJetNameArray[i]+"2")
-    MC3 = MCJet3.Get("Sim"+MCJetNameArray[i]+"3")
+    MC1 = MCJet1.Get(MCJetNameArray[i]+"1sim_hist")
+    MC2 = MCJet2.Get(MCJetNameArray[i]+"2sim_hist")
+    MC3 = MCJet3.Get(MCJetNameArray[i]+"3sim_hist")
 
     if MCJetNameArray[i] == "pt" or MCJetNameArray[i] == "mass":
         RootHisttoPdf(outDirectory+pdfnames+MCJetNameArray[i]+".pdf",MC1,True,3,"N",XaxisArray[i],XaxisArray[i]+" simulation",MC2,MC3)
@@ -70,11 +70,11 @@ for i in range(0,14):
         RootHisttoPdf(outDirectory+pdfnames+MCJetNameArray[i]+".pdf",MC1,False,3,"N",XaxisArray[i],XaxisArray[i]+" simulation",MC2,MC3)
 
 #create yboost pdf
-yboostData = Kinematics.Get("Simyboost")
+yboostData = Kinematics.Get("yboostsim_hist")
 RootHisttoPdf(outDirectory+pdfnames+"yboost.pdf",yboostData,False,1,"N","Yboost","Yboost simulation","simulated Yboost")
 #create chi pdf
-chiData = Kinematics.Get("Simchi")
+chiData = Kinematics.Get("chisim_hist")
 RootHisttoPdf(outDirectory+pdfnames+"chi.pdf",chiData,False,1,"N","Chi","Chi simulation",None,None,"simulated Chi")
 #create mjj pdf
-mjjData = Kinematics.Get("Simmjj")
+mjjData = Kinematics.Get("mjjsim_hist")
 RootHisttoPdf(outDirectory+pdfnames+"mjj.pdf",mjjData,True,1,"N","Mjj [GeV]","Mjj simulation",None,None,"simulated Mjj")

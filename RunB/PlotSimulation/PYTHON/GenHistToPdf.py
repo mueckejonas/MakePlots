@@ -60,9 +60,9 @@ XaxisArray = np.array(["Pt [GeV]","Y","Eta","Phi","Mass [Gev]"])
 
 #create Jet pdfs
 for i in range(0,5):
-    gen1 = genJet1.Get("Gen"+genJetNameArray[i]+"1")
-    gen2 = genJet2.Get("Gen"+genJetNameArray[i]+"2")
-    gen3 = genJet3.Get("Gen"+genJetNameArray[i]+"3")
+    gen1 = genJet1.Get(genJetNameArray[i]+"1gen_hist")
+    gen2 = genJet2.Get(genJetNameArray[i]+"2gen_hist")
+    gen3 = genJet3.Get(genJetNameArray[i]+"3gen_hist")
 
     if genJetNameArray[i] == "pt" or genJetNameArray[i] == "mass":
         RootHisttoPdf(outDirectory+pdfnames+genJetNameArray[i]+".pdf",gen1,True,3,"N",XaxisArray[i],XaxisArray[i]+" generated",gen2,gen3)
@@ -70,11 +70,11 @@ for i in range(0,5):
         RootHisttoPdf(outDirectory+pdfnames+genJetNameArray[i]+".pdf",gen1,False,3,"N",XaxisArray[i],XaxisArray[i]+" generated",gen2,gen3)
 
 #create yboost pdf
-yboostData = Kinematics.Get("Genyboost")
+yboostData = Kinematics.Get("yboostgen_hist")
 RootHisttoPdf(outDirectory+pdfnames+"yboost.pdf",yboostData,False,1,"N","Yboost","Yboost generated","generated Yboost")
 #create chi pdf
-chiData = Kinematics.Get("Genchi")
+chiData = Kinematics.Get("chigen_hist")
 RootHisttoPdf(outDirectory+pdfnames+"chi.pdf",chiData,False,1,"N","Chi","Chi generated",None,None,"generated Chi")
 #create mjj pdf
-mjjData = Kinematics.Get("Genmjj")
+mjjData = Kinematics.Get("mjjgen_hist")
 RootHisttoPdf(outDirectory+pdfnames+"mjj.pdf",mjjData,True,1,"N","Mjj [GeV]","Mjj generated",None,None,"generated Mjj")
