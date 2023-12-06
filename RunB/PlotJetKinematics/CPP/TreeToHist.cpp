@@ -326,8 +326,8 @@ int TreeToHist()
 
   TFile* outHistFile = TFile::Open(outName,"RECREATE");
   //Write Jet1 Data to Root
-  outHistFile->mkdir("Jet1Data");
-  outHistFile->cd("Jet1Data");
+  outHistFile->mkdir("Jet1");
+  outHistFile->cd("Jet1");
   pt1.Write();
   y1.Write();
   eta1.Write();
@@ -343,8 +343,8 @@ int TreeToHist()
   btagDeepFlavB1.Write();
   nConstituents1.Write();
   //Write Jet2 Data to Root
-  outHistFile->mkdir("Jet2Data");
-  outHistFile->cd("Jet2Data");
+  outHistFile->mkdir("Jet2");
+  outHistFile->cd("Jet2");
   pt2.Write();
   y2.Write();
   eta2.Write();
@@ -360,8 +360,8 @@ int TreeToHist()
   btagDeepFlavB2.Write();
   nConstituents2.Write();
   //Write Jet3 Data to Root
-  outHistFile->mkdir("Jet3Data");
-  outHistFile->cd("Jet3Data");
+  outHistFile->mkdir("Jet3");
+  outHistFile->cd("Jet3");
   pt3.Write();
   y3.Write();
   eta3.Write();

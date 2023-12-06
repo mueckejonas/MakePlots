@@ -50,9 +50,9 @@ pdfnames = "PlotDijetSelection_Run2023B_"
 inFileName = inDirectory+"PlotDijetSelection_Run2023B.root"
 #Get Jets and Kinematics
 histFile = ROOT.TFile.Open(inFileName,"READ")
-Jet1 = histFile.Get("Jet1Data")
-Jet2 = histFile.Get("Jet2Data")
-Jet3 = histFile.Get("Jet3Data")
+Jet1 = histFile.Get("Jet1")
+Jet2 = histFile.Get("Jet2")
+Jet3 = histFile.Get("Jet3")
 Kinematics = histFile.Get("Kinematics")
 
 JetNameArray = np.array(["pt","y","eta","phi","mass","jec","muf","nhf","chf","area","nemf","cemf","btagDeepFlavB","nConstituents"])
