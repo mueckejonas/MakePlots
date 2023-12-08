@@ -168,15 +168,6 @@ int TreeToHist()
     TLorentzVector MjjSum = Lorentz0 + Lorentz1;
     double MjjValue = MjjSum.M();
 
-    //Calculate chi
-    double ChiValue = exp(abs(y1Num[0]-y2Num[0]));
-
-    //Calculate yboost
-    double YBoostValue = (y1Num[0]+y2Num[0])/2;
-
-    if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11)
-    {
-      if(TightID1[0] == 1 && TightID2[0] == 1){
         //fill HLT Hists
         if(HLT_PFJet40Num[0] == 1)
         {
@@ -272,8 +263,6 @@ int TreeToHist()
         {
           HLT_PFHT1050.Fill(MjjValue);
         }
-      }
-    }
   }
 
   //Neccesary so files dont get lost
