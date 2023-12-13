@@ -1,32 +1,26 @@
 int TreeToHist()
 {
   //define folders of Root Tree File and where to write Hist Files
-  char rootFile1[] = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunC/RootC/JetMET0_Run2023C-22Sep2023_v1-v1_NANOAOD.root";
-  /*
+  char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023C-22Sep2023_v1-v1_NANOAOD.root";
   char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023C-22Sep2023_v2-v1_NANOAOD.root";
   char rootFile3[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023C-22Sep2023_v3-v1_NANOAOD.root";
   char rootFile4[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023C-22Sep2023_v4-v1_NANOAOD.root";
-  */
-  char rootFile5[] = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunC/RootC/JetMET1_Run2023C-22Sep2023_v1-v1_NANOAOD.root";
-  /*
+  char rootFile5[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023C-22Sep2023_v1-v1_NANOAOD.root";
   char rootFile6[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023C-22Sep2023_v2-v1_NANOAOD.root";
   char rootFile7[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023C-22Sep2023_v3-v1_NANOAOD.root";
   char rootFile8[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023C-22Sep2023_v4-v1_NANOAOD.root";
-  */
-  char outName[] = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunC/RootC/PlotTriggerEfficientcy_Run2023C.root";
+  char outName[] = "/nfs/dust/cms/user/mueckejo/RootC/PlotTriggerEfficientcy_Run2023C.root";
 
 
   TChain tree("Events");   // name of the tree is the argument
   tree.Add(rootFile1);
-  tree.Add(rootFile5);
-  /*
   tree.Add(rootFile2);
   tree.Add(rootFile3);
   tree.Add(rootFile4);
+  tree.Add(rootFile5);
   tree.Add(rootFile6);
   tree.Add(rootFile7);
   tree.Add(rootFile8);
-  */
 
   //declare variables to Load from Root Tree
   const unsigned int eventNum = 1;
@@ -76,18 +70,18 @@ int TreeToHist()
   tree.SetBranchAddress("jetAK4_TightID3",&TightID3);
 
   //trigger efficienties
-  int HLT_PFJet40Num[eventNum];
-  int HLT_PFJet60Num[eventNum];
-  int HLT_PFJet80Num[eventNum];
-  int HLT_PFJet110Num[eventNum];
-  int HLT_PFJet140Num[eventNum];
-  int HLT_PFJet200Num[eventNum];
-  int HLT_PFJet260Num[eventNum];
-  int HLT_PFJet320Num[eventNum];
-  int HLT_PFJet400Num[eventNum];
-  int HLT_PFJet450Num[eventNum];
-  int HLT_PFJet500Num[eventNum];
-  int HLT_PFJet550Num[eventNum];
+  bool HLT_PFJet40Num[eventNum];
+  bool HLT_PFJet60Num[eventNum];
+  bool HLT_PFJet80Num[eventNum];
+  bool HLT_PFJet110Num[eventNum];
+  bool HLT_PFJet140Num[eventNum];
+  bool HLT_PFJet200Num[eventNum];
+  bool HLT_PFJet260Num[eventNum];
+  bool HLT_PFJet320Num[eventNum];
+  bool HLT_PFJet400Num[eventNum];
+  bool HLT_PFJet450Num[eventNum];
+  bool HLT_PFJet500Num[eventNum];
+  bool HLT_PFJet550Num[eventNum];
 
   tree.SetBranchAddress("HLT_PFJet40",&HLT_PFJet40Num);
   tree.SetBranchAddress("HLT_PFJet60",&HLT_PFJet60Num);
@@ -127,17 +121,17 @@ int TreeToHist()
   TH1D HLT_PFJet550("HLT_PFJet550","HLT_PFJet550",20,0,2000);
   HLT_PFJet550.Sumw2();
 
-  int HLT_PFHT180Num[eventNum];
-  int HLT_PFHT250Num[eventNum];
-  int HLT_PFHT350Num[eventNum];
-  int HLT_PFHT370Num[eventNum];
-  int HLT_PFHT430Num[eventNum];
-  int HLT_PFHT510Num[eventNum];
-  int HLT_PFHT590Num[eventNum];
-  int HLT_PFHT680Num[eventNum];
-  int HLT_PFHT780Num[eventNum];
-  int HLT_PFHT890Num[eventNum];
-  int HLT_PFHT1050Num[eventNum];
+  bool HLT_PFHT180Num[eventNum];
+  bool HLT_PFHT250Num[eventNum];
+  bool HLT_PFHT350Num[eventNum];
+  bool HLT_PFHT370Num[eventNum];
+  bool HLT_PFHT430Num[eventNum];
+  bool HLT_PFHT510Num[eventNum];
+  bool HLT_PFHT590Num[eventNum];
+  bool HLT_PFHT680Num[eventNum];
+  bool HLT_PFHT780Num[eventNum];
+  bool HLT_PFHT890Num[eventNum];
+  bool HLT_PFHT1050Num[eventNum];
 
   tree.SetBranchAddress("HLT_PFHT180",&HLT_PFHT180Num);
   tree.SetBranchAddress("HLT_PFHT250",&HLT_PFHT250Num);
@@ -178,33 +172,40 @@ int TreeToHist()
   for (Long64_t entry = 0; entry < tree.GetEntries(); ++entry)
   {
     tree.GetEntry(entry);
+    //tree.GetEntries();
+    //Calculate Mjj
+    TLorentzVector Lorentz0, Lorentz1;
+    Lorentz0.SetPtEtaPhiM(pt1Num[0],eta1Num[0],phi1Num[0],mass1Num[0]);
+    Lorentz1.SetPtEtaPhiM(pt2Num[0],eta2Num[0],phi2Num[0],mass2Num[0]);
+    TLorentzVector MjjSum = Lorentz0 + Lorentz1;
+    double MjjValue = MjjSum.M();
 
       //fill HLT Hists
-      HLT_PFJet40.Fill(pt1Num[0],HLT_PFJet40Num[0]);
-      HLT_PFJet60.Fill(pt1Num[0],HLT_PFJet60Num[0]);
-      HLT_PFJet80.Fill(pt1Num[0],HLT_PFJet80Num[0]);
-      HLT_PFJet110.Fill(pt1Num[0],HLT_PFJet110Num[0]);
-      HLT_PFJet140.Fill(pt1Num[0],HLT_PFJet140Num[0]);
-      HLT_PFJet200.Fill(pt1Num[0],HLT_PFJet200Num[0]);
-      HLT_PFJet260.Fill(pt1Num[0],HLT_PFJet260Num[0]);
-      HLT_PFJet320.Fill(pt1Num[0],HLT_PFJet320Num[0]);
-      HLT_PFJet400.Fill(pt1Num[0],HLT_PFJet400Num[0]);
-      HLT_PFJet450.Fill(pt1Num[0],HLT_PFJet450Num[0]);
-      HLT_PFJet500.Fill(pt1Num[0],HLT_PFJet500Num[0]);
-      HLT_PFJet550.Fill(pt1Num[0],HLT_PFJet550Num[0]);
+      HLT_PFJet40.Fill(MjjValue,HLT_PFJet40Num[0]);
+      HLT_PFJet60.Fill(MjjValue,HLT_PFJet60Num[0]);
+      HLT_PFJet80.Fill(MjjValue,HLT_PFJet80Num[0]);
+      HLT_PFJet110.Fill(MjjValue,HLT_PFJet110Num[0]);
+      HLT_PFJet140.Fill(MjjValue,HLT_PFJet140Num[0]);
+      HLT_PFJet200.Fill(MjjValue,HLT_PFJet200Num[0]);
+      HLT_PFJet260.Fill(MjjValue,HLT_PFJet260Num[0]);
+      HLT_PFJet320.Fill(MjjValue,HLT_PFJet320Num[0]);
+      HLT_PFJet400.Fill(MjjValue,HLT_PFJet400Num[0]);
+      HLT_PFJet450.Fill(MjjValue,HLT_PFJet450Num[0]);
+      HLT_PFJet500.Fill(MjjValue,HLT_PFJet500Num[0]);
+      HLT_PFJet550.Fill(MjjValue,HLT_PFJet550Num[0]);
 
       //fill HLTPF Hists
-      HLT_PFHT180.Fill(pt1Num[0],HLT_PFHT180Num[0]);
-      HLT_PFHT250.Fill(pt1Num[0],HLT_PFHT250Num[0]);
-      HLT_PFHT350.Fill(pt1Num[0],HLT_PFHT350Num[0]);
-      HLT_PFHT370.Fill(pt1Num[0],HLT_PFHT370Num[0]);
-      HLT_PFHT430.Fill(pt1Num[0],HLT_PFHT430Num[0]);
-      HLT_PFHT510.Fill(pt1Num[0],HLT_PFHT510Num[0]);
-      HLT_PFHT590.Fill(pt1Num[0],HLT_PFHT590Num[0]);
-      HLT_PFHT680.Fill(pt1Num[0],HLT_PFHT680Num[0]);
-      HLT_PFHT780.Fill(pt1Num[0],HLT_PFHT780Num[0]);
-      HLT_PFHT890.Fill(pt1Num[0],HLT_PFHT890Num[0]);
-      HLT_PFHT1050.Fill(pt1Num[0],HLT_PFHT1050Num[0]);
+      HLT_PFHT180.Fill(MjjValue,HLT_PFHT180Num[0]);
+      HLT_PFHT250.Fill(MjjValue,HLT_PFHT250Num[0]);
+      HLT_PFHT350.Fill(MjjValue,HLT_PFHT350Num[0]);
+      HLT_PFHT370.Fill(MjjValue,HLT_PFHT370Num[0]);
+      HLT_PFHT430.Fill(MjjValue,HLT_PFHT430Num[0]);
+      HLT_PFHT510.Fill(MjjValue,HLT_PFHT510Num[0]);
+      HLT_PFHT590.Fill(MjjValue,HLT_PFHT590Num[0]);
+      HLT_PFHT680.Fill(MjjValue,HLT_PFHT680Num[0]);
+      HLT_PFHT780.Fill(MjjValue,HLT_PFHT780Num[0]);
+      HLT_PFHT890.Fill(MjjValue,HLT_PFHT890Num[0]);
+      HLT_PFHT1050.Fill(MjjValue,HLT_PFHT1050Num[0]);
   }
 
   //Neccesary so files dont get lost
