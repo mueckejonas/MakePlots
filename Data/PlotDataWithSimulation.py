@@ -39,6 +39,10 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title,und
     runc.Scale(1./18600)
     rund.Scale(1./10000)
 
+    #runb.Scale(sim.Integral()/runb.Integral())
+    #runc.Scale(sim.Integral()/runc.Integral())
+    #rund.Scale(sim.Integral()/rund.Integral())
+
     sim.GetYaxis().SetTitle(yAxisTitle)
     sim.GetYaxis().SetTitleSize(0.05)
     sim.GetXaxis().SetTitle(xAxisTitle)
