@@ -86,7 +86,6 @@ int TreeToHist()
 
   TH1D Ref_HLT_PFJet40("Ref_HLT_PFJet40","Ref_HLT_PFJet40",50,0,2000);
   Ref_HLT_PFJet40.Sumw2();
-  gStyle->SetErrorX(0.);
   TH1D Ref_HLT_PFJet60("Ref_HLT_PFJet60","Ref_HLT_PFJet60",50,0,2000);
   Ref_HLT_PFJet60.Sumw2();
   TH1D Ref_HLT_PFJet80("Ref_HLT_PFJet80","Ref_HLT_PFJet80",50,0,2000);
@@ -109,6 +108,7 @@ int TreeToHist()
   Ref_HLT_PFJet500.Sumw2();
   TH1D Ref_HLT_PFJet550("Ref_HLT_PFJet550","Ref_HLT_PFJet550",50,0,2000);
   Ref_HLT_PFJet550.Sumw2();
+  gStyle->SetErrorX(0.);
 
   TH1D HLT_PFJet40("HLT_PFJet40","HLT_PFJet40",50,0,2000);
   HLT_PFJet40.Sumw2();
@@ -206,7 +206,7 @@ int TreeToHist()
   HLT_PFHT1050.Sumw2();
 
   //Fill the Hists with Root Tree Data
-  for (Long64_t entry = 0; entry < 10000; ++entry)
+  for (Long64_t entry = 0; entry < 100000; ++entry)
   {
     tree.GetEntry(entry);
     //tree.GetEntries();
