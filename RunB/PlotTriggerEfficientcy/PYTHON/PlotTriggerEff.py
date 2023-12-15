@@ -2,12 +2,8 @@ import ROOT
 import numpy as np
 #takes three hists and turn them into pdf
 def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle):
-    Efficiency = ROOT.TH1D("binomial","Temp_Binomial",data1.GetNbinsX(),data1.GetXaxis().GetXmin(),data1.GetXaxis().GetXmax())
-    Efficiency.Sumw2()
-    Efficiency.Divide(data1,data2,1,1,"B")
-
-
-    #Efficiency.SetError()
+    Efficiency = ROOT.TGraphAsymmErrors(int(data1.GetNbinsX()))
+    Efficiency.BayesDivide(data1,data2)
 
     canvas = ROOT.TCanvas("canvas")
 
@@ -15,18 +11,22 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     latex.SetNDC()
     latex.SetTextSize(0.03)
 
+    for i in range(0,int(data1.GetNbinsX())):
+	    Efficiency.SetPointEXhigh(i,0.0)
+	    Efficiency.SetPointEXlow(i,0.0)
+
     legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
     legend.SetLineWidth(0)
-    legend.AddEntry(Efficiency,yAxisTitle)
     Efficiency.SetStats(0)
     Efficiency.SetLineColor(ROOT.kBlack)
-    Efficiency.SetLineWidth(2)
+    Efficiency.SetLineWidth(1)
     Efficiency.GetYaxis().SetTitle(yAxisTitle)
     Efficiency.GetXaxis().SetTitle(xAxisTitle)
+    Efficiency.GetXaxis().SetRangeUser(data1.GetXaxis().GetXmin(),data1.GetXaxis().GetXmax())
     Efficiency.SetTitle("")
-    Efficiency.SetMarkerStyle(ROOT.kFullCircle)
-    #data1.Divide(data2,0.,1.,"B")
-    Efficiency.Draw()
+    Efficiency.SetMarkerStyle(4)
+    legend.AddEntry(Efficiency,yAxisTitle)
+    Efficiency.Draw("AP")
     legend.Draw("same")
     latex.DrawText(0.7,0.8,title)
     latex.SetTextSize(0.04)
