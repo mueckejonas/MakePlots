@@ -2,6 +2,13 @@ import ROOT
 import numpy as np
 #takes three hists and turn them into pdf
 def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle):
+    Efficiency = ROOT.TH1D("binomial","Temp_Binomial",data1.GetNbinsX(),data1.GetXaxis().GetXmin(),data1.GetXaxis().GetXmax())
+    Efficiency.Sumw2()
+    Efficiency.Divide(data1,data2,1,1,"B")
+
+
+    #Efficiency.SetError()
+
     canvas = ROOT.TCanvas("canvas")
 
     latex = ROOT.TLatex()
@@ -10,16 +17,16 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
 
     legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
     legend.SetLineWidth(0)
-    legend.AddEntry(data1,yAxisTitle)
-
-    data1.SetStats(0)
-    data1.SetLineColor(ROOT.kBlack)
-    data1.SetLineWidth(2)
-    data1.GetYaxis().SetTitle(yAxisTitle)
-    data1.GetXaxis().SetTitle(xAxisTitle)
-    data1.SetTitle("")
-    data1.Divide(data2)
-    data1.Draw("pe")
+    legend.AddEntry(Efficiency,yAxisTitle)
+    Efficiency.SetStats(0)
+    Efficiency.SetLineColor(ROOT.kBlack)
+    Efficiency.SetLineWidth(2)
+    Efficiency.GetYaxis().SetTitle(yAxisTitle)
+    Efficiency.GetXaxis().SetTitle(xAxisTitle)
+    Efficiency.SetTitle("")
+    Efficiency.SetMarkerStyle(ROOT.kFullCircle)
+    #data1.Divide(data2,0.,1.,"B")
+    Efficiency.Draw()
     legend.Draw("same")
     latex.DrawText(0.7,0.8,title)
     latex.SetTextSize(0.04)
