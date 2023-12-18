@@ -7,30 +7,23 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
 
     canvas = ROOT.TCanvas("canvas")
 
-    latex = ROOT.TLatex()
-    latex.SetNDC()
-    latex.SetTextSize(0.03)
-
     for i in range(0,int(data1.GetNbinsX())):
 	    Efficiency.SetPointEXhigh(i,0.0)
 	    Efficiency.SetPointEXlow(i,0.0)
 
     legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
-    legend.SetLineWidth(0)
     Efficiency.SetStats(0)
     Efficiency.SetLineColor(ROOT.kBlack)
     Efficiency.SetLineWidth(1)
     Efficiency.GetYaxis().SetTitle(yAxisTitle)
     Efficiency.GetXaxis().SetTitle(xAxisTitle)
     Efficiency.GetXaxis().SetRangeUser(data1.GetXaxis().GetXmin(),data1.GetXaxis().GetXmax())
-    Efficiency.SetTitle("")
+    Efficiency.SetTitle(title+undertitle)
     Efficiency.SetMarkerStyle(4)
-    legend.AddEntry(Efficiency,yAxisTitle)
+    legend.AddEntry(Efficiency,yAxisTitle,"p")
+    legend.SetLineWidth(0)
     Efficiency.Draw("AP")
     legend.Draw("same")
-    latex.DrawText(0.7,0.8,title)
-    latex.SetTextSize(0.04)
-    latex.DrawText(0.7,0.77,undertitle)
     canvas.Print(outFileName)
 
 #define directory

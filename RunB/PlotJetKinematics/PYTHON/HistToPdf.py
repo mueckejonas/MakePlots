@@ -6,42 +6,57 @@ def RootHisttoPdf(outFileName,data1,logyScale,dataNumber,yAxisTitle,xAxisTitle,t
     if logyScale:
         canvas.SetLogy(True)
     canvas.cd()
-
-    latex = ROOT.TLatex()
-    latex.SetNDC()
-    latex.SetTextSize(0.03)
+    data1graph = ROOT.TGraphAsymmErrors(data1)
+    for i in range(0,int(data1.GetNbinsX())):
+	    data1graph.SetPointEXhigh(i,0.0)
+	    data1graph.SetPointEXlow(i,0.0)
 
     legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
     legend.SetLineWidth(0)
-    legend.AddEntry(data1,dataName)
+    legend.AddEntry(data1graph,dataName,"p")
     if dataNumber > 2:
-        legend.AddEntry(data2,"Jet2 data")
-        legend.AddEntry(data3,"Jet3 data")
+        data2graph = ROOT.TGraphAsymmErrors(data2)
+        for i in range(0,int(data1.GetNbinsX())):
+	        data2graph.SetPointEXhigh(i,0.0)
+	        data2graph.SetPointEXlow(i,0.0)
+        data3graph = ROOT.TGraphAsymmErrors(data3)
+        for i in range(0,int(data1.GetNbinsX())):
+	        data3graph.SetPointEXhigh(i,0.0)
+	        data3graph.SetPointEXlow(i,0.0)
+        legend.AddEntry(data2graph,"Jet2 data","p")
+        legend.AddEntry(data3graph,"Jet3 data","p")
     else:
         legend.SetTextSize(0.03)
 
-    data1.SetStats(0)
-    data1.SetLineColor(ROOT.kBlack)
-    data1.SetLineWidth(2)
+    data1graph.SetStats(0)
+    data1graph.SetLineColor(ROOT.kBlack)
+    data1graph.SetMarkerColor(ROOT.kBlack)
+    data1graph.SetLineWidth(2)
+    data1graph.SetMarkerStyle(4)
     if dataNumber > 2:
-        data2.SetStats(0)
-        data2.SetLineColor(ROOT.kBlue)
-        data2.SetLineWidth(2)
-        data3.SetStats(0)
-        data3.SetLineColor(ROOT.kRed)
-        data3.SetLineWidth(2)
-        data2.SetTitle("")
-        data3.SetTitle("")
-    data1.GetYaxis().SetTitle(yAxisTitle)
-    data1.GetXaxis().SetTitle(xAxisTitle)
-    data1.SetTitle("")
-    data1.Draw("pe")
+        data2graph.SetStats(0)
+        data2graph.SetLineColor(ROOT.kBlue)
+        data2graph.SetMarkerColor(ROOT.kBlue)
+        data2graph.SetLineWidth(2)
+        data2graph.SetMarkerStyle(4)
+        data3graph.SetStats(0)
+        data3graph.SetLineColor(ROOT.kRed)
+        data3graph.SetMarkerColor(ROOT.kRed)
+        data3graph.SetLineWidth(2)
+        data3graph.SetMarkerStyle(4)
+        data2graph.SetTitle("")
+        data3graph.SetTitle("")
+    data1graph.GetYaxis().SetTitle(yAxisTitle)
+    data1graph.GetXaxis().SetTitle(xAxisTitle)
+    data1graph.GetXaxis().SetRangeUser(data1.GetXaxis().GetXmin(),data1.GetXaxis().GetXmax())
+    data1graph.SetTitle(title)
+    data1graph.Draw("AP")
     if dataNumber > 2:
-        data2.Draw("pe,same")
-        data3.Draw("pe,same")
+        data2graph.Draw("P same")
+        data3graph.Draw("P same")
     legend.Draw("same")
-    latex.DrawText(0.7,0.8,title)
     canvas.Print(outFileName)
+
 
 #define directory
 inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/RootB/"
