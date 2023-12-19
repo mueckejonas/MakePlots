@@ -217,7 +217,15 @@ int TreeToHist()
       std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
     }
 
+    //Calculate chi
+    double ChiValue = exp(abs(y1Num[0]-y2Num[0]));
 
+    //Calculate yboost
+    double YBoostValue = (y1Num[0]+y2Num[0])/2;
+
+
+
+    if (ChiValue < 16 && abs(YBoostValue) < 1.11){
     //Calculate Mjj
     TLorentzVector Lorentz0, Lorentz1;
     Lorentz0.SetPtEtaPhiM(pt1Num[0],eta1Num[0],phi1Num[0],mass1Num[0]);
@@ -274,6 +282,7 @@ int TreeToHist()
     HLT_PFHT780.Fill(MjjValue,HLT_PFHT780Num[0]*HLT_PFHT680Num[0]);
     HLT_PFHT890.Fill(MjjValue,HLT_PFHT890Num[0]*HLT_PFHT780Num[0]);
     HLT_PFHT1050.Fill(MjjValue,HLT_PFHT1050Num[0]*HLT_PFHT890Num[0]);
+    }
   }
 
   //Neccesary so files dont get lost
