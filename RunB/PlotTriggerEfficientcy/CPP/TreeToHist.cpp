@@ -212,9 +212,9 @@ int TreeToHist()
   {
     tree.GetEntry(entry);
     //tree.GetEntries();
-    if(entry % 10000 == 0)
+    if(entry % 100000 == 0)
     {
-      std::cout << (entry/numberEntries)*100 << std::endl;
+      std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
     }
 
 
