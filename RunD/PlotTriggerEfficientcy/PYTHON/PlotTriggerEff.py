@@ -19,7 +19,7 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     Efficiency.GetXaxis().SetTitle(xAxisTitle)
     Efficiency.GetXaxis().SetRangeUser(data1.GetXaxis().GetXmin(),data1.GetXaxis().GetXmax())
     Efficiency.SetTitle(title+undertitle)
-    Efficiency.SetMarkerStyle(1)
+    Efficiency.SetMarkerStyle(4)
     legend.AddEntry(Efficiency,yAxisTitle,"p")
     legend.SetLineWidth(0)
     Efficiency.Draw("AP")
