@@ -215,9 +215,9 @@ int TreeToHist()
   for (Long64_t entry = 0; entry < tree.GetEntries(); ++entry)
   {
     tree.GetEntry(entry);
-    if(entry % 10000 == 0)
+    if(entry % 100000 == 0)
     {
-      std::cout << (entry/numberEntries)*100 << std::endl;
+      std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
     }
     //tree.GetEntries();
     //Calculate Mjj

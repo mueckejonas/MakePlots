@@ -216,11 +216,18 @@ int TreeToHist()
   TH1D HLT_PFHT1050("HLT_PFHT1050","HLT_PFHT1050",100,0,4000);
   HLT_PFHT1050.Sumw2();
 
+  float numberEntries = tree.GetEntries();
+
   //Fill the Hists with Root Tree Data
   for (Long64_t entry = 0; entry < tree.GetEntries(); ++entry)
   {
     tree.GetEntry(entry);
     //tree.GetEntries();
+    if(entry % 100000 == 0)
+    {
+      std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
+    }
+
     //Calculate Mjj
     TLorentzVector Lorentz0, Lorentz1;
     Lorentz0.SetPtEtaPhiM(pt1Num[0],eta1Num[0],phi1Num[0],mass1Num[0]);
