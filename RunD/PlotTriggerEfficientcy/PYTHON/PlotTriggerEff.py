@@ -2,7 +2,7 @@ import ROOT
 import numpy as np
 #takes three hists and turn them into pdf
 def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle):
-    Efficiency = ROOT.TGraphAsymmErrors(int(data1.GetNbinsX()))
+    Efficiency = ROOT.TGraphAsymmErrors()
     Efficiency.BayesDivide(data1,data2)
 
     canvas = ROOT.TCanvas("canvas")
@@ -19,7 +19,7 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     Efficiency.GetXaxis().SetTitle(xAxisTitle)
     Efficiency.GetXaxis().SetRangeUser(data1.GetXaxis().GetXmin(),data1.GetXaxis().GetXmax())
     Efficiency.SetTitle(title+undertitle)
-    Efficiency.SetMarkerStyle(4)
+    Efficiency.SetMarkerStyle(1)
     legend.AddEntry(Efficiency,yAxisTitle,"p")
     legend.SetLineWidth(0)
     Efficiency.Draw("AP")
