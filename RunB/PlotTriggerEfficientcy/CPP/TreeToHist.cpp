@@ -206,7 +206,7 @@ int TreeToHist()
   HLT_PFHT1050.Sumw2();
 
   //Fill the Hists with Root Tree Data
-  for (Long64_t entry = 0; entry < 100000; ++entry)
+  for (Long64_t entry = 0; entry < tree.GetEntries(); ++entry)
   {
     tree.GetEntry(entry);
     //tree.GetEntries();
