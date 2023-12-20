@@ -6,8 +6,8 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     fit_template = "[0]/(1+exp(-[1]*x-[2]))"
     fit_func = ROOT.TF1("fit_func",fit_template,2200,4000)
     fit_func.SetParameter(0,1)
-    fit_func.SetParameter(1,1)
-    fit_func.SetParameter(2,1)
+    fit_func.SetParameter(1,500)
+    fit_func.SetParameter(2,0)
 
     data1.Divide(data2)
 
@@ -53,7 +53,7 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
 inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/RootB/"
 outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Pdf/"
 pdfnames = "PlotTriggerEfficientcy_Run2023B_"
-inFileName = inDirectory+"PlotTriggerEfficientcy_Run2023B.root"
+inFileName = inDirectory+"PlotFitFunctionTriggerEff_Run2023B.root"
 #Get Jets and Kinematics
 histFile = ROOT.TFile.Open(inFileName,"READ")
 HLT_PFJet = histFile.Get("HLT_PFJet")
