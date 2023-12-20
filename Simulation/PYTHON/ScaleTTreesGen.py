@@ -1554,7 +1554,7 @@ canvas.Print(outDirectory+pdfnames+"yboostgen.pdf")
 canvas.Clear()
 
 #create and save root file with all added hists
-outHistFile = ROOT.TFile.Open(outRootDirectory+"_PlotSimulation_WithScale_Run32023_Gen.root","RECREATE")
+outHistFile = ROOT.TFile.Open(outRootDirectory+"_PlotSimulation_WithScale_Jetresolution_Run32023_Gen.root","RECREATE")
 #Write Jet1 to Root
 outHistFile.mkdir("Jet1")
 outHistFile.cd("Jet1")
