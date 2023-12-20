@@ -56,10 +56,10 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
 
 
 #define directory
-inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/RootB/"
-outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunB/Pdf/"
-pdfnames = "PlotTriggerEfficientcy_Run2023B_"
-inFileName = inDirectory+"PlotFitFunctionTriggerEff_Run2023B.root"
+inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunC/RootC/"
+outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunC/Pdf/"
+pdfnames = "PlotTriggerEfficientcy_Run2023C_"
+inFileName = inDirectory+"PlotFitFunctionTriggerEff_Run2023C.root"
 #Get Jets and Kinematics
 histFile = ROOT.TFile.Open(inFileName,"READ")
 HLT_PFJet = histFile.Get("HLT_PFJet")

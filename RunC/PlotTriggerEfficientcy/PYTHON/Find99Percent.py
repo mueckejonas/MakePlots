@@ -7,9 +7,12 @@ def Find99Percent(data1,data2):
 
     for i in range(0,int(data1.GetNbinsX())):
         if(0.98 < Efficiency.GetY()[i] < 1.):
+            print("--------------------")
             print(Efficiency.GetX()[i])
             print(Efficiency.GetY()[i])
-            print(Efficiency.GetErrorY(i))
+            print(Efficiency.GetErrorYhigh(i))
+            print(Efficiency.GetErrorYlow(i))
+            print("--------------------")
 
 #define directory
 inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunC/RootC/"
