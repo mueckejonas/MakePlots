@@ -230,7 +230,7 @@ int TreeToHistForFit()
     TLorentzVector MjjSum = Lorentz0 + Lorentz1;
     double MjjValue = MjjSum.M();
 
-    if (ChiValue < 16 && abs(YBoostValue) < 1.11 && 2200 <= MjjValue && MjjValue <= 4000){
+    if (ChiValue < 16 && abs(YBoostValue) < 1.11 && 2000 <= MjjValue && MjjValue <= 3000){
 
     //fill HLT Hists
     Ref_HLT_PFJet40.Fill(MjjValue,HLT_PFJet40Num[0]);

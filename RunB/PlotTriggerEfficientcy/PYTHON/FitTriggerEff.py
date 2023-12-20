@@ -3,8 +3,8 @@ import numpy as np
 #takes three hists and turn them into pdf
 def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle):
 
-    fit_template = "[0]/(1+exp(-[1]*x-[2]))"
-    fit_func = ROOT.TF1("fit_func",fit_template,2200,4000)
+    fit_template = "[0]/(1+exp(-(x/[1])-[2]))"
+    fit_func = ROOT.TF1("fit_func",fit_template,2000,3000)
     fit_func.SetParameter(0,1)
     fit_func.SetParameter(1,500)
     fit_func.SetParameter(2,0)
