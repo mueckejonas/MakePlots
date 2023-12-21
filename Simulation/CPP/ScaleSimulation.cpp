@@ -1,4 +1,4 @@
-int CalcResolutionHist()
+int ScaleSimulation()
 {
 
     //define folders of Root Tree File and where to write Hist Files
