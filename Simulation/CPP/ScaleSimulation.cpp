@@ -87,11 +87,9 @@ int ScaleSimulation()
       if(entry % 100000 == 0)
       {
         std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
-        std::cout << to_string((pt1Num[0]-genpt1Num[0])/genpt1Num[0]) << std::endl;
-        std::cout << to_string(pt1Num[0]) << std::endl;
-        std::cout << to_string(genpt1Num[0]) << std::endl;
       }
 
+      tree->GetEntry(entry);
 
       //calculate R
       double R_Value = sqrt(pow(phi1Num[0]-genphi1Num[0],2)*pow(eta1Num[0]-geneta1Num[0],2));
