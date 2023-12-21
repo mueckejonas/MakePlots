@@ -3,6 +3,7 @@ int ScaleSimulation()
 
     //define folders of Root Tree File and where to write Hist Files
     char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-50to80_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
+    /*
     char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-80to120_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile3[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-120to170_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile4[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-170to300_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
@@ -16,10 +17,11 @@ int ScaleSimulation()
     char rootFile12[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-2400to3200_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile13[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-3200_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char outName[] = "/nfs/dust/cms/user/mueckejo/RootS/PlotJetResolution_test_Run2023C.root";
-
+    */
 
     TChain tree("Events");   // name of the tree is the argument
     tree.Add(rootFile1);
+    /*
     tree.Add(rootFile2);
     tree.Add(rootFile3);
     tree.Add(rootFile4);
@@ -32,6 +34,7 @@ int ScaleSimulation()
     tree.Add(rootFile11);
     tree.Add(rootFile12);
     tree.Add(rootFile13);
+    */
 
     //declare variables to Load from Root Tree
     const unsigned int eventNum = 1;
@@ -73,14 +76,14 @@ int ScaleSimulation()
     TH1D Response100to120("Response100to120","Response100to120",20,100,120);
     Response100to120.Sumw2();
 
-    float numberEntries = 1000000;
+    float numberEntries = tree.GetEntries();
 
     std::cout << tree.GetEntries() << std::endl;
     //Fill the Hists with Root Tree Sim and Genjets
     //GetEntries();
-    for (Long64_t entry = 0; entry < 1000000; ++entry)
+    for (Long64_t entry = 0; entry < tree.GetEntries(); ++entry)
     {
-      if(entry % 10000 == 0)
+      if(entry % 100000 == 0)
       {
         std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
         std::cout << to_string((pt1Num[0]-genpt1Num[0])/genpt1Num[0]) << std::endl;
