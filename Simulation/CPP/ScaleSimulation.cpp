@@ -89,7 +89,7 @@ int ScaleSimulation()
         std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
       }
 
-      tree->GetEntry(entry);
+      tree.GetEntry(entry);
 
       //calculate R
       double R_Value = sqrt(pow(phi1Num[0]-genphi1Num[0],2)*pow(eta1Num[0]-geneta1Num[0],2));
