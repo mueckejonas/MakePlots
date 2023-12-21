@@ -4,7 +4,7 @@ int CalcResolutionHist()
   string ranges[13] = {"50to80","80to120","120to170","170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","3200"};
 
     //define folders of Root Tree File and where to write Hist Files
-    char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-"+ranges[0]+"_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
+    char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-50to80_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-"+ranges[1]+"_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile3[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-"+ranges[2]+"_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile4[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-"+ranges[3]+"_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
