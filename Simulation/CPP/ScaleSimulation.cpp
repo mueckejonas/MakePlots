@@ -44,11 +44,11 @@ int CalcResolutionHist()
     float phi1Num[eventNum];
     float mass1Num[eventNum];
 
-    tree->SetBranchAddress("jetAK4_pt1",&pt1Num);
-    tree->SetBranchAddress("jetAK4_y1",&y1Num);
-    tree->SetBranchAddress("jetAK4_eta1",&eta1Num);
-    tree->SetBranchAddress("jetAK4_phi1",&phi1Num);
-    tree->SetBranchAddress("jetAK4_mass1",&mass1Num);
+    tree.SetBranchAddress("jetAK4_pt1",&pt1Num);
+    tree.SetBranchAddress("jetAK4_y1",&y1Num);
+    tree.SetBranchAddress("jetAK4_eta1",&eta1Num);
+    tree.SetBranchAddress("jetAK4_phi1",&phi1Num);
+    tree.SetBranchAddress("jetAK4_mass1",&mass1Num);
 
     //variables of genJet
     float genpt1Num[eventNum];
@@ -57,11 +57,11 @@ int CalcResolutionHist()
     float genphi1Num[eventNum];
     float genmass1Num[eventNum];
 
-    tree->SetBranchAddress("genJetAK4_pt1",&genpt1Num);
-    tree->SetBranchAddress("genJetAK4_y1",&geny1Num);
-    tree->SetBranchAddress("genJetAK4_eta1",&geneta1Num);
-    tree->SetBranchAddress("genJetAK4_phi1",&genphi1Num);
-    tree->SetBranchAddress("genJetAK4_mass1",&genmass1Num);
+    tree.SetBranchAddress("genJetAK4_pt1",&genpt1Num);
+    tree.SetBranchAddress("genJetAK4_y1",&geny1Num);
+    tree.SetBranchAddress("genJetAK4_eta1",&geneta1Num);
+    tree.SetBranchAddress("genJetAK4_phi1",&genphi1Num);
+    tree.SetBranchAddress("genJetAK4_mass1",&genmass1Num);
 
 
     TH1D Response20to40("Response20to40","Response20to40",20,20,40);
@@ -77,7 +77,7 @@ int CalcResolutionHist()
 
     float numberEntries = 1000000;
 
-    std::cout << tree->GetEntries() << std::endl;
+    std::cout << tree.GetEntries() << std::endl;
     //Fill the Hists with Root Tree Sim and Genjets
     //GetEntries();
     for (Long64_t entry = 0; entry < 1000000; ++entry)
