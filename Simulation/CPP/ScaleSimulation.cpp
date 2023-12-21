@@ -83,6 +83,7 @@ int ScaleSimulation()
       if(entry % 10000 == 0)
       {
         std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
+        std::cout << to_string((pt1Num[0]-genpt1Num[0])/genpt1Num[0]) << std::endl;
       }
 
 
@@ -94,9 +95,9 @@ int ScaleSimulation()
         double Response = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
 
         //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        //if(20 <= pt1Num[0] && pt1Num[0] < 40 && 20 <= genpt1Num[0] && genpt1Num[0] < 40){
+        if(20 <= pt1Num[0] && pt1Num[0] < 40 && 20 <= genpt1Num[0] && genpt1Num[0] < 40){
           Response20to40.Fill(Response);
-        //}
+        }
         if(40 <= pt1Num[0] && pt1Num[0] < 60 && 40 <= genpt1Num[0] && genpt1Num[0] < 60){
           Response40to60.Fill(Response);
         }
