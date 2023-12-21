@@ -66,7 +66,7 @@ int ScaleSimulation()
     tree.SetBranchAddress("genJetAK4_mass1",&genmass1Num);
 
 
-    TH1D Response20to40("Response20to40","Response20to40",20,20,40);
+    TH1D Response20to40("Response20to40","Response20to40",20,-10,10);
     Response20to40.Sumw2();
     TH1D Response40to60("Response40to60","Response40to60",20,40,60);
     Response40to60.Sumw2();
@@ -86,10 +86,9 @@ int ScaleSimulation()
     {
       tree.GetEntry(entry);
 
-      if(entry % 1000 == 0)
+      if(entry % 100000 == 0)
       {
         std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
-        std::cout << to_string(pt1Num[0]) << "% finished" << std::endl;
       }
 
       //calculate R
@@ -100,9 +99,9 @@ int ScaleSimulation()
         double Response = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
 
         //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(20 <= pt1Num[0] && pt1Num[0] < 40 && 20 <= genpt1Num[0] && genpt1Num[0] < 40){
-          Response20to40.Fill(Response);
-        }
+        //if(20 <= pt1Num[0] && pt1Num[0] < 40 && 20 <= genpt1Num[0] && genpt1Num[0] < 40){
+        Response20to40.Fill(Response);
+        //}
         if(40 <= pt1Num[0] && pt1Num[0] < 60 && 40 <= genpt1Num[0] && genpt1Num[0] < 60){
           Response40to60.Fill(Response);
         }
