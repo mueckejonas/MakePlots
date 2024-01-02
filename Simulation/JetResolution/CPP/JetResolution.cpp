@@ -2,6 +2,7 @@ int JetResolution()
 {
 
     //define folders of Root Tree File and where to write Hist Files
+    /*
     char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-50to80_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-80to120_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile3[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-120to170_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
@@ -14,11 +15,13 @@ int JetResolution()
     char rootFile10[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-1400to1800_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile11[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-1800to2400_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile12[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-2400to3200_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
+    */
     char rootFile13[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-3200_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char outName[] = "/nfs/dust/cms/user/mueckejo/RootS/PlotJetResolution_test_Run2023C.root";
 
 
     TChain tree("Events");   // name of the tree is the argument
+    /*
     tree.Add(rootFile1);
     tree.Add(rootFile2);
     tree.Add(rootFile3);
@@ -31,6 +34,7 @@ int JetResolution()
     tree.Add(rootFile10);
     tree.Add(rootFile11);
     tree.Add(rootFile12);
+    */
     tree.Add(rootFile13);
 
     //declare variables to Load from Root Tree
@@ -89,6 +93,17 @@ int JetResolution()
 
       //calculate R
       double R_Value = sqrt(pow(phi1Num[0]-genphi1Num[0],2)*pow(eta1Num[0]-geneta1Num[0],2));
+      double Response = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
+
+      if(entry % 100000 == 0)
+      {
+        std::cout << "pt1 value" << "% finished" << std::endl;
+        std::cout << to_string(pt1Num) << "% finished" << std::endl;
+        std::cout << "R value" << "% finished" << std::endl;
+        std::cout << to_string(R_Value) << "% finished" << std::endl;
+        std::cout << "Response value" << "% finished" << std::endl;
+        std::cout << to_string(Response) << "% finished" << std::endl;
+      }
 
       if(R_Value < 0.2){
         //calculate response
