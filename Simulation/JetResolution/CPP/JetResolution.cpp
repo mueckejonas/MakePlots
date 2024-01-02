@@ -98,7 +98,7 @@ int JetResolution()
       if(entry % 100000 == 0)
       {
         std::cout << "pt1 value" << "% finished" << std::endl;
-        std::cout << to_string(pt1Num) << "% finished" << std::endl;
+        std::cout << to_string(pt1Num[0]) << "% finished" << std::endl;
         std::cout << "R value" << "% finished" << std::endl;
         std::cout << to_string(R_Value) << "% finished" << std::endl;
         std::cout << "Response value" << "% finished" << std::endl;
