@@ -6,7 +6,6 @@ int JetResolution()
     char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-80to120_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile3[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-120to170_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile4[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-170to300_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
-    /*
     char rootFile5[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-300to470_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile6[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-470to600_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile7[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-600to800_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
@@ -16,7 +15,6 @@ int JetResolution()
     char rootFile11[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-1800to2400_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile12[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-2400to3200_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile13[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-3200_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
-    */
     char outName[] = "/nfs/dust/cms/user/mueckejo/RootS/PlotJetResolution_test_Run2023C.root";
 
 
@@ -25,7 +23,6 @@ int JetResolution()
     tree.Add(rootFile2);
     tree.Add(rootFile3);
     tree.Add(rootFile4);
-    /*
     tree.Add(rootFile5);
     tree.Add(rootFile6);
     tree.Add(rootFile7);
@@ -35,7 +32,6 @@ int JetResolution()
     tree.Add(rootFile11);
     tree.Add(rootFile12);
     tree.Add(rootFile13);
-    */
 
     //declare variables to Load from Root Tree
     const unsigned int eventNum = 1;
@@ -66,15 +62,15 @@ int JetResolution()
     tree.SetBranchAddress("genJetAK4_mass1",&genmass1Num);
 
 
-    TH1D Response20to40("Response20to40","Response20to40",20,20,40);
+    TH1D Response20to40("Response20to40","Response20to40",40,20,40);
     Response20to40.Sumw2();
-    TH1D Response40to60("Response40to60","Response40to60",20,40,60);
+    TH1D Response40to60("Response40to60","Response40to60",40,40,60);
     Response40to60.Sumw2();
-    TH1D Response60to80("Response60to80","Response60to80",20,60,80);
+    TH1D Response60to80("Response60to80","Response60to80",40,60,80);
     Response60to80.Sumw2();
-    TH1D Response80to100("Response80to100","Response80to100",20,80,100);
+    TH1D Response80to100("Response80to100","Response80to100",40,80,100);
     Response20to40.Sumw2();
-    TH1D Response100to120("Response100to120","Response100to120",20,100,120);
+    TH1D Response100to120("Response100to120","Response100to120",40,100,120);
     Response100to120.Sumw2();
 
     float numberEntries = tree.GetEntries();
