@@ -1,4 +1,4 @@
-int ScaleSimulation()
+int JetResolution()
 {
 
     //define folders of Root Tree File and where to write Hist Files
