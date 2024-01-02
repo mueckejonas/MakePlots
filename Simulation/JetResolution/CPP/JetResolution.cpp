@@ -95,18 +95,15 @@ int JetResolution()
 
       //calculate R
       double R_Value = sqrt(pow(phi1Num[0]-genphi1Num[0],2)*pow(eta1Num[0]-geneta1Num[0],2));
-      double Response = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
-
-      if(entry % 1000 == 0)
-      {
-        std::cout << "pt1 value : " << to_string(pt1Num[0]) << std::endl;
-        std::cout << "R value : " << to_string(R_Value) << std::endl;
-        std::cout << "Response value" << to_string(Response) << std::endl;
-      }
 
       if(R_Value < 0.2){
         //calculate response
         double Response = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
+
+        if(entry % 1000 == 0)
+      {
+        std::cout << "Response value" << to_string(Response) << std::endl;
+      }
 
         //Fill hists with response for pt ranges of 20GeV from 0 to 1000
         //if(20 <= pt1Num[0] && pt1Num[0] < 40 && 20 <= genpt1Num[0] && genpt1Num[0] < 40){
