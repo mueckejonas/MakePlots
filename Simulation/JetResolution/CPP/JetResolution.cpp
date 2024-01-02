@@ -61,17 +61,32 @@ int JetResolution()
     tree.SetBranchAddress("genJetAK4_phi1",&genphi1Num);
     tree.SetBranchAddress("genJetAK4_mass1",&genmass1Num);
 
-
-    TH1D Response20to40("Response20to40","Response20to40",40,-0.2,0.2);
-    Response20to40.Sumw2();
-    TH1D Response40to60("Response40to60","Response40to60",40,40,60);
-    Response40to60.Sumw2();
-    TH1D Response60to80("Response60to80","Response60to80",40,60,80);
-    Response60to80.Sumw2();
-    TH1D Response80to100("Response80to100","Response80to100",40,80,100);
-    Response20to40.Sumw2();
-    TH1D Response100to120("Response100to120","Response100to120",40,100,120);
-    Response100to120.Sumw2();
+    TH1D Response50to80("Response50to80","Response50to80",40,-0.2,0.2);
+    Response50to80.Sumw2();
+    TH1D Response80to120("Response80to120","Response80to120",40,-0.2,0.2);
+    Response80to120.Sumw2();
+    TH1D Response120to170("Response120to170","Response120to170",40,-0.2,0.2);
+    Response120to170.Sumw2();
+    TH1D Response170to300("Response170to300","Response170to300",40,-0.2,0.2);
+    Response170to300.Sumw2();
+    TH1D Response300to470("Response300to470","Response300to470",40,-0.2,0.2);
+    Response300to470.Sumw2();
+    TH1D Response470to600("Response470to600","Response470to600",40,-0.2,0.2);
+    Response470to600.Sumw2();
+    TH1D Response600to800("Response600to800","Response600to800",40,-0.2,0.2);
+    Response600to800.Sumw2();
+    TH1D Response800to1000("Response800to1000","Response800to1000",40,-0.2,0.2);
+    Response800to1000.Sumw2();
+    TH1D Response1000to1400("Response1000to1400","Response1000to1400",40,-0.2,0.2);
+    Response1000to1400.Sumw2();
+    TH1D Response1400to1800("Response1400to1800","Response1400to1800",40,-0.2,0.2);
+    Response1400to1800.Sumw2();
+    TH1D Response1800to2400("Response1800to2400","Response1800to2400",40,-0.2,0.2);
+    Response1800to2400.Sumw2();
+    TH1D Response2400to3200("Response2400to3200","Response2400to3200",40,-0.2,0.2);
+    Response2400to3200.Sumw2();
+    TH1D Response3200("Response3200","Response3200",40,-0.2,0.2);
+    Response3200.Sumw2();
 
     float numberEntries = tree.GetEntries();
 
@@ -95,41 +110,79 @@ int JetResolution()
         double Response = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
 
         //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        //if(20 <= pt1Num[0] && pt1Num[0] < 40 && 20 <= genpt1Num[0] && genpt1Num[0] < 40){
-        Response20to40.Fill(Response);
-        //}
-        /*
-        if(40 <= pt1Num[0] && pt1Num[0] < 60 && 40 <= genpt1Num[0] && genpt1Num[0] < 60){
-          Response40to60.Fill(Response);
+        if(50 <= pt1Num[0] && pt1Num[0] < 80 && 50 <= genpt1Num[0] && genpt1Num[0] < 80){
+        Response50to80.Fill(Response);
         }
-        if(60 <= pt1Num[0] && pt1Num[0] < 80 && 60 <= genpt1Num[0] && genpt1Num[0] < 80){
-          Response60to80.Fill(Response);
+        if(80 <= pt1Num[0] && pt1Num[0] < 120 && 80 <= genpt1Num[0] && genpt1Num[0] < 120){
+        Response80to120.Fill(Response);
         }
-        if(80 <= pt1Num[0] && pt1Num[0] < 100 && 80 <= genpt1Num[0] && genpt1Num[0] < 100){
-          Response80to100.Fill(Response);
+        if(120 <= pt1Num[0] && pt1Num[0] < 170 && 120 <= genpt1Num[0] && genpt1Num[0] < 170){
+        Response120to170.Fill(Response);
         }
-        if(100 <= pt1Num[0] && pt1Num[0] < 120 && 100 <= genpt1Num[0] && genpt1Num[0] < 120){
-          Response100to120.Fill(Response);
+        if(170 <= pt1Num[0] && pt1Num[0] < 300 && 170 <= genpt1Num[0] && genpt1Num[0] < 300){
+        Response170to300.Fill(Response);
         }
-        */
+        if(300 <= pt1Num[0] && pt1Num[0] < 470 && 300 <= genpt1Num[0] && genpt1Num[0] < 470){
+        Response300to470.Fill(Response);
+        }
+        if(470 <= pt1Num[0] && pt1Num[0] < 600 && 470 <= genpt1Num[0] && genpt1Num[0] < 600){
+        Response470to600.Fill(Response);
+        }
+        if(600 <= pt1Num[0] && pt1Num[0] < 800 && 600 <= genpt1Num[0] && genpt1Num[0] < 800){
+        Response600to800.Fill(Response);
+        }
+        if(800 <= pt1Num[0] && pt1Num[0] < 1000 && 800 <= genpt1Num[0] && genpt1Num[0] < 1000){
+        Response800to1000.Fill(Response);
+        }
+        if(1000 <= pt1Num[0] && pt1Num[0] < 1400 && 1000 <= genpt1Num[0] && genpt1Num[0] < 1400){
+        Response1000to1400.Fill(Response);
+        }
+        if(1400 <= pt1Num[0] && pt1Num[0] < 1800 && 1400 <= genpt1Num[0] && genpt1Num[0] < 1800){
+        Response1400to1800.Fill(Response);
+        }
+        if(1800 <= pt1Num[0] && pt1Num[0] < 2400 && 1800 <= genpt1Num[0] && genpt1Num[0] < 2400){
+        Response1800to2400.Fill(Response);
+        }
+        if(2400 <= pt1Num[0] && pt1Num[0] < 3200 && 2400 <= genpt1Num[0] && genpt1Num[0] < 3200){
+        Response2400to3200.Fill(Response);
+        }
+        if(3200 <= pt1Num[0] && 3200 <= genpt1Num[0]){
+        Response3200.Fill(Response);
+        }
       }
 
     }
 
     //Neccesary so files dont get lost
-    Response20to40.SetDirectory(0);
-    Response40to60.SetDirectory(0);
-    Response60to80.SetDirectory(0);
-    Response80to100.SetDirectory(0);
-    Response100to120.SetDirectory(0);
+    Response50to80.SetDirectory(0);
+    Response80to120.SetDirectory(0);
+    Response120to170.SetDirectory(0);
+    Response170to300.SetDirectory(0);
+    Response300to470.SetDirectory(0);
+    Response470to600.SetDirectory(0);
+    Response600to800.SetDirectory(0);
+    Response800to1000.SetDirectory(0);
+    Response1000to1400.SetDirectory(0);
+    Response1400to1800.SetDirectory(0);
+    Response1800to2400.SetDirectory(0);
+    Response2400to3200.SetDirectory(0);
+    Response3200.SetDirectory(0);
 
 
     TFile* outHistFile = TFile::Open(outName,"RECREATE");
-    Response20to40.Write();
-    Response40to60.Write();
-    Response60to80.Write();
-    Response80to100.Write();
-    Response100to120.Write();
+    Response50to80.Write();
+    Response80to120.Write();
+    Response120to170.Write();
+    Response170to300.Write();
+    Response300to470.Write();
+    Response470to600.Write();
+    Response600to800.Write();
+    Response800to1000.Write();
+    Response1000to1400.Write();
+    Response1400to1800.Write();
+    Response1800to2400.Write();
+    Response2400to3200.Write();
+    Response3200.Write();
     outHistFile->Close();
 
   return 0;
