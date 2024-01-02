@@ -66,8 +66,9 @@ int JetResolution()
     tree.SetBranchAddress("genJetAK4_mass1",&genmass1Num);
 
 
-    TH1D Response20to40("Response20to40","Response20to40",40,20,40);
+    TH1D Response20to40("Response20to40","Response20to40",40,-20,20);
     Response20to40.Sumw2();
+    /*
     TH1D Response40to60("Response40to60","Response40to60",40,40,60);
     Response40to60.Sumw2();
     TH1D Response60to80("Response60to80","Response60to80",40,60,80);
@@ -76,6 +77,7 @@ int JetResolution()
     Response20to40.Sumw2();
     TH1D Response100to120("Response100to120","Response100to120",40,100,120);
     Response100to120.Sumw2();
+    */
 
     float numberEntries = tree.GetEntries();
 
@@ -110,6 +112,7 @@ int JetResolution()
         //if(20 <= pt1Num[0] && pt1Num[0] < 40 && 20 <= genpt1Num[0] && genpt1Num[0] < 40){
         Response20to40.Fill(Response);
         //}
+        /*
         if(40 <= pt1Num[0] && pt1Num[0] < 60 && 40 <= genpt1Num[0] && genpt1Num[0] < 60){
           Response40to60.Fill(Response);
         }
@@ -122,24 +125,29 @@ int JetResolution()
         if(100 <= pt1Num[0] && pt1Num[0] < 120 && 100 <= genpt1Num[0] && genpt1Num[0] < 120){
           Response100to120.Fill(Response);
         }
+        */
       }
 
     }
 
     //Neccesary so files dont get lost
     Response20to40.SetDirectory(0);
+    /*
     Response40to60.SetDirectory(0);
     Response60to80.SetDirectory(0);
     Response80to100.SetDirectory(0);
     Response100to120.SetDirectory(0);
+    */
 
 
     TFile* outHistFile = TFile::Open(outName,"RECREATE");
     Response20to40.Write();
+    /*
     Response40to60.Write();
     Response60to80.Write();
     Response80to100.Write();
     Response100to120.Write();
+    */
     outHistFile->Close();
 
   return 0;
