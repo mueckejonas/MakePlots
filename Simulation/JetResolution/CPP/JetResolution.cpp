@@ -66,7 +66,7 @@ int JetResolution()
     tree.SetBranchAddress("genJetAK4_mass1",&genmass1Num);
 
 
-    TH1D Response20to40("Response20to40","Response20to40",40,-1,1);
+    TH1D Response20to40("Response20to40","Response20to40",40,-0.2,0.2);
     Response20to40.Sumw2();
     /*
     TH1D Response40to60("Response40to60","Response40to60",40,40,60);
