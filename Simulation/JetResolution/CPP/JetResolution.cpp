@@ -2,7 +2,6 @@ int JetResolution()
 {
 
     //define folders of Root Tree File and where to write Hist Files
-    /*
     char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-50to80_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-80to120_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile3[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-120to170_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
@@ -15,13 +14,11 @@ int JetResolution()
     char rootFile10[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-1400to1800_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile11[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-1800to2400_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char rootFile12[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-2400to3200_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
-    */
     char rootFile13[] = "/nfs/dust/cms/user/hinzmann/run2023/QCD_PT-3200_TuneCP5_13p6TeV_pythia8_Run3Summer23NanoAODv12-130X_mcRun3_2023_realistic_v14-v2_NANOAODSIM.root";
     char outName[] = "/nfs/dust/cms/user/mueckejo/RootS/PlotJetResolution_test_Run2023C.root";
 
 
     TChain tree("Events");   // name of the tree is the argument
-    /*
     tree.Add(rootFile1);
     tree.Add(rootFile2);
     tree.Add(rootFile3);
@@ -34,7 +31,6 @@ int JetResolution()
     tree.Add(rootFile10);
     tree.Add(rootFile11);
     tree.Add(rootFile12);
-    */
     tree.Add(rootFile13);
 
     //declare variables to Load from Root Tree
@@ -68,7 +64,6 @@ int JetResolution()
 
     TH1D Response20to40("Response20to40","Response20to40",40,-0.2,0.2);
     Response20to40.Sumw2();
-    /*
     TH1D Response40to60("Response40to60","Response40to60",40,40,60);
     Response40to60.Sumw2();
     TH1D Response60to80("Response60to80","Response60to80",40,60,80);
@@ -77,7 +72,6 @@ int JetResolution()
     Response20to40.Sumw2();
     TH1D Response100to120("Response100to120","Response100to120",40,100,120);
     Response100to120.Sumw2();
-    */
 
     float numberEntries = tree.GetEntries();
 
@@ -129,22 +123,18 @@ int JetResolution()
 
     //Neccesary so files dont get lost
     Response20to40.SetDirectory(0);
-    /*
     Response40to60.SetDirectory(0);
     Response60to80.SetDirectory(0);
     Response80to100.SetDirectory(0);
     Response100to120.SetDirectory(0);
-    */
 
 
     TFile* outHistFile = TFile::Open(outName,"RECREATE");
     Response20to40.Write();
-    /*
     Response40to60.Write();
     Response60to80.Write();
     Response80to100.Write();
     Response100to120.Write();
-    */
     outHistFile->Close();
 
   return 0;
