@@ -95,14 +95,11 @@ int JetResolution()
       double R_Value = sqrt(pow(phi1Num[0]-genphi1Num[0],2)*pow(eta1Num[0]-geneta1Num[0],2));
       double Response = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
 
-      if(entry % 100000 == 0)
+      if(entry % 1000 == 0)
       {
-        std::cout << "pt1 value" << "% finished" << std::endl;
-        std::cout << to_string(pt1Num[0]) << "% finished" << std::endl;
-        std::cout << "R value" << "% finished" << std::endl;
-        std::cout << to_string(R_Value) << "% finished" << std::endl;
-        std::cout << "Response value" << "% finished" << std::endl;
-        std::cout << to_string(Response) << "% finished" << std::endl;
+        std::cout << "pt1 value : " << to_string(pt1Num[0]) << std::endl;
+        std::cout << "R value : " << to_string(R_Value) << std::endl;
+        std::cout << "Response value" << to_string(Response) << std::endl;
       }
 
       if(R_Value < 0.2){
