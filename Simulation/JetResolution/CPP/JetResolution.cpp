@@ -66,7 +66,7 @@ int ScaleSimulation()
     tree.SetBranchAddress("genJetAK4_mass1",&genmass1Num);
 
 
-    TH1D Response20to40("Response20to40","Response20to40",20,-10,10);
+    TH1D Response20to40("Response20to40","Response20to40",20,20,40);
     Response20to40.Sumw2();
     TH1D Response40to60("Response40to60","Response40to60",20,40,60);
     Response40to60.Sumw2();
@@ -94,7 +94,7 @@ int ScaleSimulation()
       //calculate R
       double R_Value = sqrt(pow(phi1Num[0]-genphi1Num[0],2)*pow(eta1Num[0]-geneta1Num[0],2));
 
-      if(R_Value < 2.){
+      if(R_Value < 0.2){
         //calculate response
         double Response = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
 
