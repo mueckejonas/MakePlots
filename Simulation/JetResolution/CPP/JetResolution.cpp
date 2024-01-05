@@ -404,7 +404,7 @@ int JetResolution()
     ResponseJet33200.SetDirectory(0);
 
 
-    TFile* outHistFile = TFile::Open(outNameJet1,"RECREATE");
+    TFile* outHistFile1 = TFile::Open(outNameJet1,"RECREATE");
     ResponseJet150to80.Write();
     ResponseJet180to120.Write();
     ResponseJet1120to170.Write();
@@ -418,9 +418,9 @@ int JetResolution()
     ResponseJet11800to2400.Write();
     ResponseJet12400to3200.Write();
     ResponseJet13200.Write();
-    outHistFile->Close();
+    outHistFile1->Close();
 
-    TFile* outHistFile = TFile::Open(outNameJet2,"RECREATE");
+    TFile* outHistFile2 = TFile::Open(outNameJet2,"RECREATE");
     ResponseJet250to80.Write();
     ResponseJet280to120.Write();
     ResponseJet2120to170.Write();
@@ -434,9 +434,9 @@ int JetResolution()
     ResponseJet21800to2400.Write();
     ResponseJet22400to3200.Write();
     ResponseJet23200.Write();
-    outHistFile->Close();
+    outHistFile2->Close();
 
-    TFile* outHistFile = TFile::Open(outNameJet3,"RECREATE");
+    TFile* outHistFile3 = TFile::Open(outNameJet3,"RECREATE");
     ResponseJet350to80.Write();
     ResponseJet380to120.Write();
     ResponseJet3120to170.Write();
@@ -450,7 +450,7 @@ int JetResolution()
     ResponseJet31800to2400.Write();
     ResponseJet32400to3200.Write();
     ResponseJet33200.Write();
-    outHistFile->Close();
+    outHistFile3->Close();
 
   return 0;
 }
