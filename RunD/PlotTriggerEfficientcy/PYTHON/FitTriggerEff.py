@@ -73,4 +73,4 @@ HLT_PFJet550 = HLT_PFJet.Get("HLT_PFJet550")
 
 Ref_HLT_PFJet500 = HLT_PFJet.Get("Ref_HLT_PFJet500")
 
-RootHisttoPdf(outDirectory+"PlottriggerEfficiency_withFit_HLT_PFJet550.pdf",HLT_PFJet550,Ref_HLT_PFJet500,"HLT_PFJet550/HLT_PFJet500","Mjj [GeV]","Run2023B","Trigger Efficiency pt>550")
+RootHisttoPdf(outDirectory+"PlottriggerEfficiency_withFit_HLT_PFJet550.pdf",HLT_PFJet550,Ref_HLT_PFJet500,"HLT_PFJet550/HLT_PFJet500","Mjj [GeV]","Run2023D","Trigger Efficiency pt>550")
