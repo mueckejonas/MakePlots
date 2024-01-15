@@ -54,10 +54,17 @@ int RootToHist()
   TH1D YDifference("YDifference","YDifference",50,-4,4);
   YDifference.Sumw2();
 
+  float numberEntries = tree.GetEntries();
+
   //Fill the Hists with Root Tree Data
   for (Long64_t entry = 0; entry < tree.GetEntries(); ++entry)
   {
     tree.GetEntry(entry);
+
+    if(entry % 100000 == 0)
+    {
+      std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
+    }
 
     PtAsymmetry.Fill((pt1Num[0]-pt2Num[0])/(pt1Num[0]+pt2Num[0]));
     PhiDifference.Fill(phi1Num[0]-phi2Num[0]);
