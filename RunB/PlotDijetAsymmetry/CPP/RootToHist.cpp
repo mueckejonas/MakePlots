@@ -76,8 +76,8 @@ int RootToHist()
       PhiDifference.Fill(abs(phi1Num[0])+abs(phi2Num[0]));
     }
 
-    double theta1 = 2*arctan(exp(-eta1Num[0]));
-    double theta2 = 2*arctan(exp(-eta2Num[0]));
+    double theta1 = 2*atan(exp(-eta1Num[0]));
+    double theta2 = 2*atan(exp(-eta2Num[0]));
 
     if (theta1 > pi/2 && theta2 > pi/2) {
       ThetaDifference.Fill(theta1+theta2-pi);
