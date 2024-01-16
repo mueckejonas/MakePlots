@@ -45,14 +45,18 @@ int RootToHist()
   tree.SetBranchAddress("jetAK4_eta3",&eta3Num);
   tree.SetBranchAddress("jetAK4_phi3",&phi3Num);
 
-  TH1D PtAsymmetry("PtAsymmetry","PtAsymmetry",50,0,1);
+  double pi = 3.14159265359;
+
+  TH1D PtAsymmetry("PtAsymmetry","PtAsymmetry",50,-1,1);
   PtAsymmetry.Sumw2();
-  TH1D PhiDifference("PhiDifference","PhiDifference",50,-360,360);
+  TH1D PhiDifference("PhiDifference","PhiDifference",50,0,pi);
   PhiDifference.Sumw2();
   TH1D EtaDifference("EtaDifference","EtaDifference",50,-6,6);
   EtaDifference.Sumw2();
-  TH1D YDifference("YDifference","YDifference",50,-4,4);
+  TH1D YDifference("YDifference","YDifference",50,-6,6);
   YDifference.Sumw2();
+  TH1D ThetaDifference("ThetaDifference","ThetaDifference",50,0,pi);
+  ThetaDifference.Sumw2();
 
   float numberEntries = tree.GetEntries();
 
@@ -66,8 +70,23 @@ int RootToHist()
       std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
     }
 
+    if (abs(phi1Num[0]) > pi/2 && abs(phi2Num[0]) > pi/2) {
+      PhiDifference.Fill(abs(phi1Num[0])+abs(phi2Num[0])-pi);
+    } else {
+      PhiDifference.Fill(abs(phi1Num[0])+abs(phi2Num[0]));
+    }
+
+    double theta1 = 2*arctan(exp(-eta1Num[0]));
+    double theta2 = 2*arctan(exp(-eta2Num[0]));
+
+    if (theta1 > pi/2 && theta2 > pi/2) {
+      ThetaDifference.Fill(theta1+theta2-pi);
+    } else {
+      ThetaDifference.Fill(theta1+theta2);
+    }
+
+
     PtAsymmetry.Fill((pt1Num[0]-pt2Num[0])/(pt1Num[0]+pt2Num[0]));
-    PhiDifference.Fill(phi1Num[0]-phi2Num[0]);
     EtaDifference.Fill(eta1Num[0]-eta2Num[0]);
     YDifference.Fill(y1Num[0]-y2Num[0]);
   }
@@ -77,12 +96,14 @@ int RootToHist()
   PhiDifference.SetDirectory(0);
   EtaDifference.SetDirectory(0);
   YDifference.SetDirectory(0);
+  ThetaDifference.SetDirectory(0);
 
   TFile* outHistFile = TFile::Open(outName,"RECREATE");
   PtAsymmetry.Write();
   PhiDifference.Write();
   EtaDifference.Write();
   YDifference.Write();
+  ThetaDifference.Write();
   outHistFile->Close();
   return 0;
 }
