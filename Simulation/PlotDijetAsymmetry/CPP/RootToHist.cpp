@@ -92,3 +92,4 @@ int RootToHist()
   outHistFile->Close();
   return 0;
 }
+}
