@@ -46,16 +46,17 @@ int RootToHist()
   tree.SetBranchAddress("jetAK4_phi3",&phi3Num);
 
   double pi = 3.14159265359;
+  double radtodeg = 180.0/pi;
 
-  TH1D PtAsymmetry("PtAsymmetry","PtAsymmetry",50,-1,1);
+  TH1D PtAsymmetry("PtAsymmetry","PtAsymmetry",50,0,1);
   PtAsymmetry.Sumw2();
-  TH1D PhiDifference("PhiDifference","PhiDifference",50,0,pi);
+  TH1D PhiDifference("PhiDifference","PhiDifference",50,0,180);
   PhiDifference.Sumw2();
   TH1D EtaDifference("EtaDifference","EtaDifference",50,-6,6);
   EtaDifference.Sumw2();
   TH1D YDifference("YDifference","YDifference",50,-6,6);
   YDifference.Sumw2();
-  TH1D ThetaDifference("ThetaDifference","ThetaDifference",50,0,pi);
+  TH1D ThetaDifference("ThetaDifference","ThetaDifference",50,0,180);
   ThetaDifference.Sumw2();
 
   float numberEntries = tree.GetEntries();
@@ -71,18 +72,18 @@ int RootToHist()
     }
 
     if (abs(phi1Num[0]) > pi/2 && abs(phi2Num[0]) > pi/2) {
-      PhiDifference.Fill(abs(phi1Num[0])+abs(phi2Num[0])-pi);
+      PhiDifference.Fill((abs(phi1Num[0])+abs(phi2Num[0])-pi)*radtodeg);
     } else {
-      PhiDifference.Fill(abs(phi1Num[0])+abs(phi2Num[0]));
+      PhiDifference.Fill((abs(phi1Num[0])+abs(phi2Num[0]))*radtodeg);
     }
 
     double theta1 = 2*atan(exp(-eta1Num[0]));
     double theta2 = 2*atan(exp(-eta2Num[0]));
 
     if (theta1 > pi/2 && theta2 > pi/2) {
-      ThetaDifference.Fill(theta1+theta2-pi);
+      ThetaDifference.Fill((theta1+theta2-pi)*radtodeg);
     } else {
-      ThetaDifference.Fill(theta1+theta2);
+      ThetaDifference.Fill((theta1+theta2)*radtodeg);
     }
 
 
