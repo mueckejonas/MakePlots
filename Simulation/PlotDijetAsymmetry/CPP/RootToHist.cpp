@@ -76,20 +76,20 @@ int RootToHist()
       YDifference.Fill(y1Num[0]-y2Num[0]);
     }
 
-  //Neccesary so files dont get lost
-  PtAsymmetry.SetDirectory(0);
-  PhiDifference.SetDirectory(0);
-  EtaDifference.SetDirectory(0);
-  YDifference.SetDirectory(0);
-  ThetaDifference.SetDirectory(0);
+    //Neccesary so files dont get lost
+    PtAsymmetry.SetDirectory(0);
+    PhiDifference.SetDirectory(0);
+    EtaDifference.SetDirectory(0);
+    YDifference.SetDirectory(0);
+    ThetaDifference.SetDirectory(0);
 
-  TFile* outHistFile = TFile::Open(outName.c_str(),"RECREATE");
-  PtAsymmetry.Write();
-  PhiDifference.Write();
-  EtaDifference.Write();
-  YDifference.Write();
-  ThetaDifference.Write();
-  outHistFile->Close();
-  return 0;
-}
+    TFile* outHistFile = TFile::Open(outName.c_str(),"RECREATE");
+    PtAsymmetry.Write();
+    PhiDifference.Write();
+    EtaDifference.Write();
+    YDifference.Write();
+    ThetaDifference.Write();
+    outHistFile->Close();
+    return 0;
+  }
 }
