@@ -83,7 +83,7 @@ int RootToHist()
   YDifference.SetDirectory(0);
   ThetaDifference.SetDirectory(0);
 
-  TFile* outHistFile = TFile::Open(outName,"RECREATE");
+  TFile* outHistFile = TFile::Open(outName.c_str(),"RECREATE");
   PtAsymmetry.Write();
   PhiDifference.Write();
   EtaDifference.Write();
