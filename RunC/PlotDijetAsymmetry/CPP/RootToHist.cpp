@@ -30,33 +30,45 @@ int RootToHist()
   float y1Num[eventNum];
   float eta1Num[eventNum];
   float phi1Num[eventNum];
+  float mass1Num[eventNum];
+  int TightID1[eventNum];
 
   tree.SetBranchAddress("jetAK4_pt1",&pt1Num);
   tree.SetBranchAddress("jetAK4_y1",&y1Num);
   tree.SetBranchAddress("jetAK4_eta1",&eta1Num);
   tree.SetBranchAddress("jetAK4_phi1",&phi1Num);
+  tree.SetBranchAddress("jetAK4_mass1",&mass1Num);
+  tree.SetBranchAddress("jetAK4_TightID1",&TightID1);
 
   //variables of Jet2
   float pt2Num[eventNum];
   float y2Num[eventNum];
   float eta2Num[eventNum];
   float phi2Num[eventNum];
+  float mass2Num[eventNum];
+  int TightID2[eventNum];
 
   tree.SetBranchAddress("jetAK4_pt2",&pt2Num);
   tree.SetBranchAddress("jetAK4_y2",&y2Num);
   tree.SetBranchAddress("jetAK4_eta2",&eta2Num);
   tree.SetBranchAddress("jetAK4_phi2",&phi2Num);
+  tree.SetBranchAddress("jetAK4_mass2",&mass2Num);
+  tree.SetBranchAddress("jetAK4_TightID2",&TightID2);
 
   //variables of Jet3
   float pt3Num[eventNum];
   float y3Num[eventNum];
   float eta3Num[eventNum];
   float phi3Num[eventNum];
+  float mass3Num[eventNum];
+  int TightID3[eventNum];
 
   tree.SetBranchAddress("jetAK4_pt3",&pt3Num);
   tree.SetBranchAddress("jetAK4_y3",&y3Num);
   tree.SetBranchAddress("jetAK4_eta3",&eta3Num);
   tree.SetBranchAddress("jetAK4_phi3",&phi3Num);
+  tree.SetBranchAddress("jetAK4_mass3",&mass3Num);
+  tree.SetBranchAddress("jetAK4_TightID3",&TightID3);
 
   double pi = 3.14159265359;
   double radtodeg = 180.0/pi;
@@ -84,6 +96,22 @@ int RootToHist()
       std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
     }
 
+    //Calculate Mjj
+    TLorentzVector Lorentz0, Lorentz1;
+    Lorentz0.SetPtEtaPhiM(pt1Num[0],eta1Num[0],phi1Num[0],mass1Num[0]);
+    Lorentz1.SetPtEtaPhiM(pt2Num[0],eta2Num[0],phi2Num[0],mass2Num[0]);
+    TLorentzVector MjjSum = Lorentz0 + Lorentz1;
+    double MjjValue = MjjSum.M();
+
+    //Calculate chi
+    double ChiValue = exp(abs(y1Num[0]-y2Num[0]));
+
+    //Calculate yboost
+    double YBoostValue = (y1Num[0]+y2Num[0])/2;
+
+    if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11 && TightID1[0] == 1 && TightID2[0] == 1)
+    {
+
     if (abs(phi1Num[0]) > pi/2 && abs(phi2Num[0]) > pi/2) {
       PhiDifference.Fill((abs(phi1Num[0])+abs(phi2Num[0])-pi)*radtodeg);
     } else {
@@ -103,6 +131,7 @@ int RootToHist()
     PtAsymmetry.Fill((pt1Num[0]-pt2Num[0])/(pt1Num[0]+pt2Num[0]));
     EtaDifference.Fill(eta1Num[0]-eta2Num[0]);
     YDifference.Fill(y1Num[0]-y2Num[0]);
+    }
   }
 
   //Neccesary so files dont get lost
