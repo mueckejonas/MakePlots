@@ -50,10 +50,16 @@ int RootToHist()
     ThetaDifference.Sumw2();
 
     std::cout << tree->GetEntries() << std::endl;
+     float numberEntries = tree.GetEntries();
     //Fill the Hists with Root Tree Sim and Genjets
     for (Long64_t entry = 0; entry < tree->GetEntries(); ++entry)
     {
       tree->GetEntry(entry);
+
+      if(entry % 100000 == 0)
+      {
+        std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
+      }
 
       if (abs(phi1Num[0]) > pi/2 && abs(phi2Num[0]) > pi/2) {
       PhiDifference.Fill((abs(phi1Num[0])+abs(phi2Num[0])-pi)*radtodeg);
@@ -90,6 +96,6 @@ int RootToHist()
     YDifference.Write();
     ThetaDifference.Write();
     outHistFile->Close();
-    return 0;
   }
+  return 0;
 }
