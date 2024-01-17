@@ -3,6 +3,8 @@ import numpy as np
 import csv
 from array import array
 
+euler_num = 2.718281828459045
+
 #takes three hists and turn them into pdf
 def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,param3):
 
@@ -22,10 +24,6 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     C = fit_func.GetParameter(2)
     CErr = fit_func.GetParError(2)
 
-    FWHMPoint = np.sqrt(np.log(2)*2*C**2)+B
-    FWHM = 2*(FWHMPoint-B)
-    FWHM_Err=np.sqrt(8*np.log(2))*CErr
-
     #Plot FWHM as line with fit and simulation
     hist_graph = ROOT.TGraphAsymmErrors(fit_hist)
 
@@ -35,7 +33,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
 	    hist_graph.SetPointEXhigh(i,0.0)
 	    hist_graph.SetPointEXlow(i,0.0)
 
-    FWHMLine = ROOT.TLine(2*B-FWHMPoint,A/2,FWHMPoint,A/2)
+    FWHMLine = ROOT.TLine(B,A*(1-1/euler_num),B+C,A*(1-1/euler_num))
     FWHMLine.SetLineColor(ROOT.kBlack)
     FWHMLine.SetLineWidth(2)
 
@@ -51,7 +49,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     hist_graph.SetTitle(title)
     legend.AddEntry(hist_graph,"Response","p")
     legend.AddEntry(fit_func,"Gauss Fit","l")
-    legend.AddEntry(FWHMLine,"FWHM "+"("+str(round(C*100,2))+"+-"+str(round(CErr*100,6))+")"+"%","l")
+    legend.AddEntry(FWHMLine,"Sigma "+"("+str(round(C*100,2))+"+-"+str(round(CErr*100,6))+")"+"%","l")
     hist_graph.Draw("AP")
     fit_func.Draw("same")
     FWHMLine.Draw("same")
@@ -99,8 +97,8 @@ JetResolution3200, JetResolutionErr3200 = CalcResolution(Response3200,outDirecto
 JetResolution = np.array([JetResolution80to120,JetResolution120to170,JetResolution170to300,JetResolution300to470,JetResolution470to600,JetResolution600to800,JetResolution800to1000,JetResolution1000to1400,JetResolution1400to1800,JetResolution1800to2400,JetResolution2400to3200,JetResolution3200])
 JetResolutionErr = np.array([JetResolutionErr80to120,JetResolutionErr120to170,JetResolutionErr170to300,JetResolutionErr300to470,JetResolutionErr470to600,JetResolutionErr600to800,JetResolutionErr800to1000,JetResolutionErr1000to1400,JetResolutionErr1400to1800,JetResolutionErr1800to2400,JetResolutionErr2400to3200,JetResolutionErr3200])
 PtRanges = np.array([(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
-PtRangesErrh = np.array([50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
-PtRangesErrl = np.array([50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+PtRangesErrh = np.array([40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
+PtRangesErrl = np.array([40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
 #JetResolutionLabels = np.array(["50to80","80to120","120to170","170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
 n = 12

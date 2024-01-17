@@ -3,6 +3,8 @@ import numpy as np
 import csv
 from array import array
 
+euler_num = 2.718281828459045
+
 #takes three hists and turn them into pdf
 def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,param3):
 
@@ -22,10 +24,6 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     C = fit_func.GetParameter(2)
     CErr = fit_func.GetParError(2)
 
-    FWHMPoint = np.sqrt(np.log(2)*2*C**2)+B
-    FWHM = 2*(FWHMPoint-B)
-    FWHM_Err=np.sqrt(8*np.log(2))*CErr
-
     #Plot FWHM as line with fit and simulation
     hist_graph = ROOT.TGraphAsymmErrors(fit_hist)
 
@@ -35,7 +33,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
 	    hist_graph.SetPointEXhigh(i,0.0)
 	    hist_graph.SetPointEXlow(i,0.0)
 
-    FWHMLine = ROOT.TLine(2*B-FWHMPoint,A/2,FWHMPoint,A/2)
+    FWHMLine = ROOT.TLine(B,A*(1-1/euler_num),B+C,A*(1-1/euler_num))
     FWHMLine.SetLineColor(ROOT.kBlack)
     FWHMLine.SetLineWidth(2)
 
@@ -51,7 +49,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     hist_graph.SetTitle(title)
     legend.AddEntry(hist_graph,"Response","p")
     legend.AddEntry(fit_func,"Gauss Fit","l")
-    legend.AddEntry(FWHMLine,"FWHM "+"("+str(round(C*100,2))+"+-"+str(round(CErr*100,6))+")"+"%","l")
+    legend.AddEntry(FWHMLine,"Sigma "+"("+str(round(C*100,2))+"+-"+str(round(CErr*100,6))+")"+"%","l")
     hist_graph.Draw("AP")
     fit_func.Draw("same")
     FWHMLine.Draw("same")
