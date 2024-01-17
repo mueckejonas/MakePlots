@@ -50,7 +50,7 @@ int RootToHist()
     ThetaDifference.Sumw2();
 
     std::cout << tree->GetEntries() << std::endl;
-     float numberEntries = tree.GetEntries();
+     float numberEntries = tree->GetEntries();
     //Fill the Hists with Root Tree Sim and Genjets
     for (Long64_t entry = 0; entry < tree->GetEntries(); ++entry)
     {
