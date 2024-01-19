@@ -58,6 +58,10 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     print("99.9 Percent Point = "+str(ninenineninepercentpoint))
     print("99.9 Percent Point Error = "+str(ninenineninepercentpointErr))
 
+    print("Chi^2 = "+str(fit_func.GetChisquare()))
+    print("Ndof = "+str(fit_func.GetNDF()))
+    print("Chi^2/Ndof = "+str(fit_func.GetChisquare()/fit_func.GetNDF()))
+
 
 #define directory
 inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/RunC/RootC/"

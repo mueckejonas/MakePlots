@@ -95,14 +95,14 @@ JetResolution1800to2400, JetResolutionErr1800to2400 = CalcResolution(Response180
 JetResolution2400to3200, JetResolutionErr2400to3200 = CalcResolution(Response2400to3200,outDirectory+"Response_Jet3_2400to3200_Run2023.pdf","Events","Response","Response for pt3 2400to3200",10000,0,0.05)
 JetResolution3200, JetResolutionErr3200 = CalcResolution(Response3200,outDirectory+"Response_Jet3_3200_Run2023.pdf","Events","Response","Response for pt3 3200",10000,0,0.05)
 
-JetResolution = np.array([JetResolution80to120,JetResolution120to170,JetResolution170to300,JetResolution300to470,JetResolution470to600,JetResolution600to800,JetResolution800to1000,JetResolution1000to1400])
-JetResolutionErr = np.array([JetResolutionErr80to120,JetResolutionErr120to170,JetResolutionErr170to300,JetResolutionErr300to470,JetResolutionErr470to600,JetResolutionErr600to800,JetResolutionErr800to1000,JetResolutionErr1000to1400])
-PtRanges = np.array([(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2])
-PtRangesErrh = np.array([40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2])
-PtRangesErrl = np.array([40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2])
+JetResolution = np.array([JetResolution80to120,JetResolution120to170,JetResolution170to300,JetResolution300to470,JetResolution470to600,JetResolution600to800,JetResolution800to1000,JetResolution1000to1400,JetResolution1400to1800,JetResolution1800to2400])
+JetResolutionErr = np.array([JetResolutionErr80to120,JetResolutionErr120to170,JetResolutionErr170to300,JetResolutionErr300to470,JetResolutionErr470to600,JetResolutionErr600to800,JetResolutionErr800to1000,JetResolutionErr1000to1400,JetResolutionErr1400to1800,JetResolutionErr1800to2400])
+PtRanges = np.array([(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2])
+PtRangesErrh = np.array([40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2])
+PtRangesErrl = np.array([40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2])
 #JetResolutionLabels = np.array(["50to80","80to120","120to170","170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
-n = 8
+n = 10
 x = array('d')
 y = array('d')
 xh = array('d')

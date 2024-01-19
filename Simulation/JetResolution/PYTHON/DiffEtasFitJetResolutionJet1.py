@@ -211,14 +211,14 @@ Eta1p3to2p5JetResolution1800to2400, Eta1p3to2p5JetResolutionErr1800to2400 = Calc
 Eta1p3to2p5JetResolution2400to3200, Eta1p3to2p5JetResolutionErr2400to3200 = CalcResolution(Eta1p3to2p5Response2400to3200,outDirectory+"Eta1p3to2p5_Response_Jet1_2400to3200_Run2023.pdf","Events","Eta 1.3 to 2.5 Response","Eta 1.3 to 2.5 Response for pt1 2400to3200",10000,0,0.05)
 Eta1p3to2p5JetResolution3200, Eta1p3to2p5JetResolutionErr3200 = CalcResolution(Eta1p3to2p5Response3200,outDirectory+"Eta1p3to2p5_Response_Jet1_3200_Run2023.pdf","Events","Eta 1.3 to 2.5 Response","Eta 1.3 to 2.5 Response for pt1 3200",10000,0,0.05)
 
-Eta1p3to2p5JetResolution = np.array([Eta1p3to2p5JetResolution170to300,Eta1p3to2p5JetResolution300to470,Eta1p3to2p5JetResolution470to600,Eta1p3to2p5JetResolution600to800])
-Eta1p3to2p5JetResolutionErr = np.array([Eta1p3to2p5JetResolutionErr170to300,Eta1p3to2p5JetResolutionErr300to470,Eta1p3to2p5JetResolutionErr470to600,Eta1p3to2p5JetResolutionErr600to800])
-PtRanges = np.array([(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2])
-PtRangesErrh = np.array([130/2,170/2,130/2,200/2])
-PtRangesErrl = np.array([130/2,170/2,130/2,200/2])
+Eta1p3to2p5JetResolution = np.array([Eta1p3to2p5JetResolution170to300,Eta1p3to2p5JetResolution300to470,Eta1p3to2p5JetResolution470to600,Eta1p3to2p5JetResolution600to800,Eta1p3to2p5JetResolution800to1000,Eta1p3to2p5JetResolution1000to1400,Eta1p3to2p5JetResolution1400to1800,Eta1p3to2p5JetResolution1800to2400,Eta1p3to2p5JetResolution2400to3200])
+Eta1p3to2p5JetResolutionErr = np.array([Eta1p3to2p5JetResolutionErr170to300,Eta1p3to2p5JetResolutionErr300to470,Eta1p3to2p5JetResolutionErr470to600,Eta1p3to2p5JetResolutionErr600to800,Eta1p3to2p5JetResolutionErr800to1000,Eta1p3to2p5JetResolutionErr1000to1400,Eta1p3to2p5JetResolutionErr1400to1800,Eta1p3to2p5JetResolutionErr1800to2400,Eta1p3to2p5JetResolutionErr2400to3200])
+PtRanges = np.array([(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2])
+PtRangesErrh = np.array([130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2])
+PtRangesErrl = np.array([130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2])
 #Eta1p3to2p5JetResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
-n = 4
+n = 9
 x = array('d')
 y = array('d')
 xh = array('d')
@@ -327,14 +327,14 @@ Eta2p5to3JetResolution1800to2400, Eta2p5to3JetResolutionErr1800to2400 = CalcReso
 Eta2p5to3JetResolution2400to3200, Eta2p5to3JetResolutionErr2400to3200 = CalcResolution(Eta2p5to3Response2400to3200,outDirectory+"Eta2p5to3_Response_Jet1_2400to3200_Run2023.pdf","Events","Eta 2.5 to 3 Response","Eta 2.5 to 3 Response for pt1 2400to3200",10000,0,0.05)
 Eta2p5to3JetResolution3200, Eta2p5to3JetResolutionErr3200 = CalcResolution(Eta2p5to3Response3200,outDirectory+"Eta2p5to3_Response_Jet1_3200_Run2023.pdf","Events","Eta 2.5 to 3 Response","Eta 2.5 to 3 Response for pt1 3200",10000,0,0.05)
 
-Eta2p5to3JetResolution = np.array([Eta2p5to3JetResolution50to80,Eta2p5to3JetResolution80to120,Eta2p5to3JetResolution120to170,Eta2p5to3JetResolution170to300,Eta2p5to3JetResolution300to470,Eta2p5to3JetResolution470to600,Eta2p5to3JetResolution600to800,Eta2p5to3JetResolution800to1000,Eta2p5to3JetResolution1000to1400,Eta2p5to3JetResolution1400to1800,Eta2p5to3JetResolution1800to2400,Eta2p5to3JetResolution2400to3200,Eta2p5to3JetResolution3200])
-Eta2p5to3JetResolutionErr = np.array([Eta2p5to3JetResolutionErr50to80,Eta2p5to3JetResolutionErr80to120,Eta2p5to3JetResolutionErr120to170,Eta2p5to3JetResolutionErr170to300,Eta2p5to3JetResolutionErr300to470,Eta2p5to3JetResolutionErr470to600,Eta2p5to3JetResolutionErr600to800,Eta2p5to3JetResolutionErr800to1000,Eta2p5to3JetResolutionErr1000to1400,Eta2p5to3JetResolutionErr1400to1800,Eta2p5to3JetResolutionErr1800to2400,Eta2p5to3JetResolutionErr2400to3200,Eta2p5to3JetResolutionErr3200])
-PtRanges = np.array([(50+80)/2,(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
-PtRangesErrh = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
-PtRangesErrl = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+Eta2p5to3JetResolution = np.array([Eta2p5to3JetResolution170to300,Eta2p5to3JetResolution300to470,Eta2p5to3JetResolution470to600,Eta2p5to3JetResolution600to800,Eta2p5to3JetResolution800to1000])
+Eta2p5to3JetResolutionErr = np.array([Eta2p5to3JetResolutionErr50to80,Eta2p5to3JetResolutionErr80to120,Eta2p5to3JetResolutionErr120to170,Eta2p5to3JetResolutionErr170to300,Eta2p5to3JetResolutionErr300to470,Eta2p5to3JetResolutionErr470to600,Eta2p5to3JetResolutionErr600to800,Eta2p5to3JetResolutionErr800to1000])
+PtRanges = np.array([(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2])
+PtRangesErrh = np.array([130/2,170/2,130/2,200/2,200/2])
+PtRangesErrl = np.array([130/2,170/2,130/2,200/2,200/2])
 #Eta2p5to3JetResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
-n = 13
+n = 5
 x = array('d')
 y = array('d')
 xh = array('d')
@@ -443,14 +443,14 @@ Eta3to5JetResolution1800to2400, Eta3to5JetResolutionErr1800to2400 = CalcResoluti
 Eta3to5JetResolution2400to3200, Eta3to5JetResolutionErr2400to3200 = CalcResolution(Eta3to5Response2400to3200,outDirectory+"Eta3to5_Response_Jet1_2400to3200_Run2023.pdf","Events","Eta 3 to 5 Response","Eta 3 to 5 Response for pt1 2400to3200",10000,0,0.05)
 Eta3to5JetResolution3200, Eta3to5JetResolutionErr3200 = CalcResolution(Eta3to5Response3200,outDirectory+"Eta3to5_Response_Jet1_3200_Run2023.pdf","Events","Eta 3 to 5 Response","Eta 3 to 5 Response for pt1 3200",10000,0,0.05)
 
-Eta3to5JetResolution = np.array([Eta3to5JetResolution50to80,Eta3to5JetResolution80to120,Eta3to5JetResolution120to170,Eta3to5JetResolution170to300,Eta3to5JetResolution300to470,Eta3to5JetResolution470to600,Eta3to5JetResolution600to800,Eta3to5JetResolution800to1000,Eta3to5JetResolution1000to1400,Eta3to5JetResolution1400to1800,Eta3to5JetResolution1800to2400,Eta3to5JetResolution2400to3200,Eta3to5JetResolution3200])
-Eta3to5JetResolutionErr = np.array([Eta3to5JetResolutionErr50to80,Eta3to5JetResolutionErr80to120,Eta3to5JetResolutionErr120to170,Eta3to5JetResolutionErr170to300,Eta3to5JetResolutionErr300to470,Eta3to5JetResolutionErr470to600,Eta3to5JetResolutionErr600to800,Eta3to5JetResolutionErr800to1000,Eta3to5JetResolutionErr1000to1400,Eta3to5JetResolutionErr1400to1800,Eta3to5JetResolutionErr1800to2400,Eta3to5JetResolutionErr2400to3200,Eta3to5JetResolutionErr3200])
-PtRanges = np.array([(50+80)/2,(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
-PtRangesErrh = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
-PtRangesErrl = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+Eta3to5JetResolution = np.array([Eta3to5JetResolution300to470])
+Eta3to5JetResolutionErr = np.array([Eta3to5JetResolutionErr300to470])
+PtRanges = np.array([(300+470)/2])
+PtRangesErrh = np.array([170/2])
+PtRangesErrl = np.array([170/2])
 #Eta3to5JetResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
-n = 13
+n = 1
 x = array('d')
 y = array('d')
 xh = array('d')
