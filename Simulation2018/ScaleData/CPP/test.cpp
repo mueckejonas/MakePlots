@@ -11,7 +11,7 @@ int test()
     //variables of Jet1
     float pt1Num;
 
-    tree.SetBranchAddress("jetAK4_pt1",&pt1Num);
+    //tree.SetBranchAddress("jetAK4_pt1",&pt1Num);
 
     TH1D pt1("Simpt1","pt for jet1 Sim",20,0,4000);
     pt1.Sumw2();
@@ -23,12 +23,9 @@ int test()
     {
       tree.GetEntry(entry);
 
-      if(entry % 100000 == 0)
-      {
-        std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
-      }
+        std::cout << to_string(entry) << "% finished" << std::endl;
 
-      pt1.Fill(pt1Num);
+      //pt1.Fill(pt1Num);
     }
 
     //Neccesary so files dont get lost
