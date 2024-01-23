@@ -1,16 +1,13 @@
 int test()
 {
 
-    string outName1 = "/nfs/dust/cms/user/mueckejo/RootS2018/200to300_PlotSimulation_Run22018_MC.root";
+    string outName1 = "/nfs/dust/cms/user/mueckejo/RootS2018/100to200_PlotSimulation_Run22018_MC.root";
 
     TChain tree("tree");   // name of the tree is the argument
-    tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT200to300_RunII_106X_v2_1_tree.root");
-    tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT200to300_RunII_106X_v2_2_tree.root");
-    tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT200to300_RunII_106X_v2_3_tree.root");
+    tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT100to200_RunII_106X_v2_1_tree.root");
+    tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT100to200_RunII_106X_v2_2_tree.root");
+    tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT100to200_RunII_106X_v2_3_tree.root");
 
-
-    //declare variables to Load from Root Tree
-    const unsigned int eventNum = 1;
     //variables of Jet1
     float pt1Num;
 
