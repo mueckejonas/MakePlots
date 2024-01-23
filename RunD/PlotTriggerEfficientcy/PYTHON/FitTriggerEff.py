@@ -3,16 +3,16 @@ import numpy as np
 #takes three hists and turn them into pdf
 def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle):
 
+
+
+    Efficiency = ROOT.TGraphAsymmErrors(int(data1.GetNbinsX()))
+    Efficiency.BayesDivide(data1,data2)
+
     fit_template = "1/(1+exp(-(x/[0])-[1]))"
     fit_func = ROOT.TF1("fit_func",fit_template,2300,3000)
     fit_func.SetParameter(0,500)
     fit_func.SetParameter(1,0)
-    fit_data = data1.Clone()
-    fit_data.Divide(data2)
-    fit_data.Fit(fit_func,"E")
-
-    Efficiency = ROOT.TGraphAsymmErrors(int(data1.GetNbinsX()))
-    Efficiency.BayesDivide(data1,data2)
+    Efficiency.Fit(fit_func,"E")
 
     canvas = ROOT.TCanvas("canvas")
 

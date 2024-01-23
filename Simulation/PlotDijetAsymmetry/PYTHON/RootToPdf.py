@@ -30,7 +30,7 @@ def RootHisttoPdf(outFileName,data,yAxisTitle,xAxisTitle,title,legendtext):
 #define directory
 inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/RootS/"
 outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/Pdf/"
-inFileName = inDirectory+"PlotDijetAsymmetry_Run2023_Simulation.root"
+inFileName = inDirectory+"_Plot_DijetAsymmetry_WithScale_Run32023_MC.root"
 
 RootFile = ROOT.TFile.Open(inFileName,"READ")
 
