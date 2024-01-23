@@ -12,7 +12,8 @@ int RootToHist()
 
     TChain tree("tree");   // name of the tree is the argument
     for (int j = 0; j < rangesNums[i]; ++j){
-      std::cout << "/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT"+ranges[i]+"_RunII_106X_v2_"+to_string(j)+"_tree.root" << std::endl;
+      string inputtree = "/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT"+ranges[i]+"_RunII_106X_v2_"+to_string(j)+"_tree.root";
+      std::cout << inputtree << std::endl;
       //tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT"+ranges[i]+"_RunII_106X_v2_"+to_string(j)+"_tree.root");
     }
 
