@@ -33,19 +33,19 @@ int RootToHist()
     float cemf1Num[eventNum];
     int IDTight1[eventNum];
 
-    tree->SetBranchAddress("jetAK4_pt1",&pt1Num);
-    tree->SetBranchAddress("jetAK4_y1",&y1Num);
-    tree->SetBranchAddress("jetAK4_eta1",&eta1Num);
-    tree->SetBranchAddress("jetAK4_phi1",&phi1Num);
-    tree->SetBranchAddress("jetAK4_mass1",&mass1Num);
-    tree->SetBranchAddress("jetAK4_jec1",&jec1Num);
-    tree->SetBranchAddress("jetAK4_muf1",&muf1Num);
-    tree->SetBranchAddress("jetAK4_nhf1",&nhf1Num);
-    tree->SetBranchAddress("jetAK4_chf1",&chf1Num);
-    tree->SetBranchAddress("jetAK4_area1",&area1Num);
-    tree->SetBranchAddress("jetAK4_nemf1",&nemf1Num);
-    tree->SetBranchAddress("jetAK4_cemf1",&cemf1Num);
-    tree->SetBranchAddress("jetAK4_IDTight1",&IDTight1);
+    tree.SetBranchAddress("jetAK4_pt1",&pt1Num);
+    tree.SetBranchAddress("jetAK4_y1",&y1Num);
+    tree.SetBranchAddress("jetAK4_eta1",&eta1Num);
+    tree.SetBranchAddress("jetAK4_phi1",&phi1Num);
+    tree.SetBranchAddress("jetAK4_mass1",&mass1Num);
+    tree.SetBranchAddress("jetAK4_jec1",&jec1Num);
+    tree.SetBranchAddress("jetAK4_muf1",&muf1Num);
+    tree.SetBranchAddress("jetAK4_nhf1",&nhf1Num);
+    tree.SetBranchAddress("jetAK4_chf1",&chf1Num);
+    tree.SetBranchAddress("jetAK4_area1",&area1Num);
+    tree.SetBranchAddress("jetAK4_nemf1",&nemf1Num);
+    tree.SetBranchAddress("jetAK4_cemf1",&cemf1Num);
+    tree.SetBranchAddress("jetAK4_IDTight1",&IDTight1);
 
     TH1D pt1("Simpt1","pt for jet1 Sim",20,0,4000);
     pt1.Sumw2();
@@ -87,19 +87,19 @@ int RootToHist()
     float cemf2Num[eventNum];
     int IDTight2[eventNum];
 
-    tree->SetBranchAddress("jetAK4_pt2",&pt2Num);
-    tree->SetBranchAddress("jetAK4_y2",&y2Num);
-    tree->SetBranchAddress("jetAK4_eta2",&eta2Num);
-    tree->SetBranchAddress("jetAK4_phi2",&phi2Num);
-    tree->SetBranchAddress("jetAK4_mass2",&mass2Num);
-    tree->SetBranchAddress("jetAK4_jec2",&jec2Num);
-    tree->SetBranchAddress("jetAK4_muf2",&muf2Num);
-    tree->SetBranchAddress("jetAK4_nhf2",&nhf2Num);
-    tree->SetBranchAddress("jetAK4_chf2",&chf2Num);
-    tree->SetBranchAddress("jetAK4_area2",&area2Num);
-    tree->SetBranchAddress("jetAK4_nemf2",&nemf2Num);
-    tree->SetBranchAddress("jetAK4_cemf2",&cemf2Num);
-    tree->SetBranchAddress("jetAK4_IDTight2",&IDTight2);
+    tree.SetBranchAddress("jetAK4_pt2",&pt2Num);
+    tree.SetBranchAddress("jetAK4_y2",&y2Num);
+    tree.SetBranchAddress("jetAK4_eta2",&eta2Num);
+    tree.SetBranchAddress("jetAK4_phi2",&phi2Num);
+    tree.SetBranchAddress("jetAK4_mass2",&mass2Num);
+    tree.SetBranchAddress("jetAK4_jec2",&jec2Num);
+    tree.SetBranchAddress("jetAK4_muf2",&muf2Num);
+    tree.SetBranchAddress("jetAK4_nhf2",&nhf2Num);
+    tree.SetBranchAddress("jetAK4_chf2",&chf2Num);
+    tree.SetBranchAddress("jetAK4_area2",&area2Num);
+    tree.SetBranchAddress("jetAK4_nemf2",&nemf2Num);
+    tree.SetBranchAddress("jetAK4_cemf2",&cemf2Num);
+    tree.SetBranchAddress("jetAK4_IDTight2",&IDTight2);
 
     TH1D pt2("Simpt2","pt for jet2 Sim",20,0,4000);
     pt2.Sumw2();
@@ -141,19 +141,19 @@ int RootToHist()
     float cemf3Num[eventNum];
     int IDTight3[eventNum];
 
-    tree->SetBranchAddress("jetAK4_pt3",&pt3Num);
-    tree->SetBranchAddress("jetAK4_y3",&y3Num);
-    tree->SetBranchAddress("jetAK4_eta3",&eta3Num);
-    tree->SetBranchAddress("jetAK4_phi3",&phi3Num);
-    tree->SetBranchAddress("jetAK4_mass3",&mass3Num);
-    tree->SetBranchAddress("jetAK4_jec3",&jec3Num);
-    tree->SetBranchAddress("jetAK4_muf3",&muf3Num);
-    tree->SetBranchAddress("jetAK4_nhf3",&nhf3Num);
-    tree->SetBranchAddress("jetAK4_chf3",&chf3Num);
-    tree->SetBranchAddress("jetAK4_area3",&area3Num);
-    tree->SetBranchAddress("jetAK4_nemf3",&nemf3Num);
-    tree->SetBranchAddress("jetAK4_cemf3",&cemf3Num);
-    tree->SetBranchAddress("jetAK4_IDTight3",&IDTight3);
+    tree.SetBranchAddress("jetAK4_pt3",&pt3Num);
+    tree.SetBranchAddress("jetAK4_y3",&y3Num);
+    tree.SetBranchAddress("jetAK4_eta3",&eta3Num);
+    tree.SetBranchAddress("jetAK4_phi3",&phi3Num);
+    tree.SetBranchAddress("jetAK4_mass3",&mass3Num);
+    tree.SetBranchAddress("jetAK4_jec3",&jec3Num);
+    tree.SetBranchAddress("jetAK4_muf3",&muf3Num);
+    tree.SetBranchAddress("jetAK4_nhf3",&nhf3Num);
+    tree.SetBranchAddress("jetAK4_chf3",&chf3Num);
+    tree.SetBranchAddress("jetAK4_area3",&area3Num);
+    tree.SetBranchAddress("jetAK4_nemf3",&nemf3Num);
+    tree.SetBranchAddress("jetAK4_cemf3",&cemf3Num);
+    tree.SetBranchAddress("jetAK4_IDTight3",&IDTight3);
 
     TH1D pt3("Simpt3","pt for jet3 Sim",20,0,4000);
     pt3.Sumw2();
@@ -207,21 +207,21 @@ int RootToHist()
     float genphi3Num[eventNum];
     float genmass3Num[eventNum];
 
-    tree->SetBranchAddress("genJetAK4_pt1",&genpt1Num);
-    tree->SetBranchAddress("genJetAK4_y1",&geny1Num);
-    tree->SetBranchAddress("genJetAK4_eta1",&geneta1Num);
-    tree->SetBranchAddress("genJetAK4_phi1",&genphi1Num);
-    tree->SetBranchAddress("genJetAK4_mass1",&genmass1Num);
-    tree->SetBranchAddress("genJetAK4_pt2",&genpt2Num);
-    tree->SetBranchAddress("genJetAK4_y2",&geny2Num);
-    tree->SetBranchAddress("genJetAK4_eta2",&geneta2Num);
-    tree->SetBranchAddress("genJetAK4_phi2",&genphi2Num);
-    tree->SetBranchAddress("genJetAK4_mass2",&genmass2Num);
-    tree->SetBranchAddress("genJetAK4_pt3",&genpt3Num);
-    tree->SetBranchAddress("genJetAK4_y3",&geny3Num);
-    tree->SetBranchAddress("genJetAK4_eta3",&geneta3Num);
-    tree->SetBranchAddress("genJetAK4_phi3",&genphi3Num);
-    tree->SetBranchAddress("genJetAK4_mass3",&genmass3Num);
+    tree.SetBranchAddress("genJetAK4_pt1",&genpt1Num);
+    tree.SetBranchAddress("genJetAK4_y1",&geny1Num);
+    tree.SetBranchAddress("genJetAK4_eta1",&geneta1Num);
+    tree.SetBranchAddress("genJetAK4_phi1",&genphi1Num);
+    tree.SetBranchAddress("genJetAK4_mass1",&genmass1Num);
+    tree.SetBranchAddress("genJetAK4_pt2",&genpt2Num);
+    tree.SetBranchAddress("genJetAK4_y2",&geny2Num);
+    tree.SetBranchAddress("genJetAK4_eta2",&geneta2Num);
+    tree.SetBranchAddress("genJetAK4_phi2",&genphi2Num);
+    tree.SetBranchAddress("genJetAK4_mass2",&genmass2Num);
+    tree.SetBranchAddress("genJetAK4_pt3",&genpt3Num);
+    tree.SetBranchAddress("genJetAK4_y3",&geny3Num);
+    tree.SetBranchAddress("genJetAK4_eta3",&geneta3Num);
+    tree.SetBranchAddress("genJetAK4_phi3",&genphi3Num);
+    tree.SetBranchAddress("genJetAK4_mass3",&genmass3Num);
 
 
     TH1D genpt1("Genpt1","pt for genJet1",20,0,4000);
@@ -265,12 +265,12 @@ int RootToHist()
     TH1D genChiHist("Genchi","Chi",20,0,20);
     genChiHist.Sumw2();
 
-    std::cout << tree->GetEntries() << std::endl;
+    std::cout << tree.GetEntries() << std::endl;
     float numberEntries = tree->GetEntries();
     //Fill the Hists with Root Tree Sim and Genjets
-    for (Long64_t entry = 0; entry < tree->GetEntries(); ++entry)
+    for (Long64_t entry = 0; entry < tree.GetEntries(); ++entry)
     {
-      tree->GetEntry(entry);
+      tree.GetEntry(entry);
 
       if(entry % 100000 == 0)
       {
