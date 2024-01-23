@@ -21,12 +21,12 @@ int RootToHist()
     float mass1Num[eventNum];
     int TightID1[eventNum];
 
-    tree.SetBranchAddress("jetAK4_pt1",&pt1Num);
-    tree.SetBranchAddress("jetAK4_y1",&y1Num);
-    tree.SetBranchAddress("jetAK4_eta1",&eta1Num);
-    tree.SetBranchAddress("jetAK4_phi1",&phi1Num);
-    tree.SetBranchAddress("jetAK4_mass1",&mass1Num);
-    tree.SetBranchAddress("jetAK4_TightID1",&TightID1);
+    tree->SetBranchAddress("jetAK4_pt1",&pt1Num);
+    tree->SetBranchAddress("jetAK4_y1",&y1Num);
+    tree->SetBranchAddress("jetAK4_eta1",&eta1Num);
+    tree->SetBranchAddress("jetAK4_phi1",&phi1Num);
+    tree->SetBranchAddress("jetAK4_mass1",&mass1Num);
+    tree->SetBranchAddress("jetAK4_TightID1",&TightID1);
 
     //variables of Jet2
     float pt2Num[eventNum];
@@ -36,12 +36,12 @@ int RootToHist()
     float mass2Num[eventNum];
     int TightID2[eventNum];
 
-    tree.SetBranchAddress("jetAK4_pt2",&pt2Num);
-    tree.SetBranchAddress("jetAK4_y2",&y2Num);
-    tree.SetBranchAddress("jetAK4_eta2",&eta2Num);
-    tree.SetBranchAddress("jetAK4_phi2",&phi2Num);
-    tree.SetBranchAddress("jetAK4_mass2",&mass2Num);
-    tree.SetBranchAddress("jetAK4_TightID2",&TightID2);
+    tree->SetBranchAddress("jetAK4_pt2",&pt2Num);
+    tree->SetBranchAddress("jetAK4_y2",&y2Num);
+    tree->SetBranchAddress("jetAK4_eta2",&eta2Num);
+    tree->SetBranchAddress("jetAK4_phi2",&phi2Num);
+    tree->SetBranchAddress("jetAK4_mass2",&mass2Num);
+    tree->SetBranchAddress("jetAK4_TightID2",&TightID2);
 
     double pi = 3.14159265359;
     double radtodeg = 180.0/pi;
