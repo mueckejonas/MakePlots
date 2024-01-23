@@ -12,7 +12,7 @@ int RootToHist()
 
     TChain tree("tree");   // name of the tree is the argument
     for (int j = 0; j < rangesNums[i]; ++j){
-      string rootFile = "/nfs/dust/cms/user/hinzmann/run2023/dijetChiUL18_QCD_HT"+ranges[i]+"_RunII_106X_v2_"+to_string(j)+"_tree.root";
+      string rootFile = "/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT"+ranges[i]+"_RunII_106X_v2_"+to_string(j)+"_tree.root";
       tree.Add(rootFile.c_str());
     }
 
