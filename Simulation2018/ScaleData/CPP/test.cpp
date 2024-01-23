@@ -3,8 +3,8 @@ int test()
 
     string outName1 = "/nfs/dust/cms/user/mueckejo/RootS2018/100to200_PlotSimulation_Run22018_MC.root";
 
-    TChain tree("tree");   // name of the tree is the argument
-    tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT100to200_RunII_106X_v2_1_tree.root");
+    TChain treechain("tree");   // name of the tree is the argument
+    treechain.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT100to200_RunII_106X_v2_1_tree.root");
     //tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT100to200_RunII_106X_v2_2_tree.root");
     //tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT100to200_RunII_106X_v2_3_tree.root");
 
@@ -16,12 +16,12 @@ int test()
     TH1D pt1("Simpt1","pt for jet1 Sim",20,0,4000);
     pt1.Sumw2();
 
-    std::cout << tree.GetEntries() << std::endl;
-    float numberEntries = tree.GetEntries();
+    std::cout << treechain.GetEntries() << std::endl;
+    float numberEntries = treechain.GetEntries();
     //Fill the Hists with Root Tree Sim and Genjets
-    for (Long64_t entry = 0; entry < tree.GetEntries(); ++entry)
+    for (Long64_t entry = 0; entry < treechain.GetEntries(); ++entry)
     {
-      tree.GetEntry(entry);
+      treechain.GetEntry(entry);
 
         std::cout << to_string(entry) << "% finished" << std::endl;
 
