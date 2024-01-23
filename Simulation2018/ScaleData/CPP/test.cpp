@@ -1,20 +1,12 @@
 int test()
 {
 
-  string ranges[13] = {"200to300","300to500","500to700","700to1000","1000to1500","1500to2000","2000toInf"};
-  int rangesNums[13] = {23,25,20,20,6,4,2};
-
-  for (int i = 0; i < 7; i++)
-  {
-    string outName1 = "/nfs/dust/cms/user/mueckejo/RootS2018/"+ranges[i]+"_PlotSimulation_Run22018_MC.root";
-    string outName2 = "/nfs/dust/cms/user/mueckejo/RootS2018/"+ranges[i]+"_PlotSimulation_Run22018_Gen.root";
-
+    string outName1 = "/nfs/dust/cms/user/mueckejo/RootS2018/200to300_PlotSimulation_Run22018_MC.root";
+    string outName2 = "/nfs/dust/cms/user/mueckejo/RootS2018/200to300_PlotSimulation_Run22018_Gen.root";
 
     TChain tree("tree");   // name of the tree is the argument
-    for (int j = 0; j < rangesNums[i]; ++j){
-      string inputtree = "/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT"+ranges[i]+"_RunII_106X_v2_"+to_string(j)+"_tree.root";
-      tree.Add(inputtree.c_str());
-    }
+    string inputtree = "/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT200to300_RunII_106X_v2_1_tree.root";
+    tree.Add(inputtree.c_str());
 
     //declare variables to Load from Root Tree
     const unsigned int eventNum = 1;
@@ -547,6 +539,5 @@ int test()
     genYBoostHist.Write();
     genChiHist.Write();
     outHistFile2->Close();
-  }
   return 0;
 }
