@@ -5,8 +5,8 @@ int test()
 
     TChain tree("tree");   // name of the tree is the argument
     tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT100to200_RunII_106X_v2_1_tree.root");
-    tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT100to200_RunII_106X_v2_2_tree.root");
-    tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT100to200_RunII_106X_v2_3_tree.root");
+    //tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT100to200_RunII_106X_v2_2_tree.root");
+    //tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT100to200_RunII_106X_v2_3_tree.root");
 
     //variables of Jet1
     float pt1Num;
