@@ -12,7 +12,7 @@ int RootToHist()
 
     TChain tree("tree");   // name of the tree is the argument
     for (int j = 0; j < rangesNums[i]; ++j){
-      tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT"+ranges[i]+"_RunII_106X_v2_"+to_string(j)+"_tree.root".c_str());
+      tree.Add("/pnfs/desy.de/cms/tier2/store/user/hinzmann/dijetangular/qcdUL18feb2023/dijetChiUL18_QCD_HT"+ranges[i]+"_RunII_106X_v2_"+to_string(j)+"_tree.root");
     }
 
     //declare variables to Load from Root Tree
