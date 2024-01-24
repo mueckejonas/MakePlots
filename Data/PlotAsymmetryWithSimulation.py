@@ -15,9 +15,9 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title):
     runc.Scale(1./18600)
     rund.Scale(1./10000)
 
-    runb.Scale(sim.Integral()/runb.Integral())
-    runc.Scale(sim.Integral()/runc.Integral())
-    rund.Scale(sim.Integral()/rund.Integral())
+    #runb.Scale(sim.Integral()/runb.Integral())
+    #runc.Scale(sim.Integral()/runc.Integral())
+    #rund.Scale(sim.Integral()/rund.Integral())
 
     legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
     legend.SetLineWidth(0)
@@ -63,10 +63,6 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title):
     sim.SetLineWidth(2)
     sim.SetTitle(title)
 
-    runbgraph.Scale(sim.Integral()/runb.Integral())
-    runcgraph.Scale(sim.Integral()/runc.Integral())
-    rundgraph.Scale(sim.Integral()/rund.Integral())
-
     sim.GetYaxis().SetTitle(yAxisTitle)
     sim.GetYaxis().SetTitleSize(0.05)
     #sim.GetXaxis().SetTitle(xAxisTitle)
@@ -77,10 +73,10 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title):
     legend.AddEntry(rundgraph,"RunD Data","p")
     legend.AddEntry(sim,"Simulation")
 
-    sim.Draw("h")
-    runb.Draw("P same")
-    runc.Draw("P same")
-    rund.Draw("P same")
+    #sim.Draw("h")
+    runbgraph.Draw("AP")
+    runcgraph.Draw("P same")
+    rundgraph.Draw("P same")
     legend.Draw("same")
 
 

@@ -17,6 +17,10 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title,und
     runc.Scale(1./18600)
     rund.Scale(1./10000)
 
+    #runb.Scale(sim.Integral()/runb.Integral())
+    #runc.Scale(sim.Integral()/runc.Integral())
+    #rund.Scale(sim.Integral()/rund.Integral())
+
     legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
     legend.SetLineWidth(0)
     legend.SetTextSize(0.03)
@@ -60,10 +64,6 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title,und
     sim.SetLineColor(ROOT.kRed)
     sim.SetLineWidth(2)
     sim.SetTitle(title+undertitle)
-
-    runb.Scale(sim.Integral()/runb.Integral())
-    runc.Scale(sim.Integral()/runc.Integral())
-    rund.Scale(sim.Integral()/rund.Integral())
 
     sim.GetYaxis().SetTitle(yAxisTitle)
     sim.GetYaxis().SetTitleSize(0.05)
@@ -210,21 +210,21 @@ for i in range(0,14):
 
     #plot jet1
     if JetNameArray[i] == "pt" or JetNameArray[i] == "mass":
-        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_"+JetNameArray[i]+"1.pdf",Jet1_Bdata,Jet1_Cdata,Jet1_Ddata,Jet1_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet1",True)
+        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_"+JetNameArray[i]+"1.pdf",Jet1_Bdata,Jet1_Cdata,Jet1_Ddata,Jet1_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet1",True)
     else:
-        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_"+JetNameArray[i]+"1.pdf",Jet1_Bdata,Jet1_Cdata,Jet1_Ddata,Jet1_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet1",False)
+        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_"+JetNameArray[i]+"1.pdf",Jet1_Bdata,Jet1_Cdata,Jet1_Ddata,Jet1_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet1",False)
 
     #plot jet2
     if JetNameArray[i] == "pt" or JetNameArray[i] == "mass":
-        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_"+JetNameArray[i]+"2.pdf",Jet2_Bdata,Jet2_Cdata,Jet2_Ddata,Jet2_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet2",True)
+        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_"+JetNameArray[i]+"2.pdf",Jet2_Bdata,Jet2_Cdata,Jet2_Ddata,Jet2_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet2",True)
     else:
-        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_"+JetNameArray[i]+"2.pdf",Jet2_Bdata,Jet2_Cdata,Jet2_Ddata,Jet1_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet2",False)
+        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_"+JetNameArray[i]+"2.pdf",Jet2_Bdata,Jet2_Cdata,Jet2_Ddata,Jet1_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet2",False)
 
     #plot jet3
     if JetNameArray[i] == "pt" or JetNameArray[i] == "mass":
-        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_"+JetNameArray[i]+"3.pdf",Jet3_Bdata,Jet3_Cdata,Jet3_Ddata,Jet3_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet3",True)
+        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_"+JetNameArray[i]+"3.pdf",Jet3_Bdata,Jet3_Cdata,Jet3_Ddata,Jet3_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet3",True)
     else:
-        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_"+JetNameArray[i]+"3.pdf",Jet3_Bdata,Jet3_Cdata,Jet3_Ddata,Jet3_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet3",False)
+        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_"+JetNameArray[i]+"3.pdf",Jet3_Bdata,Jet3_Cdata,Jet3_Ddata,Jet3_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet3",False)
 
 
 #create yboost pdf
@@ -232,18 +232,18 @@ yboostDataB = KinematicsB.Get("data_yboost")
 yboostDataC = KinematicsC.Get("data_yboost")
 yboostDataD = KinematicsD.Get("data_yboost")
 yboostSim = KinematicsS.Get("yboostsim_hist")
-RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_yboost.pdf",yboostDataB,yboostDataC,yboostDataD,yboostSim,"#sigma [pb]","YBoost","Run2023","yboost",False)
+RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_yboost.pdf",yboostDataB,yboostDataC,yboostDataD,yboostSim,"#sigma [pb]","YBoost","Run2023","yboost",False)
 
 #create chi pdf
 chiDataB = KinematicsB.Get("data_chi")
 chiDataC = KinematicsC.Get("data_chi")
 chiDataD = KinematicsD.Get("data_chi")
 chiSim = KinematicsS.Get("chisim_hist")
-RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_chi.pdf",chiDataB,chiDataC,chiDataD,chiSim,"#sigma [pb]","Chi","Run2023","chi",False)
+RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_chi.pdf",chiDataB,chiDataC,chiDataD,chiSim,"#sigma [pb]","Chi","Run2023","chi",False)
 
 #create mjj pdf
 mjjDataB = KinematicsB.Get("data_mjj")
 mjjDataC = KinematicsC.Get("data_mjj")
 mjjDataD = KinematicsD.Get("data_mjj")
 mjjSim = KinematicsS.Get("mjjsim_hist")
-RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_mjj.pdf",mjjDataB,mjjDataC,mjjDataD,mjjSim,"#sigma [pb]","Mjj","Run2023","mjj",True)
+RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_mjj.pdf",mjjDataB,mjjDataC,mjjDataD,mjjSim,"#sigma [pb]","Mjj","Run2023","mjj",True)

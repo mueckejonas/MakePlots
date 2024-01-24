@@ -1,4 +1,4 @@
-int RootToHist()
+int TreeToHist()
 {
   //define folders of Root Tree File and where to write Hist Files
   char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
@@ -42,21 +42,6 @@ int RootToHist()
   tree.SetBranchAddress("jetAK4_mass2",&mass2Num);
   tree.SetBranchAddress("jetAK4_TightID2",&TightID2);
 
-  //variables of Jet3
-  float pt3Num[eventNum];
-  float y3Num[eventNum];
-  float eta3Num[eventNum];
-  float phi3Num[eventNum];
-  float mass3Num[eventNum];
-  int TightID3[eventNum];
-
-  tree.SetBranchAddress("jetAK4_pt3",&pt3Num);
-  tree.SetBranchAddress("jetAK4_y3",&y3Num);
-  tree.SetBranchAddress("jetAK4_eta3",&eta3Num);
-  tree.SetBranchAddress("jetAK4_phi3",&phi3Num);
-  tree.SetBranchAddress("jetAK4_mass3",&mass3Num);
-  tree.SetBranchAddress("jetAK4_TightID3",&TightID3);
-
   double pi = 3.14159265359;
   double radtodeg = 180.0/pi;
 
@@ -96,28 +81,29 @@ int RootToHist()
     //Calculate yboost
     double YBoostValue = (y1Num[0]+y2Num[0])/2;
 
-    if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11 && TightID1[0] == 1 && TightID2[0] == 1)
+    if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11)
     {
+      if(TightID1[0] == 1 && TightID2[0] == 1){
+        if (abs(phi1Num[0]) > pi/2 && abs(phi2Num[0]) > pi/2) {
+          PhiDifference.Fill((abs(phi1Num[0])+abs(phi2Num[0])-pi)*radtodeg);
+        } else {
+          PhiDifference.Fill((abs(phi1Num[0])+abs(phi2Num[0]))*radtodeg);
+        }
 
-    if (abs(phi1Num[0]) > pi/2 && abs(phi2Num[0]) > pi/2) {
-      PhiDifference.Fill((abs(phi1Num[0])+abs(phi2Num[0])-pi)*radtodeg);
-    } else {
-      PhiDifference.Fill((abs(phi1Num[0])+abs(phi2Num[0]))*radtodeg);
-    }
+        double theta1 = 2*atan(exp(-eta1Num[0]));
+        double theta2 = 2*atan(exp(-eta2Num[0]));
 
-    double theta1 = 2*atan(exp(-eta1Num[0]));
-    double theta2 = 2*atan(exp(-eta2Num[0]));
-
-    if (theta1 > pi/2 && theta2 > pi/2) {
-      ThetaDifference.Fill((theta1+theta2-pi)*radtodeg);
-    } else {
-      ThetaDifference.Fill((theta1+theta2)*radtodeg);
-    }
+        if (theta1 > pi/2 && theta2 > pi/2) {
+          ThetaDifference.Fill((theta1+theta2-pi)*radtodeg);
+        } else {
+          ThetaDifference.Fill((theta1+theta2)*radtodeg);
+        }
 
 
-    PtAsymmetry.Fill((pt1Num[0]-pt2Num[0])/(pt1Num[0]+pt2Num[0]));
-    EtaDifference.Fill(eta1Num[0]-eta2Num[0]);
-    YDifference.Fill(y1Num[0]-y2Num[0]);
+        PtAsymmetry.Fill((pt1Num[0]-pt2Num[0])/(pt1Num[0]+pt2Num[0]));
+        EtaDifference.Fill(eta1Num[0]-eta2Num[0]);
+        YDifference.Fill(y1Num[0]-y2Num[0]);
+      }
     }
   }
 
