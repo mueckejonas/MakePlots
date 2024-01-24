@@ -15,6 +15,10 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title):
     runc.Scale(1./18600)
     rund.Scale(1./10000)
 
+    runb.Scale(sim.Integral()/runb.Integral())
+    runc.Scale(sim.Integral()/runc.Integral())
+    rund.Scale(sim.Integral()/rund.Integral())
+
     legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
     legend.SetLineWidth(0)
     legend.SetTextSize(0.03)
@@ -74,9 +78,9 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title):
     legend.AddEntry(sim,"Simulation")
 
     sim.Draw("h")
-    runbgraph.Draw("P same")
-    runcgraph.Draw("P same")
-    rundgraph.Draw("P same")
+    runb.Draw("P same")
+    runc.Draw("P same")
+    rund.Draw("P same")
     legend.Draw("same")
 
 
@@ -86,10 +90,6 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title):
 
     #draw ratio
     pad_bottom.cd()
-
-    runb.Scale(sim.Integral()/runb.Integral())
-    runc.Scale(sim.Integral()/runc.Integral())
-    rund.Scale(sim.Integral()/rund.Integral())
 
     ratiorunbSim = runb.Clone()
     ratiorunbSim.Divide(runb)
