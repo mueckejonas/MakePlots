@@ -15,9 +15,9 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title):
     runc.Scale(1./18600)
     rund.Scale(1./10000)
 
-    #runb.Scale(sim.Integral()/runb.Integral())
-    #runc.Scale(sim.Integral()/runc.Integral())
-    #rund.Scale(sim.Integral()/rund.Integral())
+    runb.Scale(sim.Integral()/runb.Integral())
+    runc.Scale(sim.Integral()/runc.Integral())
+    rund.Scale(sim.Integral()/rund.Integral())
 
     legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
     legend.SetLineWidth(0)
@@ -62,6 +62,8 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title):
     sim.SetLineColor(ROOT.kRed)
     sim.SetLineWidth(2)
     sim.SetTitle(title)
+    sim.SetMarkerStyle(0)
+    sim.SetMarkerColor(ROOT.kRed)
 
     sim.GetYaxis().SetTitle(yAxisTitle)
     sim.GetYaxis().SetTitleSize(0.05)
@@ -73,35 +75,35 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title):
     legend.AddEntry(rundgraph,"RunD Data","p")
     legend.AddEntry(sim,"Simulation")
 
-    #sim.Draw("h")
-    runbgraph.Draw("AP")
+    sim.Draw("h")
+    runbgraph.Draw("P same")
     runcgraph.Draw("P same")
     rundgraph.Draw("P same")
     legend.Draw("same")
 
 
-    line = ROOT.TLine(runbgraph.GetXaxis().GetXmin(),1,runbgraph.GetXaxis().GetXmax(),1)
+    line = ROOT.TLine(sim.GetXaxis().GetXmin(),1,sim.GetXaxis().GetXmax(),1)
     line.SetLineColor(ROOT.kBlack)
     line.SetLineWidth(2)
 
     #draw ratio
     pad_bottom.cd()
 
-    ratiorunbSim = runb.Clone()
+    ratiorunbSim = sim.Clone()
     ratiorunbSim.Divide(runb)
     ratiorunbSimgraph = ROOT.TGraphAsymmErrors(ratiorunbSim)
     for i in range(0,int(runb.GetNbinsX())):
 	    ratiorunbSimgraph.SetPointEXhigh(i,0.0)
 	    ratiorunbSimgraph.SetPointEXlow(i,0.0)
 
-    ratioruncSim = runc.Clone()
+    ratioruncSim = sim.Clone()
     ratioruncSim.Divide(runc)
     ratioruncSimgraph = ROOT.TGraphAsymmErrors(ratioruncSim)
     for i in range(0,int(runc.GetNbinsX())):
 	    ratioruncSimgraph.SetPointEXhigh(i,0.0)
 	    ratioruncSimgraph.SetPointEXlow(i,0.0)
 
-    ratiorundSim = rund.Clone()
+    ratiorundSim = sim.Clone()
     ratiorundSim.Divide(rund)
     ratiorundSimgraph = ROOT.TGraphAsymmErrors(ratiorundSim)
     for i in range(0,int(rund.GetNbinsX())):
@@ -112,28 +114,36 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title):
     ratiorunbSimgraph.SetLineWidth(2)
     ratiorunbSimgraph.SetTitle("")
     ratiorunbSimgraph.SetMarkerStyle(4)
+    ratiorunbSimgraph.SetMarkerColor(ROOT.kBlack)
 
     ratioruncSimgraph.SetLineColor(ROOT.kBlue)
     ratioruncSimgraph.SetLineWidth(2)
     ratioruncSimgraph.SetTitle("")
     ratioruncSimgraph.SetMarkerStyle(4)
+    ratioruncSimgraph.SetMarkerColor(ROOT.kBlue)
 
     ratiorundSimgraph.SetLineColor(ROOT.kGreen)
     ratiorundSimgraph.SetLineWidth(2)
     ratiorundSimgraph.SetTitle("")
     ratiorundSimgraph.SetMarkerStyle(4)
+    ratiorundSimgraph.SetMarkerColor(ROOT.kGreen)
 
-    ratiorunbSimgraph.GetYaxis().SetTitle("Data/Simulation")
-    ratiorunbSimgraph.GetYaxis().SetLabelSize(0.1)
-    ratiorunbSimgraph.GetYaxis().SetTitleSize(0.15)
-    ratiorunbSimgraph.GetXaxis().SetLabelSize(0.12)
-    ratiorunbSimgraph.GetXaxis().SetTitleSize(0.12)
-    ratiorunbSimgraph.GetYaxis().SetTitleOffset(0.3)
-    ratiorunbSimgraph.GetYaxis().SetNdivisions (207)
-    ratiorunbSimgraph.GetXaxis().SetTitle(xAxisTitle)
-    ratiorunbSimgraph.GetYaxis().SetRangeUser(0.5,1.5)
+    hiddenhist = sim.Clone()
 
-    ratiorunbSimgraph.Draw("AP")
+    hiddenhist.GetYaxis().SetTitle("Data/Simulation")
+    hiddenhist.GetYaxis().SetLabelSize(0.1)
+    hiddenhist.GetYaxis().SetTitleSize(0.15)
+    hiddenhist.GetXaxis().SetLabelSize(0.12)
+    hiddenhist.GetXaxis().SetTitleSize(0.12)
+    hiddenhist.GetYaxis().SetTitleOffset(0.3)
+    hiddenhist.GetYaxis().SetNdivisions (207)
+    hiddenhist.GetXaxis().SetTitle(xAxisTitle)
+    hiddenhist.GetYaxis().SetRangeUser(0.5,1.5)
+    hiddenhist.SetTitle("")
+    hiddenhist.SetLineWidth(0)
+
+    hiddenhist.Draw()
+    ratiorunbSimgraph.Draw("P same")
     ratioruncSimgraph.Draw("P same")
     ratiorundSimgraph.Draw("P same")
     line.Draw("same")
@@ -187,16 +197,16 @@ YDifferenceSim = rootFileSim.Get("YDifferencesim_hist")
 ThetaDifferenceSim = rootFileSim.Get("ThetaDifferencesim_hist")
 
 #create PtAsymmetry pdf
-RootHisttoPdf(outDirectory+"PlotDijetAsymmetry_AllRuns.pdf",PtAsymmetryB,PtAsymmetryC,PtAsymmetryD,PtAsymmetrySim,"#sigma [pb]","(Pt1-Pt2)/(Pt1+Pt2)","Dijet Asymmetry RunB, C and D Run2023")
+RootHisttoPdf(outDirectory+"PlotDijetAsymmetry_Normiert_AllRuns.pdf",PtAsymmetryB,PtAsymmetryC,PtAsymmetryD,PtAsymmetrySim,"#sigma [pb]","(Pt1-Pt2)/(Pt1+Pt2)","Dijet Asymmetry RunB, C and D Run2023")
 
 #create PhiDifference pdf
-RootHisttoPdf(outDirectory+"PlotPhiDifference_AllRuns.pdf",PhiDifferenceB,PhiDifferenceC,PhiDifferenceD,PhiDifferenceSim,"#sigma [pb]","Phi1-Phi2","Phi Difference RunB, C and D Run2023")
+RootHisttoPdf(outDirectory+"PlotPhiDifference_Normiert_AllRuns.pdf",PhiDifferenceB,PhiDifferenceC,PhiDifferenceD,PhiDifferenceSim,"#sigma [pb]","Phi1-Phi2","Phi Difference RunB, C and D Run2023")
 
 #create EtaDifference pdf
-RootHisttoPdf(outDirectory+"PlotEtaDifference_AllRuns.pdf",EtaDifferenceB,EtaDifferenceC,EtaDifferenceD,EtaDifferenceSim,"#sigma [pb]","Eta1-Eta2","Eta Difference RunB, C and D Run2023")
+RootHisttoPdf(outDirectory+"PlotEtaDifference_Normiert_AllRuns.pdf",EtaDifferenceB,EtaDifferenceC,EtaDifferenceD,EtaDifferenceSim,"#sigma [pb]","Eta1-Eta2","Eta Difference RunB, C and D Run2023")
 
 #create YDifference pdf
-RootHisttoPdf(outDirectory+"PlotYDifference_AllRuns.pdf",YDifferenceB,YDifferenceC,YDifferenceD,YDifferenceSim,"#sigma [pb]","Y1-Y2","Y Difference RunB, C and D Run2023")
+RootHisttoPdf(outDirectory+"PlotYDifference_Normiert_AllRuns.pdf",YDifferenceB,YDifferenceC,YDifferenceD,YDifferenceSim,"#sigma [pb]","Y1-Y2","Y Difference RunB, C and D Run2023")
 
 #create ThetaDifference pdf
-RootHisttoPdf(outDirectory+"PlotThetaDifference_AllRuns.pdf",ThetaDifferenceB,ThetaDifferenceC,ThetaDifferenceD,ThetaDifferenceSim,"#sigma [pb]","Theta1-Theta2","Theta Difference RunB, C and D Run2023")
+RootHisttoPdf(outDirectory+"PlotThetaDifference_Normiert_AllRuns.pdf",ThetaDifferenceB,ThetaDifferenceC,ThetaDifferenceD,ThetaDifferenceSim,"#sigma [pb]","Theta1-Theta2","Theta Difference RunB, C and D Run2023")
