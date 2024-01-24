@@ -70,10 +70,16 @@ int RootToHist()
     ThetaDifference.Sumw2();
 
     std::cout << tree->GetEntries() << std::endl;
+    float numberEntries = tree.GetEntries();
     //Fill the Hists with Root Tree Sim and Genjets
     for (Long64_t entry = 0; entry < tree->GetEntries(); ++entry)
     {
       tree->GetEntry(entry);
+
+      if(entry % 100000 == 0)
+      {
+        std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
+      }
 
       //Calculate Sim Mjj
       TLorentzVector Lorentz0, Lorentz1;
