@@ -1,4 +1,4 @@
-int TreeToHist()
+int RootToHist()
 {
   //define folders of Root Tree File and where to write Hist Files
   char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
