@@ -6,17 +6,19 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     Efficiency = ROOT.TGraphAsymmErrors(int(data1.GetNbinsX()))
     Efficiency.BayesDivide(data1,data2)
 
-    fit_template = "1/(1+exp(-(x/[0])-[1]))"
-    fit_func = ROOT.TF1("fit_func",fit_template,2300,3000)
-    fit_func.SetParameter(0,500)
-    fit_func.SetParameter(1,0)
-    Efficiency.Fit(fit_func,"E")
-
-    canvas = ROOT.TCanvas("canvas")
-
     for i in range(0,int(data1.GetNbinsX())):
 	    Efficiency.SetPointEXhigh(i,0.0)
 	    Efficiency.SetPointEXlow(i,0.0)
+
+    fit_template = "1/(1+exp(-(x/[0])-[1]))"
+    #fit_template = "1/(1+exp(-((x-[0])/[1]))"
+    fit_func = ROOT.TF1("fit_func",fit_template,2300,3000)
+    fit_func.SetParameter(0,500)
+    fit_func.SetParameter(1,0)
+    Efficiency.Fit(fit_func)
+
+
+    canvas = ROOT.TCanvas("canvas")
 
     legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
     legend.SetTextSize(0.02)
@@ -35,6 +37,7 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     fit_func.Draw("same")
     legend.Draw("same")
     canvas.Print(outFileName)
+
 
     y = 0.99
     B = fit_func.GetParameter(0)

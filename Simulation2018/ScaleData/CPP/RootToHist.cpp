@@ -397,7 +397,6 @@ int RootToHist()
 
     //Neccesary so files dont get lost
     pt1.SetDirectory(0);
-    pt1.SetDirectory(0);
     y1.SetDirectory(0);
     eta1.SetDirectory(0);
     phi1.SetDirectory(0);
