@@ -15,9 +15,9 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title):
     runc.Scale(1./18600)
     rund.Scale(1./10000)
 
-    runb.Scale(sim.Integral()/runb.Integral())
-    runc.Scale(sim.Integral()/runc.Integral())
-    rund.Scale(sim.Integral()/rund.Integral())
+    #runb.Scale(sim.Integral()/runb.Integral())
+    #runc.Scale(sim.Integral()/runc.Integral())
+    #rund.Scale(sim.Integral()/rund.Integral())
 
     legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
     legend.SetLineWidth(0)
@@ -89,22 +89,22 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title):
     #draw ratio
     pad_bottom.cd()
 
-    ratiorunbSim = sim.Clone()
-    ratiorunbSim.Divide(runb)
+    ratiorunbSim = runb.Clone()
+    ratiorunbSim.Divide(sim)
     ratiorunbSimgraph = ROOT.TGraphAsymmErrors(ratiorunbSim)
     for i in range(0,int(runb.GetNbinsX())):
 	    ratiorunbSimgraph.SetPointEXhigh(i,0.0)
 	    ratiorunbSimgraph.SetPointEXlow(i,0.0)
 
-    ratioruncSim = sim.Clone()
-    ratioruncSim.Divide(runc)
+    ratioruncSim = runc.Clone()
+    ratioruncSim.Divide(sim)
     ratioruncSimgraph = ROOT.TGraphAsymmErrors(ratioruncSim)
     for i in range(0,int(runc.GetNbinsX())):
 	    ratioruncSimgraph.SetPointEXhigh(i,0.0)
 	    ratioruncSimgraph.SetPointEXlow(i,0.0)
 
-    ratiorundSim = sim.Clone()
-    ratiorundSim.Divide(rund)
+    ratiorundSim = rund.Clone()
+    ratiorundSim.Divide(sim)
     ratiorundSimgraph = ROOT.TGraphAsymmErrors(ratiorundSim)
     for i in range(0,int(rund.GetNbinsX())):
 	    ratiorundSimgraph.SetPointEXhigh(i,0.0)
@@ -197,16 +197,16 @@ YDifferenceSim = rootFileSim.Get("YDifferencesim_hist")
 ThetaDifferenceSim = rootFileSim.Get("ThetaDifferencesim_hist")
 
 #create PtAsymmetry pdf
-RootHisttoPdf(outDirectory+"PlotDijetAsymmetry_Normiert_AllRuns.pdf",PtAsymmetryB,PtAsymmetryC,PtAsymmetryD,PtAsymmetrySim,"#sigma [pb]","(Pt1-Pt2)/(Pt1+Pt2)","Dijet Asymmetry RunB, C and D Run2023")
+RootHisttoPdf(outDirectory+"PlotDijetAsymmetry_AllRuns.pdf",PtAsymmetryB,PtAsymmetryC,PtAsymmetryD,PtAsymmetrySim,"#sigma [pb]","(Pt1-Pt2)/(Pt1+Pt2)","Dijet Asymmetry RunB, C and D Run2023")
 
 #create PhiDifference pdf
-RootHisttoPdf(outDirectory+"PlotPhiDifference_Normiert_AllRuns.pdf",PhiDifferenceB,PhiDifferenceC,PhiDifferenceD,PhiDifferenceSim,"#sigma [pb]","Phi1-Phi2","Phi Difference RunB, C and D Run2023")
+RootHisttoPdf(outDirectory+"PlotPhiDifference_AllRuns.pdf",PhiDifferenceB,PhiDifferenceC,PhiDifferenceD,PhiDifferenceSim,"#sigma [pb]","Phi1-Phi2","Phi Difference RunB, C and D Run2023")
 
 #create EtaDifference pdf
-RootHisttoPdf(outDirectory+"PlotEtaDifference_Normiert_AllRuns.pdf",EtaDifferenceB,EtaDifferenceC,EtaDifferenceD,EtaDifferenceSim,"#sigma [pb]","Eta1-Eta2","Eta Difference RunB, C and D Run2023")
+RootHisttoPdf(outDirectory+"PlotEtaDifference_AllRuns.pdf",EtaDifferenceB,EtaDifferenceC,EtaDifferenceD,EtaDifferenceSim,"#sigma [pb]","Eta1-Eta2","Eta Difference RunB, C and D Run2023")
 
 #create YDifference pdf
-RootHisttoPdf(outDirectory+"PlotYDifference_Normiert_AllRuns.pdf",YDifferenceB,YDifferenceC,YDifferenceD,YDifferenceSim,"#sigma [pb]","Y1-Y2","Y Difference RunB, C and D Run2023")
+RootHisttoPdf(outDirectory+"PlotYDifference_AllRuns.pdf",YDifferenceB,YDifferenceC,YDifferenceD,YDifferenceSim,"#sigma [pb]","Y1-Y2","Y Difference RunB, C and D Run2023")
 
 #create ThetaDifference pdf
-RootHisttoPdf(outDirectory+"PlotThetaDifference_Normiert_AllRuns.pdf",ThetaDifferenceB,ThetaDifferenceC,ThetaDifferenceD,ThetaDifferenceSim,"#sigma [pb]","Theta1-Theta2","Theta Difference RunB, C and D Run2023")
+RootHisttoPdf(outDirectory+"PlotThetaDifference_AllRuns.pdf",ThetaDifferenceB,ThetaDifferenceC,ThetaDifferenceD,ThetaDifferenceSim,"#sigma [pb]","Theta1-Theta2","Theta Difference RunB, C and D Run2023")
