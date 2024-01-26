@@ -394,7 +394,7 @@ int JetResolution()
     std::cout << tree.GetEntries() << std::endl;
     //Fill the Hists with Root Tree Sim and Genjets
     //GetEntries();
-    for (Long64_t entry = 0; entry < tree.GetEntries(); ++entry)
+    for (Long64_t entry = 0; entry <100; ++entry)
     {
       tree.GetEntry(entry);
 
