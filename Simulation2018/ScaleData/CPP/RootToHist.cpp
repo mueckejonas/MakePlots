@@ -2,7 +2,7 @@ int RootToHist()
 {
 
   string ranges[13] = {"200to300","300to500","500to700","700to1000","1000to1500","1500to2000","2000toInf"};
-  int rangesNums[13] = {23,25,20,20,6,4,2};
+  int rangesNums[13] = {24,26,21,21,7,5,3};
 
   for (int i = 0; i < 7; i++)
   {
@@ -290,8 +290,8 @@ int RootToHist()
       //Calculate Sim yboost
       double YBoostValue = (y1Num[0]+y2Num[0])/2;
 
-      //if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11)
-
+      if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11)
+      {
         //Fill SimJet1
         //if(TightID1[0] == 1){
           pt1.Fill(pt1Num[0]);
@@ -349,7 +349,7 @@ int RootToHist()
 
           //fill Simchi
           ChiHist.Fill(ChiValue);
-
+      }
 
 
       //Calculate Mjj
@@ -365,8 +365,8 @@ int RootToHist()
       //Calculate yboost
       double genYBoostValue = (geny1Num[0]+geny2Num[0])/2;
 
-      //if (genMjjValue > 2500 && genChiValue < 16 && abs(genYBoostValue) < 1.11)
-
+      if (genMjjValue > 2500 && genChiValue < 16 && abs(genYBoostValue) < 1.11)
+      {
         //Fill genJet1
         genpt1.Fill(genpt1Num[0]);
         geny1.Fill(geny1Num[0]);
@@ -392,7 +392,7 @@ int RootToHist()
         genChiHist.Fill(genChiValue);
         //fill genyboost
         genYBoostHist.Fill(genYBoostValue);
-
+      }
     }
 
     //Neccesary so files dont get lost

@@ -28,28 +28,28 @@ def RootHisttoPdf(outFileName,data,yAxisTitle,xAxisTitle,title,legendtext):
     canvas.Print(outFileName)
 
 #define directory
-inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/RootS/"
-outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/Pdf/"
-inFileName = inDirectory+"_Plot_DijetAsymmetry_WithScale_Run32023_MC.root"
+inDirectory ="/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2018/RootS2018/"
+outDirectory ="/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2018/PDF/"
+inFileName = inDirectory+"_Plot_DijetAsymmetry_WithScale_Run22018_MC.root"
 
 RootFile = ROOT.TFile.Open(inFileName,"READ")
 
 #Plot pt asymmetry
 PtAsym =RootFile.Get("PtAsymmetry")
-RootHisttoPdf(outDirectory+"Plot_DijetAsymmetry_Run2023_Simulation.pdf",PtAsym,"Events","(Pt1-Pt2)/(Pt1+Pt2)","Dijet Asymmetry for Run 2023 Simulation","(Pt1-Pt2)/(Pt1+Pt2)")
+RootHisttoPdf(outDirectory+"Plot_DijetAsymmetry_Run22018_Simulation.pdf",PtAsym,"Events","(Pt1-Pt2)/(Pt1+Pt2)","Dijet Asymmetry for Run2 2018 Simulation","(Pt1-Pt2)/(Pt1+Pt2)")
 
 #Plot phidiff
 PhiDiff =RootFile.Get("PhiDifference")
-RootHisttoPdf(outDirectory+"Plot_PhiDifference_Run2023_Simulation.pdf",PhiDiff,"Events","Degree","Phi Difference for Run 2023 Simulation","Phi1-Phi2")
+RootHisttoPdf(outDirectory+"Plot_PhiDifference_Run22018_Simulation.pdf",PhiDiff,"Events","Degree","Phi Difference for Run2 2018 Simulation","Phi1-Phi2")
 
 #Plot thetadiff
 ThetaDiff =RootFile.Get("ThetaDifference")
-RootHisttoPdf(outDirectory+"Plot_ThetaDifference_Run2023_Simulation.pdf",ThetaDiff,"Events","Degree","Theta Difference for Run 2023 Simulation","Theta1-Theta2")
+RootHisttoPdf(outDirectory+"Plot_ThetaDifference_Run22018_Simulation.pdf",ThetaDiff,"Events","Degree","Theta Difference for Run2 2018 Simulation","Theta1-Theta2")
 
 #Plot YDifference
 YDiff =RootFile.Get("YDifference")
-RootHisttoPdf(outDirectory+"Plot_YDifference_Run2023_Simulation.pdf",YDiff,"Events","YDifference","Y Difference for Run 2023 Simulation","Y1-Y2")
+RootHisttoPdf(outDirectory+"Plot_YDifference_Run22018_Simulation.pdf",YDiff,"Events","YDifference","Y Difference for Run2 2018 Simulation","Y1-Y2")
 
 #Plot EtaDifference
 EtaDiff =RootFile.Get("EtaDifference")
-RootHisttoPdf(outDirectory+"Plot_EtaDifference_Run2023_Simulation.pdf",EtaDiff,"Events","EtaDifference","Eta Difference for Run 2023 Simulation","Eta1-Eta2")
+RootHisttoPdf(outDirectory+"Plot_EtaDifference_Run22018_Simulation.pdf",EtaDiff,"Events","EtaDifference","Eta Difference for Run2 2018 Simulation","Eta1-Eta2")
