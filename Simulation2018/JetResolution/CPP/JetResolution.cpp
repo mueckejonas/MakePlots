@@ -119,7 +119,7 @@ int JetResolution()
     char outNameJet2[] = "/nfs/dust/cms/user/mueckejo/RootS2018/PlotJetResolution_Jet2_Run22018_WholeEta.root";
     char outNameJet3[] = "/nfs/dust/cms/user/mueckejo/RootS2018/PlotJetResolution_Jet3_Run22018_WholeEta.root";
 
-    TChain tree("Events");   // name of the tree is the argument
+    TChain tree("tree");   // name of the tree is the argument
     tree.Add(rootFile1);
     tree.Add(rootFile2);
     tree.Add(rootFile3);
