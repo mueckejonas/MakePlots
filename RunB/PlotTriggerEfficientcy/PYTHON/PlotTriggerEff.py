@@ -6,12 +6,13 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     Efficiency.BayesDivide(data1,data2)
 
     canvas = ROOT.TCanvas("canvas")
+    canvas.SetCanvasSize(1600,1100)
 
     for i in range(0,int(data1.GetNbinsX())):
 	    Efficiency.SetPointEXhigh(i,0.0)
 	    Efficiency.SetPointEXlow(i,0.0)
 
-    legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+    legend = ROOT.TLegend(0.6,0.8,0.85,0.75)
     Efficiency.SetStats(0)
     Efficiency.SetLineColor(ROOT.kBlack)
     Efficiency.SetLineWidth(1)
@@ -22,6 +23,20 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     Efficiency.SetMarkerStyle(4)
     legend.AddEntry(Efficiency,yAxisTitle,"p")
     legend.SetLineWidth(0)
+    #Set font size
+    legend.SetTextSize(0.045)
+    Efficiency.SetMarkerSize(3)
+    Efficiency.SetLineWidth(2)
+    Efficiency.GetYaxis().SetLabelSize(0.045)
+    Efficiency.GetYaxis().SetTitleSize(0.05)
+    Efficiency.GetXaxis().SetLabelSize(0.045)
+    Efficiency.GetXaxis().SetTitleSize(0.05)
+    #Efficiency.GetYaxis().SetLabelOffset(0.01)
+    #Efficiency.GetXaxis().SetLabelOffset(0.01)
+    canvas.SetBottomMargin(0.15)
+    canvas.SetTopMargin(0.1)
+    canvas.SetRightMargin(0.05)
+    canvas.SetLeftMargin(0.15)
     Efficiency.Draw("AP")
     legend.Draw("same")
     canvas.Print(outFileName)

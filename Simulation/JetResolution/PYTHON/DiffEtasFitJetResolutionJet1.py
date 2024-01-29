@@ -28,6 +28,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     hist_graph = ROOT.TGraphAsymmErrors(fit_hist)
 
     canvas = ROOT.TCanvas("canvas")
+    canvas.SetCanvasSize(1600,1100)
 
     for i in range(0,int(hist.GetNbinsX())):
 	    hist_graph.SetPointEXhigh(i,0.0)
@@ -37,7 +38,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     FWHMLine.SetLineColor(ROOT.kBlack)
     FWHMLine.SetLineWidth(2)
 
-    legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+    legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
     legend.SetLineWidth(0)
 
     hist_graph.SetStats(0)
@@ -50,6 +51,20 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     legend.AddEntry(hist_graph,"Response","p")
     legend.AddEntry(fit_func,"Gauss Fit","l")
     legend.AddEntry(FWHMLine,"Sigma "+"("+str(round(C*100,2))+"+-"+str(round(CErr*100,6))+")"+"%","l")
+    #Set font size
+    legend.SetTextSize(0.045)
+    hist_graph.SetMarkerSize(3)
+    hist_graph.SetLineWidth(2)
+    hist_graph.GetYaxis().SetLabelSize(0.045)
+    hist_graph.GetYaxis().SetTitleSize(0.05)
+    hist_graph.GetXaxis().SetLabelSize(0.045)
+    hist_graph.GetXaxis().SetTitleSize(0.05)
+    #hist_graph.GetYaxis().SetLabelOffset(0.01)
+    #hist_graph.GetXaxis().SetLabelOffset(0.01)
+    canvas.SetBottomMargin(0.15)
+    canvas.SetTopMargin(0.1)
+    canvas.SetRightMargin(0.05)
+    canvas.SetLeftMargin(0.15)
     hist_graph.Draw("AP")
     fit_func.Draw("same")
     FWHMLine.Draw("same")
@@ -61,7 +76,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
 #define directory
 inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/RootS/"
 outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/Pdf/"
-inFileName = inDirectory+"PlotJetResolution_Jet1_Run2023C.root"
+inFileName = inDirectory+"PlotJetResolution_Jet1_Run2023_Sim.root"
 
 histFiles = ROOT.TFile.Open(inFileName,"READ")
 
@@ -118,6 +133,8 @@ for i in range(0,n):
     yl.append(Eta0to1p3JetResolutionErr[i])
 
 canvas = ROOT.TCanvas("canvas")
+canvas.SetCanvasSize(1600,1100)
+canvas.SetCanvasSize(1600,1100)
 canvas.SetLogx()
 Eta0to1p3JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 
@@ -133,7 +150,7 @@ for i in range(0,n):
         Eta0to1p3JetResolutionGraph.GetListOfFunctions().Add(latex)
 """
 
-legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
 legend.SetLineWidth(0)
 
 Eta0to1p3JetResolutionGraph.SetStats(0)
@@ -147,6 +164,40 @@ Eta0to1p3JetResolutionGraph.SetMarkerStyle(33)
 Eta0to1p3JetResolutionGraph.SetMarkerSize(0)
 Eta0to1p3JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 Eta0to1p3JetResolutionGraph.GetXaxis().SetNoExponent()
+#Set font size
+legend.SetTextSize(0.045)
+Eta0to1p3JetResolutionGraph.SetMarkerSize(3)
+Eta0to1p3JetResolutionGraph.SetLineWidth(2)
+Eta0to1p3JetResolutionGraph.GetYaxis().SetLabelSize(0.045)
+Eta0to1p3JetResolutionGraph.GetYaxis().SetTitleSize(0.05)
+Eta0to1p3JetResolutionGraph.GetXaxis().SetLabelSize(0.045)
+Eta0to1p3JetResolutionGraph.GetXaxis().SetTitleSize(0.05)
+#Eta0to1p3JetResolutionGraph.GetYaxis().SetLabelOffset(0.01)
+#Eta0to1p3JetResolutionGraph.GetXaxis().SetLabelOffset(0.01)
+canvas.SetBottomMargin(0.15)
+canvas.SetTopMargin(0.1)
+canvas.SetRightMargin(0.05)
+canvas.SetLeftMargin(0.15)
+
+"""
+#Set font size
+legend.SetTextSize(0.045)
+Eta0to1p3JetResolutionGraph.SetMarkerSize(3)
+Eta0to1p3JetResolutionGraph.SetLineWidth(2)
+Eta0to1p3JetResolutionGraph.GetYaxis().SetLabelSize(0.045)
+Eta0to1p3JetResolutionGraph.GetYaxis().SetTitleSize(0.05)
+Eta0to1p3JetResolutionGraph.GetXaxis().SetLabelSize(0.045)
+Eta0to1p3JetResolutionGraph.GetXaxis().SetTitleSize(0.05)
+#Eta0to1p3JetResolutionGraph.GetYaxis().SetLabelOffset(0.01)
+#Eta0to1p3JetResolutionGraph.GetXaxis().SetLabelOffset(0.01)
+canvas.SetBottomMargin(0.15)
+canvas.SetTopMargin(0.1)
+canvas.SetRightMargin(0.05)
+canvas.SetLeftMargin(0.15)
+legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
+canvas.SetCanvasSize(1600,1100)
+"""
+
 
 legend.AddEntry(Eta0to1p3JetResolutionGraph,"JetResolution","l")
 
@@ -234,6 +285,7 @@ for i in range(0,n):
     yl.append(Eta1p3to2p5JetResolutionErr[i])
 
 canvas = ROOT.TCanvas("canvas")
+canvas.SetCanvasSize(1600,1100)
 canvas.SetLogx()
 Eta1p3to2p5JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 
@@ -249,7 +301,7 @@ for i in range(0,n):
         Eta1p3to2p5JetResolutionGraph.GetListOfFunctions().Add(latex)
 """
 
-legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
 legend.SetLineWidth(0)
 
 Eta1p3to2p5JetResolutionGraph.SetStats(0)
@@ -263,6 +315,20 @@ Eta1p3to2p5JetResolutionGraph.SetMarkerStyle(33)
 Eta1p3to2p5JetResolutionGraph.SetMarkerSize(0)
 Eta1p3to2p5JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 Eta1p3to2p5JetResolutionGraph.GetXaxis().SetNoExponent()
+#Set font size
+legend.SetTextSize(0.045)
+Eta1p3to2p5JetResolutionGraph.SetMarkerSize(3)
+Eta1p3to2p5JetResolutionGraph.SetLineWidth(2)
+Eta1p3to2p5JetResolutionGraph.GetYaxis().SetLabelSize(0.045)
+Eta1p3to2p5JetResolutionGraph.GetYaxis().SetTitleSize(0.05)
+Eta1p3to2p5JetResolutionGraph.GetXaxis().SetLabelSize(0.045)
+Eta1p3to2p5JetResolutionGraph.GetXaxis().SetTitleSize(0.05)
+#Eta1p3to2p5JetResolutionGraph.GetYaxis().SetLabelOffset(0.01)
+#Eta1p3to2p5JetResolutionGraph.GetXaxis().SetLabelOffset(0.01)
+canvas.SetBottomMargin(0.15)
+canvas.SetTopMargin(0.1)
+canvas.SetRightMargin(0.05)
+canvas.SetLeftMargin(0.15)
 
 legend.AddEntry(Eta1p3to2p5JetResolutionGraph,"JetResolution","l")
 
@@ -350,6 +416,7 @@ for i in range(0,n):
     yl.append(Eta2p5to3JetResolutionErr[i])
 
 canvas = ROOT.TCanvas("canvas")
+canvas.SetCanvasSize(1600,1100)
 canvas.SetLogx()
 Eta2p5to3JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 
@@ -365,7 +432,7 @@ for i in range(0,n):
         Eta2p5to3JetResolutionGraph.GetListOfFunctions().Add(latex)
 """
 
-legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
 legend.SetLineWidth(0)
 
 Eta2p5to3JetResolutionGraph.SetStats(0)
@@ -379,6 +446,20 @@ Eta2p5to3JetResolutionGraph.SetMarkerStyle(33)
 Eta2p5to3JetResolutionGraph.SetMarkerSize(0)
 Eta2p5to3JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 Eta2p5to3JetResolutionGraph.GetXaxis().SetNoExponent()
+#Set font size
+legend.SetTextSize(0.045)
+Eta2p5to3JetResolutionGraph.SetMarkerSize(3)
+Eta2p5to3JetResolutionGraph.SetLineWidth(2)
+Eta2p5to3JetResolutionGraph.GetYaxis().SetLabelSize(0.045)
+Eta2p5to3JetResolutionGraph.GetYaxis().SetTitleSize(0.05)
+Eta2p5to3JetResolutionGraph.GetXaxis().SetLabelSize(0.045)
+Eta2p5to3JetResolutionGraph.GetXaxis().SetTitleSize(0.05)
+#Eta2p5to3JetResolutionGraph.GetYaxis().SetLabelOffset(0.01)
+#Eta2p5to3JetResolutionGraph.GetXaxis().SetLabelOffset(0.01)
+canvas.SetBottomMargin(0.15)
+canvas.SetTopMargin(0.1)
+canvas.SetRightMargin(0.05)
+canvas.SetLeftMargin(0.15)
 
 legend.AddEntry(Eta2p5to3JetResolutionGraph,"JetResolution","l")
 
@@ -466,6 +547,7 @@ for i in range(0,n):
     yl.append(Eta3to5JetResolutionErr[i])
 
 canvas = ROOT.TCanvas("canvas")
+canvas.SetCanvasSize(1600,1100)
 canvas.SetLogx()
 Eta3to5JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 
@@ -481,7 +563,7 @@ for i in range(0,n):
         Eta3to5JetResolutionGraph.GetListOfFunctions().Add(latex)
 """
 
-legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
 legend.SetLineWidth(0)
 
 Eta3to5JetResolutionGraph.SetStats(0)
@@ -495,6 +577,20 @@ Eta3to5JetResolutionGraph.SetMarkerStyle(33)
 Eta3to5JetResolutionGraph.SetMarkerSize(0)
 Eta3to5JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 Eta3to5JetResolutionGraph.GetXaxis().SetNoExponent()
+#Set font size
+legend.SetTextSize(0.045)
+Eta3to5JetResolutionGraph.SetMarkerSize(3)
+Eta3to5JetResolutionGraph.SetLineWidth(2)
+Eta3to5JetResolutionGraph.GetYaxis().SetLabelSize(0.045)
+Eta3to5JetResolutionGraph.GetYaxis().SetTitleSize(0.05)
+Eta3to5JetResolutionGraph.GetXaxis().SetLabelSize(0.045)
+Eta3to5JetResolutionGraph.GetXaxis().SetTitleSize(0.05)
+#Eta3to5JetResolutionGraph.GetYaxis().SetLabelOffset(0.01)
+#Eta3to5JetResolutionGraph.GetXaxis().SetLabelOffset(0.01)
+canvas.SetBottomMargin(0.15)
+canvas.SetTopMargin(0.1)
+canvas.SetRightMargin(0.05)
+canvas.SetLeftMargin(0.15)
 
 legend.AddEntry(Eta3to5JetResolutionGraph,"JetResolution","l")
 

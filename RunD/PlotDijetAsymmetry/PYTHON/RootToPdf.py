@@ -1,28 +1,45 @@
 import ROOT
 import numpy as np
+
+ROOT.gStyle.SetTextSize(0.05)
+
 #takes three hists and turn them into pdf
 def RootHisttoPdf(outFileName,data,yAxisTitle,xAxisTitle,title,legendtext):
     canvas = ROOT.TCanvas("canvas")
+    canvas.SetCanvasSize(1600,1100)
     canvas.cd()
     datagraph = ROOT.TGraphAsymmErrors(data)
     for i in range(0,int(data.GetNbinsX())):
 	    datagraph.SetPointEXhigh(i,0.0)
 	    datagraph.SetPointEXlow(i,0.0)
 
-    legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+    legend = ROOT.TLegend(0.6,0.8,0.85,0.75)
     legend.SetLineWidth(0)
-    legend.SetTextSize(0.03)
     legend.AddEntry(datagraph,legendtext,"p")
 
     datagraph.SetStats(0)
     datagraph.SetLineColor(ROOT.kBlack)
     datagraph.SetMarkerColor(ROOT.kBlack)
-    datagraph.SetLineWidth(2)
     datagraph.SetMarkerStyle(4)
     datagraph.GetYaxis().SetTitle(yAxisTitle)
     datagraph.GetXaxis().SetTitle(xAxisTitle)
     datagraph.GetXaxis().SetRangeUser(data.GetXaxis().GetXmin(),data.GetXaxis().GetXmax())
     datagraph.SetTitle(title)
+    #Set font size
+    legend.SetTextSize(0.045)
+    datagraph.SetMarkerSize(3)
+    datagraph.SetLineWidth(2)
+    datagraph.GetYaxis().SetLabelSize(0.045)
+    datagraph.GetYaxis().SetTitleSize(0.05)
+    datagraph.GetXaxis().SetLabelSize(0.045)
+    datagraph.GetXaxis().SetTitleSize(0.05)
+    #datagraph.GetYaxis().SetLabelOffset(0.01)
+    #datagraph.GetXaxis().SetLabelOffset(0.01)
+    canvas.SetBottomMargin(0.15)
+    canvas.SetTopMargin(0.1)
+    canvas.SetRightMargin(0.05)
+    canvas.SetLeftMargin(0.15)
+
     datagraph.Draw("AP")
     legend.Draw("same")
     canvas.Print(outFileName)

@@ -28,6 +28,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     hist_graph = ROOT.TGraphAsymmErrors(fit_hist)
 
     canvas = ROOT.TCanvas("canvas")
+    canvas.SetCanvasSize(1600,1100)
 
     for i in range(0,int(hist.GetNbinsX())):
 	    hist_graph.SetPointEXhigh(i,0.0)
@@ -37,7 +38,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     FWHMLine.SetLineColor(ROOT.kBlack)
     FWHMLine.SetLineWidth(2)
 
-    legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+    legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
     legend.SetLineWidth(0)
 
     hist_graph.SetStats(0)
@@ -50,6 +51,20 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     legend.AddEntry(hist_graph,"Response","p")
     legend.AddEntry(fit_func,"Gauss Fit","l")
     legend.AddEntry(FWHMLine,"Sigma "+"("+str(round(C*100,2))+"+-"+str(round(CErr*100,6))+")"+"%","l")
+    #Set font size
+    legend.SetTextSize(0.045)
+    hist_graph.SetMarkerSize(3)
+    hist_graph.SetLineWidth(2)
+    hist_graph.GetYaxis().SetLabelSize(0.045)
+    hist_graph.GetYaxis().SetTitleSize(0.05)
+    hist_graph.GetXaxis().SetLabelSize(0.045)
+    hist_graph.GetXaxis().SetTitleSize(0.05)
+    #hist_graph.GetYaxis().SetLabelOffset(0.01)
+    #hist_graph.GetXaxis().SetLabelOffset(0.01)
+    canvas.SetBottomMargin(0.15)
+    canvas.SetTopMargin(0.1)
+    canvas.SetRightMargin(0.05)
+    canvas.SetLeftMargin(0.15)
     hist_graph.Draw("AP")
     fit_func.Draw("same")
     FWHMLine.Draw("same")
@@ -62,7 +77,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
 #define directory
 inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/RootS/"
 outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/Pdf/"
-inFileName = inDirectory+"PlotJetResolution_Jet3_Run2023C.root"
+inFileName = inDirectory+"PlotJetResolution_Jet3_Run2023_Sim.root"
 
 histFiles = ROOT.TFile.Open(inFileName,"READ")
 
@@ -118,6 +133,7 @@ for i in range(0,n):
     yl.append(JetResolutionErr[i])
 
 canvas = ROOT.TCanvas("canvas")
+canvas.SetCanvasSize(1600,1100)
 canvas.SetLogx()
 JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 
@@ -133,7 +149,7 @@ for i in range(0,n):
         JetResolutionGraph.GetListOfFunctions().Add(latex)
 """
 
-legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
 legend.SetLineWidth(0)
 
 JetResolutionGraph.SetStats(0)
@@ -147,6 +163,20 @@ JetResolutionGraph.SetMarkerStyle(33)
 JetResolutionGraph.SetMarkerSize(0)
 JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 JetResolutionGraph.GetXaxis().SetNoExponent()
+#Set font size
+legend.SetTextSize(0.045)
+JetResolutionGraph.SetMarkerSize(3)
+JetResolutionGraph.SetLineWidth(2)
+JetResolutionGraph.GetYaxis().SetLabelSize(0.045)
+JetResolutionGraph.GetYaxis().SetTitleSize(0.05)
+JetResolutionGraph.GetXaxis().SetLabelSize(0.045)
+JetResolutionGraph.GetXaxis().SetTitleSize(0.05)
+#JetResolutionGraph.GetYaxis().SetLabelOffset(0.01)
+#JetResolutionGraph.GetXaxis().SetLabelOffset(0.01)
+canvas.SetBottomMargin(0.15)
+canvas.SetTopMargin(0.1)
+canvas.SetRightMargin(0.05)
+canvas.SetLeftMargin(0.15)
 
 legend.AddEntry(JetResolutionGraph,"JetResolution","l")
 

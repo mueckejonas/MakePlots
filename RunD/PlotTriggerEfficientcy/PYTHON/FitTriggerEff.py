@@ -11,15 +11,17 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
 	    Efficiency.SetPointEXlow(i,0.0)
 
     fit_template = "1/(1+exp(-(x/[0])-[1]))"
-    #fit_template = "1/(1+exp(-((x-[0])/[1])))"
+    #fit_template = "1/(1+exp(-((x-[0])/[1]))"
     fit_func = ROOT.TF1("fit_func",fit_template,2300,3000)
     fit_func.SetParameter(0,500)
     fit_func.SetParameter(1,0)
-    Efficiency.Fit(fit_func,"E")
+    Efficiency.Fit(fit_func)
+
 
     canvas = ROOT.TCanvas("canvas")
+    canvas.SetCanvasSize(1600,1100)
 
-    legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+    legend = ROOT.TLegend(0.6,0.5,0.85,0.65)
     legend.SetTextSize(0.02)
     Efficiency.SetStats(0)
     Efficiency.SetLineColor(ROOT.kBlack)
@@ -32,10 +34,25 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     legend.AddEntry(Efficiency,yAxisTitle,"p")
     legend.AddEntry(fit_func,"Logistic function fit","l")
     legend.SetLineWidth(0)
+    #Set font size
+    legend.SetTextSize(0.045)
+    Efficiency.SetMarkerSize(3)
+    Efficiency.SetLineWidth(2)
+    Efficiency.GetYaxis().SetLabelSize(0.045)
+    Efficiency.GetYaxis().SetTitleSize(0.05)
+    Efficiency.GetXaxis().SetLabelSize(0.045)
+    Efficiency.GetXaxis().SetTitleSize(0.05)
+    #Efficiency.GetYaxis().SetLabelOffset(0.01)
+    #Efficiency.GetXaxis().SetLabelOffset(0.01)
+    canvas.SetBottomMargin(0.15)
+    canvas.SetTopMargin(0.1)
+    canvas.SetRightMargin(0.05)
+    canvas.SetLeftMargin(0.15)
     Efficiency.Draw("AP")
     fit_func.Draw("same")
     legend.Draw("same")
     canvas.Print(outFileName)
+
 
     y = 0.99
     B = fit_func.GetParameter(0)

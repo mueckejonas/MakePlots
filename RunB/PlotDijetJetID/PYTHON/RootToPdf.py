@@ -3,6 +3,7 @@ import numpy as np
 #takes three hists and turn them into pdf
 def RootHisttoPdf(outFileName,data1,logyScale,dataNumber,yAxisTitle,xAxisTitle,title,data2=None,data3=None,dataName="Jet1 data"):
     canvas = ROOT.TCanvas("canvas")
+    canvas.SetCanvasSize(1600,1100)
     if logyScale:
         canvas.SetLogy(True)
     canvas.cd()
@@ -11,9 +12,6 @@ def RootHisttoPdf(outFileName,data1,logyScale,dataNumber,yAxisTitle,xAxisTitle,t
 	    data1graph.SetPointEXhigh(i,0.0)
 	    data1graph.SetPointEXlow(i,0.0)
 
-    legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
-    legend.SetLineWidth(0)
-    legend.AddEntry(data1graph,dataName,"p")
     if dataNumber > 2:
         data2graph = ROOT.TGraphAsymmErrors(data2)
         for i in range(0,int(data1.GetNbinsX())):
@@ -23,10 +21,15 @@ def RootHisttoPdf(outFileName,data1,logyScale,dataNumber,yAxisTitle,xAxisTitle,t
         for i in range(0,int(data1.GetNbinsX())):
 	        data3graph.SetPointEXhigh(i,0.0)
 	        data3graph.SetPointEXlow(i,0.0)
+        legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
+        legend.SetLineWidth(0)
+        legend.AddEntry(data1graph,dataName,"p")
         legend.AddEntry(data2graph,"Jet2 data","p")
         legend.AddEntry(data3graph,"Jet3 data","p")
     else:
-        legend.SetTextSize(0.03)
+        legend = ROOT.TLegend(0.6,0.8,0.85,0.75)
+        legend.SetLineWidth(0)
+        legend.AddEntry(data1graph,dataName,"p")
 
     data1graph.SetStats(0)
     data1graph.SetLineColor(ROOT.kBlack)
@@ -46,10 +49,30 @@ def RootHisttoPdf(outFileName,data1,logyScale,dataNumber,yAxisTitle,xAxisTitle,t
         data3graph.SetMarkerStyle(4)
         data2graph.SetTitle("")
         data3graph.SetTitle("")
+        data2graph.SetMarkerSize(3)
+        data2graph.SetLineWidth(2)
+        data3graph.SetMarkerSize(3)
+        data3graph.SetLineWidth(2)
     data1graph.GetYaxis().SetTitle(yAxisTitle)
     data1graph.GetXaxis().SetTitle(xAxisTitle)
     data1graph.GetXaxis().SetRangeUser(data1.GetXaxis().GetXmin(),data1.GetXaxis().GetXmax())
     data1graph.SetTitle(title)
+    #Set font size
+    legend.SetTextSize(0.045)
+    data1graph.SetMarkerSize(3)
+    data1graph.SetLineWidth(2)
+    data1graph.GetYaxis().SetLabelSize(0.045)
+    data1graph.GetYaxis().SetTitleSize(0.05)
+    data1graph.GetXaxis().SetLabelSize(0.045)
+    data1graph.GetXaxis().SetTitleSize(0.05)
+    #data1graph.GetYaxis().SetLabelOffset(0.01)
+    #data1graph.GetXaxis().SetLabelOffset(0.01)
+    canvas.SetBottomMargin(0.15)
+    canvas.SetTopMargin(0.1)
+    canvas.SetRightMargin(0.05)
+    canvas.SetLeftMargin(0.15)
+
+
     data1graph.Draw("AP")
     if dataNumber > 2:
         data2graph.Draw("P same")
