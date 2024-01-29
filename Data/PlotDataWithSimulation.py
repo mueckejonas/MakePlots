@@ -4,12 +4,13 @@ import numpy as np
 def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title,undertitle,setLogy):
     canvas_pads = ROOT.TCanvas("canvas_pads", "Double ratio")
     pad_top = ROOT.TPad("top_pad", "Top pad", 0, 0.3, 1, 1)
+    canvas_pads.SetCanvasSize(1600,1100)
     if setLogy:
         pad_top.SetLogy(True)
     pad_top.SetBottomMargin(0)
     pad_top.Draw()
     pad_bottom = ROOT.TPad("bottom_pad", "Bottom pad", 0, 0.05, 1, 0.3)
-    pad_bottom.SetBottomMargin(0.25)
+    pad_bottom.SetBottomMargin(0.4)
     pad_bottom.SetTopMargin(0)
     pad_bottom.Draw()
 
@@ -17,13 +18,12 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title,und
     runc.Scale(1./18600)
     rund.Scale(1./10000)
 
-    #runb.Scale(sim.Integral()/runb.Integral())
-    #runc.Scale(sim.Integral()/runc.Integral())
-    #rund.Scale(sim.Integral()/rund.Integral())
+    runb.Scale(sim.Integral()/runb.Integral())
+    runc.Scale(sim.Integral()/runc.Integral())
+    rund.Scale(sim.Integral()/rund.Integral())
 
-    legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+    legend = ROOT.TLegend(0.6,0.6,0.85,0.85)
     legend.SetLineWidth(0)
-    legend.SetTextSize(0.03)
 
     runbgraph = ROOT.TGraphAsymmErrors(runb)
     for i in range(0,int(runb.GetNbinsX())):
@@ -75,6 +75,25 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title,und
     legend.AddEntry(rundgraph,"RunD Data","p")
     legend.AddEntry(sim,"Simulation")
 
+    #Set font size
+    legend.SetTextSize(0.06)
+    runbgraph.SetMarkerSize(3)
+    runbgraph.SetLineWidth(2)
+    runcgraph.SetMarkerSize(3)
+    runcgraph.SetLineWidth(2)
+    rundgraph.SetMarkerSize(3)
+    rundgraph.SetLineWidth(2)
+    sim.SetLineWidth(2)
+    sim.GetYaxis().SetLabelSize(0.06)
+    sim.GetYaxis().SetTitleSize(0.08)
+    sim.GetYaxis().SetTitleOffset(0.5)
+    #data1graph.GetYaxis().SetLabelOffset(0.01)
+    #data1graph.GetXaxis().SetLabelOffset(0.01)
+    canvas_pads.SetBottomMargin(0.3)
+    canvas_pads.SetTopMargin(0.1)
+    canvas_pads.SetRightMargin(0.05)
+    canvas_pads.SetLeftMargin(0.3)
+
     sim.Draw("h")
     runbgraph.Draw("P same")
     runcgraph.Draw("P same")
@@ -113,16 +132,19 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title,und
     ratiorunbSimgraph.SetLineWidth(2)
     ratiorunbSimgraph.SetTitle("")
     ratiorunbSimgraph.SetMarkerStyle(4)
+    ratiorunbSimgraph.SetMarkerSize(3)
 
     ratioruncSimgraph.SetLineColor(ROOT.kBlue)
     ratioruncSimgraph.SetLineWidth(2)
     ratioruncSimgraph.SetTitle("")
     ratioruncSimgraph.SetMarkerStyle(4)
+    ratioruncSimgraph.SetMarkerSize(3)
 
     ratiorundSimgraph.SetLineColor(ROOT.kGreen)
     ratiorundSimgraph.SetLineWidth(2)
     ratiorundSimgraph.SetTitle("")
     ratiorundSimgraph.SetMarkerStyle(4)
+    ratiorundSimgraph.SetMarkerSize(3)
 
     ratiorunbSimgraph.GetYaxis().SetTitle("Data/Simulation")
     ratiorunbSimgraph.GetYaxis().SetLabelSize(0.1)
@@ -133,6 +155,10 @@ def RootHisttoPdf(outFileName,runb,runc,rund,sim,yAxisTitle,xAxisTitle,title,und
     ratiorunbSimgraph.GetYaxis().SetNdivisions (207)
     ratiorunbSimgraph.GetXaxis().SetTitle(xAxisTitle)
     ratiorunbSimgraph.GetYaxis().SetRangeUser(0.5,1.5)
+    ratiorunbSimgraph.GetYaxis().SetLabelSize(0.14)
+    ratiorunbSimgraph.GetYaxis().SetTitleSize(0.16)
+    ratiorunbSimgraph.GetXaxis().SetLabelSize(0.14)
+    ratiorunbSimgraph.GetXaxis().SetTitleSize(0.16)
 
     ratiorunbSimgraph.Draw("AP")
     ratioruncSimgraph.Draw("P same")
@@ -210,21 +236,21 @@ for i in range(0,14):
 
     #plot jet1
     if JetNameArray[i] == "pt" or JetNameArray[i] == "mass":
-        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_"+JetNameArray[i]+"1.pdf",Jet1_Bdata,Jet1_Cdata,Jet1_Ddata,Jet1_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet1",True)
+        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_"+JetNameArray[i]+"1.pdf",Jet1_Bdata,Jet1_Cdata,Jet1_Ddata,Jet1_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet1",True)
     else:
-        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_"+JetNameArray[i]+"1.pdf",Jet1_Bdata,Jet1_Cdata,Jet1_Ddata,Jet1_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet1",False)
+        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_"+JetNameArray[i]+"1.pdf",Jet1_Bdata,Jet1_Cdata,Jet1_Ddata,Jet1_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet1",False)
 
     #plot jet2
     if JetNameArray[i] == "pt" or JetNameArray[i] == "mass":
-        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_"+JetNameArray[i]+"2.pdf",Jet2_Bdata,Jet2_Cdata,Jet2_Ddata,Jet2_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet2",True)
+        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_"+JetNameArray[i]+"2.pdf",Jet2_Bdata,Jet2_Cdata,Jet2_Ddata,Jet2_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet2",True)
     else:
-        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_"+JetNameArray[i]+"2.pdf",Jet2_Bdata,Jet2_Cdata,Jet2_Ddata,Jet1_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet2",False)
+        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_"+JetNameArray[i]+"2.pdf",Jet2_Bdata,Jet2_Cdata,Jet2_Ddata,Jet1_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet2",False)
 
     #plot jet3
     if JetNameArray[i] == "pt" or JetNameArray[i] == "mass":
-        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_"+JetNameArray[i]+"3.pdf",Jet3_Bdata,Jet3_Cdata,Jet3_Ddata,Jet3_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet3",True)
+        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_"+JetNameArray[i]+"3.pdf",Jet3_Bdata,Jet3_Cdata,Jet3_Ddata,Jet3_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet3",True)
     else:
-        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_"+JetNameArray[i]+"3.pdf",Jet3_Bdata,Jet3_Cdata,Jet3_Ddata,Jet3_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet3",False)
+        RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_"+JetNameArray[i]+"3.pdf",Jet3_Bdata,Jet3_Cdata,Jet3_Ddata,Jet3_Sim,"#sigma [pb]",XaxisArray[i],"Run2023",JetNameArray[i]+" for Jet3",False)
 
 
 #create yboost pdf
@@ -232,18 +258,18 @@ yboostDataB = KinematicsB.Get("data_yboost")
 yboostDataC = KinematicsC.Get("data_yboost")
 yboostDataD = KinematicsD.Get("data_yboost")
 yboostSim = KinematicsS.Get("yboostsim_hist")
-RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_yboost.pdf",yboostDataB,yboostDataC,yboostDataD,yboostSim,"#sigma [pb]","YBoost","Run2023","yboost",False)
+RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_yboost.pdf",yboostDataB,yboostDataC,yboostDataD,yboostSim,"#sigma [pb]","YBoost","Run2023","yboost",False)
 
 #create chi pdf
 chiDataB = KinematicsB.Get("data_chi")
 chiDataC = KinematicsC.Get("data_chi")
 chiDataD = KinematicsD.Get("data_chi")
 chiSim = KinematicsS.Get("chisim_hist")
-RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_chi.pdf",chiDataB,chiDataC,chiDataD,chiSim,"#sigma [pb]","Chi","Run2023","chi",False)
+RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_chi.pdf",chiDataB,chiDataC,chiDataD,chiSim,"#sigma [pb]","Chi","Run2023","chi",False)
 
 #create mjj pdf
 mjjDataB = KinematicsB.Get("data_mjj")
 mjjDataC = KinematicsC.Get("data_mjj")
 mjjDataD = KinematicsD.Get("data_mjj")
 mjjSim = KinematicsS.Get("mjjsim_hist")
-RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_mjj.pdf",mjjDataB,mjjDataC,mjjDataD,mjjSim,"#sigma [pb]","Mjj","Run2023","mjj",True)
+RootHisttoPdf(outDirectory+"PlotAllRunsWithSimulation_Normiert_mjj.pdf",mjjDataB,mjjDataC,mjjDataD,mjjSim,"#sigma [pb]","Mjj","Run2023","mjj",True)

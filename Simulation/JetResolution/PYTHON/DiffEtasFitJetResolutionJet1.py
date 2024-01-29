@@ -134,7 +134,6 @@ for i in range(0,n):
 
 canvas = ROOT.TCanvas("canvas")
 canvas.SetCanvasSize(1600,1100)
-canvas.SetCanvasSize(1600,1100)
 canvas.SetLogx()
 Eta0to1p3JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 

@@ -50,20 +50,20 @@ RootFile = ROOT.TFile.Open(inFileName,"READ")
 
 #Plot pt asymmetry
 PtAsym =RootFile.Get("PtAsymmetrysim_hist")
-RootHisttoPdf(outDirectory+"Plot_DijetAsymmetry_Run2023_Simulation.pdf",PtAsym,"Events","(Pt1-Pt2)/(Pt1+Pt2)","Dijet Asymmetry for Run 2023 Simulation","(Pt1-Pt2)/(Pt1+Pt2)")
+RootHisttoPdf(outDirectory+"Plot_DijetAsymmetry_Run2023_Simulation.pdf",PtAsym,"#sigma [pb]","(Pt1-Pt2)/(Pt1+Pt2)","Dijet Asymmetry for Run 2023 Simulation","(Pt1-Pt2)/(Pt1+Pt2)")
 
 #Plot phidiff
 PhiDiff =RootFile.Get("PhiDifferencesim_hist")
-RootHisttoPdf(outDirectory+"Plot_PhiDifference_Run2023_Simulation.pdf",PhiDiff,"Events","Degree","Phi Difference for Run 2023 Simulation","Phi1-Phi2")
+RootHisttoPdf(outDirectory+"Plot_PhiDifference_Run2023_Simulation.pdf",PhiDiff,"#sigma [pb]","Degree","Phi Difference for Run 2023 Simulation","Phi1-Phi2")
 
 #Plot thetadiff
-ThetaDiff =RootFile.Get("EtaDifferencesim_hist")
-RootHisttoPdf(outDirectory+"Plot_ThetaDifference_Run2023_Simulation.pdf",ThetaDiff,"Events","Degree","Theta Difference for Run 2023 Simulation","Theta1-Theta2")
+ThetaDiff =RootFile.Get("ThetaDifferencesim_hist")
+RootHisttoPdf(outDirectory+"Plot_ThetaDifference_Run2023_Simulation.pdf",ThetaDiff,"#sigma [pb]","Degree","Theta Difference for Run 2023 Simulation","Theta1-Theta2")
 
 #Plot YDifference
 YDiff =RootFile.Get("YDifferencesim_hist")
-RootHisttoPdf(outDirectory+"Plot_YDifference_Run2023_Simulation.pdf",YDiff,"Events","YDifference","Y Difference for Run 2023 Simulation","Y1-Y2")
+RootHisttoPdf(outDirectory+"Plot_YDifference_Run2023_Simulation.pdf",YDiff,"#sigma [pb]","YDifference","Y Difference for Run 2023 Simulation","Y1-Y2")
 
 #Plot EtaDifference
-EtaDiff =RootFile.Get("ThetaDifferencesim_hist")
-RootHisttoPdf(outDirectory+"Plot_EtaDifference_Run2023_Simulation.pdf",EtaDiff,"Events","EtaDifference","Eta Difference for Run 2023 Simulation","Eta1-Eta2")
+EtaDiff =RootFile.Get("EtaDifferencesim_hist")
+RootHisttoPdf(outDirectory+"Plot_EtaDifference_Run2023_Simulation.pdf",EtaDiff,"#sigma [pb]","EtaDifference","Eta Difference for Run 2023 Simulation","Eta1-Eta2")
