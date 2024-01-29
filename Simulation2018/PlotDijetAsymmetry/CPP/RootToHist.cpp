@@ -78,7 +78,7 @@ int RootToHist()
     //Fill the Hists with Root Tree Sim and Genjets
     for (Long64_t entry = 0; entry < tree.GetEntries(); ++entry)
     {
-      tree->GetEntry(entry);
+      tree.GetEntry(entry);
 
       if(entry % 100000 == 0)
       {
