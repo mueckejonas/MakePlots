@@ -60,7 +60,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
 
 #define directory
 inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2018/RootS2018/"
-outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2018/Pdf/"
+outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2018/PDF/"
 inFileName = inDirectory+"PlotJetResolution_Jet3_Run22018.root"
 
 histFiles = ROOT.TFile.Open(inFileName,"READ")

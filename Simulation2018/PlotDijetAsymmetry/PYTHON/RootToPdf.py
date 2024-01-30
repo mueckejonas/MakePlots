@@ -35,21 +35,21 @@ inFileName = inDirectory+"_Plot_DijetAsymmetry_WithScale_Run22018_MC.root"
 RootFile = ROOT.TFile.Open(inFileName,"READ")
 
 #Plot pt asymmetry
-PtAsym =RootFile.Get("PtAsymmetry")
+PtAsym =RootFile.Get("PtAsymmetrysim_hist")
 RootHisttoPdf(outDirectory+"Plot_DijetAsymmetry_Run22018_Simulation.pdf",PtAsym,"Events","(Pt1-Pt2)/(Pt1+Pt2)","Dijet Asymmetry for Run2 2018 Simulation","(Pt1-Pt2)/(Pt1+Pt2)")
 
 #Plot phidiff
-PhiDiff =RootFile.Get("PhiDifference")
+PhiDiff =RootFile.Get("PhiDifferencesim_hist")
 RootHisttoPdf(outDirectory+"Plot_PhiDifference_Run22018_Simulation.pdf",PhiDiff,"Events","Degree","Phi Difference for Run2 2018 Simulation","Phi1-Phi2")
 
 #Plot thetadiff
-ThetaDiff =RootFile.Get("ThetaDifference")
+ThetaDiff =RootFile.Get("ThetaDifferencesim_hist")
 RootHisttoPdf(outDirectory+"Plot_ThetaDifference_Run22018_Simulation.pdf",ThetaDiff,"Events","Degree","Theta Difference for Run2 2018 Simulation","Theta1-Theta2")
 
 #Plot YDifference
-YDiff =RootFile.Get("YDifference")
+YDiff =RootFile.Get("YDifferencesim_hist")
 RootHisttoPdf(outDirectory+"Plot_YDifference_Run22018_Simulation.pdf",YDiff,"Events","YDifference","Y Difference for Run2 2018 Simulation","Y1-Y2")
 
 #Plot EtaDifference
-EtaDiff =RootFile.Get("EtaDifference")
+EtaDiff =RootFile.Get("EtaDifferencesim_hist")
 RootHisttoPdf(outDirectory+"Plot_EtaDifference_Run22018_Simulation.pdf",EtaDiff,"Events","EtaDifference","Eta Difference for Run2 2018 Simulation","Eta1-Eta2")
