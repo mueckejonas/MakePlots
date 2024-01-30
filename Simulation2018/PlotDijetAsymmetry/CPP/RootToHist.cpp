@@ -23,7 +23,7 @@ int RootToHist()
     float eta1Num[eventNum];
     float phi1Num[eventNum];
     float mass1Num[eventNum];
-    int IDTight1[eventNum];
+    float IDTight1[eventNum];
 
     tree.SetBranchAddress("jetAK4_pt1",&pt1Num);
     tree.SetBranchAddress("jetAK4_y1",&y1Num);
