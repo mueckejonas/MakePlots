@@ -83,6 +83,13 @@ int RootToHist()
 
     if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11)
     {
+
+      if(entry % 100000 == 0)
+      {
+        std::cout << TightID1[0] << std::endl;
+        std::cout << to_string(TightID2[0]) << std::endl;
+      }
+
       if(TightID1[0] == 1 && TightID2[0] == 1){
         if (abs(phi1Num[0]) > pi/2 && abs(phi2Num[0]) > pi/2) {
           PhiDifference.Fill((abs(phi1Num[0])+abs(phi2Num[0])-pi)*radtodeg);
