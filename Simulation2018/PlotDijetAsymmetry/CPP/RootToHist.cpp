@@ -23,7 +23,7 @@ int RootToHist()
     float eta1Num[eventNum];
     float phi1Num[eventNum];
     float mass1Num[eventNum];
-    bool TightID1[eventNum];
+    int TightID1[eventNum];
 
     tree.SetBranchAddress("jetAK4_pt1",&pt1Num);
     tree.SetBranchAddress("jetAK4_y1",&y1Num);
@@ -38,7 +38,7 @@ int RootToHist()
     float eta2Num[eventNum];
     float phi2Num[eventNum];
     float mass2Num[eventNum];
-    bool TightID2[eventNum];
+    int TightID2[eventNum];
 
     tree.SetBranchAddress("jetAK4_pt2",&pt2Num);
     tree.SetBranchAddress("jetAK4_y2",&y2Num);
@@ -83,7 +83,7 @@ int RootToHist()
       if(entry % 100000 == 0)
       {
         std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
-        std::cout << to_string(TightID1[0]) << std::endl;
+        std::cout << TightID1[0] << std::endl;
         std::cout << to_string(TightID2[0]) << std::endl;
       }
 
