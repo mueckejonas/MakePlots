@@ -85,7 +85,7 @@ int RootToHist()
     float area2Num[eventNum];
     float nemf2Num[eventNum];
     float cemf2Num[eventNum];
-    int TightID2[eventNum];
+    float TightID2[eventNum];
 
     tree.SetBranchAddress("jetAK4_pt2",&pt2Num);
     tree.SetBranchAddress("jetAK4_y2",&y2Num);
@@ -139,7 +139,7 @@ int RootToHist()
     float area3Num[eventNum];
     float nemf3Num[eventNum];
     float cemf3Num[eventNum];
-    int TightID3[eventNum];
+    float TightID3[eventNum];
 
     tree.SetBranchAddress("jetAK4_pt3",&pt3Num);
     tree.SetBranchAddress("jetAK4_y3",&y3Num);
@@ -293,7 +293,7 @@ int RootToHist()
       if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11)
       {
         //Fill SimJet1
-        //if(TightID1[0] == 1){
+        if(TightID1[0] == 1){
           pt1.Fill(pt1Num[0]);
           y1.Fill(y1Num[0]);
           eta1.Fill(eta1Num[0]);
@@ -306,10 +306,11 @@ int RootToHist()
           area1.Fill(area1Num[0]);
           nemf1.Fill(nemf1Num[0]);
           cemf1.Fill(cemf1Num[0]);
+        }
 
 
         //Fill SimJet2
-        //if(TightID2[0] == 1){
+        if(TightID2[0] == 1){
           pt2.Fill(pt2Num[0]);
           y2.Fill(y2Num[0]);
           eta2.Fill(eta2Num[0]);
@@ -322,10 +323,11 @@ int RootToHist()
           area2.Fill(area2Num[0]);
           nemf2.Fill(nemf2Num[0]);
           cemf2.Fill(cemf2Num[0]);
+        }
 
 
         //Fill SimJet3
-        //if(TightID3[0] == 1){
+        if(TightID3[0] == 1){
           pt3.Fill(pt3Num[0]);
           y3.Fill(y3Num[0]);
           eta3.Fill(eta3Num[0]);
@@ -338,9 +340,10 @@ int RootToHist()
           area3.Fill(area3Num[0]);
           nemf3.Fill(nemf3Num[0]);
           cemf3.Fill(cemf3Num[0]);
+        }
 
 
-        //if(TightID1[0] == 1 && TightID2[0] == 1){
+        if(TightID1[0] == 1 && TightID2[0] == 1){
           //fill Simyboost
           YBoostHist.Fill(YBoostValue);
 
@@ -349,6 +352,7 @@ int RootToHist()
 
           //fill Simchi
           ChiHist.Fill(ChiValue);
+        }
       }
 
 

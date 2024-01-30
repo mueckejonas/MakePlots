@@ -38,7 +38,7 @@ int RootToHist()
     float eta2Num[eventNum];
     float phi2Num[eventNum];
     float mass2Num[eventNum];
-    int IDTight2[eventNum];
+    float IDTight2[eventNum];
 
     tree.SetBranchAddress("jetAK4_pt2",&pt2Num);
     tree.SetBranchAddress("jetAK4_y2",&y2Num);
@@ -83,8 +83,6 @@ int RootToHist()
       if(entry % 100000 == 0)
       {
         std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
-        std::cout << IDTight1[0] << std::endl;
-        std::cout << to_string(IDTight2[0]) << std::endl;
       }
 
       //Calculate Sim Mjj
@@ -102,6 +100,7 @@ int RootToHist()
 
       if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11)
       {
+        if(IDTight1[0] == 1 && IDTight2[0] == 1){
           if (abs(phi1Num[0]) > pi/2 && abs(phi2Num[0]) > pi/2) {
             PhiDifference.Fill((abs(phi1Num[0])+abs(phi2Num[0])-pi)*radtodeg);
           } else {
@@ -121,6 +120,7 @@ int RootToHist()
           PtAsymmetry.Fill((pt1Num[0]-pt2Num[0])/(pt1Num[0]+pt2Num[0]));
           EtaDifference.Fill(eta1Num[0]-eta2Num[0]);
           YDifference.Fill(y1Num[0]-y2Num[0]);
+        }
       }
     }
 
