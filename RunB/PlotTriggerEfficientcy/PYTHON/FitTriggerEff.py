@@ -8,8 +8,8 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     fit_template = "1/(1+exp(-(x/[0])-[1]))"
     #fit_template = "1/(1+exp(-((x-[0])/[1]))"
     fit_func = ROOT.TF1("fit_func",fit_template,2300,3000)
-    fit_func.SetParameter(0,500)
-    fit_func.SetParameter(1,0)
+    fit_func.SetParameter(0,46)
+    fit_func.SetParameter(1,-46)
     Efficiency.Fit(fit_func)
 
     Plot_Efficiency = ROOT.TGraphAsymmErrors(int(data1.GetNbinsX()))
@@ -27,7 +27,6 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     legend.SetTextSize(0.02)
     Plot_Efficiency.SetStats(0)
     Plot_Efficiency.SetLineColor(ROOT.kBlack)
-    Plot_Efficiency.SetLineWidth(1)
     Plot_Efficiency.GetYaxis().SetTitle(yAxisTitle)
     Plot_Efficiency.GetXaxis().SetTitle(xAxisTitle)
     Plot_Efficiency.GetXaxis().SetRangeUser(data1.GetXaxis().GetXmin(),data1.GetXaxis().GetXmax())
@@ -99,4 +98,4 @@ HLT_PFJet550 = HLT_PFJet.Get("HLT_PFJet550")
 
 Ref_HLT_PFJet500 = HLT_PFJet.Get("Ref_HLT_PFJet500")
 
-RootHisttoPdf(outDirectory+"PlottriggerEfficiency_withFit_HLT_PFJet550_Teeeeest.pdf",HLT_PFJet550,Ref_HLT_PFJet500,"HLT_PFJet550/HLT_PFJet500","Mjj [GeV]","Run2023B","Trigger Efficiency pt>550")
+RootHisttoPdf(outDirectory+"PlottriggerEfficiency_withFit_HLT_PFJet550.pdf",HLT_PFJet550,Ref_HLT_PFJet500,"HLT_PFJet550/HLT_PFJet500","Mjj [GeV]","Run2023B","Trigger Efficiency pt>550")

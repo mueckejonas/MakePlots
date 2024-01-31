@@ -31,7 +31,7 @@ int RootToHist()
     float area1Num[eventNum];
     float nemf1Num[eventNum];
     float cemf1Num[eventNum];
-    int TightID1[eventNum];
+    float TightID1[eventNum];
 
     tree.SetBranchAddress("jetAK4_pt1",&pt1Num);
     tree.SetBranchAddress("jetAK4_y1",&y1Num);

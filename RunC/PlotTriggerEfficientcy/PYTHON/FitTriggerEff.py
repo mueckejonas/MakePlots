@@ -3,19 +3,21 @@ import numpy as np
 #takes three hists and turn them into pdf
 def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle):
 
-    Efficiency = ROOT.TGraphAsymmErrors(int(data1.GetNbinsX()))
-    Efficiency.BayesDivide(data1,data2)
-
-    for i in range(0,int(data1.GetNbinsX())):
-	    Efficiency.SetPointEXhigh(i,0.0)
-	    Efficiency.SetPointEXlow(i,0.0)
+    Efficiency = ROOT.TEfficiency(data1,data2)
 
     fit_template = "1/(1+exp(-(x/[0])-[1]))"
     #fit_template = "1/(1+exp(-((x-[0])/[1]))"
     fit_func = ROOT.TF1("fit_func",fit_template,2300,3000)
-    fit_func.SetParameter(0,500)
-    fit_func.SetParameter(1,0)
+    fit_func.SetParameter(0,46)
+    fit_func.SetParameter(1,-46)
     Efficiency.Fit(fit_func)
+
+    Plot_Efficiency = ROOT.TGraphAsymmErrors(int(data1.GetNbinsX()))
+    Plot_Efficiency.BayesDivide(data1,data2)
+
+    for i in range(0,int(data1.GetNbinsX())):
+        Plot_Efficiency.SetPointEXhigh(i,0.0)
+        Plot_Efficiency.SetPointEXlow(i,0.0)
 
 
     canvas = ROOT.TCanvas("canvas")
@@ -23,32 +25,31 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
 
     legend = ROOT.TLegend(0.6,0.5,0.85,0.65)
     legend.SetTextSize(0.02)
-    Efficiency.SetStats(0)
-    Efficiency.SetLineColor(ROOT.kBlack)
-    Efficiency.SetLineWidth(1)
-    Efficiency.GetYaxis().SetTitle(yAxisTitle)
-    Efficiency.GetXaxis().SetTitle(xAxisTitle)
-    Efficiency.GetXaxis().SetRangeUser(data1.GetXaxis().GetXmin(),data1.GetXaxis().GetXmax())
-    Efficiency.SetTitle(title+undertitle)
-    Efficiency.SetMarkerStyle(4)
-    legend.AddEntry(Efficiency,yAxisTitle,"p")
+    Plot_Efficiency.SetStats(0)
+    Plot_Efficiency.SetLineColor(ROOT.kBlack)
+    Plot_Efficiency.GetYaxis().SetTitle(yAxisTitle)
+    Plot_Efficiency.GetXaxis().SetTitle(xAxisTitle)
+    Plot_Efficiency.GetXaxis().SetRangeUser(data1.GetXaxis().GetXmin(),data1.GetXaxis().GetXmax())
+    Plot_Efficiency.SetTitle(title+undertitle)
+    Plot_Efficiency.SetMarkerStyle(4)
+    legend.AddEntry(Plot_Efficiency,yAxisTitle,"p")
     legend.AddEntry(fit_func,"Logistic function fit","l")
     legend.SetLineWidth(0)
     #Set font size
     legend.SetTextSize(0.045)
-    Efficiency.SetMarkerSize(3)
-    Efficiency.SetLineWidth(2)
-    Efficiency.GetYaxis().SetLabelSize(0.045)
-    Efficiency.GetYaxis().SetTitleSize(0.05)
-    Efficiency.GetXaxis().SetLabelSize(0.045)
-    Efficiency.GetXaxis().SetTitleSize(0.05)
-    #Efficiency.GetYaxis().SetLabelOffset(0.01)
-    #Efficiency.GetXaxis().SetLabelOffset(0.01)
+    Plot_Efficiency.SetMarkerSize(3)
+    Plot_Efficiency.SetLineWidth(2)
+    Plot_Efficiency.GetYaxis().SetLabelSize(0.045)
+    Plot_Efficiency.GetYaxis().SetTitleSize(0.05)
+    Plot_Efficiency.GetXaxis().SetLabelSize(0.045)
+    Plot_Efficiency.GetXaxis().SetTitleSize(0.05)
+    #Plot_Efficiency.GetYaxis().SetLabelOffset(0.01)
+    #Plot_Efficiency.GetXaxis().SetLabelOffset(0.01)
     canvas.SetBottomMargin(0.15)
     canvas.SetTopMargin(0.1)
     canvas.SetRightMargin(0.05)
     canvas.SetLeftMargin(0.15)
-    Efficiency.Draw("AP")
+    Plot_Efficiency.Draw("AP")
     fit_func.Draw("same")
     legend.Draw("same")
     canvas.Print(outFileName)

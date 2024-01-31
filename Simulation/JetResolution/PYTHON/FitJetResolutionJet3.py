@@ -136,6 +136,7 @@ canvas = ROOT.TCanvas("canvas")
 canvas.SetCanvasSize(1600,1100)
 canvas.SetLogx()
 JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
+SaveJetResolutionGraph = JetResolutionGraph.Clone()
 
 """
 for i in range(0,n):
@@ -210,3 +211,8 @@ with open('/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/C
 
     # write multiple rows
     writer.writerows(data)
+
+#create and save root file with all added hists
+outHistFile = ROOT.TFile.Open("/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/RootS/FitJetResolutionJet3.root","RECREATE")
+SaveJetResolutionGraph.Write()
+outHistFile.Close()

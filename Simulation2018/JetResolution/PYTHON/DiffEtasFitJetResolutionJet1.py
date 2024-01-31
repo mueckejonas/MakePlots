@@ -28,6 +28,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     hist_graph = ROOT.TGraphAsymmErrors(fit_hist)
 
     canvas = ROOT.TCanvas("canvas")
+    canvas.SetCanvasSize(1600,1100)
 
     for i in range(0,int(hist.GetNbinsX())):
 	    hist_graph.SetPointEXhigh(i,0.0)
@@ -37,7 +38,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     FWHMLine.SetLineColor(ROOT.kBlack)
     FWHMLine.SetLineWidth(2)
 
-    legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+    legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
     legend.SetLineWidth(0)
 
     hist_graph.SetStats(0)
@@ -50,6 +51,20 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     legend.AddEntry(hist_graph,"Response","p")
     legend.AddEntry(fit_func,"Gauss Fit","l")
     legend.AddEntry(FWHMLine,"Sigma "+"("+str(round(C*100,2))+"+-"+str(round(CErr*100,6))+")"+"%","l")
+    #Set font size
+    legend.SetTextSize(0.045)
+    hist_graph.SetMarkerSize(3)
+    hist_graph.SetLineWidth(2)
+    hist_graph.GetYaxis().SetLabelSize(0.045)
+    hist_graph.GetYaxis().SetTitleSize(0.05)
+    hist_graph.GetXaxis().SetLabelSize(0.045)
+    hist_graph.GetXaxis().SetTitleSize(0.05)
+    #hist_graph.GetYaxis().SetLabelOffset(0.01)
+    #hist_graph.GetXaxis().SetLabelOffset(0.01)
+    canvas.SetBottomMargin(0.15)
+    canvas.SetTopMargin(0.1)
+    canvas.SetRightMargin(0.05)
+    canvas.SetLeftMargin(0.15)
     hist_graph.Draw("AP")
     fit_func.Draw("same")
     FWHMLine.Draw("same")
@@ -95,14 +110,14 @@ Eta0to1p3JetResolution1800to2400, Eta0to1p3JetResolutionErr1800to2400 = CalcReso
 Eta0to1p3JetResolution2400to3200, Eta0to1p3JetResolutionErr2400to3200 = CalcResolution(Eta0to1p3Response2400to3200,outDirectory+"Eta0to1p3_Response_Jet1_2400to3200_Run22018.pdf","Events","Eta 0 to 1.3 Response","Eta 0 to 1.3 Response for pt1 2400to3200",10000,0,0.05)
 Eta0to1p3JetResolution3200, Eta0to1p3JetResolutionErr3200 = CalcResolution(Eta0to1p3Response3200,outDirectory+"Eta0to1p3_Response_Jet1_3200_Run22018.pdf","Events","Eta 0 to 1.3 Response","Eta 0 to 1.3 Response for pt1 3200",10000,0,0.05)
 
-Eta0to1p3JetResolution = np.array([Eta0to1p3JetResolution170to300,Eta0to1p3JetResolution300to470,Eta0to1p3JetResolution470to600,Eta0to1p3JetResolution600to800,Eta0to1p3JetResolution800to1000,Eta0to1p3JetResolution1000to1400,Eta0to1p3JetResolution1400to1800,Eta0to1p3JetResolution1800to2400,Eta0to1p3JetResolution2400to3200,Eta0to1p3JetResolution3200])
-Eta0to1p3JetResolutionErr = np.array([Eta0to1p3JetResolutionErr170to300,Eta0to1p3JetResolutionErr300to470,Eta0to1p3JetResolutionErr470to600,Eta0to1p3JetResolutionErr600to800,Eta0to1p3JetResolutionErr800to1000,Eta0to1p3JetResolutionErr1000to1400,Eta0to1p3JetResolutionErr1400to1800,Eta0to1p3JetResolutionErr1800to2400,Eta0to1p3JetResolutionErr2400to3200,Eta0to1p3JetResolutionErr3200])
-PtRanges = np.array([(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
-PtRangesErrh = np.array([130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
-PtRangesErrl = np.array([130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+Eta0to1p3JetResolution = np.array([Eta0to1p3JetResolution170to300,Eta0to1p3JetResolution300to470,Eta0to1p3JetResolution470to600,Eta0to1p3JetResolution600to800,Eta0to1p3JetResolution800to1000,Eta0to1p3JetResolution1000to1400,Eta0to1p3JetResolution1400to1800,Eta0to1p3JetResolution1800to2400,Eta0to1p3JetResolution2400to3200])
+Eta0to1p3JetResolutionErr = np.array([Eta0to1p3JetResolutionErr170to300,Eta0to1p3JetResolutionErr300to470,Eta0to1p3JetResolutionErr470to600,Eta0to1p3JetResolutionErr600to800,Eta0to1p3JetResolutionErr800to1000,Eta0to1p3JetResolutionErr1000to1400,Eta0to1p3JetResolutionErr1400to1800,Eta0to1p3JetResolutionErr1800to2400,Eta0to1p3JetResolutionErr2400to3200])
+PtRanges = np.array([(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2])
+PtRangesErrh = np.array([130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2])
+PtRangesErrl = np.array([130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2])
 #Eta0to1p3JetResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
-n = 10
+n = 9
 x = array('d')
 y = array('d')
 xh = array('d')
@@ -118,6 +133,7 @@ for i in range(0,n):
     yl.append(Eta0to1p3JetResolutionErr[i])
 
 canvas = ROOT.TCanvas("canvas")
+canvas.SetCanvasSize(1600,1100)
 canvas.SetLogx()
 Eta0to1p3JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 
@@ -133,7 +149,7 @@ for i in range(0,n):
         Eta0to1p3JetResolutionGraph.GetListOfFunctions().Add(latex)
 """
 
-legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
 legend.SetLineWidth(0)
 
 Eta0to1p3JetResolutionGraph.SetStats(0)
@@ -147,6 +163,21 @@ Eta0to1p3JetResolutionGraph.SetMarkerStyle(33)
 Eta0to1p3JetResolutionGraph.SetMarkerSize(0)
 Eta0to1p3JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 Eta0to1p3JetResolutionGraph.GetXaxis().SetNoExponent()
+Eta0to1p3JetResolutionGraph.GetXaxis().SetRangeUser(0,3200)
+#Set font size
+legend.SetTextSize(0.045)
+Eta0to1p3JetResolutionGraph.SetMarkerSize(3)
+Eta0to1p3JetResolutionGraph.SetLineWidth(2)
+Eta0to1p3JetResolutionGraph.GetYaxis().SetLabelSize(0.045)
+Eta0to1p3JetResolutionGraph.GetYaxis().SetTitleSize(0.05)
+Eta0to1p3JetResolutionGraph.GetXaxis().SetLabelSize(0.045)
+Eta0to1p3JetResolutionGraph.GetXaxis().SetTitleSize(0.05)
+#Eta0to1p3JetResolutionGraph.GetYaxis().SetLabelOffset(0.01)
+#Eta0to1p3JetResolutionGraph.GetXaxis().SetLabelOffset(0.01)
+canvas.SetBottomMargin(0.15)
+canvas.SetTopMargin(0.1)
+canvas.SetRightMargin(0.05)
+canvas.SetLeftMargin(0.15)
 
 legend.AddEntry(Eta0to1p3JetResolutionGraph,"JetResolution","l")
 
@@ -211,14 +242,14 @@ Eta1p3to2p5JetResolution1800to2400, Eta1p3to2p5JetResolutionErr1800to2400 = Calc
 Eta1p3to2p5JetResolution2400to3200, Eta1p3to2p5JetResolutionErr2400to3200 = CalcResolution(Eta1p3to2p5Response2400to3200,outDirectory+"Eta1p3to2p5_Response_Jet1_2400to3200_Run22018.pdf","Events","Eta 1.3 to 2.5 Response","Eta 1.3 to 2.5 Response for pt1 2400to3200",10000,0,0.05)
 Eta1p3to2p5JetResolution3200, Eta1p3to2p5JetResolutionErr3200 = CalcResolution(Eta1p3to2p5Response3200,outDirectory+"Eta1p3to2p5_Response_Jet1_3200_Run22018.pdf","Events","Eta 1.3 to 2.5 Response","Eta 1.3 to 2.5 Response for pt1 3200",10000,0,0.05)
 
-Eta1p3to2p5JetResolution = np.array([Eta1p3to2p5JetResolution170to300,Eta1p3to2p5JetResolution300to470,Eta1p3to2p5JetResolution470to600,Eta1p3to2p5JetResolution600to800,Eta1p3to2p5JetResolution800to1000,Eta1p3to2p5JetResolution1000to1400,Eta1p3to2p5JetResolution1400to1800,Eta1p3to2p5JetResolution1800to2400,Eta1p3to2p5JetResolution2400to3200])
-Eta1p3to2p5JetResolutionErr = np.array([Eta1p3to2p5JetResolutionErr170to300,Eta1p3to2p5JetResolutionErr300to470,Eta1p3to2p5JetResolutionErr470to600,Eta1p3to2p5JetResolutionErr600to800,Eta1p3to2p5JetResolutionErr800to1000,Eta1p3to2p5JetResolutionErr1000to1400,Eta1p3to2p5JetResolutionErr1400to1800,Eta1p3to2p5JetResolutionErr1800to2400,Eta1p3to2p5JetResolutionErr2400to3200])
-PtRanges = np.array([(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2])
-PtRangesErrh = np.array([130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2])
-PtRangesErrl = np.array([130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2])
+Eta1p3to2p5JetResolution = np.array([Eta1p3to2p5JetResolution170to300,Eta1p3to2p5JetResolution300to470,Eta1p3to2p5JetResolution470to600,Eta1p3to2p5JetResolution600to800,Eta1p3to2p5JetResolution800to1000,Eta1p3to2p5JetResolution1000to1400,Eta1p3to2p5JetResolution1400to1800,Eta1p3to2p5JetResolution1800to2400])
+Eta1p3to2p5JetResolutionErr = np.array([Eta1p3to2p5JetResolutionErr170to300,Eta1p3to2p5JetResolutionErr300to470,Eta1p3to2p5JetResolutionErr470to600,Eta1p3to2p5JetResolutionErr600to800,Eta1p3to2p5JetResolutionErr800to1000,Eta1p3to2p5JetResolutionErr1000to1400,Eta1p3to2p5JetResolutionErr1400to1800,Eta1p3to2p5JetResolutionErr1800to2400])
+PtRanges = np.array([(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2])
+PtRangesErrh = np.array([130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2])
+PtRangesErrl = np.array([130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2])
 #Eta1p3to2p5JetResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
-n = 9
+n = 8
 x = array('d')
 y = array('d')
 xh = array('d')
@@ -234,6 +265,7 @@ for i in range(0,n):
     yl.append(Eta1p3to2p5JetResolutionErr[i])
 
 canvas = ROOT.TCanvas("canvas")
+canvas.SetCanvasSize(1600,1100)
 canvas.SetLogx()
 Eta1p3to2p5JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 
@@ -249,7 +281,7 @@ for i in range(0,n):
         Eta1p3to2p5JetResolutionGraph.GetListOfFunctions().Add(latex)
 """
 
-legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
 legend.SetLineWidth(0)
 
 Eta1p3to2p5JetResolutionGraph.SetStats(0)
@@ -263,6 +295,21 @@ Eta1p3to2p5JetResolutionGraph.SetMarkerStyle(33)
 Eta1p3to2p5JetResolutionGraph.SetMarkerSize(0)
 Eta1p3to2p5JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 Eta1p3to2p5JetResolutionGraph.GetXaxis().SetNoExponent()
+Eta1p3to2p5JetResolutionGraph.GetXaxis().SetRangeUser(0,3200)
+#Set font size
+legend.SetTextSize(0.045)
+Eta1p3to2p5JetResolutionGraph.SetMarkerSize(3)
+Eta1p3to2p5JetResolutionGraph.SetLineWidth(2)
+Eta1p3to2p5JetResolutionGraph.GetYaxis().SetLabelSize(0.045)
+Eta1p3to2p5JetResolutionGraph.GetYaxis().SetTitleSize(0.05)
+Eta1p3to2p5JetResolutionGraph.GetXaxis().SetLabelSize(0.045)
+Eta1p3to2p5JetResolutionGraph.GetXaxis().SetTitleSize(0.05)
+#Eta1p3to2p5JetResolutionGraph.GetYaxis().SetLabelOffset(0.01)
+#Eta1p3to2p5JetResolutionGraph.GetXaxis().SetLabelOffset(0.01)
+canvas.SetBottomMargin(0.15)
+canvas.SetTopMargin(0.1)
+canvas.SetRightMargin(0.05)
+canvas.SetLeftMargin(0.15)
 
 legend.AddEntry(Eta1p3to2p5JetResolutionGraph,"JetResolution","l")
 
@@ -327,14 +374,14 @@ Eta2p5to3JetResolution1800to2400, Eta2p5to3JetResolutionErr1800to2400 = CalcReso
 Eta2p5to3JetResolution2400to3200, Eta2p5to3JetResolutionErr2400to3200 = CalcResolution(Eta2p5to3Response2400to3200,outDirectory+"Eta2p5to3_Response_Jet1_2400to3200_Run22018.pdf","Events","Eta 2.5 to 3 Response","Eta 2.5 to 3 Response for pt1 2400to3200",10000,0,0.05)
 Eta2p5to3JetResolution3200, Eta2p5to3JetResolutionErr3200 = CalcResolution(Eta2p5to3Response3200,outDirectory+"Eta2p5to3_Response_Jet1_3200_Run22018.pdf","Events","Eta 2.5 to 3 Response","Eta 2.5 to 3 Response for pt1 3200",10000,0,0.05)
 
-Eta2p5to3JetResolution = np.array([Eta2p5to3JetResolution170to300,Eta2p5to3JetResolution300to470,Eta2p5to3JetResolution470to600,Eta2p5to3JetResolution600to800,Eta2p5to3JetResolution800to1000])
-Eta2p5to3JetResolutionErr = np.array([Eta2p5to3JetResolutionErr50to80,Eta2p5to3JetResolutionErr80to120,Eta2p5to3JetResolutionErr120to170,Eta2p5to3JetResolutionErr170to300,Eta2p5to3JetResolutionErr300to470,Eta2p5to3JetResolutionErr470to600,Eta2p5to3JetResolutionErr600to800,Eta2p5to3JetResolutionErr800to1000])
-PtRanges = np.array([(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2])
-PtRangesErrh = np.array([130/2,170/2,130/2,200/2,200/2])
-PtRangesErrl = np.array([130/2,170/2,130/2,200/2,200/2])
+Eta2p5to3JetResolution = np.array([Eta2p5to3JetResolution170to300,Eta2p5to3JetResolution300to470,Eta2p5to3JetResolution470to600,Eta2p5to3JetResolution600to800])
+Eta2p5to3JetResolutionErr = np.array([Eta2p5to3JetResolutionErr170to300,Eta2p5to3JetResolutionErr300to470,Eta2p5to3JetResolutionErr470to600,Eta2p5to3JetResolutionErr600to800])
+PtRanges = np.array([(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2])
+PtRangesErrh = np.array([130/2,170/2,130/2,200/2])
+PtRangesErrl = np.array([130/2,170/2,130/2,200/2])
 #Eta2p5to3JetResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
-n = 5
+n = 4
 x = array('d')
 y = array('d')
 xh = array('d')
@@ -350,6 +397,7 @@ for i in range(0,n):
     yl.append(Eta2p5to3JetResolutionErr[i])
 
 canvas = ROOT.TCanvas("canvas")
+canvas.SetCanvasSize(1600,1100)
 canvas.SetLogx()
 Eta2p5to3JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 
@@ -365,7 +413,7 @@ for i in range(0,n):
         Eta2p5to3JetResolutionGraph.GetListOfFunctions().Add(latex)
 """
 
-legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
 legend.SetLineWidth(0)
 
 Eta2p5to3JetResolutionGraph.SetStats(0)
@@ -379,6 +427,22 @@ Eta2p5to3JetResolutionGraph.SetMarkerStyle(33)
 Eta2p5to3JetResolutionGraph.SetMarkerSize(0)
 Eta2p5to3JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 Eta2p5to3JetResolutionGraph.GetXaxis().SetNoExponent()
+Eta2p5to3JetResolutionGraph.GetXaxis().SetRangeUser(0,3200)
+#Set font size
+legend.SetTextSize(0.045)
+Eta2p5to3JetResolutionGraph.SetMarkerSize(3)
+Eta2p5to3JetResolutionGraph.SetLineWidth(2)
+Eta2p5to3JetResolutionGraph.GetYaxis().SetLabelSize(0.045)
+Eta2p5to3JetResolutionGraph.GetYaxis().SetTitleSize(0.05)
+Eta2p5to3JetResolutionGraph.GetXaxis().SetLabelSize(0.045)
+Eta2p5to3JetResolutionGraph.GetXaxis().SetTitleSize(0.05)
+#Eta2p5to3JetResolutionGraph.GetYaxis().SetLabelOffset(0.01)
+#Eta2p5to3JetResolutionGraph.GetXaxis().SetLabelOffset(0.01)
+canvas.SetBottomMargin(0.15)
+canvas.SetTopMargin(0.1)
+canvas.SetRightMargin(0.05)
+canvas.SetLeftMargin(0.15)
+
 
 legend.AddEntry(Eta2p5to3JetResolutionGraph,"JetResolution","l")
 
@@ -443,14 +507,15 @@ Eta3to5JetResolution1800to2400, Eta3to5JetResolutionErr1800to2400 = CalcResoluti
 Eta3to5JetResolution2400to3200, Eta3to5JetResolutionErr2400to3200 = CalcResolution(Eta3to5Response2400to3200,outDirectory+"Eta3to5_Response_Jet1_2400to3200_Run22018.pdf","Events","Eta 3 to 5 Response","Eta 3 to 5 Response for pt1 2400to3200",10000,0,0.05)
 Eta3to5JetResolution3200, Eta3to5JetResolutionErr3200 = CalcResolution(Eta3to5Response3200,outDirectory+"Eta3to5_Response_Jet1_3200_Run22018.pdf","Events","Eta 3 to 5 Response","Eta 3 to 5 Response for pt1 3200",10000,0,0.05)
 
-Eta3to5JetResolution = np.array([Eta3to5JetResolution300to470])
-Eta3to5JetResolutionErr = np.array([Eta3to5JetResolutionErr300to470])
-PtRanges = np.array([(300+470)/2])
-PtRangesErrh = np.array([170/2])
-PtRangesErrl = np.array([170/2])
+"""
+Eta3to5JetResolution = np.array([])
+Eta3to5JetResolutionErr = np.array([])
+PtRanges = np.array([])
+PtRangesErrh = np.array([])
+PtRangesErrl = np.array([])
 #Eta3to5JetResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
-n = 1
+n = 0
 x = array('d')
 y = array('d')
 xh = array('d')
@@ -466,10 +531,11 @@ for i in range(0,n):
     yl.append(Eta3to5JetResolutionErr[i])
 
 canvas = ROOT.TCanvas("canvas")
+canvas.SetCanvasSize(1600,1100)
 canvas.SetLogx()
 Eta3to5JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 
-"""
+
 for i in range(0,n):
     if i != 5:
         latex = ROOT.TLatex(Eta3to5JetResolutionGraph.GetX()[i]-PtRangesErrh[i]*0.9,Eta3to5JetResolutionGraph.GetY()[i]+0.0015,Eta3to5JetResolutionLabels[i])
@@ -479,9 +545,8 @@ for i in range(0,n):
         latex = ROOT.TLatex(Eta3to5JetResolutionGraph.GetX()[i]-PtRangesErrh[i]*0.8,Eta3to5JetResolutionGraph.GetY()[i]+0.0015,Eta3to5JetResolutionLabels[i])
         latex.SetTextSize(0.02)
         Eta3to5JetResolutionGraph.GetListOfFunctions().Add(latex)
-"""
 
-legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
 legend.SetLineWidth(0)
 
 Eta3to5JetResolutionGraph.SetStats(0)
@@ -495,6 +560,8 @@ Eta3to5JetResolutionGraph.SetMarkerStyle(33)
 Eta3to5JetResolutionGraph.SetMarkerSize(0)
 Eta3to5JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 Eta3to5JetResolutionGraph.GetXaxis().SetNoExponent()
+Eta3to5JetResolutionGraph.GetXaxis().SetRangeUser(0,3200)
+
 
 legend.AddEntry(Eta3to5JetResolutionGraph,"JetResolution","l")
 
@@ -502,7 +569,7 @@ Eta3to5JetResolutionGraph.Draw("AP")
 legend.Draw("same")
 
 canvas.Print(outDirectory+"Eta3to5JetResolutionfromPt1_Run22018Sim.pdf")
-
+"""
 header = ['PtRange', 'Eta3to5JetResolution', 'Eta3to5JetResolutionErr']
 data = [
     ['50to80', Eta3to5JetResolution50to80,Eta3to5JetResolutionErr50to80],

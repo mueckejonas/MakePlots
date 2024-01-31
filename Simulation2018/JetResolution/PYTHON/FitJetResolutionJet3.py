@@ -28,6 +28,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     hist_graph = ROOT.TGraphAsymmErrors(fit_hist)
 
     canvas = ROOT.TCanvas("canvas")
+    canvas.SetCanvasSize(1600,1100)
 
     for i in range(0,int(hist.GetNbinsX())):
 	    hist_graph.SetPointEXhigh(i,0.0)
@@ -37,7 +38,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     FWHMLine.SetLineColor(ROOT.kBlack)
     FWHMLine.SetLineWidth(2)
 
-    legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+    legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
     legend.SetLineWidth(0)
 
     hist_graph.SetStats(0)
@@ -50,6 +51,20 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     legend.AddEntry(hist_graph,"Response","p")
     legend.AddEntry(fit_func,"Gauss Fit","l")
     legend.AddEntry(FWHMLine,"Sigma "+"("+str(round(C*100,2))+"+-"+str(round(CErr*100,6))+")"+"%","l")
+    #Set font size
+    legend.SetTextSize(0.045)
+    hist_graph.SetMarkerSize(3)
+    hist_graph.SetLineWidth(2)
+    hist_graph.GetYaxis().SetLabelSize(0.045)
+    hist_graph.GetYaxis().SetTitleSize(0.05)
+    hist_graph.GetXaxis().SetLabelSize(0.045)
+    hist_graph.GetXaxis().SetTitleSize(0.05)
+    #hist_graph.GetYaxis().SetLabelOffset(0.01)
+    #hist_graph.GetXaxis().SetLabelOffset(0.01)
+    canvas.SetBottomMargin(0.15)
+    canvas.SetTopMargin(0.1)
+    canvas.SetRightMargin(0.05)
+    canvas.SetLeftMargin(0.15)
     hist_graph.Draw("AP")
     fit_func.Draw("same")
     FWHMLine.Draw("same")
@@ -95,14 +110,14 @@ JetResolution1800to2400, JetResolutionErr1800to2400 = CalcResolution(Response180
 JetResolution2400to3200, JetResolutionErr2400to3200 = CalcResolution(Response2400to3200,outDirectory+"Response_Jet3_2400to3200_Run22018.pdf","Events","Response","Response for pt3 2400to3200",10000,0,0.05)
 JetResolution3200, JetResolutionErr3200 = CalcResolution(Response3200,outDirectory+"Response_Jet3_3200_Run22018.pdf","Events","Response","Response for pt3 3200",10000,0,0.05)
 
-JetResolution = np.array([JetResolution80to120,JetResolution120to170,JetResolution170to300,JetResolution300to470,JetResolution470to600,JetResolution600to800,JetResolution800to1000,JetResolution1000to1400,JetResolution1400to1800,JetResolution1800to2400])
-JetResolutionErr = np.array([JetResolutionErr80to120,JetResolutionErr120to170,JetResolutionErr170to300,JetResolutionErr300to470,JetResolutionErr470to600,JetResolutionErr600to800,JetResolutionErr800to1000,JetResolutionErr1000to1400,JetResolutionErr1400to1800,JetResolutionErr1800to2400])
-PtRanges = np.array([(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2])
-PtRangesErrh = np.array([40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2])
-PtRangesErrl = np.array([40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2])
+JetResolution = np.array([JetResolution80to120,JetResolution120to170,JetResolution170to300,JetResolution300to470,JetResolution470to600,JetResolution600to800,JetResolution800to1000,JetResolution1000to1400])
+JetResolutionErr = np.array([JetResolutionErr80to120,JetResolutionErr120to170,JetResolutionErr170to300,JetResolutionErr300to470,JetResolutionErr470to600,JetResolutionErr600to800,JetResolutionErr800to1000,JetResolutionErr1000to1400])
+PtRanges = np.array([(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2])
+PtRangesErrh = np.array([40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2])
+PtRangesErrl = np.array([40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2])
 #JetResolutionLabels = np.array(["50to80","80to120","120to170","170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
-n = 10
+n = 8
 x = array('d')
 y = array('d')
 xh = array('d')
@@ -118,8 +133,10 @@ for i in range(0,n):
     yl.append(JetResolutionErr[i])
 
 canvas = ROOT.TCanvas("canvas")
+canvas.SetCanvasSize(1600,1100)
 canvas.SetLogx()
 JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
+SaveJetResolutionGraph = JetResolutionGraph.Clone()
 
 """
 for i in range(0,n):
@@ -147,6 +164,22 @@ JetResolutionGraph.SetMarkerStyle(33)
 JetResolutionGraph.SetMarkerSize(0)
 JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 JetResolutionGraph.GetXaxis().SetNoExponent()
+JetResolutionGraph.GetXaxis().SetRangeUser(0,3200)
+JetResolutionGraph.GetYaxis().SetRangeUser(0,0.1)
+#Set font size
+legend.SetTextSize(0.045)
+JetResolutionGraph.SetMarkerSize(3)
+JetResolutionGraph.SetLineWidth(2)
+JetResolutionGraph.GetYaxis().SetLabelSize(0.045)
+JetResolutionGraph.GetYaxis().SetTitleSize(0.05)
+JetResolutionGraph.GetXaxis().SetLabelSize(0.045)
+JetResolutionGraph.GetXaxis().SetTitleSize(0.05)
+#JetResolutionGraph.GetYaxis().SetLabelOffset(0.01)
+#JetResolutionGraph.GetXaxis().SetLabelOffset(0.01)
+canvas.SetBottomMargin(0.15)
+canvas.SetTopMargin(0.1)
+canvas.SetRightMargin(0.05)
+canvas.SetLeftMargin(0.15)
 
 legend.AddEntry(JetResolutionGraph,"JetResolution","l")
 
@@ -180,3 +213,8 @@ with open('/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim20
 
     # write multiple rows
     writer.writerows(data)
+
+#create and save root file with all added hists
+outHistFile = ROOT.TFile.Open("/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2018/RootS2018/FitJetResolutionJet3.root","RECREATE")
+SaveJetResolutionGraph.Write()
+outHistFile.Close()

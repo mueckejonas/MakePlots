@@ -2,7 +2,7 @@ import ROOT
 import numpy as np
 import csv
 from array import array
-
+"""
 euler_num = 2.718281828459045
 
 #takes three hists and turn them into pdf
@@ -121,7 +121,7 @@ canvas = ROOT.TCanvas("canvas")
 canvas.SetLogx()
 Eta0to1p3JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 
-"""
+
 for i in range(0,n):
     if i != 5:
         latex = ROOT.TLatex(Eta0to1p3JetResolutionGraph.GetX()[i]-PtRangesErrh[i]*0.9,Eta0to1p3JetResolutionGraph.GetY()[i]+0.0015,Eta0to1p3JetResolutionLabels[i])
@@ -131,7 +131,7 @@ for i in range(0,n):
         latex = ROOT.TLatex(Eta0to1p3JetResolutionGraph.GetX()[i]-PtRangesErrh[i]*0.8,Eta0to1p3JetResolutionGraph.GetY()[i]+0.0015,Eta0to1p3JetResolutionLabels[i])
         latex.SetTextSize(0.02)
         Eta0to1p3JetResolutionGraph.GetListOfFunctions().Add(latex)
-"""
+
 
 legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
 legend.SetLineWidth(0)
@@ -147,6 +147,8 @@ Eta0to1p3JetResolutionGraph.SetMarkerStyle(33)
 Eta0to1p3JetResolutionGraph.SetMarkerSize(0)
 Eta0to1p3JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 Eta0to1p3JetResolutionGraph.GetXaxis().SetNoExponent()
+Eta0to1p3JetResolutionGraph.GetXaxis().SetRangeUser(0,3200)
+
 
 legend.AddEntry(Eta0to1p3JetResolutionGraph,"JetResolution","l")
 
@@ -237,7 +239,7 @@ canvas = ROOT.TCanvas("canvas")
 canvas.SetLogx()
 Eta1p3to2p5JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 
-"""
+
 for i in range(0,n):
     if i != 5:
         latex = ROOT.TLatex(Eta1p3to2p5JetResolutionGraph.GetX()[i]-PtRangesErrh[i]*0.9,Eta1p3to2p5JetResolutionGraph.GetY()[i]+0.0015,Eta1p3to2p5JetResolutionLabels[i])
@@ -247,7 +249,7 @@ for i in range(0,n):
         latex = ROOT.TLatex(Eta1p3to2p5JetResolutionGraph.GetX()[i]-PtRangesErrh[i]*0.8,Eta1p3to2p5JetResolutionGraph.GetY()[i]+0.0015,Eta1p3to2p5JetResolutionLabels[i])
         latex.SetTextSize(0.02)
         Eta1p3to2p5JetResolutionGraph.GetListOfFunctions().Add(latex)
-"""
+
 
 legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
 legend.SetLineWidth(0)
@@ -263,6 +265,8 @@ Eta1p3to2p5JetResolutionGraph.SetMarkerStyle(33)
 Eta1p3to2p5JetResolutionGraph.SetMarkerSize(0)
 Eta1p3to2p5JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 Eta1p3to2p5JetResolutionGraph.GetXaxis().SetNoExponent()
+Eta1p3to2p5JetResolutionGraph.GetXaxis().SetRangeUser(0,3200)
+
 
 legend.AddEntry(Eta1p3to2p5JetResolutionGraph,"JetResolution","l")
 
@@ -353,7 +357,7 @@ canvas = ROOT.TCanvas("canvas")
 canvas.SetLogx()
 Eta2p5to3JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 
-"""
+
 for i in range(0,n):
     if i != 5:
         latex = ROOT.TLatex(Eta2p5to3JetResolutionGraph.GetX()[i]-PtRangesErrh[i]*0.9,Eta2p5to3JetResolutionGraph.GetY()[i]+0.0015,Eta2p5to3JetResolutionLabels[i])
@@ -363,7 +367,7 @@ for i in range(0,n):
         latex = ROOT.TLatex(Eta2p5to3JetResolutionGraph.GetX()[i]-PtRangesErrh[i]*0.8,Eta2p5to3JetResolutionGraph.GetY()[i]+0.0015,Eta2p5to3JetResolutionLabels[i])
         latex.SetTextSize(0.02)
         Eta2p5to3JetResolutionGraph.GetListOfFunctions().Add(latex)
-"""
+
 
 legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
 legend.SetLineWidth(0)
@@ -379,6 +383,8 @@ Eta2p5to3JetResolutionGraph.SetMarkerStyle(33)
 Eta2p5to3JetResolutionGraph.SetMarkerSize(0)
 Eta2p5to3JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 Eta2p5to3JetResolutionGraph.GetXaxis().SetNoExponent()
+Eta2p5to3JetResolutionGraph.GetXaxis().SetRangeUser(0,3200)
+
 
 legend.AddEntry(Eta2p5to3JetResolutionGraph,"JetResolution","l")
 
@@ -469,7 +475,7 @@ canvas = ROOT.TCanvas("canvas")
 canvas.SetLogx()
 Eta3to5JetResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
 
-"""
+
 for i in range(0,n):
     if i != 5:
         latex = ROOT.TLatex(Eta3to5JetResolutionGraph.GetX()[i]-PtRangesErrh[i]*0.9,Eta3to5JetResolutionGraph.GetY()[i]+0.0015,Eta3to5JetResolutionLabels[i])
@@ -479,7 +485,7 @@ for i in range(0,n):
         latex = ROOT.TLatex(Eta3to5JetResolutionGraph.GetX()[i]-PtRangesErrh[i]*0.8,Eta3to5JetResolutionGraph.GetY()[i]+0.0015,Eta3to5JetResolutionLabels[i])
         latex.SetTextSize(0.02)
         Eta3to5JetResolutionGraph.GetListOfFunctions().Add(latex)
-"""
+
 
 legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
 legend.SetLineWidth(0)
@@ -495,6 +501,8 @@ Eta3to5JetResolutionGraph.SetMarkerStyle(33)
 Eta3to5JetResolutionGraph.SetMarkerSize(0)
 Eta3to5JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 Eta3to5JetResolutionGraph.GetXaxis().SetNoExponent()
+Eta3to5JetResolutionGraph.GetXaxis().SetRangeUser(0,3200)
+
 
 legend.AddEntry(Eta3to5JetResolutionGraph,"JetResolution","l")
 
@@ -528,3 +536,4 @@ with open('/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/C
 
     # write multiple rows
     writer.writerows(data)
+"""
