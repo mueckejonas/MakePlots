@@ -3,14 +3,7 @@ import numpy as np
 #takes three hists and turn them into pdf
 def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle):
 
-    Efficiency = ROOT.TEfficiency(data1,data2)
-
-    fit_template = "1/(1+exp(-(x/[0])-[1]))"
-    #fit_template = "1/(1+exp(-((x-[0])/[1]))"
-    fit_func = ROOT.TF1("fit_func",fit_template,2300,3000)
-    fit_func.SetParameter(0,46)
-    fit_func.SetParameter(1,-46)
-    Efficiency.Fit(fit_func)
+    #Efficiency = ROOT.TEfficiency(data1,data2)
 
     Plot_Efficiency = ROOT.TGraphAsymmErrors(int(data1.GetNbinsX()))
     Plot_Efficiency.BayesDivide(data1,data2)
@@ -18,6 +11,13 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     for i in range(0,int(data1.GetNbinsX())):
         Plot_Efficiency.SetPointEXhigh(i,0.0)
         Plot_Efficiency.SetPointEXlow(i,0.0)
+
+    fit_template = "1/(1+exp(-(x/[0])+46))"
+    #fit_template = "1/(1+exp(-((x-[0])/[1]))"
+    fit_func = ROOT.TF1("fit_func",fit_template,2300,3000)
+    fit_func.SetParameter(0,46)
+    #fit_func.SetParameter(1,-46)
+    Plot_Efficiency.Fit(fit_func)
 
 
     canvas = ROOT.TCanvas("canvas")
@@ -54,7 +54,7 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     legend.Draw("same")
     canvas.Print(outFileName)
 
-
+    """
     y = 0.99
     B = fit_func.GetParameter(0)
     BErr = fit_func.GetParError(0)
@@ -78,6 +78,7 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     print("Chi^2 = "+str(fit_func.GetChisquare()))
     print("Ndof = "+str(fit_func.GetNDF()))
     print("Chi^2/Ndof = "+str(fit_func.GetChisquare()/fit_func.GetNDF()))
+    """
 
 
 #define directory
