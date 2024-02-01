@@ -10,7 +10,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
 
     #fit and calculate FWHM
     fit_template = "[0]*exp(-(x-[1])**2/(2*[2]**2))"
-    fit_func = ROOT.TF1("fit_func",fit_template,-0.2,0.2)
+    fit_func = ROOT.TF1("fit_func",fit_template,-1,1)
     fit_func.SetParameter(0,param1)
     fit_func.SetParameter(1,param2)
     fit_func.SetParameter(2,param3)
@@ -70,9 +70,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     FWHMLine.Draw("same")
     legend.Draw("same")
     canvas.Print(outFileName)
-    return abs(C), abs(CErr)
-
-
+    return abs(C), abs(CErr), B, BErr
 
 #define directory
 inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2018/RootS2018/"
@@ -96,28 +94,28 @@ Response1800to2400 = histFiles.Get("ResponseJet31800to2400")
 Response2400to3200 = histFiles.Get("ResponseJet32400to3200")
 Response3200 = histFiles.Get("ResponseJet33200")
 
-JetResolution50to80, JetResolutionErr50to80 = CalcResolution(Response50to80,outDirectory+"Response_Jet3_50to80_Run22018.pdf","Events","Response","Response for pt3 50to80",550000,0,0.1)
-JetResolution80to120, JetResolutionErr80to120 = CalcResolution(Response80to120,outDirectory+"Response_Jet3_80to120_Run22018.pdf","Events","Response","Response for pt3 80to120",10000,0,0.05)
-JetResolution120to170, JetResolutionErr120to170 = CalcResolution(Response120to170,outDirectory+"Response_Jet3_120to170_Run22018.pdf","Events","Response","Response for pt3 120to170",10000,0,0.05)
-JetResolution170to300, JetResolutionErr170to300 = CalcResolution(Response170to300,outDirectory+"Response_Jet3_170to300_Run22018.pdf","Events","Response","Response for pt3 170to300",100000,0,0.06)
-JetResolution300to470, JetResolutionErr300to470 = CalcResolution(Response300to470,outDirectory+"Response_Jet3_300to470_Run22018.pdf","Events","Response","Response for pt3 300to470",10000,0,0.05)
-JetResolution470to600, JetResolutionErr470to600 = CalcResolution(Response470to600,outDirectory+"Response_Jet3_470to600_Run22018.pdf","Events","Response","Response for pt3 470to600",10000,0,0.05)
-JetResolution600to800, JetResolutionErr600to800 = CalcResolution(Response600to800,outDirectory+"Response_Jet3_600to800_Run22018.pdf","Events","Response","Response for pt3 600to800",10000,0,0.05)
-JetResolution800to1000, JetResolutionErr800to1000 = CalcResolution(Response800to1000,outDirectory+"Response_Jet3_800to1000_Run22018.pdf","Events","Response","Response for pt3 800to1000",10000,0,0.05)
-JetResolution1000to1400, JetResolutionErr1000to1400 = CalcResolution(Response1000to1400,outDirectory+"Response_Jet3_1000to1400_Run22018.pdf","Events","Response","Response for pt3 1000to1400",10000,0,0.05)
-JetResolution1400to1800, JetResolutionErr1400to1800 = CalcResolution(Response1400to1800,outDirectory+"Response_Jet3_1400to1800_Run22018.pdf","Events","Response","Response for pt3 1400to1800",2500000,0,0.1)
-JetResolution1800to2400, JetResolutionErr1800to2400 = CalcResolution(Response1800to2400,outDirectory+"Response_Jet3_1800to2400_Run22018.pdf","Events","Response","Response for pt3 1800to2400",10000,0,0.05)
-JetResolution2400to3200, JetResolutionErr2400to3200 = CalcResolution(Response2400to3200,outDirectory+"Response_Jet3_2400to3200_Run22018.pdf","Events","Response","Response for pt3 2400to3200",10000,0,0.05)
-JetResolution3200, JetResolutionErr3200 = CalcResolution(Response3200,outDirectory+"Response_Jet3_3200_Run22018.pdf","Events","Response","Response for pt3 3200",10000,0,0.05)
+JetResolution50to80, JetResolutionErr50to80, MeanResolution50to80, MeanResolutionErr50to80 = CalcResolution(Response50to80,outDirectory+"Response_Jet3_50to80_Run22018.pdf","Events","Response","Response for pt3 50to80",100000,0,0.05)
+JetResolution80to120, JetResolutionErr80to120, MeanResolution80to120, MeanResolutionErr80to120 = CalcResolution(Response80to120,outDirectory+"Response_Jet3_80to120_Run22018.pdf","Events","Response","Response for pt3 80to120",100000,0,0.05)
+JetResolution120to170, JetResolutionErr120to170, MeanResolution120to170, MeanResolutionErr120to170 = CalcResolution(Response120to170,outDirectory+"Response_Jet3_120to170_Run22018.pdf","Events","Response","Response for pt3 120to170",100000,0,0.05)
+JetResolution170to300, JetResolutionErr170to300, MeanResolution170to300, MeanResolutionErr170to300 = CalcResolution(Response170to300,outDirectory+"Response_Jet3_170to300_Run22018.pdf","Events","Response","Response for pt3 170to300",100000,0,0.05)
+JetResolution300to470, JetResolutionErr300to470, MeanResolution300to470, MeanResolutionErr300to470 = CalcResolution(Response300to470,outDirectory+"Response_Jet3_300to470_Run22018.pdf","Events","Response","Response for pt3 300to470",100000,0,0.05)
+JetResolution470to600, JetResolutionErr470to600, MeanResolution470to600, MeanResolutionErr470to600 = CalcResolution(Response470to600,outDirectory+"Response_Jet3_470to600_Run22018.pdf","Events","Response","Response for pt3 470to600",100000,0,0.05)
+JetResolution600to800, JetResolutionErr600to800, MeanResolution600to800, MeanResolutionErr600to800 = CalcResolution(Response600to800,outDirectory+"Response_Jet3_600to800_Run22018.pdf","Events","Response","Response for pt3 600to800",100000,0,0.05)
+JetResolution800to1000, JetResolutionErr800to1000, MeanResolution800to1000, MeanResolutionErr800to1000 = CalcResolution(Response800to1000,outDirectory+"Response_Jet3_800to1000_Run22018.pdf","Events","Response","Response for pt3 800to1000",1600000,0,0.06)
+JetResolution1000to1400, JetResolutionErr1000to1400, MeanResolution1000to1400, MeanResolutionErr1000to1400 = CalcResolution(Response1000to1400,outDirectory+"Response_Jet3_1000to1400_Run22018.pdf","Events","Response","Response for pt3 1000to1400",100000,0,0.05)
+JetResolution1400to1800, JetResolutionErr1400to1800, MeanResolution1400to1800, MeanResolutionErr1400to1800 = CalcResolution(Response1400to1800,outDirectory+"Response_Jet3_1400to1800_Run22018.pdf","Events","Response","Response for pt3 1400to1800",2500000,0,0.1)
+JetResolution1800to2400, JetResolutionErr1800to2400, MeanResolution1800to2400, MeanResolutionErr1800to2400 = CalcResolution(Response1800to2400,outDirectory+"Response_Jet3_1800to2400_Run22018.pdf","Events","Response","Response for pt3 1800to2400",1400000,0,0.05)
+JetResolution2400to3200, JetResolutionErr2400to3200, MeanResolution2400to3200, MeanResolutionErr2400to3200 = CalcResolution(Response2400to3200,outDirectory+"Response_Jet3_2400to3200_Run22018.pdf","Events","Response","Response for pt3 2400to3200",100000,0,0.05)
+JetResolution3200, JetResolutionErr3200, MeanResolution3200, MeanResolutionErr3200 = CalcResolution(Response3200,outDirectory+"Response_Jet3_3200_Run22018.pdf","Events","Response","Response for pt3 3200",10000,0,0.05)
 
-JetResolution = np.array([JetResolution80to120,JetResolution120to170,JetResolution170to300,JetResolution300to470,JetResolution470to600,JetResolution600to800,JetResolution800to1000,JetResolution1000to1400])
-JetResolutionErr = np.array([JetResolutionErr80to120,JetResolutionErr120to170,JetResolutionErr170to300,JetResolutionErr300to470,JetResolutionErr470to600,JetResolutionErr600to800,JetResolutionErr800to1000,JetResolutionErr1000to1400])
-PtRanges = np.array([(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2])
-PtRangesErrh = np.array([40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2])
-PtRangesErrl = np.array([40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2])
-#JetResolutionLabels = np.array(["50to80","80to120","120to170","170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
+JetResolution = np.array([JetResolution50to80,JetResolution80to120,JetResolution120to170,JetResolution170to300,JetResolution300to470,JetResolution470to600,JetResolution600to800,JetResolution800to1000,JetResolution1000to1400,JetResolution1400to1800,JetResolution1800to2400,JetResolution2400to3200,JetResolution3200])
+JetResolutionErr = np.array([JetResolutionErr50to80,JetResolutionErr80to120,JetResolutionErr120to170,JetResolutionErr170to300,JetResolutionErr300to470,JetResolutionErr470to600,JetResolutionErr600to800,JetResolutionErr800to1000,JetResolutionErr1000to1400,JetResolutionErr1400to1800,JetResolutionErr1800to2400,JetResolutionErr2400to3200,JetResolutionErr3200])
+PtRanges = np.array([(50+80)/2,(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
+PtRangesErrh = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
+PtRangesErrl = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+#JetResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
-n = 8
+n = 13
 x = array('d')
 y = array('d')
 xh = array('d')
@@ -150,7 +148,7 @@ for i in range(0,n):
         JetResolutionGraph.GetListOfFunctions().Add(latex)
 """
 
-legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
+legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
 legend.SetLineWidth(0)
 
 JetResolutionGraph.SetStats(0)
@@ -164,8 +162,6 @@ JetResolutionGraph.SetMarkerStyle(33)
 JetResolutionGraph.SetMarkerSize(0)
 JetResolutionGraph.GetXaxis().SetMoreLogLabels()
 JetResolutionGraph.GetXaxis().SetNoExponent()
-JetResolutionGraph.GetXaxis().SetRangeUser(0,3200)
-JetResolutionGraph.GetYaxis().SetRangeUser(0,0.1)
 #Set font size
 legend.SetTextSize(0.045)
 JetResolutionGraph.SetMarkerSize(3)
@@ -188,33 +184,84 @@ legend.Draw("same")
 
 canvas.Print(outDirectory+"JetResolutionfromPt3_Run22018Sim.pdf")
 
-header = ['PtRange', 'JetResolution', 'JetResolutionErr']
-data = [
-    ['50to80', JetResolution50to80,JetResolutionErr50to80],
-    ['80to120', JetResolution80to120,JetResolutionErr80to120],
-    ['120to170', JetResolution120to170,JetResolutionErr120to170],
-    ['170to300', JetResolution170to300,JetResolutionErr170to300],
-    ['300to470', JetResolution300to470,JetResolutionErr300to470],
-    ['470to600', JetResolution470to600,JetResolutionErr470to600],
-    ['600to800', JetResolution600to800,JetResolutionErr600to800],
-    ['800to1000', JetResolution800to1000,JetResolutionErr800to1000],
-    ['1000to1400', JetResolution1000to1400,JetResolutionErr1000to1400],
-    ['1400to1800', JetResolution1400to1800,JetResolutionErr1400to1800],
-    ['1800to2400', JetResolution1800to2400,JetResolutionErr1800to2400],
-    ['2400to3200', JetResolution2400to3200,JetResolutionErr2400to3200],
-    ['3200', JetResolution3200,JetResolutionErr3200]
-]
+MeanResolution = np.array([MeanResolution50to80,MeanResolution80to120,MeanResolution120to170,MeanResolution170to300,MeanResolution300to470,MeanResolution470to600,MeanResolution600to800,MeanResolution800to1000,MeanResolution1000to1400,MeanResolution1400to1800,MeanResolution1800to2400,MeanResolution2400to3200,MeanResolution3200])
+MeanResolutionErr = np.array([MeanResolutionErr50to80,MeanResolutionErr80to120,MeanResolutionErr120to170,MeanResolutionErr170to300,MeanResolutionErr300to470,MeanResolutionErr470to600,MeanResolutionErr600to800,MeanResolutionErr800to1000,MeanResolutionErr1000to1400,MeanResolutionErr1400to1800,MeanResolutionErr1800to2400,MeanResolutionErr2400to3200,MeanResolutionErr3200])
+PtRanges = np.array([(50+80)/2,(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
+PtRangesErrh = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
+PtRangesErrl = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+#MeanResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
-with open('/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2018/CSV/JetResolutionPt3.csv', 'w', encoding='UTF8', newline='') as f:
-    writer = csv.writer(f)
+n = 13
+x = array('d')
+y = array('d')
+xh = array('d')
+xl = array('d')
+yh = array('d')
+yl = array('d')
+for i in range(0,n):
+    x.append(PtRanges[i])
+    y.append(MeanResolution[i])
+    xh.append(PtRangesErrh[i])
+    xl.append(PtRangesErrl[i])
+    yh.append(MeanResolutionErr[i])
+    yl.append(MeanResolutionErr[i])
 
-    # write the header
-    writer.writerow(header)
+canvas = ROOT.TCanvas("canvas")
+canvas.SetCanvasSize(1600,1100)
+canvas.SetLogx()
+MeanResolutionGraph = ROOT.TGraphAsymmErrors(n,x,y,xh,xl,yh,yl)
+SaveMeanResolutionGraph = MeanResolutionGraph.Clone()
 
-    # write multiple rows
-    writer.writerows(data)
+"""
+for i in range(0,n):
+    if i != 5:
+        latex = ROOT.TLatex(MeanResolutionGraph.GetX()[i]-PtRangesErrh[i]*0.9,MeanResolutionGraph.GetY()[i]+0.0015,MeanResolutionLabels[i])
+        latex.SetTextSize(0.02)
+        MeanResolutionGraph.GetListOfFunctions().Add(latex)
+    else:
+        latex = ROOT.TLatex(MeanResolutionGraph.GetX()[i]-PtRangesErrh[i]*0.8,MeanResolutionGraph.GetY()[i]+0.0015,MeanResolutionLabels[i])
+        latex.SetTextSize(0.02)
+        MeanResolutionGraph.GetListOfFunctions().Add(latex)
+"""
+
+legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
+legend.SetLineWidth(0)
+
+MeanResolutionGraph.SetStats(0)
+MeanResolutionGraph.SetLineColor(ROOT.kBlack)
+MeanResolutionGraph.SetLineWidth(2)
+MeanResolutionGraph.GetXaxis().SetTitle("Pt3 [GeV]")
+MeanResolutionGraph.GetYaxis().SetTitle("MeanResolution")
+MeanResolutionGraph.SetTitle("MeanResolution for Jet3")
+MeanResolutionGraph.SetMarkerColor(ROOT.kBlack)
+MeanResolutionGraph.SetMarkerStyle(33)
+MeanResolutionGraph.SetMarkerSize(0)
+MeanResolutionGraph.GetXaxis().SetMoreLogLabels()
+MeanResolutionGraph.GetXaxis().SetNoExponent()
+#Set font size
+legend.SetTextSize(0.045)
+MeanResolutionGraph.SetMarkerSize(3)
+MeanResolutionGraph.SetLineWidth(2)
+MeanResolutionGraph.GetYaxis().SetLabelSize(0.045)
+MeanResolutionGraph.GetYaxis().SetTitleSize(0.05)
+MeanResolutionGraph.GetXaxis().SetLabelSize(0.045)
+MeanResolutionGraph.GetXaxis().SetTitleSize(0.05)
+#MeanResolutionGraph.GetYaxis().SetLabelOffset(0.01)
+#MeanResolutionGraph.GetXaxis().SetLabelOffset(0.01)
+canvas.SetBottomMargin(0.15)
+canvas.SetTopMargin(0.1)
+canvas.SetRightMargin(0.05)
+canvas.SetLeftMargin(0.15)
+
+legend.AddEntry(MeanResolutionGraph,"MeanResolution","l")
+
+MeanResolutionGraph.Draw("AP")
+legend.Draw("same")
+
+canvas.Print(outDirectory+"MeanResolutionfromPt3_Run22018Sim.pdf")
 
 #create and save root file with all added hists
 outHistFile = ROOT.TFile.Open("/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2018/RootS2018/FitJetResolutionJet3.root","RECREATE")
 SaveJetResolutionGraph.Write()
+SaveMeanResolutionGraph.Write()
 outHistFile.Close()
