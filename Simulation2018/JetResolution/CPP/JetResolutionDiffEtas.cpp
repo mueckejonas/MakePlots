@@ -1010,9 +1010,9 @@ int JetResolutionDiffEtas()
         ResponseJet23200.Fill(ResponseJet2);
         }
 
-        if(abs(geneta1Num[0]) < 1.3 ){
+        if(abs(geneta2Num[0]) < 1.3 ){
             //calculate response
-        double Eta0to1p3ResponseJet2 = (pt1Num[0]-genpt2Num[0])/genpt2Num[0];
+        double Eta0to1p3ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
 
         //Fill hists with response for pt ranges of 20GeV from 0 to 1000
         if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
@@ -1055,9 +1055,9 @@ int JetResolutionDiffEtas()
         Eta0to1p3ResponseJet23200.Fill(Eta0to1p3ResponseJet2);
         }
         }
-        if(abs(geneta1Num[0])  >= 1.3 && abs(geneta1Num[0]) < 2.5){
+        if(abs(geneta2Num[0])  >= 1.3 && abs(geneta2Num[0]) < 2.5){
             //calculate response
-        double Eta1p3to2p5ResponseJet2 = (pt1Num[0]-genpt2Num[0])/genpt2Num[0];
+        double Eta1p3to2p5ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
 
         //Fill hists with response for pt ranges of 20GeV from 0 to 1000
         if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
@@ -1100,9 +1100,9 @@ int JetResolutionDiffEtas()
         Eta1p3to2p5ResponseJet23200.Fill(Eta1p3to2p5ResponseJet2);
         }
         }
-        if(abs(geneta1Num[0])  >= 2.5 && abs(geneta1Num[0]) < 3.0){
+        if(abs(geneta2Num[0])  >= 2.5 && abs(geneta2Num[0]) < 3.0){
             //calculate response
-        double Eta2p5to3ResponseJet2 = (pt1Num[0]-genpt2Num[0])/genpt2Num[0];
+        double Eta2p5to3ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
 
         //Fill hists with response for pt ranges of 20GeV from 0 to 1000
         if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
@@ -1145,9 +1145,9 @@ int JetResolutionDiffEtas()
         Eta2p5to3ResponseJet23200.Fill(Eta2p5to3ResponseJet2);
         }
         }
-        if(abs(geneta1Num[0])  >= 3.0 && abs(geneta1Num[0]) < 5.0){
+        if(abs(genetawNum[0])  >= 3.0 && abs(geneta2Num[0]) < 5.0){
             //calculate response
-        double Eta3to5ResponseJet2 = (pt1Num[0]-genpt2Num[0])/genpt2Num[0];
+        double Eta3to5ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
 
         //Fill hists with response for pt ranges of 20GeV from 0 to 1000
         if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
@@ -1242,9 +1242,9 @@ int JetResolutionDiffEtas()
         ResponseJet33200.Fill(ResponseJet3);
         }
 
-        if(abs(geneta1Num[0]) < 1.3 ){
+        if(abs(geneta3Num[0]) < 1.3 ){
             //calculate response
-        double Eta0to1p3ResponseJet3 = (pt1Num[0]-genpt3Num[0])/genpt3Num[0];
+        double Eta0to1p3ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
 
         //Fill hists with response for pt ranges of 20GeV from 0 to 1000
         if(50 <= genpt3Num[0] && genpt3Num[0] < 80){
@@ -1287,9 +1287,9 @@ int JetResolutionDiffEtas()
         Eta0to1p3ResponseJet33200.Fill(Eta0to1p3ResponseJet3);
         }
         }
-        if(abs(geneta1Num[0])  >= 1.3 && abs(geneta1Num[0]) < 2.5){
+        if(abs(geneta3Num[0])  >= 1.3 && abs(geneta3Num[0]) < 2.5){
             //calculate response
-        double Eta1p3to2p5ResponseJet3 = (pt1Num[0]-genpt3Num[0])/genpt3Num[0];
+        double Eta1p3to2p5ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
 
         //Fill hists with response for pt ranges of 20GeV from 0 to 1000
         if(50 <= genpt3Num[0] && genpt3Num[0] < 80){
@@ -1332,9 +1332,9 @@ int JetResolutionDiffEtas()
         Eta1p3to2p5ResponseJet33200.Fill(Eta1p3to2p5ResponseJet3);
         }
         }
-        if(abs(geneta1Num[0])  >= 2.5 && abs(geneta1Num[0]) < 3.0){
+        if(abs(geneta3Num[0])  >= 2.5 && abs(geneta3Num[0]) < 3.0){
             //calculate response
-        double Eta2p5to3ResponseJet3 = (pt1Num[0]-genpt3Num[0])/genpt3Num[0];
+        double Eta2p5to3ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
 
         //Fill hists with response for pt ranges of 20GeV from 0 to 1000
         if(50 <= genpt3Num[0] && genpt3Num[0] < 80){
@@ -1377,9 +1377,9 @@ int JetResolutionDiffEtas()
         Eta2p5to3ResponseJet33200.Fill(Eta2p5to3ResponseJet3);
         }
         }
-        if(abs(geneta1Num[0])  >= 3.0 && abs(geneta1Num[0]) < 5.0){
+        if(abs(geneta3Num[0])  >= 3.0 && abs(geneta3Num[0]) < 5.0){
             //calculate response
-        double Eta3to5ResponseJet3 = (pt1Num[0]-genpt3Num[0])/genpt3Num[0];
+        double Eta3to5ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
 
         //Fill hists with response for pt ranges of 20GeV from 0 to 1000
         if(50 <= genpt3Num[0] && genpt3Num[0] < 80){

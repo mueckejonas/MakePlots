@@ -95,7 +95,7 @@ Response1800to2400 = histFiles.Get("ResponseJet31800to2400")
 Response2400to3200 = histFiles.Get("ResponseJet32400to3200")
 Response3200 = histFiles.Get("ResponseJet33200")
 
-JetResolution50to80, JetResolutionErr50to80, MeanResolution50to80, MeanResolutionErr50to80 = CalcResolution(Response50to80,outDirectory+"Response_Jet3_50to80_Run2023.pdf","Events","Response","Response for pt3 50to80",100000,0,0.05)
+JetResolution50to80, JetResolutionErr50to80, MeanResolution50to80, MeanResolutionErr50to80 = CalcResolution(Response50to80,outDirectory+"Response_Jet3_50to80_Run2023.pdf","Events","Response","Response for pt3 50to80",1400000,0,0.05)
 JetResolution80to120, JetResolutionErr80to120, MeanResolution80to120, MeanResolutionErr80to120 = CalcResolution(Response80to120,outDirectory+"Response_Jet3_80to120_Run2023.pdf","Events","Response","Response for pt3 80to120",100000,0,0.05)
 JetResolution120to170, JetResolutionErr120to170, MeanResolution120to170, MeanResolutionErr120to170 = CalcResolution(Response120to170,outDirectory+"Response_Jet3_120to170_Run2023.pdf","Events","Response","Response for pt3 120to170",100000,0,0.05)
 JetResolution170to300, JetResolutionErr170to300, MeanResolution170to300, MeanResolutionErr170to300 = CalcResolution(Response170to300,outDirectory+"Response_Jet3_170to300_Run2023.pdf","Events","Response","Response for pt3 170to300",100000,0,0.05)

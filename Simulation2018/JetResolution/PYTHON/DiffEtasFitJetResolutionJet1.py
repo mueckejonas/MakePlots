@@ -10,7 +10,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
 
     #fit and calculate FWHM
     fit_template = "[0]*exp(-(x-[1])**2/(2*[2]**2))"
-    fit_func = ROOT.TF1("fit_func",fit_template,-0.5,0.5)
+    fit_func = ROOT.TF1("fit_func",fit_template,-0.4,0.4)
     fit_func.SetParameter(0,param1)
     fit_func.SetParameter(1,param2)
     fit_func.SetParameter(2,param3)
@@ -971,11 +971,11 @@ canvas.Print(outDirectory+"Eta3to5MeanResolutionfromPt1_Run22018Sim.pdf")
 #create and save root file with all added hists
 outHistFile = ROOT.TFile.Open("/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2018/RootS2018/FitJetResolutionJet1_DiffEtas.root","RECREATE")
 Eta0to1p3SaveJetResolutionGraph.Write()
-Eta2p5to3SaveJetResolutionGraph.Write()
+Eta1p3to2p5SaveJetResolutionGraph.Write()
 Eta2p5to3SaveJetResolutionGraph.Write()
 Eta3to5SaveJetResolutionGraph.Write()
 Eta0to1p3SaveMeanResolutionGraph.Write()
-Eta2p5to3SaveMeanResolutionGraph.Write()
+Eta1p3to2p5SaveMeanResolutionGraph.Write()
 Eta2p5to3SaveMeanResolutionGraph.Write()
 Eta3to5SaveMeanResolutionGraph.Write()
 outHistFile.Close()
