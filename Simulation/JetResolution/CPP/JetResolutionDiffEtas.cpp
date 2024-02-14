@@ -541,9 +541,12 @@ int JetResolutionDiffEtas()
       if(entry % 100000 == 0)
       {
         std::cout << to_string(R_ValueJet1) << "R_ValueJet1" << std::endl;
-        std::cout << to_string(pt1Num[0]) << "pt1Num[0]" << std::endl;
-        std::cout << to_string(pt2Num[0]) << "pt2Num[0]" << std::endl;
-        std::cout << to_string(pt3Num[0]) << "pt3Num[0]" << std::endl;
+        std::cout << to_string(genpt1Num[0]) << "pt1Num[0]" << std::endl;
+        std::cout << to_string(geneta1Num[0]) << "geneta1Num[0]" << std::endl;
+        std::cout << to_string(phi1Num[0]) << "phi1Num[0]" << std::endl;
+        std::cout << to_string(genphi1Num[0]) << "genphi1Num[0]" << std::endl;
+        std::cout << to_string(eta1Num[0]) << "eta1Num[0]" << std::endl;
+        std::cout << to_string(geneta1Num[0]) << "geneta1Num[0]" << std::endl;
       }
 
       if(R_ValueJet1 < 0.2){
@@ -778,6 +781,17 @@ int JetResolutionDiffEtas()
       //calculate R
       double R_ValueJet2 = sqrt(pow(phi2Num[0]-genphi2Num[0],2)*pow(eta2Num[0]-geneta2Num[0],2));
 
+      if(entry % 100000 == 0)
+      {
+        std::cout << to_string(R_ValueJet2) << "R_ValueJet2" << std::endl;
+        std::cout << to_string(genpt2Num[0]) << "pt2Num[0]" << std::endl;
+        std::cout << to_string(geneta2Num[0]) << "geneta2Num[0]" << std::endl;
+        std::cout << to_string(phi2Num[0]) << "phi2Num[0]" << std::endl;
+        std::cout << to_string(genphi2Num[0]) << "genphi2Num[0]" << std::endl;
+        std::cout << to_string(eta2Num[0]) << "eta2Num[0]" << std::endl;
+        std::cout << to_string(geneta2Num[0]) << "geneta2Num[0]" << std::endl;
+      }
+
       if(R_ValueJet2 < 0.2){
 
         //calculate response
@@ -1009,6 +1023,17 @@ int JetResolutionDiffEtas()
       //For Jet3
       //calculate R
       double R_ValueJet3 = sqrt(pow(phi3Num[0]-genphi3Num[0],2)*pow(eta3Num[0]-geneta3Num[0],2));
+
+      if(entry % 100000 == 0)
+      {
+        std::cout << to_string(R_ValueJet3) << "R_ValueJet3" << std::endl;
+        std::cout << to_string(genpt3Num[0]) << "pt3Num[0]" << std::endl;
+        std::cout << to_string(geneta3Num[0]) << "geneta3Num[0]" << std::endl;
+        std::cout << to_string(phi3Num[0]) << "phi3Num[0]" << std::endl;
+        std::cout << to_string(genphi3Num[0]) << "genphi3Num[0]" << std::endl;
+        std::cout << to_string(eta3Num[0]) << "eta3Num[0]" << std::endl;
+        std::cout << to_string(geneta3Num[0]) << "geneta3Num[0]" << std::endl;
+      }
 
       if(R_ValueJet3 < 0.2){
 
