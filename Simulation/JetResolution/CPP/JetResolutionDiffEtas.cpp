@@ -538,6 +538,14 @@ int JetResolutionDiffEtas()
       //calculate R
       double R_ValueJet1 = sqrt(pow(phi1Num[0]-genphi1Num[0],2)*pow(eta1Num[0]-geneta1Num[0],2));
 
+      if(entry % 100000 == 0)
+      {
+        std::cout << to_string(R_ValueJet1) << "R_ValueJet1" << std::endl;
+        std::cout << to_string(pt1Num[0]) << "pt1Num[0]" << std::endl;
+        std::cout << to_string(pt2Num[0]) << "pt2Num[0]" << std::endl;
+        std::cout << to_string(pt3Num[0]) << "pt3Num[0]" << std::endl;
+      }
+
       if(R_ValueJet1 < 0.2){
 
         //calculate response

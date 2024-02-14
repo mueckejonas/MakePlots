@@ -10,7 +10,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
 
     #fit and calculate FWHM
     fit_template = "[0]*exp(-(x-[1])**2/(2*[2]**2))"
-    fit_func = ROOT.TF1("fit_func",fit_template,-0.5,0.5)
+    fit_func = ROOT.TF1("fit_func",fit_template,-0.4,0.4)
     fit_func.SetParameter(0,param1)
     fit_func.SetParameter(1,param2)
     fit_func.SetParameter(2,param3)
