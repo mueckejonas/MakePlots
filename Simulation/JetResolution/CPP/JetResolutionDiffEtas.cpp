@@ -538,7 +538,18 @@ int JetResolutionDiffEtas()
 
       //For Jet1
       //calculate R
-      float R_ValueJet1 = DeltaR(eta1Num[0], geneta1Num[0], phi1Num[0], genphi1Num[0]);
+      float deltaPhi1 = TMath::Abs(phi1Num[0]-genphi1Num[0]);
+      float deltaEta1 = eta1Num[0] - geneta1Num[0];
+      if(deltaPhi1 > TMath::Pi()){
+        deltaPhi1 = TMath::TwoPi() - deltaPhi1;
+      }
+
+      float R_ValueJet1 = TMath::Sqrt(deltaEta1*deltaEta1 + deltaPhi1*deltaPhi1);
+
+      if(entry % 100000 == 0)
+      {
+        std::cout << to_string(R_ValueJet1) << "R_ValueJet1" << std::endl;
+      }
 
 
       if(R_ValueJet1 < 0.2){
