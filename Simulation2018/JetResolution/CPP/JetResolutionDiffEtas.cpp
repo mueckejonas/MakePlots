@@ -1165,7 +1165,7 @@ int JetResolutionDiffEtas()
         Eta2p5to3ResponseJet23200.Fill(Eta2p5to3ResponseJet2);
         }
         }
-        if(abs(genetawNum[0])  >= 3.0 && abs(geneta2Num[0]) < 5.0){
+        if(abs(geneta2Num[0])  >= 3.0 && abs(geneta2Num[0]) < 5.0){
             //calculate response
         double Eta3to5ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
 
