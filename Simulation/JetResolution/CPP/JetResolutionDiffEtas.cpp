@@ -522,8 +522,6 @@ int JetResolutionDiffEtas()
 
     float numberEntries = tree.GetEntries();
 
-    float pi = 3.141
-
     std::cout << tree.GetEntries() << std::endl;
     //Fill the Hists with Root Tree Sim and Genjets
     //GetEntries();
