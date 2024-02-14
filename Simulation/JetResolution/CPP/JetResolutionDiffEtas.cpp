@@ -522,6 +522,8 @@ int JetResolutionDiffEtas()
 
     float numberEntries = tree.GetEntries();
 
+    float pi = 3.141
+
     std::cout << tree.GetEntries() << std::endl;
     //Fill the Hists with Root Tree Sim and Genjets
     //GetEntries();
@@ -536,18 +538,8 @@ int JetResolutionDiffEtas()
 
       //For Jet1
       //calculate R
-      double R_ValueJet1 = sqrt(pow(phi1Num[0]-genphi1Num[0],2)*pow(eta1Num[0]-geneta1Num[0],2));
+      float R_ValueJet1 = DeltaR(eta1Num[0], geneta1Num[0], phi1Num[0], genphi1Num[0]);
 
-      if(entry % 100000 == 0)
-      {
-        std::cout << to_string(R_ValueJet1) << "R_ValueJet1" << std::endl;
-        std::cout << to_string(genpt1Num[0]) << "pt1Num[0]" << std::endl;
-        std::cout << to_string(geneta1Num[0]) << "geneta1Num[0]" << std::endl;
-        std::cout << to_string(phi1Num[0]) << "phi1Num[0]" << std::endl;
-        std::cout << to_string(genphi1Num[0]) << "genphi1Num[0]" << std::endl;
-        std::cout << to_string(eta1Num[0]) << "eta1Num[0]" << std::endl;
-        std::cout << to_string(geneta1Num[0]) << "geneta1Num[0]" << std::endl;
-      }
 
       if(R_ValueJet1 < 0.2){
 
