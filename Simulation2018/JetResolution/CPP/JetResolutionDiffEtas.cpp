@@ -730,7 +730,13 @@ int JetResolutionDiffEtas()
 
       //For Jet1
       //calculate R
-      double R_ValueJet1 = sqrt(pow(phi1Num[0]-genphi1Num[0],2)*pow(eta1Num[0]-geneta1Num[0],2));
+      float deltaPhi1 = TMath::Abs(phi1Num[0]-genphi1Num[0]);
+      float deltaEta1 = eta1Num[0] - geneta1Num[0];
+      if(deltaPhi1 > TMath::Pi()){
+        deltaPhi1 = TMath::TwoPi() - deltaPhi1;
+      }
+
+      float R_ValueJet1 = TMath::Sqrt(deltaEta1*deltaEta1 + deltaPhi1*deltaPhi1);
 
       if(entry % 100000 == 0)
       {
@@ -970,7 +976,13 @@ int JetResolutionDiffEtas()
 
       //For Jet2
       //calculate R
-      double R_ValueJet2 = sqrt(pow(phi2Num[0]-genphi2Num[0],2)*pow(eta2Num[0]-geneta2Num[0],2));
+      float deltaPhi2 = TMath::Abs(phi2Num[0]-genphi2Num[0]);
+      float deltaEta2 = eta2Num[0] - geneta2Num[0];
+      if(deltaPhi2 > TMath::Pi()){
+        deltaPhi2 = TMath::TwoPi() - deltaPhi2;
+      }
+
+      float R_ValueJet2 = TMath::Sqrt(deltaEta2*deltaEta2 + deltaPhi2*deltaPhi2);
 
       if(R_ValueJet2 < 0.2){
 
@@ -1202,7 +1214,13 @@ int JetResolutionDiffEtas()
 
       //For Jet3
       //calculate R
-      double R_ValueJet3 = sqrt(pow(phi3Num[0]-genphi3Num[0],2)*pow(eta3Num[0]-geneta3Num[0],2));
+      float deltaPhi3 = TMath::Abs(phi3Num[0]-genphi3Num[0]);
+      float deltaEta3 = eta3Num[0] - geneta3Num[0];
+      if(deltaPhi3 > TMath::Pi()){
+        deltaPhi3 = TMath::TwoPi() - deltaPhi3;
+      }
+
+      float R_ValueJet3 = TMath::Sqrt(deltaEta3*deltaEta3 + deltaPhi3*deltaPhi3);
 
       if(R_ValueJet3 < 0.2){
 
