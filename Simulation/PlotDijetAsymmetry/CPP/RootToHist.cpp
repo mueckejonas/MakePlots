@@ -97,14 +97,20 @@ int RootToHist()
       if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11)
       {
         if(TightID1[0] == 1 && TightID2[0] == 1){
-          if (abs(phi1Num[0]) > pi/2 && abs(phi2Num[0]) > pi/2) {
-            PhiDifference.Fill((abs(phi1Num[0])+abs(phi2Num[0])-pi)*radtodeg);
-          } else {
-            PhiDifference.Fill((abs(phi1Num[0])+abs(phi2Num[0]))*radtodeg);
+          float deltaPhi = TMath::Abs(phi1Num[0]-phi2Num[0]);
+          if(deltaPhi > TMath::Pi()){
+            deltaPhi = TMath::TwoPi() - deltaPhi;
           }
+          PhiDifference.Fill(deltaPhi);
 
           double theta1 = 2*atan(exp(-eta1Num[0]));
           double theta2 = 2*atan(exp(-eta2Num[0]));
+
+          float deltaTheta = TMath::Abs(theta1-theta2);
+          if(deltaTheta > TMath::Pi()){
+            deltaTheta = TMath::TwoPi() - deltaTheta;
+          }
+          ThetaDifference.Fill(deltaTheta);
 
           if (theta1 > pi/2 && theta2 > pi/2) {
             ThetaDifference.Fill((theta1+theta2-pi)*radtodeg);
@@ -114,8 +120,8 @@ int RootToHist()
 
 
           PtAsymmetry.Fill((pt1Num[0]-pt2Num[0])/(pt1Num[0]+pt2Num[0]));
-          EtaDifference.Fill(eta1Num[0]-eta2Num[0]);
-          YDifference.Fill(y1Num[0]-y2Num[0]);
+          EtaDifference.Fill(Math::Abs(eta1Num[0]-eta2Num[0]));
+          YDifference.Fill(Math::Abs(y1Num[0]-y2Num[0]));
         }
       }
     }

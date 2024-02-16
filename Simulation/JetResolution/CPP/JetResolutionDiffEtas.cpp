@@ -529,748 +529,752 @@ int JetResolutionDiffEtas()
     {
       tree.GetEntry(entry);
 
-      if(entry % 100000 == 0)
-      {
-        std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
+      if(phi1Num[0] != -999.000000){
+
+        if(entry % 100000 == 0)
+        {
+          std::cout << to_string((entry/numberEntries)*100) << "% finished" << std::endl;
+        }
+
+        //For Jet1
+        //calculate R
+        float deltaPhi1 = TMath::Abs(phi1Num[0]-genphi1Num[0]);
+        float deltaEta1 = eta1Num[0] - geneta1Num[0];
+        if(deltaPhi1 > TMath::Pi()){
+          deltaPhi1 = TMath::TwoPi() - deltaPhi1;
+        }
+
+        float R_ValueJet1 = TMath::Sqrt(deltaEta1*deltaEta1 + deltaPhi1*deltaPhi1);
+
+
+        if(R_ValueJet1 < 0.2){
+
+          //calculate response
+          double ResponseJet1 = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt1Num[0] && genpt1Num[0] < 80){
+          ResponseJet150to80.Fill(ResponseJet1);
+          }
+          if(80 <= genpt1Num[0] && genpt1Num[0] < 120){
+          ResponseJet180to120.Fill(ResponseJet1);
+          }
+          if(120 <= genpt1Num[0] && genpt1Num[0] < 170){
+          ResponseJet1120to170.Fill(ResponseJet1);
+          }
+          if(170 <= genpt1Num[0] && genpt1Num[0] < 300){
+          ResponseJet1170to300.Fill(ResponseJet1);
+          }
+          if(300 <= genpt1Num[0] && genpt1Num[0] < 470){
+          ResponseJet1300to470.Fill(ResponseJet1);
+          }
+          if(470 <= genpt1Num[0] && genpt1Num[0] < 600){
+          ResponseJet1470to600.Fill(ResponseJet1);
+          }
+          if(600 <= genpt1Num[0] && genpt1Num[0] < 800){
+          ResponseJet1600to800.Fill(ResponseJet1);
+          }
+          if(800 <= genpt1Num[0] && genpt1Num[0] < 1000){
+          ResponseJet1800to1000.Fill(ResponseJet1);
+          }
+          if(1000 <= genpt1Num[0] && genpt1Num[0] < 1400){
+          ResponseJet11000to1400.Fill(ResponseJet1);
+          }
+          if(1400 <= genpt1Num[0] && genpt1Num[0] < 1800){
+          ResponseJet11400to1800.Fill(ResponseJet1);
+          }
+          if(1800 <= genpt1Num[0] && genpt1Num[0] < 2400){
+          ResponseJet11800to2400.Fill(ResponseJet1);
+          }
+          if(2400 <= genpt1Num[0] && genpt1Num[0] < 3200){
+          ResponseJet12400to3200.Fill(ResponseJet1);
+          }
+          if(3200 <= genpt1Num[0]){
+          ResponseJet13200.Fill(ResponseJet1);
+          }
+
+          if(abs(geneta1Num[0]) < 1.3 ){
+              //calculate response
+          double Eta0to1p3ResponseJet1 = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt1Num[0] && genpt1Num[0] < 80){
+          Eta0to1p3ResponseJet150to80.Fill(Eta0to1p3ResponseJet1);
+          }
+          if(80 <= genpt1Num[0] && genpt1Num[0] < 120){
+          Eta0to1p3ResponseJet180to120.Fill(Eta0to1p3ResponseJet1);
+          }
+          if(120 <= genpt1Num[0] && genpt1Num[0] < 170){
+          Eta0to1p3ResponseJet1120to170.Fill(Eta0to1p3ResponseJet1);
+          }
+          if(170 <= genpt1Num[0] && genpt1Num[0] < 300){
+          Eta0to1p3ResponseJet1170to300.Fill(Eta0to1p3ResponseJet1);
+          }
+          if(300 <= genpt1Num[0] && genpt1Num[0] < 470){
+          Eta0to1p3ResponseJet1300to470.Fill(Eta0to1p3ResponseJet1);
+          }
+          if(470 <= genpt1Num[0] && genpt1Num[0] < 600){
+          Eta0to1p3ResponseJet1470to600.Fill(Eta0to1p3ResponseJet1);
+          }
+          if(600 <= genpt1Num[0] && genpt1Num[0] < 800){
+          Eta0to1p3ResponseJet1600to800.Fill(Eta0to1p3ResponseJet1);
+          }
+          if(800 <= genpt1Num[0] && genpt1Num[0] < 1000){
+          Eta0to1p3ResponseJet1800to1000.Fill(Eta0to1p3ResponseJet1);
+          }
+          if(1000 <= genpt1Num[0] && genpt1Num[0] < 1400){
+          Eta0to1p3ResponseJet11000to1400.Fill(Eta0to1p3ResponseJet1);
+          }
+          if(1400 <= genpt1Num[0] && genpt1Num[0] < 1800){
+          Eta0to1p3ResponseJet11400to1800.Fill(Eta0to1p3ResponseJet1);
+          }
+          if(1800 <= genpt1Num[0] && genpt1Num[0] < 2400){
+          Eta0to1p3ResponseJet11800to2400.Fill(Eta0to1p3ResponseJet1);
+          }
+          if(2400 <= genpt1Num[0] && genpt1Num[0] < 3200){
+          Eta0to1p3ResponseJet12400to3200.Fill(Eta0to1p3ResponseJet1);
+          }
+          if(3200 <= genpt1Num[0]){
+          Eta0to1p3ResponseJet13200.Fill(Eta0to1p3ResponseJet1);
+          }
+          }
+          if(abs(geneta1Num[0])  >= 1.3 && abs(geneta1Num[0]) < 2.5){
+              //calculate response
+          double Eta1p3to2p5ResponseJet1 = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt1Num[0] && genpt1Num[0] < 80){
+          Eta1p3to2p5ResponseJet150to80.Fill(Eta1p3to2p5ResponseJet1);
+          }
+          if(80 <= genpt1Num[0] && genpt1Num[0] < 120){
+          Eta1p3to2p5ResponseJet180to120.Fill(Eta1p3to2p5ResponseJet1);
+          }
+          if(120 <= genpt1Num[0] && genpt1Num[0] < 170){
+          Eta1p3to2p5ResponseJet1120to170.Fill(Eta1p3to2p5ResponseJet1);
+          }
+          if(170 <= genpt1Num[0] && genpt1Num[0] < 300){
+          Eta1p3to2p5ResponseJet1170to300.Fill(Eta1p3to2p5ResponseJet1);
+          }
+          if(300 <= genpt1Num[0] && genpt1Num[0] < 470){
+          Eta1p3to2p5ResponseJet1300to470.Fill(Eta1p3to2p5ResponseJet1);
+          }
+          if(470 <= genpt1Num[0] && genpt1Num[0] < 600){
+          Eta1p3to2p5ResponseJet1470to600.Fill(Eta1p3to2p5ResponseJet1);
+          }
+          if(600 <= genpt1Num[0] && genpt1Num[0] < 800){
+          Eta1p3to2p5ResponseJet1600to800.Fill(Eta1p3to2p5ResponseJet1);
+          }
+          if(800 <= genpt1Num[0] && genpt1Num[0] < 1000){
+          Eta1p3to2p5ResponseJet1800to1000.Fill(Eta1p3to2p5ResponseJet1);
+          }
+          if(1000 <= genpt1Num[0] && genpt1Num[0] < 1400){
+          Eta1p3to2p5ResponseJet11000to1400.Fill(Eta1p3to2p5ResponseJet1);
+          }
+          if(1400 <= genpt1Num[0] && genpt1Num[0] < 1800){
+          Eta1p3to2p5ResponseJet11400to1800.Fill(Eta1p3to2p5ResponseJet1);
+          }
+          if(1800 <= genpt1Num[0] && genpt1Num[0] < 2400){
+          Eta1p3to2p5ResponseJet11800to2400.Fill(Eta1p3to2p5ResponseJet1);
+          }
+          if(2400 <= genpt1Num[0] && genpt1Num[0] < 3200){
+          Eta1p3to2p5ResponseJet12400to3200.Fill(Eta1p3to2p5ResponseJet1);
+          }
+          if(3200 <= genpt1Num[0]){
+          Eta1p3to2p5ResponseJet13200.Fill(Eta1p3to2p5ResponseJet1);
+          }
+          }
+          if(abs(geneta1Num[0])  >= 2.5 && abs(geneta1Num[0]) < 3.0){
+              //calculate response
+          double Eta2p5to3ResponseJet1 = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt1Num[0] && genpt1Num[0] < 80){
+          Eta2p5to3ResponseJet150to80.Fill(Eta2p5to3ResponseJet1);
+          }
+          if(80 <= genpt1Num[0] && genpt1Num[0] < 120){
+          Eta2p5to3ResponseJet180to120.Fill(Eta2p5to3ResponseJet1);
+          }
+          if(120 <= genpt1Num[0] && genpt1Num[0] < 170){
+          Eta2p5to3ResponseJet1120to170.Fill(Eta2p5to3ResponseJet1);
+          }
+          if(170 <= genpt1Num[0] && genpt1Num[0] < 300){
+          Eta2p5to3ResponseJet1170to300.Fill(Eta2p5to3ResponseJet1);
+          }
+          if(300 <= genpt1Num[0] && genpt1Num[0] < 470){
+          Eta2p5to3ResponseJet1300to470.Fill(Eta2p5to3ResponseJet1);
+          }
+          if(470 <= genpt1Num[0] && genpt1Num[0] < 600){
+          Eta2p5to3ResponseJet1470to600.Fill(Eta2p5to3ResponseJet1);
+          }
+          if(600 <= genpt1Num[0] && genpt1Num[0] < 800){
+          Eta2p5to3ResponseJet1600to800.Fill(Eta2p5to3ResponseJet1);
+          }
+          if(800 <= genpt1Num[0] && genpt1Num[0] < 1000){
+          Eta2p5to3ResponseJet1800to1000.Fill(Eta2p5to3ResponseJet1);
+          }
+          if(1000 <= genpt1Num[0] && genpt1Num[0] < 1400){
+          Eta2p5to3ResponseJet11000to1400.Fill(Eta2p5to3ResponseJet1);
+          }
+          if(1400 <= genpt1Num[0] && genpt1Num[0] < 1800){
+          Eta2p5to3ResponseJet11400to1800.Fill(Eta2p5to3ResponseJet1);
+          }
+          if(1800 <= genpt1Num[0] && genpt1Num[0] < 2400){
+          Eta2p5to3ResponseJet11800to2400.Fill(Eta2p5to3ResponseJet1);
+          }
+          if(2400 <= genpt1Num[0] && genpt1Num[0] < 3200){
+          Eta2p5to3ResponseJet12400to3200.Fill(Eta2p5to3ResponseJet1);
+          }
+          if(3200 <= genpt1Num[0]){
+          Eta2p5to3ResponseJet13200.Fill(Eta2p5to3ResponseJet1);
+          }
+          }
+          if(abs(geneta1Num[0])  >= 3.0 && abs(geneta1Num[0]) < 5.0){
+              //calculate response
+          double Eta3to5ResponseJet1 = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt1Num[0] && genpt1Num[0] < 80){
+          Eta3to5ResponseJet150to80.Fill(Eta3to5ResponseJet1);
+          }
+          if(80 <= genpt1Num[0] && genpt1Num[0] < 120){
+          Eta3to5ResponseJet180to120.Fill(Eta3to5ResponseJet1);
+          }
+          if(120 <= genpt1Num[0] && genpt1Num[0] < 170){
+          Eta3to5ResponseJet1120to170.Fill(Eta3to5ResponseJet1);
+          }
+          if(170 <= genpt1Num[0] && genpt1Num[0] < 300){
+          Eta3to5ResponseJet1170to300.Fill(Eta3to5ResponseJet1);
+          }
+          if(300 <= genpt1Num[0] && genpt1Num[0] < 470){
+          Eta3to5ResponseJet1300to470.Fill(Eta3to5ResponseJet1);
+          }
+          if(470 <= genpt1Num[0] && genpt1Num[0] < 600){
+          Eta3to5ResponseJet1470to600.Fill(Eta3to5ResponseJet1);
+          }
+          if(600 <= genpt1Num[0] && genpt1Num[0] < 800){
+          Eta3to5ResponseJet1600to800.Fill(Eta3to5ResponseJet1);
+          }
+          if(800 <= genpt1Num[0] && genpt1Num[0] < 1000){
+          Eta3to5ResponseJet1800to1000.Fill(Eta3to5ResponseJet1);
+          }
+          if(1000 <= genpt1Num[0] && genpt1Num[0] < 1400){
+          Eta3to5ResponseJet11000to1400.Fill(Eta3to5ResponseJet1);
+          }
+          if(1400 <= genpt1Num[0] && genpt1Num[0] < 1800){
+          Eta3to5ResponseJet11400to1800.Fill(Eta3to5ResponseJet1);
+          }
+          if(1800 <= genpt1Num[0] && genpt1Num[0] < 2400){
+          Eta3to5ResponseJet11800to2400.Fill(Eta3to5ResponseJet1);
+          }
+          if(2400 <= genpt1Num[0] && genpt1Num[0] < 3200){
+          Eta3to5ResponseJet12400to3200.Fill(Eta3to5ResponseJet1);
+          }
+          if(3200 <= genpt1Num[0]){
+          Eta3to5ResponseJet13200.Fill(Eta3to5ResponseJet1);
+          }
+          }
+        }
+
+        //For Jet2
+        //calculate R
+        float deltaPhi2 = TMath::Abs(phi2Num[0]-genphi2Num[0]);
+        float deltaEta2 = eta2Num[0] - geneta2Num[0];
+        if(deltaPhi2 > TMath::Pi()){
+          deltaPhi2 = TMath::TwoPi() - deltaPhi2;
+        }
+
+        float R_ValueJet2 = TMath::Sqrt(deltaEta2*deltaEta2 + deltaPhi2*deltaPhi2);
+
+        if(entry % 100000 == 0)
+        {
+          std::cout << to_string(R_ValueJet2) << "R_ValueJet2" << std::endl;
+          std::cout << to_string(genpt2Num[0]) << "pt2Num[0]" << std::endl;
+          std::cout << to_string(geneta2Num[0]) << "geneta2Num[0]" << std::endl;
+          std::cout << to_string(phi2Num[0]) << "phi2Num[0]" << std::endl;
+          std::cout << to_string(genphi2Num[0]) << "genphi2Num[0]" << std::endl;
+          std::cout << to_string(eta2Num[0]) << "eta2Num[0]" << std::endl;
+          std::cout << to_string(geneta2Num[0]) << "geneta2Num[0]" << std::endl;
+        }
+
+        if(R_ValueJet2 < 0.2){
+
+          //calculate response
+          double ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
+          ResponseJet250to80.Fill(ResponseJet2);
+          }
+          if(80 <= genpt2Num[0] && genpt2Num[0] < 120){
+          ResponseJet280to120.Fill(ResponseJet2);
+          }
+          if(120 <= genpt2Num[0] && genpt2Num[0] < 170){
+          ResponseJet2120to170.Fill(ResponseJet2);
+          }
+          if(170 <= genpt2Num[0] && genpt2Num[0] < 300){
+          ResponseJet2170to300.Fill(ResponseJet2);
+          }
+          if(300 <= genpt2Num[0] && genpt2Num[0] < 470){
+          ResponseJet2300to470.Fill(ResponseJet2);
+          }
+          if(470 <= genpt2Num[0] && genpt2Num[0] < 600){
+          ResponseJet2470to600.Fill(ResponseJet2);
+          }
+          if(600 <= genpt2Num[0] && genpt2Num[0] < 800){
+          ResponseJet2600to800.Fill(ResponseJet2);
+          }
+          if(800 <= genpt2Num[0] && genpt2Num[0] < 1000){
+          ResponseJet2800to1000.Fill(ResponseJet2);
+          }
+          if(1000 <= genpt2Num[0] && genpt2Num[0] < 1400){
+          ResponseJet21000to1400.Fill(ResponseJet2);
+          }
+          if(1400 <= genpt2Num[0] && genpt2Num[0] < 1800){
+          ResponseJet21400to1800.Fill(ResponseJet2);
+          }
+          if(1800 <= genpt2Num[0] && genpt2Num[0] < 2400){
+          ResponseJet21800to2400.Fill(ResponseJet2);
+          }
+          if(2400 <= genpt2Num[0] && genpt2Num[0] < 3200){
+          ResponseJet22400to3200.Fill(ResponseJet2);
+          }
+          if(3200 <= genpt2Num[0]){
+          ResponseJet23200.Fill(ResponseJet2);
+          }
+
+          if(abs(geneta2Num[0]) < 1.3 ){
+              //calculate response
+          double Eta0to1p3ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
+          Eta0to1p3ResponseJet250to80.Fill(Eta0to1p3ResponseJet2);
+          }
+          if(80 <= genpt2Num[0] && genpt2Num[0] < 120){
+          Eta0to1p3ResponseJet280to120.Fill(Eta0to1p3ResponseJet2);
+          }
+          if(120 <= genpt2Num[0] && genpt2Num[0] < 170){
+          Eta0to1p3ResponseJet2120to170.Fill(Eta0to1p3ResponseJet2);
+          }
+          if(170 <= genpt2Num[0] && genpt2Num[0] < 300){
+          Eta0to1p3ResponseJet2170to300.Fill(Eta0to1p3ResponseJet2);
+          }
+          if(300 <= genpt2Num[0] && genpt2Num[0] < 470){
+          Eta0to1p3ResponseJet2300to470.Fill(Eta0to1p3ResponseJet2);
+          }
+          if(470 <= genpt2Num[0] && genpt2Num[0] < 600){
+          Eta0to1p3ResponseJet2470to600.Fill(Eta0to1p3ResponseJet2);
+          }
+          if(600 <= genpt2Num[0] && genpt2Num[0] < 800){
+          Eta0to1p3ResponseJet2600to800.Fill(Eta0to1p3ResponseJet2);
+          }
+          if(800 <= genpt2Num[0] && genpt2Num[0] < 1000){
+          Eta0to1p3ResponseJet2800to1000.Fill(Eta0to1p3ResponseJet2);
+          }
+          if(1000 <= genpt2Num[0] && genpt2Num[0] < 1400){
+          Eta0to1p3ResponseJet21000to1400.Fill(Eta0to1p3ResponseJet2);
+          }
+          if(1400 <= genpt2Num[0] && genpt2Num[0] < 1800){
+          Eta0to1p3ResponseJet21400to1800.Fill(Eta0to1p3ResponseJet2);
+          }
+          if(1800 <= genpt2Num[0] && genpt2Num[0] < 2400){
+          Eta0to1p3ResponseJet21800to2400.Fill(Eta0to1p3ResponseJet2);
+          }
+          if(2400 <= genpt2Num[0] && genpt2Num[0] < 3200){
+          Eta0to1p3ResponseJet22400to3200.Fill(Eta0to1p3ResponseJet2);
+          }
+          if(3200 <= genpt2Num[0]){
+          Eta0to1p3ResponseJet23200.Fill(Eta0to1p3ResponseJet2);
+          }
+          }
+          if(abs(geneta2Num[0])  >= 1.3 && abs(geneta2Num[0]) < 2.5){
+              //calculate response
+          double Eta1p3to2p5ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
+          Eta1p3to2p5ResponseJet250to80.Fill(Eta1p3to2p5ResponseJet2);
+          }
+          if(80 <= genpt2Num[0] && genpt2Num[0] < 120){
+          Eta1p3to2p5ResponseJet280to120.Fill(Eta1p3to2p5ResponseJet2);
+          }
+          if(120 <= genpt2Num[0] && genpt2Num[0] < 170){
+          Eta1p3to2p5ResponseJet2120to170.Fill(Eta1p3to2p5ResponseJet2);
+          }
+          if(170 <= genpt2Num[0] && genpt2Num[0] < 300){
+          Eta1p3to2p5ResponseJet2170to300.Fill(Eta1p3to2p5ResponseJet2);
+          }
+          if(300 <= genpt2Num[0] && genpt2Num[0] < 470){
+          Eta1p3to2p5ResponseJet2300to470.Fill(Eta1p3to2p5ResponseJet2);
+          }
+          if(470 <= genpt2Num[0] && genpt2Num[0] < 600){
+          Eta1p3to2p5ResponseJet2470to600.Fill(Eta1p3to2p5ResponseJet2);
+          }
+          if(600 <= genpt2Num[0] && genpt2Num[0] < 800){
+          Eta1p3to2p5ResponseJet2600to800.Fill(Eta1p3to2p5ResponseJet2);
+          }
+          if(800 <= genpt2Num[0] && genpt2Num[0] < 1000){
+          Eta1p3to2p5ResponseJet2800to1000.Fill(Eta1p3to2p5ResponseJet2);
+          }
+          if(1000 <= genpt2Num[0] && genpt2Num[0] < 1400){
+          Eta1p3to2p5ResponseJet21000to1400.Fill(Eta1p3to2p5ResponseJet2);
+          }
+          if(1400 <= genpt2Num[0] && genpt2Num[0] < 1800){
+          Eta1p3to2p5ResponseJet21400to1800.Fill(Eta1p3to2p5ResponseJet2);
+          }
+          if(1800 <= genpt2Num[0] && genpt2Num[0] < 2400){
+          Eta1p3to2p5ResponseJet21800to2400.Fill(Eta1p3to2p5ResponseJet2);
+          }
+          if(2400 <= genpt2Num[0] && genpt2Num[0] < 3200){
+          Eta1p3to2p5ResponseJet22400to3200.Fill(Eta1p3to2p5ResponseJet2);
+          }
+          if(3200 <= genpt2Num[0]){
+          Eta1p3to2p5ResponseJet23200.Fill(Eta1p3to2p5ResponseJet2);
+          }
+          }
+          if(abs(geneta2Num[0])  >= 2.5 && abs(geneta2Num[0]) < 3.0){
+              //calculate response
+          double Eta2p5to3ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
+          Eta2p5to3ResponseJet250to80.Fill(Eta2p5to3ResponseJet2);
+          }
+          if(80 <= genpt2Num[0] && genpt2Num[0] < 120){
+          Eta2p5to3ResponseJet280to120.Fill(Eta2p5to3ResponseJet2);
+          }
+          if(120 <= genpt2Num[0] && genpt2Num[0] < 170){
+          Eta2p5to3ResponseJet2120to170.Fill(Eta2p5to3ResponseJet2);
+          }
+          if(170 <= genpt2Num[0] && genpt2Num[0] < 300){
+          Eta2p5to3ResponseJet2170to300.Fill(Eta2p5to3ResponseJet2);
+          }
+          if(300 <= genpt2Num[0] && genpt2Num[0] < 470){
+          Eta2p5to3ResponseJet2300to470.Fill(Eta2p5to3ResponseJet2);
+          }
+          if(470 <= genpt2Num[0] && genpt2Num[0] < 600){
+          Eta2p5to3ResponseJet2470to600.Fill(Eta2p5to3ResponseJet2);
+          }
+          if(600 <= genpt2Num[0] && genpt2Num[0] < 800){
+          Eta2p5to3ResponseJet2600to800.Fill(Eta2p5to3ResponseJet2);
+          }
+          if(800 <= genpt2Num[0] && genpt2Num[0] < 1000){
+          Eta2p5to3ResponseJet2800to1000.Fill(Eta2p5to3ResponseJet2);
+          }
+          if(1000 <= genpt2Num[0] && genpt2Num[0] < 1400){
+          Eta2p5to3ResponseJet21000to1400.Fill(Eta2p5to3ResponseJet2);
+          }
+          if(1400 <= genpt2Num[0] && genpt2Num[0] < 1800){
+          Eta2p5to3ResponseJet21400to1800.Fill(Eta2p5to3ResponseJet2);
+          }
+          if(1800 <= genpt2Num[0] && genpt2Num[0] < 2400){
+          Eta2p5to3ResponseJet21800to2400.Fill(Eta2p5to3ResponseJet2);
+          }
+          if(2400 <= genpt2Num[0] && genpt2Num[0] < 3200){
+          Eta2p5to3ResponseJet22400to3200.Fill(Eta2p5to3ResponseJet2);
+          }
+          if(3200 <= genpt2Num[0]){
+          Eta2p5to3ResponseJet23200.Fill(Eta2p5to3ResponseJet2);
+          }
+          }
+          if(abs(geneta2Num[0])  >= 3.0 && abs(geneta2Num[0]) < 5.0){
+              //calculate response
+          double Eta3to5ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
+          Eta3to5ResponseJet250to80.Fill(Eta3to5ResponseJet2);
+          }
+          if(80 <= genpt2Num[0] && genpt2Num[0] < 120){
+          Eta3to5ResponseJet280to120.Fill(Eta3to5ResponseJet2);
+          }
+          if(120 <= genpt2Num[0] && genpt2Num[0] < 170){
+          Eta3to5ResponseJet2120to170.Fill(Eta3to5ResponseJet2);
+          }
+          if(170 <= genpt2Num[0] && genpt2Num[0] < 300){
+          Eta3to5ResponseJet2170to300.Fill(Eta3to5ResponseJet2);
+          }
+          if(300 <= genpt2Num[0] && genpt2Num[0] < 470){
+          Eta3to5ResponseJet2300to470.Fill(Eta3to5ResponseJet2);
+          }
+          if(470 <= genpt2Num[0] && genpt2Num[0] < 600){
+          Eta3to5ResponseJet2470to600.Fill(Eta3to5ResponseJet2);
+          }
+          if(600 <= genpt2Num[0] && genpt2Num[0] < 800){
+          Eta3to5ResponseJet2600to800.Fill(Eta3to5ResponseJet2);
+          }
+          if(800 <= genpt2Num[0] && genpt2Num[0] < 1000){
+          Eta3to5ResponseJet2800to1000.Fill(Eta3to5ResponseJet2);
+          }
+          if(1000 <= genpt2Num[0] && genpt2Num[0] < 1400){
+          Eta3to5ResponseJet21000to1400.Fill(Eta3to5ResponseJet2);
+          }
+          if(1400 <= genpt2Num[0] && genpt2Num[0] < 1800){
+          Eta3to5ResponseJet21400to1800.Fill(Eta3to5ResponseJet2);
+          }
+          if(1800 <= genpt2Num[0] && genpt2Num[0] < 2400){
+          Eta3to5ResponseJet21800to2400.Fill(Eta3to5ResponseJet2);
+          }
+          if(2400 <= genpt2Num[0] && genpt2Num[0] < 3200){
+          Eta3to5ResponseJet22400to3200.Fill(Eta3to5ResponseJet2);
+          }
+          if(3200 <= genpt2Num[0]){
+          Eta3to5ResponseJet23200.Fill(Eta3to5ResponseJet2);
+          }
+          }
+        }
+
+        //For Jet3
+        //calculate R
+        float deltaPhi3 = TMath::Abs(phi3Num[0]-genphi3Num[0]);
+        float deltaEta3 = eta3Num[0] - geneta3Num[0];
+        if(deltaPhi3 > TMath::Pi()){
+          deltaPhi3 = TMath::TwoPi() - deltaPhi3;
+        }
+
+        float R_ValueJet3 = TMath::Sqrt(deltaEta3*deltaEta3 + deltaPhi3*deltaPhi3);
+
+        if(entry % 100000 == 0)
+        {
+          std::cout << to_string(R_ValueJet3) << "R_ValueJet3" << std::endl;
+          std::cout << to_string(genpt3Num[0]) << "pt3Num[0]" << std::endl;
+          std::cout << to_string(geneta3Num[0]) << "geneta3Num[0]" << std::endl;
+          std::cout << to_string(phi3Num[0]) << "phi3Num[0]" << std::endl;
+          std::cout << to_string(genphi3Num[0]) << "genphi3Num[0]" << std::endl;
+          std::cout << to_string(eta3Num[0]) << "eta3Num[0]" << std::endl;
+          std::cout << to_string(geneta3Num[0]) << "geneta3Num[0]" << std::endl;
+        }
+
+        if(R_ValueJet3 < 0.2){
+
+          //calculate response
+          double ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt3Num[0] && genpt3Num[0] < 80){
+          ResponseJet350to80.Fill(ResponseJet3);
+          }
+          if(80 <= genpt3Num[0] && genpt3Num[0] < 120){
+          ResponseJet380to120.Fill(ResponseJet3);
+          }
+          if(120 <= genpt3Num[0] && genpt3Num[0] < 170){
+          ResponseJet3120to170.Fill(ResponseJet3);
+          }
+          if(170 <= genpt3Num[0] && genpt3Num[0] < 300){
+          ResponseJet3170to300.Fill(ResponseJet3);
+          }
+          if(300 <= genpt3Num[0] && genpt3Num[0] < 470){
+          ResponseJet3300to470.Fill(ResponseJet3);
+          }
+          if(470 <= genpt3Num[0] && genpt3Num[0] < 600){
+          ResponseJet3470to600.Fill(ResponseJet3);
+          }
+          if(600 <= genpt3Num[0] && genpt3Num[0] < 800){
+          ResponseJet3600to800.Fill(ResponseJet3);
+          }
+          if(800 <= genpt3Num[0] && genpt3Num[0] < 1000){
+          ResponseJet3800to1000.Fill(ResponseJet3);
+          }
+          if(1000 <= genpt3Num[0] && genpt3Num[0] < 1400){
+          ResponseJet31000to1400.Fill(ResponseJet3);
+          }
+          if(1400 <= genpt3Num[0] && genpt3Num[0] < 1800){
+          ResponseJet31400to1800.Fill(ResponseJet3);
+          }
+          if(1800 <= genpt3Num[0] && genpt3Num[0] < 2400){
+          ResponseJet31800to2400.Fill(ResponseJet3);
+          }
+          if(2400 <= genpt3Num[0] && genpt3Num[0] < 3200){
+          ResponseJet32400to3200.Fill(ResponseJet3);
+          }
+          if(3200 <= genpt3Num[0]){
+          ResponseJet33200.Fill(ResponseJet3);
+          }
+
+          if(abs(geneta3Num[0]) < 1.3 ){
+              //calculate response
+          double Eta0to1p3ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt3Num[0] && genpt3Num[0] < 80){
+          Eta0to1p3ResponseJet350to80.Fill(Eta0to1p3ResponseJet3);
+          }
+          if(80 <= genpt3Num[0] && genpt3Num[0] < 120){
+          Eta0to1p3ResponseJet380to120.Fill(Eta0to1p3ResponseJet3);
+          }
+          if(120 <= genpt3Num[0] && genpt3Num[0] < 170){
+          Eta0to1p3ResponseJet3120to170.Fill(Eta0to1p3ResponseJet3);
+          }
+          if(170 <= genpt3Num[0] && genpt3Num[0] < 300){
+          Eta0to1p3ResponseJet3170to300.Fill(Eta0to1p3ResponseJet3);
+          }
+          if(300 <= genpt3Num[0] && genpt3Num[0] < 470){
+          Eta0to1p3ResponseJet3300to470.Fill(Eta0to1p3ResponseJet3);
+          }
+          if(470 <= genpt3Num[0] && genpt3Num[0] < 600){
+          Eta0to1p3ResponseJet3470to600.Fill(Eta0to1p3ResponseJet3);
+          }
+          if(600 <= genpt3Num[0] && genpt3Num[0] < 800){
+          Eta0to1p3ResponseJet3600to800.Fill(Eta0to1p3ResponseJet3);
+          }
+          if(800 <= genpt3Num[0] && genpt3Num[0] < 1000){
+          Eta0to1p3ResponseJet3800to1000.Fill(Eta0to1p3ResponseJet3);
+          }
+          if(1000 <= genpt3Num[0] && genpt3Num[0] < 1400){
+          Eta0to1p3ResponseJet31000to1400.Fill(Eta0to1p3ResponseJet3);
+          }
+          if(1400 <= genpt3Num[0] && genpt3Num[0] < 1800){
+          Eta0to1p3ResponseJet31400to1800.Fill(Eta0to1p3ResponseJet3);
+          }
+          if(1800 <= genpt3Num[0] && genpt3Num[0] < 2400){
+          Eta0to1p3ResponseJet31800to2400.Fill(Eta0to1p3ResponseJet3);
+          }
+          if(2400 <= genpt3Num[0] && genpt3Num[0] < 3200){
+          Eta0to1p3ResponseJet32400to3200.Fill(Eta0to1p3ResponseJet3);
+          }
+          if(3200 <= genpt3Num[0]){
+          Eta0to1p3ResponseJet33200.Fill(Eta0to1p3ResponseJet3);
+          }
+          }
+          if(abs(geneta3Num[0])  >= 1.3 && abs(geneta3Num[0]) < 2.5){
+              //calculate response
+          double Eta1p3to2p5ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt3Num[0] && genpt3Num[0] < 80){
+          Eta1p3to2p5ResponseJet350to80.Fill(Eta1p3to2p5ResponseJet3);
+          }
+          if(80 <= genpt3Num[0] && genpt3Num[0] < 120){
+          Eta1p3to2p5ResponseJet380to120.Fill(Eta1p3to2p5ResponseJet3);
+          }
+          if(120 <= genpt3Num[0] && genpt3Num[0] < 170){
+          Eta1p3to2p5ResponseJet3120to170.Fill(Eta1p3to2p5ResponseJet3);
+          }
+          if(170 <= genpt3Num[0] && genpt3Num[0] < 300){
+          Eta1p3to2p5ResponseJet3170to300.Fill(Eta1p3to2p5ResponseJet3);
+          }
+          if(300 <= genpt3Num[0] && genpt3Num[0] < 470){
+          Eta1p3to2p5ResponseJet3300to470.Fill(Eta1p3to2p5ResponseJet3);
+          }
+          if(470 <= genpt3Num[0] && genpt3Num[0] < 600){
+          Eta1p3to2p5ResponseJet3470to600.Fill(Eta1p3to2p5ResponseJet3);
+          }
+          if(600 <= genpt3Num[0] && genpt3Num[0] < 800){
+          Eta1p3to2p5ResponseJet3600to800.Fill(Eta1p3to2p5ResponseJet3);
+          }
+          if(800 <= genpt3Num[0] && genpt3Num[0] < 1000){
+          Eta1p3to2p5ResponseJet3800to1000.Fill(Eta1p3to2p5ResponseJet3);
+          }
+          if(1000 <= genpt3Num[0] && genpt3Num[0] < 1400){
+          Eta1p3to2p5ResponseJet31000to1400.Fill(Eta1p3to2p5ResponseJet3);
+          }
+          if(1400 <= genpt3Num[0] && genpt3Num[0] < 1800){
+          Eta1p3to2p5ResponseJet31400to1800.Fill(Eta1p3to2p5ResponseJet3);
+          }
+          if(1800 <= genpt3Num[0] && genpt3Num[0] < 2400){
+          Eta1p3to2p5ResponseJet31800to2400.Fill(Eta1p3to2p5ResponseJet3);
+          }
+          if(2400 <= genpt3Num[0] && genpt3Num[0] < 3200){
+          Eta1p3to2p5ResponseJet32400to3200.Fill(Eta1p3to2p5ResponseJet3);
+          }
+          if(3200 <= genpt3Num[0]){
+          Eta1p3to2p5ResponseJet33200.Fill(Eta1p3to2p5ResponseJet3);
+          }
+          }
+          if(abs(geneta3Num[0])  >= 2.5 && abs(geneta3Num[0]) < 3.0){
+              //calculate response
+          double Eta2p5to3ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt3Num[0] && genpt3Num[0] < 80){
+          Eta2p5to3ResponseJet350to80.Fill(Eta2p5to3ResponseJet3);
+          }
+          if(80 <= genpt3Num[0] && genpt3Num[0] < 120){
+          Eta2p5to3ResponseJet380to120.Fill(Eta2p5to3ResponseJet3);
+          }
+          if(120 <= genpt3Num[0] && genpt3Num[0] < 170){
+          Eta2p5to3ResponseJet3120to170.Fill(Eta2p5to3ResponseJet3);
+          }
+          if(170 <= genpt3Num[0] && genpt3Num[0] < 300){
+          Eta2p5to3ResponseJet3170to300.Fill(Eta2p5to3ResponseJet3);
+          }
+          if(300 <= genpt3Num[0] && genpt3Num[0] < 470){
+          Eta2p5to3ResponseJet3300to470.Fill(Eta2p5to3ResponseJet3);
+          }
+          if(470 <= genpt3Num[0] && genpt3Num[0] < 600){
+          Eta2p5to3ResponseJet3470to600.Fill(Eta2p5to3ResponseJet3);
+          }
+          if(600 <= genpt3Num[0] && genpt3Num[0] < 800){
+          Eta2p5to3ResponseJet3600to800.Fill(Eta2p5to3ResponseJet3);
+          }
+          if(800 <= genpt3Num[0] && genpt3Num[0] < 1000){
+          Eta2p5to3ResponseJet3800to1000.Fill(Eta2p5to3ResponseJet3);
+          }
+          if(1000 <= genpt3Num[0] && genpt3Num[0] < 1400){
+          Eta2p5to3ResponseJet31000to1400.Fill(Eta2p5to3ResponseJet3);
+          }
+          if(1400 <= genpt3Num[0] && genpt3Num[0] < 1800){
+          Eta2p5to3ResponseJet31400to1800.Fill(Eta2p5to3ResponseJet3);
+          }
+          if(1800 <= genpt3Num[0] && genpt3Num[0] < 2400){
+          Eta2p5to3ResponseJet31800to2400.Fill(Eta2p5to3ResponseJet3);
+          }
+          if(2400 <= genpt3Num[0] && genpt3Num[0] < 3200){
+          Eta2p5to3ResponseJet32400to3200.Fill(Eta2p5to3ResponseJet3);
+          }
+          if(3200 <= genpt3Num[0]){
+          Eta2p5to3ResponseJet33200.Fill(Eta2p5to3ResponseJet3);
+          }
+          }
+          if(abs(geneta3Num[0])  >= 3.0 && abs(geneta3Num[0]) < 5.0){
+              //calculate response
+          double Eta3to5ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
+
+          //Fill hists with response for pt ranges of 20GeV from 0 to 1000
+          if(50 <= genpt3Num[0] && genpt3Num[0] < 80){
+          Eta3to5ResponseJet350to80.Fill(Eta3to5ResponseJet3);
+          }
+          if(80 <= genpt3Num[0] && genpt3Num[0] < 120){
+          Eta3to5ResponseJet380to120.Fill(Eta3to5ResponseJet3);
+          }
+          if(120 <= genpt3Num[0] && genpt3Num[0] < 170){
+          Eta3to5ResponseJet3120to170.Fill(Eta3to5ResponseJet3);
+          }
+          if(170 <= genpt3Num[0] && genpt3Num[0] < 300){
+          Eta3to5ResponseJet3170to300.Fill(Eta3to5ResponseJet3);
+          }
+          if(300 <= genpt3Num[0] && genpt3Num[0] < 470){
+          Eta3to5ResponseJet3300to470.Fill(Eta3to5ResponseJet3);
+          }
+          if(470 <= genpt3Num[0] && genpt3Num[0] < 600){
+          Eta3to5ResponseJet3470to600.Fill(Eta3to5ResponseJet3);
+          }
+          if(600 <= genpt3Num[0] && genpt3Num[0] < 800){
+          Eta3to5ResponseJet3600to800.Fill(Eta3to5ResponseJet3);
+          }
+          if(800 <= genpt3Num[0] && genpt3Num[0] < 1000){
+          Eta3to5ResponseJet3800to1000.Fill(Eta3to5ResponseJet3);
+          }
+          if(1000 <= genpt3Num[0] && genpt3Num[0] < 1400){
+          Eta3to5ResponseJet31000to1400.Fill(Eta3to5ResponseJet3);
+          }
+          if(1400 <= genpt3Num[0] && genpt3Num[0] < 1800){
+          Eta3to5ResponseJet31400to1800.Fill(Eta3to5ResponseJet3);
+          }
+          if(1800 <= genpt3Num[0] && genpt3Num[0] < 2400){
+          Eta3to5ResponseJet31800to2400.Fill(Eta3to5ResponseJet3);
+          }
+          if(2400 <= genpt3Num[0] && genpt3Num[0] < 3200){
+          Eta3to5ResponseJet32400to3200.Fill(Eta3to5ResponseJet3);
+          }
+          if(3200 <= genpt3Num[0]){
+          Eta3to5ResponseJet33200.Fill(Eta3to5ResponseJet3);
+          }
+          }
+        }
+      } else{
+        std::cout << "Trash Data" << "% finished" << std::endl;
       }
-
-      //For Jet1
-      //calculate R
-      float deltaPhi1 = TMath::Abs(phi1Num[0]-genphi1Num[0]);
-      float deltaEta1 = eta1Num[0] - geneta1Num[0];
-      if(deltaPhi1 > TMath::Pi()){
-        deltaPhi1 = TMath::TwoPi() - deltaPhi1;
-      }
-
-      float R_ValueJet1 = TMath::Sqrt(deltaEta1*deltaEta1 + deltaPhi1*deltaPhi1);
-
-
-      if(R_ValueJet1 < 0.2){
-
-        //calculate response
-        double ResponseJet1 = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt1Num[0] && genpt1Num[0] < 80){
-        ResponseJet150to80.Fill(ResponseJet1);
-        }
-        if(80 <= genpt1Num[0] && genpt1Num[0] < 120){
-        ResponseJet180to120.Fill(ResponseJet1);
-        }
-        if(120 <= genpt1Num[0] && genpt1Num[0] < 170){
-        ResponseJet1120to170.Fill(ResponseJet1);
-        }
-        if(170 <= genpt1Num[0] && genpt1Num[0] < 300){
-        ResponseJet1170to300.Fill(ResponseJet1);
-        }
-        if(300 <= genpt1Num[0] && genpt1Num[0] < 470){
-        ResponseJet1300to470.Fill(ResponseJet1);
-        }
-        if(470 <= genpt1Num[0] && genpt1Num[0] < 600){
-        ResponseJet1470to600.Fill(ResponseJet1);
-        }
-        if(600 <= genpt1Num[0] && genpt1Num[0] < 800){
-        ResponseJet1600to800.Fill(ResponseJet1);
-        }
-        if(800 <= genpt1Num[0] && genpt1Num[0] < 1000){
-        ResponseJet1800to1000.Fill(ResponseJet1);
-        }
-        if(1000 <= genpt1Num[0] && genpt1Num[0] < 1400){
-        ResponseJet11000to1400.Fill(ResponseJet1);
-        }
-        if(1400 <= genpt1Num[0] && genpt1Num[0] < 1800){
-        ResponseJet11400to1800.Fill(ResponseJet1);
-        }
-        if(1800 <= genpt1Num[0] && genpt1Num[0] < 2400){
-        ResponseJet11800to2400.Fill(ResponseJet1);
-        }
-        if(2400 <= genpt1Num[0] && genpt1Num[0] < 3200){
-        ResponseJet12400to3200.Fill(ResponseJet1);
-        }
-        if(3200 <= genpt1Num[0]){
-        ResponseJet13200.Fill(ResponseJet1);
-        }
-
-        if(abs(geneta1Num[0]) < 1.3 ){
-            //calculate response
-        double Eta0to1p3ResponseJet1 = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt1Num[0] && genpt1Num[0] < 80){
-        Eta0to1p3ResponseJet150to80.Fill(Eta0to1p3ResponseJet1);
-        }
-        if(80 <= genpt1Num[0] && genpt1Num[0] < 120){
-        Eta0to1p3ResponseJet180to120.Fill(Eta0to1p3ResponseJet1);
-        }
-        if(120 <= genpt1Num[0] && genpt1Num[0] < 170){
-        Eta0to1p3ResponseJet1120to170.Fill(Eta0to1p3ResponseJet1);
-        }
-        if(170 <= genpt1Num[0] && genpt1Num[0] < 300){
-        Eta0to1p3ResponseJet1170to300.Fill(Eta0to1p3ResponseJet1);
-        }
-        if(300 <= genpt1Num[0] && genpt1Num[0] < 470){
-        Eta0to1p3ResponseJet1300to470.Fill(Eta0to1p3ResponseJet1);
-        }
-        if(470 <= genpt1Num[0] && genpt1Num[0] < 600){
-        Eta0to1p3ResponseJet1470to600.Fill(Eta0to1p3ResponseJet1);
-        }
-        if(600 <= genpt1Num[0] && genpt1Num[0] < 800){
-        Eta0to1p3ResponseJet1600to800.Fill(Eta0to1p3ResponseJet1);
-        }
-        if(800 <= genpt1Num[0] && genpt1Num[0] < 1000){
-        Eta0to1p3ResponseJet1800to1000.Fill(Eta0to1p3ResponseJet1);
-        }
-        if(1000 <= genpt1Num[0] && genpt1Num[0] < 1400){
-        Eta0to1p3ResponseJet11000to1400.Fill(Eta0to1p3ResponseJet1);
-        }
-        if(1400 <= genpt1Num[0] && genpt1Num[0] < 1800){
-        Eta0to1p3ResponseJet11400to1800.Fill(Eta0to1p3ResponseJet1);
-        }
-        if(1800 <= genpt1Num[0] && genpt1Num[0] < 2400){
-        Eta0to1p3ResponseJet11800to2400.Fill(Eta0to1p3ResponseJet1);
-        }
-        if(2400 <= genpt1Num[0] && genpt1Num[0] < 3200){
-        Eta0to1p3ResponseJet12400to3200.Fill(Eta0to1p3ResponseJet1);
-        }
-        if(3200 <= genpt1Num[0]){
-        Eta0to1p3ResponseJet13200.Fill(Eta0to1p3ResponseJet1);
-        }
-        }
-        if(abs(geneta1Num[0])  >= 1.3 && abs(geneta1Num[0]) < 2.5){
-            //calculate response
-        double Eta1p3to2p5ResponseJet1 = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt1Num[0] && genpt1Num[0] < 80){
-        Eta1p3to2p5ResponseJet150to80.Fill(Eta1p3to2p5ResponseJet1);
-        }
-        if(80 <= genpt1Num[0] && genpt1Num[0] < 120){
-        Eta1p3to2p5ResponseJet180to120.Fill(Eta1p3to2p5ResponseJet1);
-        }
-        if(120 <= genpt1Num[0] && genpt1Num[0] < 170){
-        Eta1p3to2p5ResponseJet1120to170.Fill(Eta1p3to2p5ResponseJet1);
-        }
-        if(170 <= genpt1Num[0] && genpt1Num[0] < 300){
-        Eta1p3to2p5ResponseJet1170to300.Fill(Eta1p3to2p5ResponseJet1);
-        }
-        if(300 <= genpt1Num[0] && genpt1Num[0] < 470){
-        Eta1p3to2p5ResponseJet1300to470.Fill(Eta1p3to2p5ResponseJet1);
-        }
-        if(470 <= genpt1Num[0] && genpt1Num[0] < 600){
-        Eta1p3to2p5ResponseJet1470to600.Fill(Eta1p3to2p5ResponseJet1);
-        }
-        if(600 <= genpt1Num[0] && genpt1Num[0] < 800){
-        Eta1p3to2p5ResponseJet1600to800.Fill(Eta1p3to2p5ResponseJet1);
-        }
-        if(800 <= genpt1Num[0] && genpt1Num[0] < 1000){
-        Eta1p3to2p5ResponseJet1800to1000.Fill(Eta1p3to2p5ResponseJet1);
-        }
-        if(1000 <= genpt1Num[0] && genpt1Num[0] < 1400){
-        Eta1p3to2p5ResponseJet11000to1400.Fill(Eta1p3to2p5ResponseJet1);
-        }
-        if(1400 <= genpt1Num[0] && genpt1Num[0] < 1800){
-        Eta1p3to2p5ResponseJet11400to1800.Fill(Eta1p3to2p5ResponseJet1);
-        }
-        if(1800 <= genpt1Num[0] && genpt1Num[0] < 2400){
-        Eta1p3to2p5ResponseJet11800to2400.Fill(Eta1p3to2p5ResponseJet1);
-        }
-        if(2400 <= genpt1Num[0] && genpt1Num[0] < 3200){
-        Eta1p3to2p5ResponseJet12400to3200.Fill(Eta1p3to2p5ResponseJet1);
-        }
-        if(3200 <= genpt1Num[0]){
-        Eta1p3to2p5ResponseJet13200.Fill(Eta1p3to2p5ResponseJet1);
-        }
-        }
-        if(abs(geneta1Num[0])  >= 2.5 && abs(geneta1Num[0]) < 3.0){
-            //calculate response
-        double Eta2p5to3ResponseJet1 = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt1Num[0] && genpt1Num[0] < 80){
-        Eta2p5to3ResponseJet150to80.Fill(Eta2p5to3ResponseJet1);
-        }
-        if(80 <= genpt1Num[0] && genpt1Num[0] < 120){
-        Eta2p5to3ResponseJet180to120.Fill(Eta2p5to3ResponseJet1);
-        }
-        if(120 <= genpt1Num[0] && genpt1Num[0] < 170){
-        Eta2p5to3ResponseJet1120to170.Fill(Eta2p5to3ResponseJet1);
-        }
-        if(170 <= genpt1Num[0] && genpt1Num[0] < 300){
-        Eta2p5to3ResponseJet1170to300.Fill(Eta2p5to3ResponseJet1);
-        }
-        if(300 <= genpt1Num[0] && genpt1Num[0] < 470){
-        Eta2p5to3ResponseJet1300to470.Fill(Eta2p5to3ResponseJet1);
-        }
-        if(470 <= genpt1Num[0] && genpt1Num[0] < 600){
-        Eta2p5to3ResponseJet1470to600.Fill(Eta2p5to3ResponseJet1);
-        }
-        if(600 <= genpt1Num[0] && genpt1Num[0] < 800){
-        Eta2p5to3ResponseJet1600to800.Fill(Eta2p5to3ResponseJet1);
-        }
-        if(800 <= genpt1Num[0] && genpt1Num[0] < 1000){
-        Eta2p5to3ResponseJet1800to1000.Fill(Eta2p5to3ResponseJet1);
-        }
-        if(1000 <= genpt1Num[0] && genpt1Num[0] < 1400){
-        Eta2p5to3ResponseJet11000to1400.Fill(Eta2p5to3ResponseJet1);
-        }
-        if(1400 <= genpt1Num[0] && genpt1Num[0] < 1800){
-        Eta2p5to3ResponseJet11400to1800.Fill(Eta2p5to3ResponseJet1);
-        }
-        if(1800 <= genpt1Num[0] && genpt1Num[0] < 2400){
-        Eta2p5to3ResponseJet11800to2400.Fill(Eta2p5to3ResponseJet1);
-        }
-        if(2400 <= genpt1Num[0] && genpt1Num[0] < 3200){
-        Eta2p5to3ResponseJet12400to3200.Fill(Eta2p5to3ResponseJet1);
-        }
-        if(3200 <= genpt1Num[0]){
-        Eta2p5to3ResponseJet13200.Fill(Eta2p5to3ResponseJet1);
-        }
-        }
-        if(abs(geneta1Num[0])  >= 3.0 && abs(geneta1Num[0]) < 5.0){
-            //calculate response
-        double Eta3to5ResponseJet1 = (pt1Num[0]-genpt1Num[0])/genpt1Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt1Num[0] && genpt1Num[0] < 80){
-        Eta3to5ResponseJet150to80.Fill(Eta3to5ResponseJet1);
-        }
-        if(80 <= genpt1Num[0] && genpt1Num[0] < 120){
-        Eta3to5ResponseJet180to120.Fill(Eta3to5ResponseJet1);
-        }
-        if(120 <= genpt1Num[0] && genpt1Num[0] < 170){
-        Eta3to5ResponseJet1120to170.Fill(Eta3to5ResponseJet1);
-        }
-        if(170 <= genpt1Num[0] && genpt1Num[0] < 300){
-        Eta3to5ResponseJet1170to300.Fill(Eta3to5ResponseJet1);
-        }
-        if(300 <= genpt1Num[0] && genpt1Num[0] < 470){
-        Eta3to5ResponseJet1300to470.Fill(Eta3to5ResponseJet1);
-        }
-        if(470 <= genpt1Num[0] && genpt1Num[0] < 600){
-        Eta3to5ResponseJet1470to600.Fill(Eta3to5ResponseJet1);
-        }
-        if(600 <= genpt1Num[0] && genpt1Num[0] < 800){
-        Eta3to5ResponseJet1600to800.Fill(Eta3to5ResponseJet1);
-        }
-        if(800 <= genpt1Num[0] && genpt1Num[0] < 1000){
-        Eta3to5ResponseJet1800to1000.Fill(Eta3to5ResponseJet1);
-        }
-        if(1000 <= genpt1Num[0] && genpt1Num[0] < 1400){
-        Eta3to5ResponseJet11000to1400.Fill(Eta3to5ResponseJet1);
-        }
-        if(1400 <= genpt1Num[0] && genpt1Num[0] < 1800){
-        Eta3to5ResponseJet11400to1800.Fill(Eta3to5ResponseJet1);
-        }
-        if(1800 <= genpt1Num[0] && genpt1Num[0] < 2400){
-        Eta3to5ResponseJet11800to2400.Fill(Eta3to5ResponseJet1);
-        }
-        if(2400 <= genpt1Num[0] && genpt1Num[0] < 3200){
-        Eta3to5ResponseJet12400to3200.Fill(Eta3to5ResponseJet1);
-        }
-        if(3200 <= genpt1Num[0]){
-        Eta3to5ResponseJet13200.Fill(Eta3to5ResponseJet1);
-        }
-        }
-      }
-
-      //For Jet2
-      //calculate R
-      float deltaPhi2 = TMath::Abs(phi2Num[0]-genphi2Num[0]);
-      float deltaEta2 = eta2Num[0] - geneta2Num[0];
-      if(deltaPhi2 > TMath::Pi()){
-        deltaPhi2 = TMath::TwoPi() - deltaPhi2;
-      }
-
-      float R_ValueJet2 = TMath::Sqrt(deltaEta2*deltaEta2 + deltaPhi2*deltaPhi2);
-
-      if(entry % 100000 == 0)
-      {
-        std::cout << to_string(R_ValueJet2) << "R_ValueJet2" << std::endl;
-        std::cout << to_string(genpt2Num[0]) << "pt2Num[0]" << std::endl;
-        std::cout << to_string(geneta2Num[0]) << "geneta2Num[0]" << std::endl;
-        std::cout << to_string(phi2Num[0]) << "phi2Num[0]" << std::endl;
-        std::cout << to_string(genphi2Num[0]) << "genphi2Num[0]" << std::endl;
-        std::cout << to_string(eta2Num[0]) << "eta2Num[0]" << std::endl;
-        std::cout << to_string(geneta2Num[0]) << "geneta2Num[0]" << std::endl;
-      }
-
-      if(R_ValueJet2 < 0.2){
-
-        //calculate response
-        double ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
-        ResponseJet250to80.Fill(ResponseJet2);
-        }
-        if(80 <= genpt2Num[0] && genpt2Num[0] < 120){
-        ResponseJet280to120.Fill(ResponseJet2);
-        }
-        if(120 <= genpt2Num[0] && genpt2Num[0] < 170){
-        ResponseJet2120to170.Fill(ResponseJet2);
-        }
-        if(170 <= genpt2Num[0] && genpt2Num[0] < 300){
-        ResponseJet2170to300.Fill(ResponseJet2);
-        }
-        if(300 <= genpt2Num[0] && genpt2Num[0] < 470){
-        ResponseJet2300to470.Fill(ResponseJet2);
-        }
-        if(470 <= genpt2Num[0] && genpt2Num[0] < 600){
-        ResponseJet2470to600.Fill(ResponseJet2);
-        }
-        if(600 <= genpt2Num[0] && genpt2Num[0] < 800){
-        ResponseJet2600to800.Fill(ResponseJet2);
-        }
-        if(800 <= genpt2Num[0] && genpt2Num[0] < 1000){
-        ResponseJet2800to1000.Fill(ResponseJet2);
-        }
-        if(1000 <= genpt2Num[0] && genpt2Num[0] < 1400){
-        ResponseJet21000to1400.Fill(ResponseJet2);
-        }
-        if(1400 <= genpt2Num[0] && genpt2Num[0] < 1800){
-        ResponseJet21400to1800.Fill(ResponseJet2);
-        }
-        if(1800 <= genpt2Num[0] && genpt2Num[0] < 2400){
-        ResponseJet21800to2400.Fill(ResponseJet2);
-        }
-        if(2400 <= genpt2Num[0] && genpt2Num[0] < 3200){
-        ResponseJet22400to3200.Fill(ResponseJet2);
-        }
-        if(3200 <= genpt2Num[0]){
-        ResponseJet23200.Fill(ResponseJet2);
-        }
-
-        if(abs(geneta2Num[0]) < 1.3 ){
-            //calculate response
-        double Eta0to1p3ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
-        Eta0to1p3ResponseJet250to80.Fill(Eta0to1p3ResponseJet2);
-        }
-        if(80 <= genpt2Num[0] && genpt2Num[0] < 120){
-        Eta0to1p3ResponseJet280to120.Fill(Eta0to1p3ResponseJet2);
-        }
-        if(120 <= genpt2Num[0] && genpt2Num[0] < 170){
-        Eta0to1p3ResponseJet2120to170.Fill(Eta0to1p3ResponseJet2);
-        }
-        if(170 <= genpt2Num[0] && genpt2Num[0] < 300){
-        Eta0to1p3ResponseJet2170to300.Fill(Eta0to1p3ResponseJet2);
-        }
-        if(300 <= genpt2Num[0] && genpt2Num[0] < 470){
-        Eta0to1p3ResponseJet2300to470.Fill(Eta0to1p3ResponseJet2);
-        }
-        if(470 <= genpt2Num[0] && genpt2Num[0] < 600){
-        Eta0to1p3ResponseJet2470to600.Fill(Eta0to1p3ResponseJet2);
-        }
-        if(600 <= genpt2Num[0] && genpt2Num[0] < 800){
-        Eta0to1p3ResponseJet2600to800.Fill(Eta0to1p3ResponseJet2);
-        }
-        if(800 <= genpt2Num[0] && genpt2Num[0] < 1000){
-        Eta0to1p3ResponseJet2800to1000.Fill(Eta0to1p3ResponseJet2);
-        }
-        if(1000 <= genpt2Num[0] && genpt2Num[0] < 1400){
-        Eta0to1p3ResponseJet21000to1400.Fill(Eta0to1p3ResponseJet2);
-        }
-        if(1400 <= genpt2Num[0] && genpt2Num[0] < 1800){
-        Eta0to1p3ResponseJet21400to1800.Fill(Eta0to1p3ResponseJet2);
-        }
-        if(1800 <= genpt2Num[0] && genpt2Num[0] < 2400){
-        Eta0to1p3ResponseJet21800to2400.Fill(Eta0to1p3ResponseJet2);
-        }
-        if(2400 <= genpt2Num[0] && genpt2Num[0] < 3200){
-        Eta0to1p3ResponseJet22400to3200.Fill(Eta0to1p3ResponseJet2);
-        }
-        if(3200 <= genpt2Num[0]){
-        Eta0to1p3ResponseJet23200.Fill(Eta0to1p3ResponseJet2);
-        }
-        }
-        if(abs(geneta2Num[0])  >= 1.3 && abs(geneta2Num[0]) < 2.5){
-            //calculate response
-        double Eta1p3to2p5ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
-        Eta1p3to2p5ResponseJet250to80.Fill(Eta1p3to2p5ResponseJet2);
-        }
-        if(80 <= genpt2Num[0] && genpt2Num[0] < 120){
-        Eta1p3to2p5ResponseJet280to120.Fill(Eta1p3to2p5ResponseJet2);
-        }
-        if(120 <= genpt2Num[0] && genpt2Num[0] < 170){
-        Eta1p3to2p5ResponseJet2120to170.Fill(Eta1p3to2p5ResponseJet2);
-        }
-        if(170 <= genpt2Num[0] && genpt2Num[0] < 300){
-        Eta1p3to2p5ResponseJet2170to300.Fill(Eta1p3to2p5ResponseJet2);
-        }
-        if(300 <= genpt2Num[0] && genpt2Num[0] < 470){
-        Eta1p3to2p5ResponseJet2300to470.Fill(Eta1p3to2p5ResponseJet2);
-        }
-        if(470 <= genpt2Num[0] && genpt2Num[0] < 600){
-        Eta1p3to2p5ResponseJet2470to600.Fill(Eta1p3to2p5ResponseJet2);
-        }
-        if(600 <= genpt2Num[0] && genpt2Num[0] < 800){
-        Eta1p3to2p5ResponseJet2600to800.Fill(Eta1p3to2p5ResponseJet2);
-        }
-        if(800 <= genpt2Num[0] && genpt2Num[0] < 1000){
-        Eta1p3to2p5ResponseJet2800to1000.Fill(Eta1p3to2p5ResponseJet2);
-        }
-        if(1000 <= genpt2Num[0] && genpt2Num[0] < 1400){
-        Eta1p3to2p5ResponseJet21000to1400.Fill(Eta1p3to2p5ResponseJet2);
-        }
-        if(1400 <= genpt2Num[0] && genpt2Num[0] < 1800){
-        Eta1p3to2p5ResponseJet21400to1800.Fill(Eta1p3to2p5ResponseJet2);
-        }
-        if(1800 <= genpt2Num[0] && genpt2Num[0] < 2400){
-        Eta1p3to2p5ResponseJet21800to2400.Fill(Eta1p3to2p5ResponseJet2);
-        }
-        if(2400 <= genpt2Num[0] && genpt2Num[0] < 3200){
-        Eta1p3to2p5ResponseJet22400to3200.Fill(Eta1p3to2p5ResponseJet2);
-        }
-        if(3200 <= genpt2Num[0]){
-        Eta1p3to2p5ResponseJet23200.Fill(Eta1p3to2p5ResponseJet2);
-        }
-        }
-        if(abs(geneta2Num[0])  >= 2.5 && abs(geneta2Num[0]) < 3.0){
-            //calculate response
-        double Eta2p5to3ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
-        Eta2p5to3ResponseJet250to80.Fill(Eta2p5to3ResponseJet2);
-        }
-        if(80 <= genpt2Num[0] && genpt2Num[0] < 120){
-        Eta2p5to3ResponseJet280to120.Fill(Eta2p5to3ResponseJet2);
-        }
-        if(120 <= genpt2Num[0] && genpt2Num[0] < 170){
-        Eta2p5to3ResponseJet2120to170.Fill(Eta2p5to3ResponseJet2);
-        }
-        if(170 <= genpt2Num[0] && genpt2Num[0] < 300){
-        Eta2p5to3ResponseJet2170to300.Fill(Eta2p5to3ResponseJet2);
-        }
-        if(300 <= genpt2Num[0] && genpt2Num[0] < 470){
-        Eta2p5to3ResponseJet2300to470.Fill(Eta2p5to3ResponseJet2);
-        }
-        if(470 <= genpt2Num[0] && genpt2Num[0] < 600){
-        Eta2p5to3ResponseJet2470to600.Fill(Eta2p5to3ResponseJet2);
-        }
-        if(600 <= genpt2Num[0] && genpt2Num[0] < 800){
-        Eta2p5to3ResponseJet2600to800.Fill(Eta2p5to3ResponseJet2);
-        }
-        if(800 <= genpt2Num[0] && genpt2Num[0] < 1000){
-        Eta2p5to3ResponseJet2800to1000.Fill(Eta2p5to3ResponseJet2);
-        }
-        if(1000 <= genpt2Num[0] && genpt2Num[0] < 1400){
-        Eta2p5to3ResponseJet21000to1400.Fill(Eta2p5to3ResponseJet2);
-        }
-        if(1400 <= genpt2Num[0] && genpt2Num[0] < 1800){
-        Eta2p5to3ResponseJet21400to1800.Fill(Eta2p5to3ResponseJet2);
-        }
-        if(1800 <= genpt2Num[0] && genpt2Num[0] < 2400){
-        Eta2p5to3ResponseJet21800to2400.Fill(Eta2p5to3ResponseJet2);
-        }
-        if(2400 <= genpt2Num[0] && genpt2Num[0] < 3200){
-        Eta2p5to3ResponseJet22400to3200.Fill(Eta2p5to3ResponseJet2);
-        }
-        if(3200 <= genpt2Num[0]){
-        Eta2p5to3ResponseJet23200.Fill(Eta2p5to3ResponseJet2);
-        }
-        }
-        if(abs(geneta2Num[0])  >= 3.0 && abs(geneta2Num[0]) < 5.0){
-            //calculate response
-        double Eta3to5ResponseJet2 = (pt2Num[0]-genpt2Num[0])/genpt2Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt2Num[0] && genpt2Num[0] < 80){
-        Eta3to5ResponseJet250to80.Fill(Eta3to5ResponseJet2);
-        }
-        if(80 <= genpt2Num[0] && genpt2Num[0] < 120){
-        Eta3to5ResponseJet280to120.Fill(Eta3to5ResponseJet2);
-        }
-        if(120 <= genpt2Num[0] && genpt2Num[0] < 170){
-        Eta3to5ResponseJet2120to170.Fill(Eta3to5ResponseJet2);
-        }
-        if(170 <= genpt2Num[0] && genpt2Num[0] < 300){
-        Eta3to5ResponseJet2170to300.Fill(Eta3to5ResponseJet2);
-        }
-        if(300 <= genpt2Num[0] && genpt2Num[0] < 470){
-        Eta3to5ResponseJet2300to470.Fill(Eta3to5ResponseJet2);
-        }
-        if(470 <= genpt2Num[0] && genpt2Num[0] < 600){
-        Eta3to5ResponseJet2470to600.Fill(Eta3to5ResponseJet2);
-        }
-        if(600 <= genpt2Num[0] && genpt2Num[0] < 800){
-        Eta3to5ResponseJet2600to800.Fill(Eta3to5ResponseJet2);
-        }
-        if(800 <= genpt2Num[0] && genpt2Num[0] < 1000){
-        Eta3to5ResponseJet2800to1000.Fill(Eta3to5ResponseJet2);
-        }
-        if(1000 <= genpt2Num[0] && genpt2Num[0] < 1400){
-        Eta3to5ResponseJet21000to1400.Fill(Eta3to5ResponseJet2);
-        }
-        if(1400 <= genpt2Num[0] && genpt2Num[0] < 1800){
-        Eta3to5ResponseJet21400to1800.Fill(Eta3to5ResponseJet2);
-        }
-        if(1800 <= genpt2Num[0] && genpt2Num[0] < 2400){
-        Eta3to5ResponseJet21800to2400.Fill(Eta3to5ResponseJet2);
-        }
-        if(2400 <= genpt2Num[0] && genpt2Num[0] < 3200){
-        Eta3to5ResponseJet22400to3200.Fill(Eta3to5ResponseJet2);
-        }
-        if(3200 <= genpt2Num[0]){
-        Eta3to5ResponseJet23200.Fill(Eta3to5ResponseJet2);
-        }
-        }
-      }
-
-      //For Jet3
-      //calculate R
-      float deltaPhi3 = TMath::Abs(phi3Num[0]-genphi3Num[0]);
-      float deltaEta3 = eta3Num[0] - geneta3Num[0];
-      if(deltaPhi3 > TMath::Pi()){
-        deltaPhi3 = TMath::TwoPi() - deltaPhi3;
-      }
-
-      float R_ValueJet3 = TMath::Sqrt(deltaEta3*deltaEta3 + deltaPhi3*deltaPhi3);
-
-      if(entry % 100000 == 0)
-      {
-        std::cout << to_string(R_ValueJet3) << "R_ValueJet3" << std::endl;
-        std::cout << to_string(genpt3Num[0]) << "pt3Num[0]" << std::endl;
-        std::cout << to_string(geneta3Num[0]) << "geneta3Num[0]" << std::endl;
-        std::cout << to_string(phi3Num[0]) << "phi3Num[0]" << std::endl;
-        std::cout << to_string(genphi3Num[0]) << "genphi3Num[0]" << std::endl;
-        std::cout << to_string(eta3Num[0]) << "eta3Num[0]" << std::endl;
-        std::cout << to_string(geneta3Num[0]) << "geneta3Num[0]" << std::endl;
-      }
-
-      if(R_ValueJet3 < 0.2){
-
-        //calculate response
-        double ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt3Num[0] && genpt3Num[0] < 80){
-        ResponseJet350to80.Fill(ResponseJet3);
-        }
-        if(80 <= genpt3Num[0] && genpt3Num[0] < 120){
-        ResponseJet380to120.Fill(ResponseJet3);
-        }
-        if(120 <= genpt3Num[0] && genpt3Num[0] < 170){
-        ResponseJet3120to170.Fill(ResponseJet3);
-        }
-        if(170 <= genpt3Num[0] && genpt3Num[0] < 300){
-        ResponseJet3170to300.Fill(ResponseJet3);
-        }
-        if(300 <= genpt3Num[0] && genpt3Num[0] < 470){
-        ResponseJet3300to470.Fill(ResponseJet3);
-        }
-        if(470 <= genpt3Num[0] && genpt3Num[0] < 600){
-        ResponseJet3470to600.Fill(ResponseJet3);
-        }
-        if(600 <= genpt3Num[0] && genpt3Num[0] < 800){
-        ResponseJet3600to800.Fill(ResponseJet3);
-        }
-        if(800 <= genpt3Num[0] && genpt3Num[0] < 1000){
-        ResponseJet3800to1000.Fill(ResponseJet3);
-        }
-        if(1000 <= genpt3Num[0] && genpt3Num[0] < 1400){
-        ResponseJet31000to1400.Fill(ResponseJet3);
-        }
-        if(1400 <= genpt3Num[0] && genpt3Num[0] < 1800){
-        ResponseJet31400to1800.Fill(ResponseJet3);
-        }
-        if(1800 <= genpt3Num[0] && genpt3Num[0] < 2400){
-        ResponseJet31800to2400.Fill(ResponseJet3);
-        }
-        if(2400 <= genpt3Num[0] && genpt3Num[0] < 3200){
-        ResponseJet32400to3200.Fill(ResponseJet3);
-        }
-        if(3200 <= genpt3Num[0]){
-        ResponseJet33200.Fill(ResponseJet3);
-        }
-
-        if(abs(geneta3Num[0]) < 1.3 ){
-            //calculate response
-        double Eta0to1p3ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt3Num[0] && genpt3Num[0] < 80){
-        Eta0to1p3ResponseJet350to80.Fill(Eta0to1p3ResponseJet3);
-        }
-        if(80 <= genpt3Num[0] && genpt3Num[0] < 120){
-        Eta0to1p3ResponseJet380to120.Fill(Eta0to1p3ResponseJet3);
-        }
-        if(120 <= genpt3Num[0] && genpt3Num[0] < 170){
-        Eta0to1p3ResponseJet3120to170.Fill(Eta0to1p3ResponseJet3);
-        }
-        if(170 <= genpt3Num[0] && genpt3Num[0] < 300){
-        Eta0to1p3ResponseJet3170to300.Fill(Eta0to1p3ResponseJet3);
-        }
-        if(300 <= genpt3Num[0] && genpt3Num[0] < 470){
-        Eta0to1p3ResponseJet3300to470.Fill(Eta0to1p3ResponseJet3);
-        }
-        if(470 <= genpt3Num[0] && genpt3Num[0] < 600){
-        Eta0to1p3ResponseJet3470to600.Fill(Eta0to1p3ResponseJet3);
-        }
-        if(600 <= genpt3Num[0] && genpt3Num[0] < 800){
-        Eta0to1p3ResponseJet3600to800.Fill(Eta0to1p3ResponseJet3);
-        }
-        if(800 <= genpt3Num[0] && genpt3Num[0] < 1000){
-        Eta0to1p3ResponseJet3800to1000.Fill(Eta0to1p3ResponseJet3);
-        }
-        if(1000 <= genpt3Num[0] && genpt3Num[0] < 1400){
-        Eta0to1p3ResponseJet31000to1400.Fill(Eta0to1p3ResponseJet3);
-        }
-        if(1400 <= genpt3Num[0] && genpt3Num[0] < 1800){
-        Eta0to1p3ResponseJet31400to1800.Fill(Eta0to1p3ResponseJet3);
-        }
-        if(1800 <= genpt3Num[0] && genpt3Num[0] < 2400){
-        Eta0to1p3ResponseJet31800to2400.Fill(Eta0to1p3ResponseJet3);
-        }
-        if(2400 <= genpt3Num[0] && genpt3Num[0] < 3200){
-        Eta0to1p3ResponseJet32400to3200.Fill(Eta0to1p3ResponseJet3);
-        }
-        if(3200 <= genpt3Num[0]){
-        Eta0to1p3ResponseJet33200.Fill(Eta0to1p3ResponseJet3);
-        }
-        }
-        if(abs(geneta3Num[0])  >= 1.3 && abs(geneta3Num[0]) < 2.5){
-            //calculate response
-        double Eta1p3to2p5ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt3Num[0] && genpt3Num[0] < 80){
-        Eta1p3to2p5ResponseJet350to80.Fill(Eta1p3to2p5ResponseJet3);
-        }
-        if(80 <= genpt3Num[0] && genpt3Num[0] < 120){
-        Eta1p3to2p5ResponseJet380to120.Fill(Eta1p3to2p5ResponseJet3);
-        }
-        if(120 <= genpt3Num[0] && genpt3Num[0] < 170){
-        Eta1p3to2p5ResponseJet3120to170.Fill(Eta1p3to2p5ResponseJet3);
-        }
-        if(170 <= genpt3Num[0] && genpt3Num[0] < 300){
-        Eta1p3to2p5ResponseJet3170to300.Fill(Eta1p3to2p5ResponseJet3);
-        }
-        if(300 <= genpt3Num[0] && genpt3Num[0] < 470){
-        Eta1p3to2p5ResponseJet3300to470.Fill(Eta1p3to2p5ResponseJet3);
-        }
-        if(470 <= genpt3Num[0] && genpt3Num[0] < 600){
-        Eta1p3to2p5ResponseJet3470to600.Fill(Eta1p3to2p5ResponseJet3);
-        }
-        if(600 <= genpt3Num[0] && genpt3Num[0] < 800){
-        Eta1p3to2p5ResponseJet3600to800.Fill(Eta1p3to2p5ResponseJet3);
-        }
-        if(800 <= genpt3Num[0] && genpt3Num[0] < 1000){
-        Eta1p3to2p5ResponseJet3800to1000.Fill(Eta1p3to2p5ResponseJet3);
-        }
-        if(1000 <= genpt3Num[0] && genpt3Num[0] < 1400){
-        Eta1p3to2p5ResponseJet31000to1400.Fill(Eta1p3to2p5ResponseJet3);
-        }
-        if(1400 <= genpt3Num[0] && genpt3Num[0] < 1800){
-        Eta1p3to2p5ResponseJet31400to1800.Fill(Eta1p3to2p5ResponseJet3);
-        }
-        if(1800 <= genpt3Num[0] && genpt3Num[0] < 2400){
-        Eta1p3to2p5ResponseJet31800to2400.Fill(Eta1p3to2p5ResponseJet3);
-        }
-        if(2400 <= genpt3Num[0] && genpt3Num[0] < 3200){
-        Eta1p3to2p5ResponseJet32400to3200.Fill(Eta1p3to2p5ResponseJet3);
-        }
-        if(3200 <= genpt3Num[0]){
-        Eta1p3to2p5ResponseJet33200.Fill(Eta1p3to2p5ResponseJet3);
-        }
-        }
-        if(abs(geneta3Num[0])  >= 2.5 && abs(geneta3Num[0]) < 3.0){
-            //calculate response
-        double Eta2p5to3ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt3Num[0] && genpt3Num[0] < 80){
-        Eta2p5to3ResponseJet350to80.Fill(Eta2p5to3ResponseJet3);
-        }
-        if(80 <= genpt3Num[0] && genpt3Num[0] < 120){
-        Eta2p5to3ResponseJet380to120.Fill(Eta2p5to3ResponseJet3);
-        }
-        if(120 <= genpt3Num[0] && genpt3Num[0] < 170){
-        Eta2p5to3ResponseJet3120to170.Fill(Eta2p5to3ResponseJet3);
-        }
-        if(170 <= genpt3Num[0] && genpt3Num[0] < 300){
-        Eta2p5to3ResponseJet3170to300.Fill(Eta2p5to3ResponseJet3);
-        }
-        if(300 <= genpt3Num[0] && genpt3Num[0] < 470){
-        Eta2p5to3ResponseJet3300to470.Fill(Eta2p5to3ResponseJet3);
-        }
-        if(470 <= genpt3Num[0] && genpt3Num[0] < 600){
-        Eta2p5to3ResponseJet3470to600.Fill(Eta2p5to3ResponseJet3);
-        }
-        if(600 <= genpt3Num[0] && genpt3Num[0] < 800){
-        Eta2p5to3ResponseJet3600to800.Fill(Eta2p5to3ResponseJet3);
-        }
-        if(800 <= genpt3Num[0] && genpt3Num[0] < 1000){
-        Eta2p5to3ResponseJet3800to1000.Fill(Eta2p5to3ResponseJet3);
-        }
-        if(1000 <= genpt3Num[0] && genpt3Num[0] < 1400){
-        Eta2p5to3ResponseJet31000to1400.Fill(Eta2p5to3ResponseJet3);
-        }
-        if(1400 <= genpt3Num[0] && genpt3Num[0] < 1800){
-        Eta2p5to3ResponseJet31400to1800.Fill(Eta2p5to3ResponseJet3);
-        }
-        if(1800 <= genpt3Num[0] && genpt3Num[0] < 2400){
-        Eta2p5to3ResponseJet31800to2400.Fill(Eta2p5to3ResponseJet3);
-        }
-        if(2400 <= genpt3Num[0] && genpt3Num[0] < 3200){
-        Eta2p5to3ResponseJet32400to3200.Fill(Eta2p5to3ResponseJet3);
-        }
-        if(3200 <= genpt3Num[0]){
-        Eta2p5to3ResponseJet33200.Fill(Eta2p5to3ResponseJet3);
-        }
-        }
-        if(abs(geneta3Num[0])  >= 3.0 && abs(geneta3Num[0]) < 5.0){
-            //calculate response
-        double Eta3to5ResponseJet3 = (pt3Num[0]-genpt3Num[0])/genpt3Num[0];
-
-        //Fill hists with response for pt ranges of 20GeV from 0 to 1000
-        if(50 <= genpt3Num[0] && genpt3Num[0] < 80){
-        Eta3to5ResponseJet350to80.Fill(Eta3to5ResponseJet3);
-        }
-        if(80 <= genpt3Num[0] && genpt3Num[0] < 120){
-        Eta3to5ResponseJet380to120.Fill(Eta3to5ResponseJet3);
-        }
-        if(120 <= genpt3Num[0] && genpt3Num[0] < 170){
-        Eta3to5ResponseJet3120to170.Fill(Eta3to5ResponseJet3);
-        }
-        if(170 <= genpt3Num[0] && genpt3Num[0] < 300){
-        Eta3to5ResponseJet3170to300.Fill(Eta3to5ResponseJet3);
-        }
-        if(300 <= genpt3Num[0] && genpt3Num[0] < 470){
-        Eta3to5ResponseJet3300to470.Fill(Eta3to5ResponseJet3);
-        }
-        if(470 <= genpt3Num[0] && genpt3Num[0] < 600){
-        Eta3to5ResponseJet3470to600.Fill(Eta3to5ResponseJet3);
-        }
-        if(600 <= genpt3Num[0] && genpt3Num[0] < 800){
-        Eta3to5ResponseJet3600to800.Fill(Eta3to5ResponseJet3);
-        }
-        if(800 <= genpt3Num[0] && genpt3Num[0] < 1000){
-        Eta3to5ResponseJet3800to1000.Fill(Eta3to5ResponseJet3);
-        }
-        if(1000 <= genpt3Num[0] && genpt3Num[0] < 1400){
-        Eta3to5ResponseJet31000to1400.Fill(Eta3to5ResponseJet3);
-        }
-        if(1400 <= genpt3Num[0] && genpt3Num[0] < 1800){
-        Eta3to5ResponseJet31400to1800.Fill(Eta3to5ResponseJet3);
-        }
-        if(1800 <= genpt3Num[0] && genpt3Num[0] < 2400){
-        Eta3to5ResponseJet31800to2400.Fill(Eta3to5ResponseJet3);
-        }
-        if(2400 <= genpt3Num[0] && genpt3Num[0] < 3200){
-        Eta3to5ResponseJet32400to3200.Fill(Eta3to5ResponseJet3);
-        }
-        if(3200 <= genpt3Num[0]){
-        Eta3to5ResponseJet33200.Fill(Eta3to5ResponseJet3);
-        }
-        }
-      }
-
     }
 
     //Neccesary so files dont get lost
