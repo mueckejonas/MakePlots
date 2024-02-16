@@ -2,7 +2,7 @@ import ROOT
 import numpy as np
 
 #takes three hists and turn them into pdf
-def RootHisttoPdf(outFileName,data,simulation,logyScale,yAxisTitle,xAxisTitle,title,undertitle):
+def RootHisttoPdf(outFileName,data,simulation,logyScale,yAxisTitle,xAxisTitle):
     canvas_pads = ROOT.TCanvas("canvas_pads", "Double ratio")
     canvas_pads.SetCanvasSize(1600,1100)
     pad_top = ROOT.TPad("top_pad", "Top pad", 0, 0.3, 1, 1)
@@ -24,8 +24,9 @@ def RootHisttoPdf(outFileName,data,simulation,logyScale,yAxisTitle,xAxisTitle,ti
 
     legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
     legend.SetLineWidth(0)
-    legend.AddEntry(datagraph,"Data","p")
-    legend.AddEntry(simulation,"Simulation")
+    legend.SetFillStyle(4000)
+    legend.AddEntry(datagraph,"2023 Run3 B","p")
+    legend.AddEntry(simulation,"MC Januar 2023")
 
     line = ROOT.TLine(datagraph.GetXaxis().GetXmin(),1,datagraph.GetXaxis().GetXmax(),1)
     line.SetLineColor(ROOT.kBlack)
@@ -41,7 +42,7 @@ def RootHisttoPdf(outFileName,data,simulation,logyScale,yAxisTitle,xAxisTitle,ti
     simulation.SetStats(0)
     simulation.SetLineColor(ROOT.kRed)
     simulation.SetLineWidth(2)
-    simulation.SetTitle(title+undertitle)
+    simulation.SetTitle("")
     simulation.GetYaxis().SetTitle(yAxisTitle)
     simulation.GetXaxis().SetTitleSize(0)
     simulation.GetXaxis().SetLabelSize(0)
@@ -133,24 +134,24 @@ for i in range(0,14):
 
     #create and save pdf files
     if JetNameArray[i] == "pt" or JetNameArray[i] == "mass":
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"1.pdf",data1,sim1,True,"#sigma [pb]",XaxisArray[i],"Run3 B 2023",JetNameArray[i]+" Jet1")
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"2.pdf",data2,sim2,True,"#sigma [pb]",XaxisArray[i],"Run3 B 2023",JetNameArray[i]+" Jet2")
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"3.pdf",data3,sim3,True,"#sigma [pb]",XaxisArray[i],"Run3 B 2023",JetNameArray[i]+" Jet3")
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"1.pdf",data1,sim1,True,"#sigma [pb]",XaxisArray[i]+" Jet1")
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"2.pdf",data2,sim2,True,"#sigma [pb]",XaxisArray[i]+" Jet2")
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"3.pdf",data3,sim3,True,"#sigma [pb]",XaxisArray[i]+" Jet3")
     else:
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"1.pdf",data1,sim1,False,"#sigma [pb]",XaxisArray[i],"Run3 B 2023",JetNameArray[i]+" Jet1")
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"2.pdf",data2,sim2,False,"#sigma [pb]",XaxisArray[i],"Run3 B 2023",JetNameArray[i]+" Jet2")
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"3.pdf",data3,sim3,False,"#sigma [pb]",XaxisArray[i],"Run3 B 2023",JetNameArray[i]+" Jet3")
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"1.pdf",data1,sim1,False,"#sigma [pb]",XaxisArray[i]+" Jet1")
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"2.pdf",data2,sim2,False,"#sigma [pb]",XaxisArray[i]+" Jet2")
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+"3.pdf",data3,sim3,False,"#sigma [pb]",XaxisArray[i]+" Jet3")
 
 
 #create yboost pdf
 datayboost = dataKinematics.Get("data_yboost")
 simyboost = simKinematics.Get("yboostsim_hist")
-RootHisttoPdf(outDirectory+pdfnames+"yboostDataandSim.pdf",datayboost,simyboost,False,"#sigma [pb]","Yboost","Run3 B 2023","Yboost")
+RootHisttoPdf(outDirectory+pdfnames+"yboostDataandSim.pdf",datayboost,simyboost,False,"#sigma [pb]","Yboost")
 #create chi pdf
 datachi = dataKinematics.Get("data_chi")
 simchi = simKinematics.Get("chisim_hist")
-RootHisttoPdf(outDirectory+pdfnames+"chiDataandSim.pdf",datachi,simchi,False,"#sigma [pb]","Chi","Run3 B 2023","Chi")
+RootHisttoPdf(outDirectory+pdfnames+"chiDataandSim.pdf",datachi,simchi,False,"#sigma [pb]","Chi")
 #create mjj pdf
 datamjj = dataKinematics.Get("data_mjj")
 simmjj = simKinematics.Get("mjjsim_hist")
-RootHisttoPdf(outDirectory+pdfnames+"mjjDataandSim.pdf",datamjj,simmjj,True,"#sigma [pb]","Mjj [GeV]","Run3 B 2023","Mjj")
+RootHisttoPdf(outDirectory+pdfnames+"mjjDataandSim.pdf",datamjj,simmjj,True,"#sigma [pb]","Mjj [GeV]")
