@@ -124,8 +124,8 @@ int RootToHist()
 
 
           PtAsymmetry.Fill((pt1Num[0]-pt2Num[0])/(pt1Num[0]+pt2Num[0]));
-          EtaDifference.Fill(Math::Abs(eta1Num[0]-eta2Num[0]));
-          YDifference.Fill(Math::Abs(y1Num[0]-y2Num[0]));
+          EtaDifference.Fill(TMath::Abs(eta1Num[0]-eta2Num[0]));
+          YDifference.Fill(TMath::Abs(y1Num[0]-y2Num[0]));
         }
       }
     }
