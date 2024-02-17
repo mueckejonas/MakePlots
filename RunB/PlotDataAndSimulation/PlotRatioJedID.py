@@ -118,7 +118,7 @@ simKinematics = simHistFile.Get("Kinematics")
 
 #define variables to compare and plot as array
 JetNameArray = np.array(["pt","y","eta","phi","mass","jec","muf","nhf","chf","area","nemf","cemf","btagDeepFlavB","nConstituents"])
-XaxisArray = np.array(["Pt [GeV]","Y","Eta","Phi","Mass [Gev]","Jec","Muf","Nhf","Chf","Area","Nemf","Cemf","BtagDeepFlavB","NConstituents"])
+XaxisArray = np.array(["P_{t} [GeV]","Y","#eta","#phi","Mass [Gev]","Jec","Muf","Nhf","Chf","Area","Nemf","Cemf","BtagDeepFlavB","NConstituents"])
 
 #create data and simulation ratio plots pdfs
 for i in range(0,14):
@@ -150,8 +150,8 @@ RootHisttoPdf(outDirectory+pdfnames+"yboostDataandSim.pdf",datayboost,simyboost,
 #create chi pdf
 datachi = dataKinematics.Get("data_chi")
 simchi = simKinematics.Get("chisim_hist")
-RootHisttoPdf(outDirectory+pdfnames+"chiDataandSim.pdf",datachi,simchi,False,"#sigma [pb]","Chi")
+RootHisttoPdf(outDirectory+pdfnames+"chiDataandSim.pdf",datachi,simchi,False,"#sigma [pb]","#chi_{dijet}")
 #create mjj pdf
 datamjj = dataKinematics.Get("data_mjj")
 simmjj = simKinematics.Get("mjjsim_hist")
-RootHisttoPdf(outDirectory+pdfnames+"mjjDataandSim.pdf",datamjj,simmjj,True,"#sigma [pb]","Mjj [GeV]")
+RootHisttoPdf(outDirectory+pdfnames+"mjjDataandSim.pdf",datamjj,simmjj,True,"#sigma [pb]","M_{jj} [GeV]")

@@ -1,7 +1,7 @@
 import ROOT
 import numpy as np
 #takes three hists and turn them into pdf
-def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle):
+def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title):
 
     #Efficiency = ROOT.TEfficiency(data1,data2)
 
@@ -24,17 +24,18 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     canvas = ROOT.TCanvas("canvas")
     canvas.SetCanvasSize(1600,1100)
 
-    legend = ROOT.TLegend(0.6,0.5,0.85,0.65)
+    legend = ROOT.TLegend(0.4,0.5,0.85,0.65)
     legend.SetTextSize(0.02)
     Plot_Efficiency.SetStats(0)
     Plot_Efficiency.SetLineColor(ROOT.kBlack)
     Plot_Efficiency.GetYaxis().SetTitle(yAxisTitle)
     Plot_Efficiency.GetXaxis().SetTitle(xAxisTitle)
     Plot_Efficiency.GetXaxis().SetRangeUser(data1.GetXaxis().GetXmin(),data1.GetXaxis().GetXmax())
-    Plot_Efficiency.SetTitle(title+undertitle)
+    Plot_Efficiency.SetTitle("")
     Plot_Efficiency.SetMarkerStyle(4)
-    legend.AddEntry(Plot_Efficiency,yAxisTitle,"p")
-    legend.AddEntry(fit_func,"Logistic function fit","l")
+    legend.AddEntry(Plot_Efficiency,title,"p")
+    legend.AddEntry(fit_func,"Logistic Fit","l")
+    legend.SetFillStyle(4000)
     legend.SetLineWidth(0)
     #Set font size
     legend.SetTextSize(0.045)
@@ -53,8 +54,6 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     Plot_Efficiency.Draw("AP")
     fit_func.Draw("same")
     legend.Draw("same")
-    canvas.Print(outFileName)
-
 
     y = 0.99
     B = fit_func.GetParameter(0)
@@ -113,6 +112,15 @@ def RootHisttoPdf(outFileName,data1,data2,yAxisTitle,xAxisTitle,title,undertitle
     print("Ndof = "+str(fit_func.GetNDF()))
     print("Chi^2/Ndof = "+str(fit_func.GetChisquare()/fit_func.GetNDF()))
 
+    latex = ROOT.TLatex()
+    latex.SetNDC()
+    latex.SetTextSize(0.035)
+    latex.DrawText(0.6,0.4,"Mjj(99%) = ("+str(int(nineninepercentpoint))+"+-"+str(int(nineninepercentpointErr))+")GeV")
+    latex.SetTextSize(0.035)
+    latex.DrawText(0.6,0.34,"Mjj(99.9%) = ("+str(int(ninenineninepercentpoint))+"+-"+str(int(ninenineninepercentpointErr))+")GeV")
+
+    canvas.Print(outFileName)
+
 
 
 #define directory
@@ -133,4 +141,4 @@ HLT_PFJet550 = HLT_PFJet.Get("HLT_PFJet550")
 
 Ref_HLT_PFJet500 = HLT_PFJet.Get("Ref_HLT_PFJet500")
 
-RootHisttoPdf(outDirectory+"PlottriggerEfficiency_withFit_HLT_PFJet550.pdf",HLT_PFJet550,Ref_HLT_PFJet500,"HLT_PFJet550/HLT_PFJet500","Mjj [GeV]","Run2023B","Trigger Efficiency pt>550")
+RootHisttoPdf(outDirectory+"PlottriggerEfficiency_withFit_HLT_PFJet550.pdf",HLT_PFJet550,Ref_HLT_PFJet500,"Trigger_{Eff}","M_{jj} [GeV]","Run3 B Trigger Efficiency pt>550")

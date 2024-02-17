@@ -1,7 +1,7 @@
 import ROOT
 import numpy as np
 #takes three hists and turn them into pdf
-def RootHisttoPdf(outFileName,data1,logyScale,dataNumber,yAxisTitle,xAxisTitle,title,data2=None,data3=None,dataName="Jet1 data"):
+def RootHisttoPdf(outFileName,data1,logyScale,dataNumber,yAxisTitle,xAxisTitle,legendtitle,data2=None,data3=None):
     canvas = ROOT.TCanvas("canvas")
     canvas.SetCanvasSize(1600,1100)
     if logyScale:
@@ -23,13 +23,15 @@ def RootHisttoPdf(outFileName,data1,logyScale,dataNumber,yAxisTitle,xAxisTitle,t
 	        data3graph.SetPointEXlow(i,0.0)
         legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
         legend.SetLineWidth(0)
-        legend.AddEntry(data1graph,dataName,"p")
-        legend.AddEntry(data2graph,"Jet2 data","p")
-        legend.AddEntry(data3graph,"Jet3 data","p")
+        legend.SetFillStyle(4000)
+        legend.AddEntry(data1graph,legendtitle+"_{1}","p")
+        legend.AddEntry(data2graph,legendtitle+"_{2}","p")
+        legend.AddEntry(data3graph,legendtitle+"_{3}","p")
     else:
         legend = ROOT.TLegend(0.6,0.8,0.85,0.75)
         legend.SetLineWidth(0)
-        legend.AddEntry(data1graph,dataName,"p")
+        legend.SetFillStyle(4000)
+        legend.AddEntry(data1graph,legendtitle,"p")
 
     data1graph.SetStats(0)
     data1graph.SetLineColor(ROOT.kBlack)
@@ -56,7 +58,7 @@ def RootHisttoPdf(outFileName,data1,logyScale,dataNumber,yAxisTitle,xAxisTitle,t
     data1graph.GetYaxis().SetTitle(yAxisTitle)
     data1graph.GetXaxis().SetTitle(xAxisTitle)
     data1graph.GetXaxis().SetRangeUser(data1.GetXaxis().GetXmin(),data1.GetXaxis().GetXmax())
-    data1graph.SetTitle(title)
+    data1graph.SetTitle("")
     #Set font size
     legend.SetTextSize(0.045)
     data1graph.SetMarkerSize(3)
@@ -93,7 +95,8 @@ Jet3 = histFile.Get("Jet3")
 Kinematics = histFile.Get("Kinematics")
 
 JetNameArray = np.array(["pt","y","eta","phi","mass","jec","muf","nhf","chf","area","nemf","cemf","btagDeepFlavB","nConstituents"])
-XaxisArray = np.array(["Pt [GeV]","Y","Eta","Phi","Mass [Gev]","Jec","Muf","Nhf","Chf","Area","Nemf","Cemf","BtagDeepFlavB","NConstituents"])
+XaxisArray = np.array(["P_{t} [GeV]","Y","#eta","#phi","Mass [Gev]","Jec","Muf","Nhf","Chf","Area","Nemf","Cemf","BtagDeepFlavB","NConstituents"])
+LegendArray = np.array(["Pt","Y","#eta","#phi","Mass","Jec","Muf","Nhf","Chf","Area","Nemf","Cemf","BtagDeepFlavB","NConstituents"])
 
 #create Jet pdfs
 for i in range(0,14):
@@ -102,16 +105,16 @@ for i in range(0,14):
     data3 = Jet3.Get("data_"+JetNameArray[i]+"3")
 
     if JetNameArray[i] == "pt" or JetNameArray[i] == "mass":
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+".pdf",data1,True,3,"N",XaxisArray[i],XaxisArray[i]+" values",data2,data3)
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+".pdf",data1,True,3,"N",XaxisArray[i],"Run3 B 2023 "+LegendArray[i],data2,data3)
     else:
-        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+".pdf",data1,False,3,"N",XaxisArray[i],XaxisArray[i]+" values",data2,data3)
+        RootHisttoPdf(outDirectory+pdfnames+JetNameArray[i]+".pdf",data1,False,3,"N",XaxisArray[i],"Run3 B 2023 "+LegendArray[i],data2,data3)
 
 #create yboost pdf
 yboostData = Kinematics.Get("data_yboost")
-RootHisttoPdf(outDirectory+pdfnames+"yboost.pdf",yboostData,False,1,"N","Yboost","Yboost values","Yboost")
+RootHisttoPdf(outDirectory+pdfnames+"yboost.pdf",yboostData,False,1,"N","Y_{boost}","Y_{boost} RunB 3 2023")
 #create chi pdf
 chiData = Kinematics.Get("data_chi")
-RootHisttoPdf(outDirectory+pdfnames+"chi.pdf",chiData,False,1,"N","Chi","Chi values",None,None,"Chi")
+RootHisttoPdf(outDirectory+pdfnames+"chi.pdf",chiData,False,1,"N","#chi_{dijet}","#chi_{dijet} RunB 3 2023")
 #create mjj pdf
 mjjData = Kinematics.Get("data_mjj")
-RootHisttoPdf(outDirectory+pdfnames+"mjj.pdf",mjjData,True,1,"N","Mjj [GeV]","Mjj values",None,None,"Mjj")
+RootHisttoPdf(outDirectory+pdfnames+"mjj.pdf",mjjData,True,1,"N","M_{jj} [GeV]","M_{jj} RunB 3 2023")
