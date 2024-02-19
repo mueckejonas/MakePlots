@@ -77,7 +77,7 @@ def RootHisttoPdf(outFileName,data,simulation,logyScale,yAxisTitle,xAxisTitle):
     ratioDataSimgraph.SetTitle("")
     ratioDataSimgraph.GetYaxis().SetTitle("Data/Simulation")
     ratioDataSimgraph.GetYaxis().SetTitleOffset(0.3)
-    ratioDataSimgraph.GetYaxis().SetNdivisions (207)
+    ratioDataSimgraph.GetYaxis().SetNdivisions(207)
     ratioDataSimgraph.GetXaxis().SetTitle(xAxisTitle)
     ratioDataSimgraph.GetYaxis().SetRangeUser(0.5,1.5)
     ratioDataSimgraph.SetLineColor(ROOT.kRed)

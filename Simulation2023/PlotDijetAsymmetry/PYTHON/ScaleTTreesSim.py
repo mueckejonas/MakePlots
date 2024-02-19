@@ -202,6 +202,8 @@ PtAsymmetrysim_hist.Add(PtAsymmetry1800to2400)
 PtAsymmetrysim_hist.Add(PtAsymmetry2400to3200)
 PtAsymmetrysim_hist.Add(PtAsymmetry3200)
 
+PtAsymmetrysim_hist_Save = PtAsymmetrysim_hist.Clone()
+
 legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
 legend.SetLineWidth(0)
 legend.AddEntry(PtAsymmetrysim_hist,"(Pt1-Pt2)/(Pt1+Pt2)","p")
@@ -241,6 +243,8 @@ PtAsymmetryRawsim_hist.Add(PtAsymmetryRaw1800to2400)
 PtAsymmetryRawsim_hist.Add(PtAsymmetryRaw2400to3200)
 PtAsymmetryRawsim_hist.Add(PtAsymmetryRaw3200)
 
+PtAsymmetryRawsim_hist_Save = PtAsymmetryRawsim_hist.Clone()
+
 legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
 legend.SetLineWidth(0)
 legend.AddEntry(PtAsymmetryRawsim_hist,"(Pt1-Pt2)/(Pt1+Pt2)","p")
@@ -266,6 +270,7 @@ canvas.cd()
 PtAsymmetryNomsim_hist = ROOT.TH1D("PtAsymmetryNomsim_hist","PtAsymmetryNomsim_hist",PtAsymmetryNom3200.GetNbinsX(),PtAsymmetryNom3200.GetXaxis().GetXmin(),PtAsymmetryNom3200.GetXaxis().GetXmax())
 PtAsymmetryNomsim_hist.Sumw2()
 
+
 PtAsymmetryNomsim_hist.Add(PtAsymmetryNom50to80)
 PtAsymmetryNomsim_hist.Add(PtAsymmetryNom80to120)
 PtAsymmetryNomsim_hist.Add(PtAsymmetryNom120to170)
@@ -279,6 +284,8 @@ PtAsymmetryNomsim_hist.Add(PtAsymmetryNom1400to1800)
 PtAsymmetryNomsim_hist.Add(PtAsymmetryNom1800to2400)
 PtAsymmetryNomsim_hist.Add(PtAsymmetryNom2400to3200)
 PtAsymmetryNomsim_hist.Add(PtAsymmetryNom3200)
+
+PtAsymmetryNomsim_hist_Save = PtAsymmetryNomsim_hist.Clone()
 
 legend = ROOT.TLegend(0.7,0.6,0.85,0.75)
 legend.SetLineWidth(0)
@@ -300,7 +307,7 @@ canvas.Clear()
 
 #create and save root file with all added hists
 outHistFile = ROOT.TFile.Open(outRootDirectory+"_Plot_DijetAsymmetry_WithScale_Run32023-15Jan2023_MC.root","RECREATE")
-PtAsymmetrysim_hist.Write()
-PtAsymmetryNomsim_hist.Write()
-PtAsymmetryRawsim_hist.Write()
+PtAsymmetrysim_hist_Save.Write()
+PtAsymmetryRawsim_hist_Save.Write()
+PtAsymmetryNomsim_hist_Save.Write()
 outHistFile.Close()

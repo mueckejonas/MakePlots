@@ -65,7 +65,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     canvas.SetTopMargin(0.1)
     canvas.SetRightMargin(0.05)
     canvas.SetLeftMargin(0.15)
-    hist_graph.Draw("AP")
+    hist_graph.Draw("APZ")
     fit_func.Draw("same")
     FWHMLine.Draw("same")
     legend.Draw("same")
@@ -107,14 +107,14 @@ Eta0to1p3JetResolution800to1000, Eta0to1p3JetResolutionErr800to1000, Eta0to1p3Me
 Eta0to1p3JetResolution1000to1400, Eta0to1p3JetResolutionErr1000to1400, Eta0to1p3MeanResolution1000to1400, Eta0to1p3MeanResolutionErr1000to1400 = CalcResolution(Eta0to1p3Response1000to1400,outDirectory+"Eta0to1p3_Response_Jet1_1000to1400_Run2023.pdf","Events","Eta 0 to 1.3 Response","Eta 0 to 1.3 Response for pt1 1000to1400",10000,0,0.05)
 Eta0to1p3JetResolution1400to1800, Eta0to1p3JetResolutionErr1400to1800, Eta0to1p3MeanResolution1400to1800, Eta0to1p3MeanResolutionErr1400to1800 = CalcResolution(Eta0to1p3Response1400to1800,outDirectory+"Eta0to1p3_Response_Jet1_1400to1800_Run2023.pdf","Events","Eta 0 to 1.3 Response","Eta 0 to 1.3 Response for pt1 1400to1800",2500000,0,0.1)
 Eta0to1p3JetResolution1800to2400, Eta0to1p3JetResolutionErr1800to2400, Eta0to1p3MeanResolution1800to2400, Eta0to1p3MeanResolutionErr1800to2400 = CalcResolution(Eta0to1p3Response1800to2400,outDirectory+"Eta0to1p3_Response_Jet1_1800to2400_Run2023.pdf","Events","Eta 0 to 1.3 Response","Eta 0 to 1.3 Response for pt1 1800to2400",140000,0,0.08)
-Eta0to1p3JetResolution2400to3200, Eta0to1p3JetResolutionErr2400to3200, Eta0to1p3MeanResolution2400to3200, Eta0to1p3MeanResolutionErr2400to3200 = CalcResolution(Eta0to1p3Response2400to3200,outDirectory+"Eta0to1p3_Response_Jet1_2400to3200_Run2023.pdf","Events","Eta 0 to 1.3 Response","Eta 0 to 1.3 Response for pt1 2400to3200",10000,0,0.05)
+Eta0to1p3JetResolution2400to3200, Eta0to1p3JetResolutionErr2400to3200, Eta0to1p3MeanResolution2400to3200, Eta0to1p3MeanResolutionErr2400to3200 = CalcResolution(Eta0to1p3Response2400to3200,outDirectory+"Eta0to1p3_Response_Jet1_2400to3200_Run2023.pdf","Events","Eta 0 to 1.3 Response","Eta 0 to 1.3 Response for pt1 2400to3200",189000,0,0.05)
 Eta0to1p3JetResolution3200, Eta0to1p3JetResolutionErr3200, Eta0to1p3MeanResolution3200, Eta0to1p3MeanResolutionErr3200 = CalcResolution(Eta0to1p3Response3200,outDirectory+"Eta0to1p3_Response_Jet1_3200_Run2023.pdf","Events","Eta 0 to 1.3 Response","Eta 0 to 1.3 Response for pt1 3200",10000,0,0.05)
 
 Eta0to1p3JetResolution = np.array([Eta0to1p3JetResolution50to80,Eta0to1p3JetResolution80to120,Eta0to1p3JetResolution120to170,Eta0to1p3JetResolution170to300,Eta0to1p3JetResolution300to470,Eta0to1p3JetResolution470to600,Eta0to1p3JetResolution600to800,Eta0to1p3JetResolution800to1000,Eta0to1p3JetResolution1000to1400,Eta0to1p3JetResolution1400to1800,Eta0to1p3JetResolution1800to2400,Eta0to1p3JetResolution2400to3200,Eta0to1p3JetResolution3200])
 Eta0to1p3JetResolutionErr = np.array([Eta0to1p3JetResolutionErr50to80,Eta0to1p3JetResolutionErr80to120,Eta0to1p3JetResolutionErr120to170,Eta0to1p3JetResolutionErr170to300,Eta0to1p3JetResolutionErr300to470,Eta0to1p3JetResolutionErr470to600,Eta0to1p3JetResolutionErr600to800,Eta0to1p3JetResolutionErr800to1000,Eta0to1p3JetResolutionErr1000to1400,Eta0to1p3JetResolutionErr1400to1800,Eta0to1p3JetResolutionErr1800to2400,Eta0to1p3JetResolutionErr2400to3200,Eta0to1p3JetResolutionErr3200])
 PtRanges = np.array([(50+80)/2,(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
-PtRangesErrh = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
-PtRangesErrl = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+PtRangesErrh = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
+PtRangesErrl = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
 #Eta0to1p3JetResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
 n = 13
@@ -201,7 +201,7 @@ canvas.SetCanvasSize(1600,1100)
 
 legend.AddEntry(Eta0to1p3JetResolutionGraph,"JetResolution","l")
 
-Eta0to1p3JetResolutionGraph.Draw("AP")
+Eta0to1p3JetResolutionGraph.Draw("APZ")
 legend.Draw("same")
 
 canvas.Print(outDirectory+"Eta0to1p3JetResolutionfromPt1_Run2023Sim.pdf")
@@ -209,8 +209,8 @@ canvas.Print(outDirectory+"Eta0to1p3JetResolutionfromPt1_Run2023Sim.pdf")
 Eta0to1p3MeanResolution = np.array([Eta0to1p3MeanResolution50to80,Eta0to1p3MeanResolution80to120,Eta0to1p3MeanResolution120to170,Eta0to1p3MeanResolution170to300,Eta0to1p3MeanResolution300to470,Eta0to1p3MeanResolution470to600,Eta0to1p3MeanResolution600to800,Eta0to1p3MeanResolution800to1000,Eta0to1p3MeanResolution1000to1400,Eta0to1p3MeanResolution1400to1800,Eta0to1p3MeanResolution1800to2400,Eta0to1p3MeanResolution2400to3200,Eta0to1p3MeanResolution3200])
 Eta0to1p3MeanResolutionErr = np.array([Eta0to1p3MeanResolutionErr50to80,Eta0to1p3MeanResolutionErr80to120,Eta0to1p3MeanResolutionErr120to170,Eta0to1p3MeanResolutionErr170to300,Eta0to1p3MeanResolutionErr300to470,Eta0to1p3MeanResolutionErr470to600,Eta0to1p3MeanResolutionErr600to800,Eta0to1p3MeanResolutionErr800to1000,Eta0to1p3MeanResolutionErr1000to1400,Eta0to1p3MeanResolutionErr1400to1800,Eta0to1p3MeanResolutionErr1800to2400,Eta0to1p3MeanResolutionErr2400to3200,Eta0to1p3MeanResolutionErr3200])
 PtRanges = np.array([(50+80)/2,(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
-PtRangesErrh = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
-PtRangesErrl = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+PtRangesErrh = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
+PtRangesErrl = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
 #Eta0to1p3MeanResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
 n = 13
@@ -297,7 +297,7 @@ canvas.SetCanvasSize(1600,1100)
 
 legend.AddEntry(Eta0to1p3MeanResolutionGraph,"MeanResolution","l")
 
-Eta0to1p3MeanResolutionGraph.Draw("AP")
+Eta0to1p3MeanResolutionGraph.Draw("APZ")
 legend.Draw("same")
 
 canvas.Print(outDirectory+"Eta0to1p3MeanResolutionfromPt1_Run2023Sim.pdf")
@@ -335,9 +335,10 @@ Eta1p3to2p5JetResolution3200, Eta1p3to2p5JetResolutionErr3200, Eta1p3to2p5MeanRe
 Eta1p3to2p5JetResolution = np.array([Eta1p3to2p5JetResolution50to80,Eta1p3to2p5JetResolution80to120,Eta1p3to2p5JetResolution120to170,Eta1p3to2p5JetResolution170to300,Eta1p3to2p5JetResolution300to470,Eta1p3to2p5JetResolution470to600,Eta1p3to2p5JetResolution600to800,Eta1p3to2p5JetResolution800to1000,Eta1p3to2p5JetResolution1000to1400,Eta1p3to2p5JetResolution1400to1800,Eta1p3to2p5JetResolution1800to2400,Eta1p3to2p5JetResolution2400to3200,Eta1p3to2p5JetResolution3200])
 Eta1p3to2p5JetResolutionErr = np.array([Eta1p3to2p5JetResolutionErr50to80,Eta1p3to2p5JetResolutionErr80to120,Eta1p3to2p5JetResolutionErr120to170,Eta1p3to2p5JetResolutionErr170to300,Eta1p3to2p5JetResolutionErr300to470,Eta1p3to2p5JetResolutionErr470to600,Eta1p3to2p5JetResolutionErr600to800,Eta1p3to2p5JetResolutionErr800to1000,Eta1p3to2p5JetResolutionErr1000to1400,Eta1p3to2p5JetResolutionErr1400to1800,Eta1p3to2p5JetResolutionErr1800to2400,Eta1p3to2p5JetResolutionErr2400to3200,Eta1p3to2p5JetResolutionErr3200])
 PtRanges = np.array([(50+80)/2,(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
-PtRangesErrh = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
-PtRangesErrl = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+PtRangesErrh = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
+PtRangesErrl = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
 #Eta1p3to2p5JetResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
+
 
 n = 13
 x = array('d')
@@ -423,7 +424,7 @@ canvas.SetCanvasSize(1600,1100)
 
 legend.AddEntry(Eta1p3to2p5JetResolutionGraph,"JetResolution","l")
 
-Eta1p3to2p5JetResolutionGraph.Draw("AP")
+Eta1p3to2p5JetResolutionGraph.Draw("APZ")
 legend.Draw("same")
 
 canvas.Print(outDirectory+"Eta1p3to2p5JetResolutionfromPt1_Run2023Sim.pdf")
@@ -431,8 +432,8 @@ canvas.Print(outDirectory+"Eta1p3to2p5JetResolutionfromPt1_Run2023Sim.pdf")
 Eta1p3to2p5MeanResolution = np.array([Eta1p3to2p5MeanResolution50to80,Eta1p3to2p5MeanResolution80to120,Eta1p3to2p5MeanResolution120to170,Eta1p3to2p5MeanResolution170to300,Eta1p3to2p5MeanResolution300to470,Eta1p3to2p5MeanResolution470to600,Eta1p3to2p5MeanResolution600to800,Eta1p3to2p5MeanResolution800to1000,Eta1p3to2p5MeanResolution1000to1400,Eta1p3to2p5MeanResolution1400to1800,Eta1p3to2p5MeanResolution1800to2400,Eta1p3to2p5MeanResolution2400to3200,Eta1p3to2p5MeanResolution3200])
 Eta1p3to2p5MeanResolutionErr = np.array([Eta1p3to2p5MeanResolutionErr50to80,Eta1p3to2p5MeanResolutionErr80to120,Eta1p3to2p5MeanResolutionErr120to170,Eta1p3to2p5MeanResolutionErr170to300,Eta1p3to2p5MeanResolutionErr300to470,Eta1p3to2p5MeanResolutionErr470to600,Eta1p3to2p5MeanResolutionErr600to800,Eta1p3to2p5MeanResolutionErr800to1000,Eta1p3to2p5MeanResolutionErr1000to1400,Eta1p3to2p5MeanResolutionErr1400to1800,Eta1p3to2p5MeanResolutionErr1800to2400,Eta1p3to2p5MeanResolutionErr2400to3200,Eta1p3to2p5MeanResolutionErr3200])
 PtRanges = np.array([(50+80)/2,(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
-PtRangesErrh = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
-PtRangesErrl = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+PtRangesErrh = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
+PtRangesErrl = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
 #Eta1p3to2p5MeanResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
 n = 13
@@ -519,7 +520,7 @@ canvas.SetCanvasSize(1600,1100)
 
 legend.AddEntry(Eta1p3to2p5MeanResolutionGraph,"MeanResolution","l")
 
-Eta1p3to2p5MeanResolutionGraph.Draw("AP")
+Eta1p3to2p5MeanResolutionGraph.Draw("APZ")
 legend.Draw("same")
 
 canvas.Print(outDirectory+"Eta1p3to2p5MeanResolutionfromPt1_Run2023Sim.pdf")
@@ -558,8 +559,8 @@ Eta2p5to3JetResolution3200, Eta2p5to3JetResolutionErr3200, Eta2p5to3MeanResoluti
 Eta2p5to3JetResolution = np.array([Eta2p5to3JetResolution50to80,Eta2p5to3JetResolution80to120,Eta2p5to3JetResolution120to170,Eta2p5to3JetResolution170to300,Eta2p5to3JetResolution300to470,Eta2p5to3JetResolution470to600,Eta2p5to3JetResolution600to800,Eta2p5to3JetResolution800to1000,Eta2p5to3JetResolution1000to1400,Eta2p5to3JetResolution1400to1800,Eta2p5to3JetResolution1800to2400,Eta2p5to3JetResolution2400to3200,Eta2p5to3JetResolution3200])
 Eta2p5to3JetResolutionErr = np.array([Eta2p5to3JetResolutionErr50to80,Eta2p5to3JetResolutionErr80to120,Eta2p5to3JetResolutionErr120to170,Eta2p5to3JetResolutionErr170to300,Eta2p5to3JetResolutionErr300to470,Eta2p5to3JetResolutionErr470to600,Eta2p5to3JetResolutionErr600to800,Eta2p5to3JetResolutionErr800to1000,Eta2p5to3JetResolutionErr1000to1400,Eta2p5to3JetResolutionErr1400to1800,Eta2p5to3JetResolutionErr1800to2400,Eta2p5to3JetResolutionErr2400to3200,Eta2p5to3JetResolutionErr3200])
 PtRanges = np.array([(50+80)/2,(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
-PtRangesErrh = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
-PtRangesErrl = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+PtRangesErrh = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
+PtRangesErrl = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
 #Eta2p5to3JetResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
 n = 13
@@ -646,7 +647,7 @@ canvas.SetCanvasSize(1600,1100)
 
 legend.AddEntry(Eta2p5to3JetResolutionGraph,"JetResolution","l")
 
-Eta2p5to3JetResolutionGraph.Draw("AP")
+Eta2p5to3JetResolutionGraph.Draw("APZ")
 legend.Draw("same")
 
 canvas.Print(outDirectory+"Eta2p5to3JetResolutionfromPt1_Run2023Sim.pdf")
@@ -654,8 +655,8 @@ canvas.Print(outDirectory+"Eta2p5to3JetResolutionfromPt1_Run2023Sim.pdf")
 Eta2p5to3MeanResolution = np.array([Eta2p5to3MeanResolution50to80,Eta2p5to3MeanResolution80to120,Eta2p5to3MeanResolution120to170,Eta2p5to3MeanResolution170to300,Eta2p5to3MeanResolution300to470,Eta2p5to3MeanResolution470to600,Eta2p5to3MeanResolution600to800,Eta2p5to3MeanResolution800to1000,Eta2p5to3MeanResolution1000to1400,Eta2p5to3MeanResolution1400to1800,Eta2p5to3MeanResolution1800to2400,Eta2p5to3MeanResolution2400to3200,Eta2p5to3MeanResolution3200])
 Eta2p5to3MeanResolutionErr = np.array([Eta2p5to3MeanResolutionErr50to80,Eta2p5to3MeanResolutionErr80to120,Eta2p5to3MeanResolutionErr120to170,Eta2p5to3MeanResolutionErr170to300,Eta2p5to3MeanResolutionErr300to470,Eta2p5to3MeanResolutionErr470to600,Eta2p5to3MeanResolutionErr600to800,Eta2p5to3MeanResolutionErr800to1000,Eta2p5to3MeanResolutionErr1000to1400,Eta2p5to3MeanResolutionErr1400to1800,Eta2p5to3MeanResolutionErr1800to2400,Eta2p5to3MeanResolutionErr2400to3200,Eta2p5to3MeanResolutionErr3200])
 PtRanges = np.array([(50+80)/2,(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
-PtRangesErrh = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
-PtRangesErrl = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+PtRangesErrh = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
+PtRangesErrl = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
 #Eta2p5to3MeanResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
 n = 13
@@ -742,7 +743,7 @@ canvas.SetCanvasSize(1600,1100)
 
 legend.AddEntry(Eta2p5to3MeanResolutionGraph,"MeanResolution","l")
 
-Eta2p5to3MeanResolutionGraph.Draw("AP")
+Eta2p5to3MeanResolutionGraph.Draw("APZ")
 legend.Draw("same")
 
 canvas.Print(outDirectory+"Eta2p5to3MeanResolutionfromPt1_Run2023Sim.pdf")
@@ -780,8 +781,8 @@ Eta3to5JetResolution3200, Eta3to5JetResolutionErr3200, Eta3to5MeanResolution3200
 Eta3to5JetResolution = np.array([Eta3to5JetResolution50to80,Eta3to5JetResolution80to120,Eta3to5JetResolution120to170,Eta3to5JetResolution170to300,Eta3to5JetResolution300to470,Eta3to5JetResolution470to600,Eta3to5JetResolution600to800,Eta3to5JetResolution800to1000,Eta3to5JetResolution1000to1400,Eta3to5JetResolution1400to1800,Eta3to5JetResolution1800to2400,Eta3to5JetResolution2400to3200,Eta3to5JetResolution3200])
 Eta3to5JetResolutionErr = np.array([Eta3to5JetResolutionErr50to80,Eta3to5JetResolutionErr80to120,Eta3to5JetResolutionErr120to170,Eta3to5JetResolutionErr170to300,Eta3to5JetResolutionErr300to470,Eta3to5JetResolutionErr470to600,Eta3to5JetResolutionErr600to800,Eta3to5JetResolutionErr800to1000,Eta3to5JetResolutionErr1000to1400,Eta3to5JetResolutionErr1400to1800,Eta3to5JetResolutionErr1800to2400,Eta3to5JetResolutionErr2400to3200,Eta3to5JetResolutionErr3200])
 PtRanges = np.array([(50+80)/2,(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
-PtRangesErrh = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
-PtRangesErrl = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+PtRangesErrh = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
+PtRangesErrl = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
 #Eta3to5JetResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
 n = 13
@@ -868,7 +869,7 @@ canvas.SetCanvasSize(1600,1100)
 
 legend.AddEntry(Eta3to5JetResolutionGraph,"JetResolution","l")
 
-Eta3to5JetResolutionGraph.Draw("AP")
+Eta3to5JetResolutionGraph.Draw("APZ")
 legend.Draw("same")
 
 canvas.Print(outDirectory+"Eta3to5JetResolutionfromPt1_Run2023Sim.pdf")
@@ -876,8 +877,8 @@ canvas.Print(outDirectory+"Eta3to5JetResolutionfromPt1_Run2023Sim.pdf")
 Eta3to5MeanResolution = np.array([Eta3to5MeanResolution50to80,Eta3to5MeanResolution80to120,Eta3to5MeanResolution120to170,Eta3to5MeanResolution170to300,Eta3to5MeanResolution300to470,Eta3to5MeanResolution470to600,Eta3to5MeanResolution600to800,Eta3to5MeanResolution800to1000,Eta3to5MeanResolution1000to1400,Eta3to5MeanResolution1400to1800,Eta3to5MeanResolution1800to2400,Eta3to5MeanResolution2400to3200,Eta3to5MeanResolution3200])
 Eta3to5MeanResolutionErr = np.array([Eta3to5MeanResolutionErr50to80,Eta3to5MeanResolutionErr80to120,Eta3to5MeanResolutionErr120to170,Eta3to5MeanResolutionErr170to300,Eta3to5MeanResolutionErr300to470,Eta3to5MeanResolutionErr470to600,Eta3to5MeanResolutionErr600to800,Eta3to5MeanResolutionErr800to1000,Eta3to5MeanResolutionErr1000to1400,Eta3to5MeanResolutionErr1400to1800,Eta3to5MeanResolutionErr1800to2400,Eta3to5MeanResolutionErr2400to3200,Eta3to5MeanResolutionErr3200])
 PtRanges = np.array([(50+80)/2,(80+120)/2,(120+170)/2,(170+300)/2,(300+470)/2,(470+600)/2,(600+800)/2,(800+1000)/2,(1000+1400)/2,(1400+1800)/2,(1800+2400)/2,(2400+3200)/2,3500])
-PtRangesErrh = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
-PtRangesErrl = np.array([30/2,50/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
+PtRangesErrh = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,300])
+PtRangesErrl = np.array([30/2,40/2,50/2,130/2,170/2,130/2,200/2,200/2,400/2,400/2,600/2,800/2,0])
 #Eta3to5MeanResolutionLabels = np.array(["170to300","300to470","470to600","600to800","800to1000","1000to1400","1400to1800","1800to2400","2400to3200","<3200"])
 
 n = 13
@@ -964,7 +965,7 @@ canvas.SetCanvasSize(1600,1100)
 
 legend.AddEntry(Eta3to5MeanResolutionGraph,"MeanResolution","l")
 
-Eta3to5MeanResolutionGraph.Draw("AP")
+Eta3to5MeanResolutionGraph.Draw("APZ")
 legend.Draw("same")
 
 canvas.Print(outDirectory+"Eta3to5MeanResolutionfromPt1_Run2023Sim.pdf")
