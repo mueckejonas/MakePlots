@@ -3,7 +3,7 @@ import numpy as np
 
 inDirectory ="/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2023/RootS2023/"
 outDirectory ="/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2023/Pdf/"
-outRootDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2023/RootS2023"
+outRootDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2023/RootS2023/"
 pdfnames = "PlotSimulation_Run32023_MC_All_OldJec"
 
 #load tree data
@@ -4050,10 +4050,8 @@ canvas.Print(outDirectory+pdfnames+"yboostsimulation.pdf")
 canvas.Clear()
 
 #create and save root file with all added hists
-outHistFile = ROOT.TFile.Open(outRootDirectory+"_PlotSimulation_WithScale_Run32023_MC.root","RECREATE")
+outHistFile = ROOT.TFile.Open(outRootDirectory+"_PlotSimulation_WithScale_Run32023_MC_OldJEC.root","RECREATE")
 #Write simJet1 to Root
-outHistFile.mkdir("Jet1")
-outHistFile.cd("Jet1")
 pt1sim_hist.Write()
 y1sim_hist.Write()
 eta1sim_hist.Write()
@@ -4069,8 +4067,6 @@ cemf1sim_hist.Write()
 btagDeepFlavB1sim_hist.Write()
 nConstituents1sim_hist.Write()
 #Write simJet2 to Root
-outHistFile.mkdir("Jet2")
-outHistFile.cd("Jet2")
 pt2sim_hist.Write()
 y2sim_hist.Write()
 eta2sim_hist.Write()
@@ -4086,8 +4082,6 @@ cemf2sim_hist.Write()
 btagDeepFlavB2sim_hist.Write()
 nConstituents2sim_hist.Write()
 #Write simJet3 to Root
-outHistFile.mkdir("Jet3")
-outHistFile.cd("Jet3")
 pt3sim_hist.Write()
 y3sim_hist.Write()
 eta3sim_hist.Write()
@@ -4103,8 +4097,6 @@ cemf3sim_hist.Write()
 btagDeepFlavB3sim_hist.Write()
 nConstituents3sim_hist.Write()
 #Write simjet quantities to Root
-outHistFile.mkdir("Kinematics")
-outHistFile.cd("Kinematics")
 mjjsim_hist.Write()
 yboostsim_hist.Write()
 chisim_hist.Write()
