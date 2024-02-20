@@ -7,9 +7,6 @@ euler_num = 2.718281828459045
 
 #takes three hists and turn them into pdf
 def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,param3):
-
-
-
     Fit_Range = abs(minimize_fit_func.GetParameter(2))
 
     #fit and calculate FWHM
