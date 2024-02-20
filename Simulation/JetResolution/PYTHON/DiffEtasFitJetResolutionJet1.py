@@ -10,10 +10,10 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
 
     #fit and calculate FWHM
     fit_template = "[0]*exp(-(x-[1])**2/(2*[2]**2))"
-    fit_func = ROOT.TF1("fit_func",fit_template,-0.4,0.4)
-    fit_func.SetParameter(0,param1)
-    fit_func.SetParameter(1,param2)
-    fit_func.SetParameter(2,param3)
+    fit_func = ROOT.TF1("fit_func",fit_template,-1.5*hist.GetStdDev()+hist.GetMean(),1.5*hist.GetStdDev()+hist.GetMean())
+    fit_func.FixParameter(0,hist.GetMaximum())
+    fit_func.SetParameter(1,hist.GetMean())
+    fit_func.SetParameter(2,hist.GetStdDev())
     fit_hist = hist.Clone()
     fit_hist.Fit(fit_func,"E")
 
@@ -38,7 +38,8 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     FWHMLine.SetLineColor(ROOT.kBlack)
     FWHMLine.SetLineWidth(2)
 
-    legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
+    legend = ROOT.TLegend(0.6,0.2,0.85,0.35)
+    legend.SetFillStyle(4000)
     legend.SetLineWidth(0)
 
     hist_graph.SetStats(0)
@@ -46,11 +47,11 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     hist_graph.SetLineWidth(2)
     hist_graph.GetYaxis().SetTitle(yAxisTitle)
     hist_graph.GetXaxis().SetTitle(xAxisTitle)
-    hist_graph.GetXaxis().SetRangeUser(hist.GetXaxis().GetXmin(),hist.GetXaxis().GetXmax())
+    hist_graph.GetXaxis().SetRangeUser(-1.5*hist.GetStdDev()+hist.GetMean(),1.5*hist.GetStdDev()+hist.GetMean())
     hist_graph.SetTitle(title)
     legend.AddEntry(hist_graph,"Response","p")
     legend.AddEntry(fit_func,"Gauss Fit","l")
-    legend.AddEntry(FWHMLine,"Sigma "+"("+str(round(C*100,2))+"+-"+str(round(CErr*100,6))+")"+"%","l")
+    legend.AddEntry(FWHMLine,"Sigma "+"("+str(abs(round(C*100,2)))+"+-"+str(abs(round(CErr*100,1)))+")"+"%","l")
     #Set font size
     legend.SetTextSize(0.045)
     hist_graph.SetMarkerSize(3)

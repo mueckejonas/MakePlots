@@ -8,9 +8,20 @@ euler_num = 2.718281828459045
 #takes three hists and turn them into pdf
 def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,param3):
 
+    #first fit to minimize fit range
+    minimize_fit_template = "[0]*exp(-(x-[1])**2/(2*[2]**2))"
+    minimize_fit_func = ROOT.TF1("minimize_fit_func",minimize_fit_template,-0.4,0.4)
+    minimize_fit_func.SetParameter(0,param1)
+    minimize_fit_func.SetParameter(1,param2)
+    minimize_fit_func.SetParameter(2,param3)
+    minimize_fit_hist = hist.Clone()
+    minimize_fit_hist.Fit(minimize_fit_func,"E")
+
+    Fit_Range = abs(minimize_fit_func.GetParameter(2))
+
     #fit and calculate FWHM
     fit_template = "[0]*exp(-(x-[1])**2/(2*[2]**2))"
-    fit_func = ROOT.TF1("fit_func",fit_template,-0.4,0.4)
+    fit_func = ROOT.TF1("fit_func",fit_template,-1.5*Fit_Range,1.5*Fit_Range)
     fit_func.SetParameter(0,param1)
     fit_func.SetParameter(1,param2)
     fit_func.SetParameter(2,param3)
@@ -38,7 +49,8 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     FWHMLine.SetLineColor(ROOT.kBlack)
     FWHMLine.SetLineWidth(2)
 
-    legend = ROOT.TLegend(0.6,0.7,0.85,0.85)
+    legend = ROOT.TLegend(0.6,0.2,0.85,0.35)
+    legend.SetFillStyle(4000)
     legend.SetLineWidth(0)
 
     hist_graph.SetStats(0)
@@ -46,11 +58,11 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     hist_graph.SetLineWidth(2)
     hist_graph.GetYaxis().SetTitle(yAxisTitle)
     hist_graph.GetXaxis().SetTitle(xAxisTitle)
-    hist_graph.GetXaxis().SetRangeUser(hist.GetXaxis().GetXmin(),hist.GetXaxis().GetXmax())
+    hist_graph.GetXaxis().SetRangeUser(-1.5*Fit_Range,1.5*Fit_Range)
     hist_graph.SetTitle(title)
     legend.AddEntry(hist_graph,"Response","p")
     legend.AddEntry(fit_func,"Gauss Fit","l")
-    legend.AddEntry(FWHMLine,"Sigma "+"("+str(round(C*100,2))+"+-"+str(round(CErr*100,6))+")"+"%","l")
+    legend.AddEntry(FWHMLine,"Sigma "+"("+str(abs(round(C*100,2)))+"+-"+str(abs(round(CErr*100,1)))+")"+"%","l")
     #Set font size
     legend.SetTextSize(0.045)
     hist_graph.SetMarkerSize(3)
@@ -972,11 +984,11 @@ canvas.Print(outDirectory+"Eta3to5MeanResolutionfromPt3_Run2023Sim.pdf")
 #create and save root file with all added hists
 outHistFile = ROOT.TFile.Open("/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim/RootS/FitJetResolutionJet3_DiffEtas.root","RECREATE")
 Eta0to1p3SaveJetResolutionGraph.Write()
-Eta2p5to3SaveJetResolutionGraph.Write()
+Eta1p3to2p5SaveJetResolutionGraph.Write()
 Eta2p5to3SaveJetResolutionGraph.Write()
 Eta3to5SaveJetResolutionGraph.Write()
 Eta0to1p3SaveMeanResolutionGraph.Write()
-Eta2p5to3SaveMeanResolutionGraph.Write()
+Eta1p3to2p5SaveMeanResolutionGraph.Write()
 Eta2p5to3SaveMeanResolutionGraph.Write()
 Eta3to5SaveMeanResolutionGraph.Write()
 outHistFile.Close()

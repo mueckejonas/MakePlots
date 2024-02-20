@@ -1,12 +1,12 @@
 import ROOT
 import numpy as np
 #takes three hists and turn them into pdf
-def RootHisttoPdf(outFileName,sim2018,sim2023,yAxisTitle,xAxisTitle,title,xmin,xmax,ymax=0.1):
+def RootHisttoPdf(outFileName,sim2018,sim2023,yAxisTitle,xAxisTitle,title,xmin,xmax,ymax=0.3):
     canvas = ROOT.TCanvas("canvas")
     canvas.SetCanvasSize(1600,1100)
     canvas.SetLogx()
 
-    legend = ROOT.TLegend(0.6,0.6,0.85,0.85)
+    legend = ROOT.TLegend(0.2,0.2,0.45,0.45)
     legend.SetTextSize(0.07)
     legend.SetLineWidth(0)
     legend.SetFillStyle(4000)
@@ -14,7 +14,7 @@ def RootHisttoPdf(outFileName,sim2018,sim2023,yAxisTitle,xAxisTitle,title,xmin,x
     sim2018.SetStats(0)
     sim2018.SetLineColor(ROOT.kBlack)
     sim2018.SetLineWidth(2)
-    sim2018.SetTitle(title)
+    sim2018.SetTitle("")
     sim2018.GetYaxis().SetTitle(yAxisTitle)
     sim2018.SetMarkerColor(ROOT.kBlack)
     sim2018.SetMarkerStyle(33)
@@ -28,8 +28,8 @@ def RootHisttoPdf(outFileName,sim2018,sim2023,yAxisTitle,xAxisTitle,title,xmin,x
     sim2023.SetMarkerStyle(33)
     sim2023.SetLineColor(ROOT.kBlue)
 
-    legend.AddEntry(sim2018,"2018 Sim","p")
-    legend.AddEntry(sim2023,"2023 Sim","p")
+    legend.AddEntry(sim2018,title+" Run2 2018 MC","p")
+    legend.AddEntry(sim2023,title+" Run3 2023 MC","p")
 
     #Set font size
     sim2018.SetMarkerSize(3)
@@ -45,13 +45,13 @@ def RootHisttoPdf(outFileName,sim2018,sim2023,yAxisTitle,xAxisTitle,title,xmin,x
     sim2018.GetXaxis().SetTitleSize(0.07)
     sim2018.GetXaxis().SetTitle(xAxisTitle)
 
-    sim2018.Draw("AP")
-    sim2023.Draw("P same")
+    sim2018.Draw("APZ")
+    sim2023.Draw("PZ same")
     legend.Draw("same")
 
     #draw whole plot
     canvas.SetBottomMargin(0.15)
-    canvas.SetTopMargin(0.1)
+    canvas.SetTopMargin(0.05)
     canvas.SetRightMargin(0.05)
     canvas.SetLeftMargin(0.15)
     canvas.Draw()
@@ -71,52 +71,58 @@ rootFile2018Jet1 = ROOT.TFile.Open(inDirectory2018+"FitJetResolutionJet1_DiffEta
 #eta 0 to 1.3
 Jet1eta0to1p3ResolutionGraph2023 = rootFile2023Jet1.Get("Eta0to1p3JetResolutionGraph")
 Jet1eta0to1p3ResolutionGraph2018 = rootFile2018Jet1.Get("Eta0to1p3JetResolutionGraph")
-RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta0to1p3_sim2018and2023.pdf",Jet1eta0to1p3ResolutionGraph2018,Jet1eta0to1p3ResolutionGraph2023,"Jet Resolution","Pt [GeV]","Jet1 Eta 0 to 1.3 Resolution for MC 2018 and 2023",170,3200)
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta0to1p3_sim2018and2023.pdf",Jet1eta0to1p3ResolutionGraph2018,Jet1eta0to1p3ResolutionGraph2023,"Jet Resolution","P_{t1} [GeV]","#eta 0-1.3",50,3500)
 #eta 1.3 to 2.5
 Jet1eta1p3to2p5ResolutionGraph2023 = rootFile2023Jet1.Get("Eta1p3to2p5JetResolutionGraph")
 Jet1eta1p3to2p5ResolutionGraph2018 = rootFile2018Jet1.Get("Eta1p3to2p5JetResolutionGraph")
-RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta1p3to2p5_sim2018and2023.pdf",Jet1eta1p3to2p5ResolutionGraph2018,Jet1eta1p3to2p5ResolutionGraph2023,"Jet Resolution","Pt [GeV]","Jet1 Eta 1.3 to 2.5 Resolution for MC 2018 and 2023",170,2400)
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta1p3to2p5_sim2018and2023.pdf",Jet1eta1p3to2p5ResolutionGraph2018,Jet1eta1p3to2p5ResolutionGraph2023,"Jet Resolution","P_{t1} [GeV]","#eta 1.3-2.5",50,3500)
 #eta 2.5 to 3
 Jet1eta2p5to3ResolutionGraph2023 = rootFile2023Jet1.Get("Eta2p5to3JetResolutionGraph")
 Jet1eta2p5to3ResolutionGraph2018 = rootFile2018Jet1.Get("Eta2p5to3JetResolutionGraph")
-RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta2p5to3_sim2018and2023.pdf",Jet1eta2p5to3ResolutionGraph2018,Jet1eta2p5to3ResolutionGraph2023,"Jet Resolution","Pt [GeV]","Jet1 Eta 2.5 to 3 Resolution for MC 2018 and 2023",170,1000)
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta2p5to3_sim2018and2023.pdf",Jet1eta2p5to3ResolutionGraph2018,Jet1eta2p5to3ResolutionGraph2023,"Jet Resolution","P_{t1} [GeV]","#eta 2.5-3",50,3500)
 #eta 3 to 5
-#Jet1eta0to1p3ResolutionGraph2023 = rootFile2023Jet1.Get("Eta0to1p3JetResolutionGraph")
-#Jet1eta0to1p3ResolutionGraph2018 = rootFile2018Jet1.Get("Eta0to1p3JetResolutionGraph")
-
+#Jet1eta3to5ResolutionGraph2023 = rootFile2023Jet1.Get("Eta3to5JetResolutionGraph")
+#Jet1eta3to5ResolutionGraph2018 = rootFile2018Jet1.Get("Eta3to5JetResolutionGraph")
+#RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta3to5_sim2018and2023.pdf",Jet1eta3to5ResolutionGraph2018,Jet1eta3to5ResolutionGraph2023,"Jet Resolution","P_{t1} [GeV]","#eta 3-5",)
 
 #load and plot Jet2 Data
 #define directory
-#rootFile2023Jet2 = ROOT.TFile.Open(inDirectory2023+"FitJetResolutionJet2_DiffEtas.root","READ")
-#rootFile2018Jet2 = ROOT.TFile.Open(inDirectory2018+"FitJetResolutionJet2_DiffEtas.root","READ")
+rootFile2023Jet2 = ROOT.TFile.Open(inDirectory2023+"FitJetResolutionJet2_DiffEtas.root","READ")
+rootFile2018Jet2 = ROOT.TFile.Open(inDirectory2018+"FitJetResolutionJet2_DiffEtas.root","READ")
 #eta 0 to 1.3
-#Jet2eta0to1p3ResolutionGraph2023 = rootFile2023Jet2.Get("Eta0to1p3JetResolutionGraph")
-#Jet2eta0to1p3ResolutionGraph2018 = rootFile2018Jet2.Get("Eta0to1p3JetResolutionGraph")
-#RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta0to1p3_sim2018and2023.pdf",Jet2eta0to1p3ResolutionGraph2018,Jet2eta0to1p3ResolutionGraph2023,"Jet Resolution","Pt [GeV]","Jet2 Eta 0 to 1.3 Resolution for MC 2018 and 2023")
+Jet2eta0to1p3ResolutionGraph2023 = rootFile2023Jet2.Get("Eta0to1p3JetResolutionGraph")
+Jet2eta0to1p3ResolutionGraph2018 = rootFile2018Jet2.Get("Eta0to1p3JetResolutionGraph")
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta0to1p3_sim2018and2023.pdf",Jet2eta0to1p3ResolutionGraph2018,Jet2eta0to1p3ResolutionGraph2023,"Jet Resolution","P_{t2} [GeV]","#eta 0-1.3",170,3500,0.1)
 #eta 1.3 to 2.5
-#Jet2eta1p3to2p5ResolutionGraph2023 = rootFile2023Jet2.Get("Eta1p3to2p5JetResolutionGraph")
-#Jet2eta1p3to2p5ResolutionGraph2018 = rootFile2018Jet2.Get("Eta1p3to2p5JetResolutionGraph")
-#RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta1p3to2p5_sim2018and2023.pdf",Jet2eta1p3to2p5ResolutionGraph2018,Jet2eta1p3to2p5ResolutionGraph2023,"Jet Resolution","Pt [GeV]","Jet2 Eta 1.3 to 2.5 Resolution for MC 2018 and 2023")
+Jet2eta1p3to2p5ResolutionGraph2023 = rootFile2023Jet2.Get("Eta1p3to2p5JetResolutionGraph")
+Jet2eta1p3to2p5ResolutionGraph2018 = rootFile2018Jet2.Get("Eta1p3to2p5JetResolutionGraph")
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta1p3to2p5_sim2018and2023.pdf",Jet2eta1p3to2p5ResolutionGraph2018,Jet2eta1p3to2p5ResolutionGraph2023,"Jet Resolution","P_{t2} [GeV]","#eta 1.3-2.5",50,3500)
 #eta 2.5 to 3
-#Jet2eta0to1p3ResolutionGraph2023 = rootFile2023Jet2.Get("Eta0to1p3JetResolutionGraph")
-#Jet2eta0to1p3ResolutionGraph2018 = rootFile2018Jet2.Get("Eta0to1p3JetResolutionGraph")
+Jet2eta2p5to3ResolutionGraph2023 = rootFile2023Jet2.Get("Eta2p5to3JetResolutionGraph")
+Jet2eta2p5to3ResolutionGraph2018 = rootFile2018Jet2.Get("Eta2p5to3JetResolutionGraph")
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta2p5to3_sim2018and2023.pdf",Jet2eta2p5to3ResolutionGraph2018,Jet2eta2p5to3ResolutionGraph2023,"Jet Resolution","P_{t2} [GeV]","#eta 2.5-3",50,3500)
 #eta 3 to 5
-#Jet2eta0to1p3ResolutionGraph2023 = rootFile2023Jet2.Get("Eta0to1p3JetResolutionGraph")
-#Jet2eta0to1p3ResolutionGraph2018 = rootFile2018Jet2.Get("Eta0to1p3JetResolutionGraph")
+#Jet2eta3to5ResolutionGraph2023 = rootFile2023Jet2.Get("Eta3to5JetResolutionGraph")
+#Jet2eta3to5ResolutionGraph2018 = rootFile2018Jet2.Get("Eta3to5JetResolutionGraph")
+#RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta3to5_sim2018and2023.pdf",Jet2eta3to5ResolutionGraph2018,Jet2eta3to5ResolutionGraph2023,"Jet Resolution","P_{t2} [GeV]","#eta 3-5",0,3200)
 
 #load and plot Jet3 Data
 #define directory
-#rootFile2023Jet3 = ROOT.TFile.Open(inDirectory2023+"FitJetResolutionJet3_DiffEtas.root","READ")
-#rootFile2018Jet3 = ROOT.TFile.Open(inDirectory2018+"FitJetResolutionJet3_DiffEtas.root","READ")
+rootFile2023Jet3 = ROOT.TFile.Open(inDirectory2023+"FitJetResolutionJet3_DiffEtas.root","READ")
+rootFile2018Jet3 = ROOT.TFile.Open(inDirectory2018+"FitJetResolutionJet3_DiffEtas.root","READ")
 #eta 0 to 1.3
-#Jet3eta0to1p3ResolutionGraph2023 = rootFile2023Jet3.Get("Eta0to1p3JetResolutionGraph")
-#Jet3eta0to1p3ResolutionGraph2018 = rootFile2018Jet3.Get("Eta0to1p3JetResolutionGraph")
+Jet3eta0to1p3ResolutionGraph2023 = rootFile2023Jet3.Get("Eta0to1p3JetResolutionGraph")
+Jet3eta0to1p3ResolutionGraph2018 = rootFile2018Jet3.Get("Eta0to1p3JetResolutionGraph")
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet3_Eta0to1p3_sim2018and2023.pdf",Jet3eta0to1p3ResolutionGraph2018,Jet3eta0to1p3ResolutionGraph2023,"Jet Resolution","P_{t3} [GeV]","#eta 0-1.3",50,3500)
 #eta 1.3 to 2.5
-#Jet3eta0to1p3ResolutionGraph2023 = rootFile2023Jet3.Get("Eta0to1p3JetResolutionGraph")
-#Jet3eta0to1p3ResolutionGraph2018 = rootFile2018Jet3.Get("Eta0to1p3JetResolutionGraph")
+Jet3eta1p3to2p5ResolutionGraph2023 = rootFile2023Jet3.Get("Eta1p3to2p5JetResolutionGraph")
+Jet3eta1p3to2p5ResolutionGraph2018 = rootFile2018Jet3.Get("Eta1p3to2p5JetResolutionGraph")
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet3_Eta1p3to2p5_sim2018and2023.pdf",Jet3eta1p3to2p5ResolutionGraph2018,Jet3eta1p3to2p5ResolutionGraph2023,"Jet Resolution","P_{t3} [GeV]","#eta 1.3-2.5",50,3500)
 #eta 2.5 to 3
-#Jet3eta0to1p3ResolutionGraph2023 = rootFile2023Jet3.Get("Eta0to1p3JetResolutionGraph")
-#Jet3eta0to1p3ResolutionGraph2018 = rootFile2018Jet3.Get("Eta0to1p3JetResolutionGraph")
+Jet3eta2p5to3ResolutionGraph2023 = rootFile2023Jet3.Get("Eta2p5to3JetResolutionGraph")
+Jet3eta2p5to3ResolutionGraph2018 = rootFile2018Jet3.Get("Eta2p5to3JetResolutionGraph")
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet3_Eta2p5to3_sim2018and2023.pdf",Jet3eta2p5to3ResolutionGraph2018,Jet3eta2p5to3ResolutionGraph2023,"Jet Resolution","P_{t3} [GeV]","#eta 2.5-3",50,3500)
 #eta 3 to 5
-#Jet3eta0to1p3ResolutionGraph2023 = rootFile2023Jet3.Get("Eta0to1p3JetResolutionGraph")
-#Jet3eta0to1p3ResolutionGraph2018 = rootFile2018Jet3.Get("Eta0to1p3JetResolutionGraph")
+Jet3eta3to5ResolutionGraph2023 = rootFile2023Jet3.Get("Eta3to5JetResolutionGraph")
+Jet3eta3to5ResolutionGraph2018 = rootFile2018Jet3.Get("Eta3to5JetResolutionGraph")
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet3_Eta3to5_sim2018and2023.pdf",Jet3eta3to5ResolutionGraph2018,Jet3eta3to5ResolutionGraph2023,"Jet Resolution","P_{t3} [GeV]","#eta 3-5",50,3500)
