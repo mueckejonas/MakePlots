@@ -1,7 +1,7 @@
 import ROOT
 import numpy as np
 #takes three hists and turn them into pdf
-def RootHisttoPdf(outFileName,normal,raw,nom,yAxisTitle,xAxisTitle):
+def RootHisttoPdf(outFileName,normal,raw,nom,yAxisTitle,xAxisTitle,title):
     canvas = ROOT.TCanvas("canvas")
     canvas.SetCanvasSize(1600,1100)
     canvas.SetBottomMargin(0.18)
@@ -60,9 +60,9 @@ def RootHisttoPdf(outFileName,normal,raw,nom,yAxisTitle,xAxisTitle):
     normalgraph.GetYaxis().SetTitleSize(0.08)
     normalgraph.GetYaxis().SetTitleOffset(0.8)
 
-    legend.AddEntry(normalgraph,"Dijet Asymm old JEC","p")
-    legend.AddEntry(rawgraph,"Dijet Asymm no JEC","p")
-    legend.AddEntry(nomgraph,"Dijet Asymm new JEC","p")
+    legend.AddEntry(normalgraph,title+" old JEC","p")
+    legend.AddEntry(rawgraph,title+" no JEC","p")
+    legend.AddEntry(nomgraph,title+" new JEC","p")
 
     normalgraph.Draw("AP")
     rawgraph.Draw("P same")
@@ -77,9 +77,33 @@ outDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/
 #define directory
 inDirectory = "/home/jmuecke/code/mueckejonas/BachelorArbeitJM/BachelorStorage/Sim2023/RootS2023/"
 rootFile = ROOT.TFile.Open(inDirectory+"_Plot_DijetAsymmetry_WithScale_Run32023-15Jan2023_MC.root","READ")
+
+#create PtAsymmetry compare hists pdf
 PtAsymmetryNom = rootFile.Get("PtAsymmetryNomsim_hist")
 PtAsymmetryRaw = rootFile.Get("PtAsymmetryRawsim_hist")
 PtAsymmetry = rootFile.Get("PtAsymmetrysim_hist")
+RootHisttoPdf(outDirectory+"PlotDijetAsymmetry_Jan2023_AllRuns.pdf",PtAsymmetry,PtAsymmetryRaw,PtAsymmetryNom,"#sigma [pb]","P_{t1}-P_{t2}/P_{t1}+P_{t2}","Dijet Asymm")
 
-#create PtAsymmetry compare hists pdf
-RootHisttoPdf(outDirectory+"PlotDijetAsymmetry_Jan2023_AllRuns.pdf",PtAsymmetry,PtAsymmetryRaw,PtAsymmetryNom,"#sigma [pb]","P_{t1}-P_{t2}/P_{t1}+P_{t2}")
+#create PhiDifference compare hists pdf
+PhiDifferenceNom = rootFile.Get("PhiDifferenceNomsim_hist")
+PhiDifferenceRaw = rootFile.Get("PhiDifferenceRawsim_hist")
+PhiDifference = rootFile.Get("PhiDifferencesim_hist")
+RootHisttoPdf(outDirectory+"PlotPhiDifference_Jan2023_AllRuns.pdf",PhiDifference,PhiDifferenceRaw,PhiDifferenceNom,"#sigma [pb]","#Delta#phi","#phi Diff")
+
+#create ThetaDifference compare hists pdf
+ThetaDifferenceNom = rootFile.Get("ThetaDifferenceNomsim_hist")
+ThetaDifferenceRaw = rootFile.Get("ThetaDifferenceRawsim_hist")
+ThetaDifference = rootFile.Get("ThetaDifferencesim_hist")
+RootHisttoPdf(outDirectory+"PlotThetaDifference_Jan2023_AllRuns.pdf",ThetaDifference,ThetaDifferenceRaw,ThetaDifferenceNom,"#sigma [pb]","#Delta#theta","#theta Diff")
+
+#create YDifference compare hists pdf
+YDifferenceNom = rootFile.Get("YDifferenceNomsim_hist")
+YDifferenceRaw = rootFile.Get("YDifferenceRawsim_hist")
+YDifference = rootFile.Get("YDifferencesim_hist")
+RootHisttoPdf(outDirectory+"PlotYDifference_Jan2023_AllRuns.pdf",YDifference,YDifferenceRaw,YDifferenceNom,"#sigma [pb]","#DeltaY","Y Diff")
+
+#create EtaDifference compare hists pdf
+EtaDifferenceNom = rootFile.Get("EtaDifferenceNomsim_hist")
+EtaDifferenceRaw = rootFile.Get("EtaDifferenceRawsim_hist")
+EtaDifference = rootFile.Get("EtaDifferencesim_hist")
+RootHisttoPdf(outDirectory+"PlotEtaDifference_Jan2023_AllRuns.pdf",EtaDifference,EtaDifferenceRaw,EtaDifferenceNom,"#sigma [pb]","#Delta#eta","eta Diff")
