@@ -8,23 +8,12 @@ euler_num = 2.718281828459045
 #takes three hists and turn them into pdf
 def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,param3):
 
-    #first fit to minimize fit range
-    minimize_fit_template = "[0]*exp(-(x-[1])**2/(2*[2]**2))"
-    minimize_fit_func = ROOT.TF1("minimize_fit_func",minimize_fit_template,-0.4,0.4)
-    minimize_fit_func.SetParameter(0,param1)
-    minimize_fit_func.SetParameter(1,param2)
-    minimize_fit_func.SetParameter(2,param3)
-    minimize_fit_hist = hist.Clone()
-    minimize_fit_hist.Fit(minimize_fit_func,"E")
-
-    Fit_Range = abs(minimize_fit_func.GetParameter(2))
-
     #fit and calculate FWHM
     fit_template = "[0]*exp(-(x-[1])**2/(2*[2]**2))"
-    fit_func = ROOT.TF1("fit_func",fit_template,-1.5*Fit_Range,1.5*Fit_Range)
-    fit_func.SetParameter(0,param1)
-    fit_func.SetParameter(1,param2)
-    fit_func.SetParameter(2,param3)
+    fit_func = ROOT.TF1("fit_func",fit_template,-1.5*hist.GetStdDev()+hist.GetMean(),1.5*hist.GetStdDev()+hist.GetMean())
+    fit_func.SetParameter(0,hist.GetMaximum())
+    fit_func.SetParameter(1,hist.GetMean())
+    fit_func.SetParameter(2,hist.GetStdDev())
     fit_hist = hist.Clone()
     fit_hist.Fit(fit_func,"E")
 
@@ -34,6 +23,8 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     BErr = fit_func.GetParError(1)
     C = fit_func.GetParameter(2)
     CErr = fit_func.GetParError(2)
+
+    FWHMLine_Height = A*np.exp(-1/2)
 
     #Plot FWHM as line with fit and simulation
     hist_graph = ROOT.TGraphAsymmErrors(fit_hist)
@@ -45,7 +36,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
 	    hist_graph.SetPointEXhigh(i,0.0)
 	    hist_graph.SetPointEXlow(i,0.0)
 
-    FWHMLine = ROOT.TLine(B,A*(1-1/euler_num),B+C,A*(1-1/euler_num))
+    FWHMLine = ROOT.TLine(B,FWHMLine_Height,B+C,FWHMLine_Height)
     FWHMLine.SetLineColor(ROOT.kBlack)
     FWHMLine.SetLineWidth(2)
 
@@ -58,7 +49,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title,param1,param2,pa
     hist_graph.SetLineWidth(2)
     hist_graph.GetYaxis().SetTitle(yAxisTitle)
     hist_graph.GetXaxis().SetTitle(xAxisTitle)
-    hist_graph.GetXaxis().SetRangeUser(-1.5*Fit_Range,1.5*Fit_Range)
+    hist_graph.GetXaxis().SetRangeUser(-1.5*hist.GetStdDev()+hist.GetMean(),1.5*hist.GetStdDev()+hist.GetMean())
     hist_graph.SetTitle(title)
     legend.AddEntry(hist_graph,"Response","p")
     legend.AddEntry(fit_func,"Gauss Fit","l")

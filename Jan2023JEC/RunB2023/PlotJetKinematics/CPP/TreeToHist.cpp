@@ -3,7 +3,7 @@ int TreeToHist()
   //define folders of Root Tree File and where to write Hist Files
   char rootFile1[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET0_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
   char rootFile2[] = "/nfs/dust/cms/user/hinzmann/run2023/JetMET1_Run2023B-PromptNanoAODv11p9_v1-v1_NANOAOD.root";
-  char outName[] = "/nfs/dust/cms/user/mueckejo/RootB/PlotDijetJetID_Run2023B.root";
+  char outName[] = "/nfs/dust/cms/user/mueckejo/RootB/PlotJetKinematics_Run2023B.root";
 
 
    TChain tree("Events");   // name of the tree is the argument
@@ -11,22 +11,22 @@ int TreeToHist()
    tree.Add(rootFile2);
 
   //declare variables to Load from Root Tree
+  const unsigned int eventNum = 1;
   //variables of Jet1
-  float pt1Num;
-  float y1Num;
-  float eta1Num;
-  float phi1Num;
-  float mass1Num;
-  float jec1Num;
-  float muf1Num;
-  float nhf1Num;
-  float chf1Num;
-  float area1Num;
-  float nemf1Num;
-  float cemf1Num;
-  float btagDeepFlavB1Num;
-  int nConstituents1Num;
-  int TightID1;
+  float pt1Num[eventNum];
+  float y1Num[eventNum];
+  float eta1Num[eventNum];
+  float phi1Num[eventNum];
+  float mass1Num[eventNum];
+  float jec1Num[eventNum];
+  float muf1Num[eventNum];
+  float nhf1Num[eventNum];
+  float chf1Num[eventNum];
+  float area1Num[eventNum];
+  float nemf1Num[eventNum];
+  float cemf1Num[eventNum];
+  float btagDeepFlavB1Num[eventNum];
+  int nConstituents1Num[eventNum];
 
   tree.SetBranchAddress("jetAK4_pt1",&pt1Num);
   tree.SetBranchAddress("jetAK4_y1",&y1Num);
@@ -42,7 +42,9 @@ int TreeToHist()
   tree.SetBranchAddress("jetAK4_cemf1",&cemf1Num);
   tree.SetBranchAddress("jetAK4_btagDeepFlavB1",&btagDeepFlavB1Num);
   tree.SetBranchAddress("jetAK4_nConstituents1",&nConstituents1Num);
-  tree.SetBranchAddress("jetAK4_TightID1",&TightID1);
+
+  //(["pt","y","eta","phi","mass","jec","muf","nhf","chf","area","nemf","cemf","btagDeepFlavB","nConstituents","yboost","chi","mjj"])
+  //([[0,4000],[-6,6],[-6,6],[-4,4],[0,500],[0.5,1.3.5],[0,1],[0,1],[0,1],[0.2,1],[0,1],[0,1],[0,1],[0,100],[0,3],[0,20],[0,10000]])
 
   TH1D pt1("data_pt1","pt for jet1 data",20,0,4000);
   pt1.Sumw2();
@@ -74,21 +76,20 @@ int TreeToHist()
   nConstituents1.Sumw2();
 
   //variables of Jet2
-  float pt2Num;
-  float y2Num;
-  float eta2Num;
-  float phi2Num;
-  float mass2Num;
-  float jec2Num;
-  float muf2Num;
-  float nhf2Num;
-  float chf2Num;
-  float area2Num;
-  float nemf2Num;
-  float cemf2Num;
-  float btagDeepFlavB2Num;
-  int nConstituents2Num;
-  int TightID2;
+  float pt2Num[eventNum];
+  float y2Num[eventNum];
+  float eta2Num[eventNum];
+  float phi2Num[eventNum];
+  float mass2Num[eventNum];
+  float jec2Num[eventNum];
+  float muf2Num[eventNum];
+  float nhf2Num[eventNum];
+  float chf2Num[eventNum];
+  float area2Num[eventNum];
+  float nemf2Num[eventNum];
+  float cemf2Num[eventNum];
+  float btagDeepFlavB2Num[eventNum];
+  int nConstituents2Num[eventNum];
 
   tree.SetBranchAddress("jetAK4_pt2",&pt2Num);
   tree.SetBranchAddress("jetAK4_y2",&y2Num);
@@ -104,7 +105,6 @@ int TreeToHist()
   tree.SetBranchAddress("jetAK4_cemf2",&cemf2Num);
   tree.SetBranchAddress("jetAK4_btagDeepFlavB2",&btagDeepFlavB2Num);
   tree.SetBranchAddress("jetAK4_nConstituents2",&nConstituents2Num);
-  tree.SetBranchAddress("jetAK4_TightID2",&TightID2);
 
   TH1D pt2("data_pt2","pt for jet2 data",20,0,4000);
   pt2.Sumw2();
@@ -136,21 +136,20 @@ int TreeToHist()
   nConstituents2.Sumw2();
 
   //variables of Jet3
-  float pt3Num;
-  float y3Num;
-  float eta3Num;
-  float phi3Num;
-  float mass3Num;
-  float jec3Num;
-  float muf3Num;
-  float nhf3Num;
-  float chf3Num;
-  float area3Num;
-  float nemf3Num;
-  float cemf3Num;
-  float btagDeepFlavB3Num;
-  int nConstituents3Num;
-  int TightID3;
+  float pt3Num[eventNum];
+  float y3Num[eventNum];
+  float eta3Num[eventNum];
+  float phi3Num[eventNum];
+  float mass3Num[eventNum];
+  float jec3Num[eventNum];
+  float muf3Num[eventNum];
+  float nhf3Num[eventNum];
+  float chf3Num[eventNum];
+  float area3Num[eventNum];
+  float nemf3Num[eventNum];
+  float cemf3Num[eventNum];
+  float btagDeepFlavB3Num[eventNum];
+  int nConstituents3Num[eventNum];
 
   tree.SetBranchAddress("jetAK4_pt3",&pt3Num);
   tree.SetBranchAddress("jetAK4_y3",&y3Num);
@@ -166,7 +165,6 @@ int TreeToHist()
   tree.SetBranchAddress("jetAK4_cemf3",&cemf3Num);
   tree.SetBranchAddress("jetAK4_btagDeepFlavB3",&btagDeepFlavB3Num);
   tree.SetBranchAddress("jetAK4_nConstituents3",&nConstituents3Num);
-  tree.SetBranchAddress("jetAK4_TightID3",&TightID3);
 
   TH1D pt3("data_pt3","pt for jet3 data",20,0,4000);
   pt3.Sumw2();
@@ -211,87 +209,69 @@ int TreeToHist()
   for (Long64_t entry = 0; entry < tree.GetEntries(); ++entry)
   {
     tree.GetEntry(entry);
+    //Fill Jet1
+    pt1.Fill(pt1Num[0]);
+    y1.Fill(y1Num[0]);
+    eta1.Fill(eta1Num[0]);
+    phi1.Fill(phi1Num[0]);
+    mass1.Fill(mass1Num[0]);
+    jec1.Fill(jec1Num[0]);
+    muf1.Fill(muf1Num[0]);
+    nhf1.Fill(nhf1Num[0]);
+    chf1.Fill(chf1Num[0]);
+    area1.Fill(area1Num[0]);
+    nemf1.Fill(nemf1Num[0]);
+    cemf1.Fill(cemf1Num[0]);
+    btagDeepFlavB1.Fill(btagDeepFlavB1Num[0]);
+    nConstituents1.Fill(nConstituents1Num[0]);
 
-    //Calculate Mjj
+    //Fill Jet2
+    pt2.Fill(pt2Num[0]);
+    y2.Fill(y2Num[0]);
+    eta2.Fill(eta2Num[0]);
+    phi2.Fill(phi2Num[0]);
+    mass2.Fill(mass2Num[0]);
+    jec2.Fill(jec2Num[0]);
+    muf2.Fill(muf2Num[0]);
+    nhf2.Fill(nhf2Num[0]);
+    chf2.Fill(chf2Num[0]);
+    area2.Fill(area2Num[0]);
+    nemf2.Fill(nemf2Num[0]);
+    cemf2.Fill(cemf2Num[0]);
+    btagDeepFlavB2.Fill(btagDeepFlavB2Num[0]);
+    nConstituents2.Fill(nConstituents2Num[0]);
+
+    //Fill Jet3
+    pt3.Fill(pt3Num[0]);
+    y3.Fill(y3Num[0]);
+    eta3.Fill(eta3Num[0]);
+    phi3.Fill(phi3Num[0]);
+    mass3.Fill(mass3Num[0]);
+    jec3.Fill(jec3Num[0]);
+    muf3.Fill(muf3Num[0]);
+    nhf3.Fill(nhf3Num[0]);
+    chf3.Fill(chf3Num[0]);
+    area3.Fill(area3Num[0]);
+    nemf3.Fill(nemf3Num[0]);
+    cemf3.Fill(cemf3Num[0]);
+    btagDeepFlavB3.Fill(btagDeepFlavB3Num[0]);
+    nConstituents3.Fill(nConstituents3Num[0]);
+
+    //Calculate and fill Mjj
     TLorentzVector Lorentz0, Lorentz1;
-    Lorentz0.SetPtEtaPhiM(pt1Num,eta1Num,phi1Num,mass1Num);
-    Lorentz1.SetPtEtaPhiM(pt2Num,eta2Num,phi2Num,mass2Num);
+    Lorentz0.SetPtEtaPhiM(pt1Num[0],eta1Num[0],phi1Num[0],mass1Num[0]);
+    Lorentz1.SetPtEtaPhiM(pt2Num[0],eta2Num[0],phi2Num[0],mass2Num[0]);
     TLorentzVector MjjSum = Lorentz0 + Lorentz1;
     double MjjValue = MjjSum.M();
+    MjjHist.Fill(MjjValue);
 
-    //Calculate chi
-    double ChiValue = exp(abs(y1Num-y2Num));
+    //Calculate and fill yboost
+    double YBoostValue = (y1Num[0]+y2Num[0])/2;
+    YBoostHist.Fill(YBoostValue);
 
-    //Calculate yboost
-    double YBoostValue = (y1Num+y2Num)/2;
-
-    if (MjjValue > 2500 && ChiValue < 16 && abs(YBoostValue) < 1.11)
-    {
-      if(TightID1 == 1){
-        //Fill Jet1
-        pt1.Fill(pt1Num);
-        y1.Fill(y1Num);
-        eta1.Fill(eta1Num);
-        phi1.Fill(phi1Num);
-        mass1.Fill(mass1Num);
-        jec1.Fill(jec1Num);
-        muf1.Fill(muf1Num);
-        nhf1.Fill(nhf1Num);
-        chf1.Fill(chf1Num);
-        area1.Fill(area1Num);
-        nemf1.Fill(nemf1Num);
-        cemf1.Fill(cemf1Num);
-        btagDeepFlavB1.Fill(btagDeepFlavB1Num);
-        nConstituents1.Fill(nConstituents1Num);
-      }
-
-      if(TightID2 == 1){
-        //Fill Jet2
-        pt2.Fill(pt2Num);
-        y2.Fill(y2Num);
-        eta2.Fill(eta2Num);
-        phi2.Fill(phi2Num);
-        mass2.Fill(mass2Num);
-        jec2.Fill(jec2Num);
-        muf2.Fill(muf2Num);
-        nhf2.Fill(nhf2Num);
-        chf2.Fill(chf2Num);
-        area2.Fill(area2Num);
-        nemf2.Fill(nemf2Num);
-        cemf2.Fill(cemf2Num);
-        btagDeepFlavB2.Fill(btagDeepFlavB2Num);
-        nConstituents2.Fill(nConstituents2Num);
-      }
-
-      if(TightID3 == 1){
-        //Fill Jet3
-        pt3.Fill(pt3Num);
-        y3.Fill(y3Num);
-        eta3.Fill(eta3Num);
-        phi3.Fill(phi3Num);
-        mass3.Fill(mass3Num);
-        jec3.Fill(jec3Num);
-        muf3.Fill(muf3Num);
-        nhf3.Fill(nhf3Num);
-        chf3.Fill(chf3Num);
-        area3.Fill(area3Num);
-        nemf3.Fill(nemf3Num);
-        cemf3.Fill(cemf3Num);
-        btagDeepFlavB3.Fill(btagDeepFlavB3Num);
-        nConstituents3.Fill(nConstituents3Num);
-      }
-
-      if(TightID1 == 1 && TightID2 == 1){
-        //fill yboost
-        YBoostHist.Fill(YBoostValue);
-
-        //fill Mjj
-        MjjHist.Fill(MjjValue);
-
-        //fill chi
-        ChiHist.Fill(ChiValue);
-      }
-    }
+    //Calculate and fill chi
+    double ChiValue = exp(abs(y1Num[0]-y2Num[0]));
+    ChiHist.Fill(ChiValue);
   }
 
   //Neccesary so files dont get lost

@@ -11,7 +11,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title):
     #fit and calculate FWHM
     fit_template = "[0]*exp(-(x-[1])**2/(2*[2]**2))"
     fit_func = ROOT.TF1("fit_func",fit_template,-1.5*hist.GetStdDev()+hist.GetMean(),1.5*hist.GetStdDev()+hist.GetMean())
-    fit_func.FixParameter(0,hist.GetMaximum())
+    fit_func.SetParameter(0,hist.GetMaximum())
     fit_func.SetParameter(1,hist.GetMean())
     fit_func.SetParameter(2,hist.GetStdDev())
     fit_hist = hist.Clone()
@@ -24,6 +24,8 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title):
     C = fit_func.GetParameter(2)
     CErr = fit_func.GetParError(2)
 
+    FWHMLine_Height = A*np.exp(-1/2)
+
     #Plot FWHM as line with fit and simulation
     hist_graph = ROOT.TGraphAsymmErrors(fit_hist)
 
@@ -34,7 +36,7 @@ def CalcResolution(hist,outFileName,yAxisTitle,xAxisTitle,title):
 	    hist_graph.SetPointEXhigh(i,0.0)
 	    hist_graph.SetPointEXlow(i,0.0)
 
-    FWHMLine = ROOT.TLine(B,A*(1-1/euler_num),B+C,A*(1-1/euler_num))
+    FWHMLine = ROOT.TLine(B,FWHMLine_Height,B+C,FWHMLine_Height)
     FWHMLine.SetLineColor(ROOT.kBlack)
     FWHMLine.SetLineWidth(2)
 

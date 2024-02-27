@@ -1,7 +1,7 @@
 import ROOT
 import numpy as np
 #takes three hists and turn them into pdf
-def RootHisttoPdf(outFileName,sim2018,sim2023,yAxisTitle,xAxisTitle,title,xmin,xmax,ymax=0.3):
+def RootHisttoPdf(outFileName,sim2018,sim2023,yAxisTitle,xAxisTitle,title,xmin,xmax,ymax=0.1):
     canvas = ROOT.TCanvas("canvas")
     canvas.SetCanvasSize(1600,1100)
     canvas.SetLogx()
@@ -71,19 +71,19 @@ rootFile2018Jet1 = ROOT.TFile.Open(inDirectory2018+"FitJetResolutionJet1_DiffEta
 #eta 0 to 1.3
 Jet1eta0to1p3ResolutionGraph2023 = rootFile2023Jet1.Get("Eta0to1p3JetResolutionGraph")
 Jet1eta0to1p3ResolutionGraph2018 = rootFile2018Jet1.Get("Eta0to1p3JetResolutionGraph")
-RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta0to1p3_sim2018and2023.pdf",Jet1eta0to1p3ResolutionGraph2018,Jet1eta0to1p3ResolutionGraph2023,"Jet Resolution","P_{t1} [GeV]","#eta 0-1.3",50,3500)
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta0to1p3_sim2018and2023.pdf",Jet1eta0to1p3ResolutionGraph2018,Jet1eta0to1p3ResolutionGraph2023,"Jet Resolution","p_{T1} [GeV]","#eta 0-1.3",170,3200)
 #eta 1.3 to 2.5
 Jet1eta1p3to2p5ResolutionGraph2023 = rootFile2023Jet1.Get("Eta1p3to2p5JetResolutionGraph")
 Jet1eta1p3to2p5ResolutionGraph2018 = rootFile2018Jet1.Get("Eta1p3to2p5JetResolutionGraph")
-RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta1p3to2p5_sim2018and2023.pdf",Jet1eta1p3to2p5ResolutionGraph2018,Jet1eta1p3to2p5ResolutionGraph2023,"Jet Resolution","P_{t1} [GeV]","#eta 1.3-2.5",50,3500)
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta1p3to2p5_sim2018and2023.pdf",Jet1eta1p3to2p5ResolutionGraph2018,Jet1eta1p3to2p5ResolutionGraph2023,"Jet Resolution","p_{T1} [GeV]","#eta 1.3-2.5",170,2400)
 #eta 2.5 to 3
 Jet1eta2p5to3ResolutionGraph2023 = rootFile2023Jet1.Get("Eta2p5to3JetResolutionGraph")
 Jet1eta2p5to3ResolutionGraph2018 = rootFile2018Jet1.Get("Eta2p5to3JetResolutionGraph")
-RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta2p5to3_sim2018and2023.pdf",Jet1eta2p5to3ResolutionGraph2018,Jet1eta2p5to3ResolutionGraph2023,"Jet Resolution","P_{t1} [GeV]","#eta 2.5-3",50,3500)
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta2p5to3_sim2018and2023.pdf",Jet1eta2p5to3ResolutionGraph2018,Jet1eta2p5to3ResolutionGraph2023,"Jet Resolution","p_{T1} [GeV]","#eta 2.5-3",170,800)
 #eta 3 to 5
 #Jet1eta3to5ResolutionGraph2023 = rootFile2023Jet1.Get("Eta3to5JetResolutionGraph")
 #Jet1eta3to5ResolutionGraph2018 = rootFile2018Jet1.Get("Eta3to5JetResolutionGraph")
-#RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta3to5_sim2018and2023.pdf",Jet1eta3to5ResolutionGraph2018,Jet1eta3to5ResolutionGraph2023,"Jet Resolution","P_{t1} [GeV]","#eta 3-5",)
+#RootHisttoPdf(outDirectory+"PlotJetResolution_Jet1_Eta3to5_sim2018and2023.pdf",Jet1eta3to5ResolutionGraph2018,Jet1eta3to5ResolutionGraph2023,"Jet Resolution","p_{T1} [GeV]","#eta 3-5",)
 
 #load and plot Jet2 Data
 #define directory
@@ -92,19 +92,19 @@ rootFile2018Jet2 = ROOT.TFile.Open(inDirectory2018+"FitJetResolutionJet2_DiffEta
 #eta 0 to 1.3
 Jet2eta0to1p3ResolutionGraph2023 = rootFile2023Jet2.Get("Eta0to1p3JetResolutionGraph")
 Jet2eta0to1p3ResolutionGraph2018 = rootFile2018Jet2.Get("Eta0to1p3JetResolutionGraph")
-RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta0to1p3_sim2018and2023.pdf",Jet2eta0to1p3ResolutionGraph2018,Jet2eta0to1p3ResolutionGraph2023,"Jet Resolution","P_{t2} [GeV]","#eta 0-1.3",170,3500,0.1)
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta0to1p3_sim2018and2023.pdf",Jet2eta0to1p3ResolutionGraph2018,Jet2eta0to1p3ResolutionGraph2023,"Jet Resolution","p_{T2} [GeV]","#eta 0-1.3",130,3200,0.13)
 #eta 1.3 to 2.5
 Jet2eta1p3to2p5ResolutionGraph2023 = rootFile2023Jet2.Get("Eta1p3to2p5JetResolutionGraph")
 Jet2eta1p3to2p5ResolutionGraph2018 = rootFile2018Jet2.Get("Eta1p3to2p5JetResolutionGraph")
-RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta1p3to2p5_sim2018and2023.pdf",Jet2eta1p3to2p5ResolutionGraph2018,Jet2eta1p3to2p5ResolutionGraph2023,"Jet Resolution","P_{t2} [GeV]","#eta 1.3-2.5",50,3500)
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta1p3to2p5_sim2018and2023.pdf",Jet2eta1p3to2p5ResolutionGraph2018,Jet2eta1p3to2p5ResolutionGraph2023,"Jet Resolution","p_{T2} [GeV]","#eta 1.3-2.5",130,2400,0.13)
 #eta 2.5 to 3
 Jet2eta2p5to3ResolutionGraph2023 = rootFile2023Jet2.Get("Eta2p5to3JetResolutionGraph")
 Jet2eta2p5to3ResolutionGraph2018 = rootFile2018Jet2.Get("Eta2p5to3JetResolutionGraph")
-RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta2p5to3_sim2018and2023.pdf",Jet2eta2p5to3ResolutionGraph2018,Jet2eta2p5to3ResolutionGraph2023,"Jet Resolution","P_{t2} [GeV]","#eta 2.5-3",50,3500)
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta2p5to3_sim2018and2023.pdf",Jet2eta2p5to3ResolutionGraph2018,Jet2eta2p5to3ResolutionGraph2023,"Jet Resolution","p_{T2} [GeV]","#eta 2.5-3",130,800,0.13)
 #eta 3 to 5
 #Jet2eta3to5ResolutionGraph2023 = rootFile2023Jet2.Get("Eta3to5JetResolutionGraph")
 #Jet2eta3to5ResolutionGraph2018 = rootFile2018Jet2.Get("Eta3to5JetResolutionGraph")
-#RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta3to5_sim2018and2023.pdf",Jet2eta3to5ResolutionGraph2018,Jet2eta3to5ResolutionGraph2023,"Jet Resolution","P_{t2} [GeV]","#eta 3-5",0,3200)
+#RootHisttoPdf(outDirectory+"PlotJetResolution_Jet2_Eta3to5_sim2018and2023.pdf",Jet2eta3to5ResolutionGraph2018,Jet2eta3to5ResolutionGraph2023,"Jet Resolution","p_{T2} [GeV]","#eta 3-5",0,3200)
 
 #load and plot Jet3 Data
 #define directory
@@ -113,16 +113,16 @@ rootFile2018Jet3 = ROOT.TFile.Open(inDirectory2018+"FitJetResolutionJet3_DiffEta
 #eta 0 to 1.3
 Jet3eta0to1p3ResolutionGraph2023 = rootFile2023Jet3.Get("Eta0to1p3JetResolutionGraph")
 Jet3eta0to1p3ResolutionGraph2018 = rootFile2018Jet3.Get("Eta0to1p3JetResolutionGraph")
-RootHisttoPdf(outDirectory+"PlotJetResolution_Jet3_Eta0to1p3_sim2018and2023.pdf",Jet3eta0to1p3ResolutionGraph2018,Jet3eta0to1p3ResolutionGraph2023,"Jet Resolution","P_{t3} [GeV]","#eta 0-1.3",50,3500)
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet3_Eta0to1p3_sim2018and2023.pdf",Jet3eta0to1p3ResolutionGraph2018,Jet3eta0to1p3ResolutionGraph2023,"Jet Resolution","p_{T3} [GeV]","#eta 0-1.3",50,1400,0.15)
 #eta 1.3 to 2.5
 Jet3eta1p3to2p5ResolutionGraph2023 = rootFile2023Jet3.Get("Eta1p3to2p5JetResolutionGraph")
 Jet3eta1p3to2p5ResolutionGraph2018 = rootFile2018Jet3.Get("Eta1p3to2p5JetResolutionGraph")
-RootHisttoPdf(outDirectory+"PlotJetResolution_Jet3_Eta1p3to2p5_sim2018and2023.pdf",Jet3eta1p3to2p5ResolutionGraph2018,Jet3eta1p3to2p5ResolutionGraph2023,"Jet Resolution","P_{t3} [GeV]","#eta 1.3-2.5",50,3500)
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet3_Eta1p3to2p5_sim2018and2023.pdf",Jet3eta1p3to2p5ResolutionGraph2018,Jet3eta1p3to2p5ResolutionGraph2023,"Jet Resolution","p_{T3} [GeV]","#eta 1.3-2.5",50,800,0.2)
 #eta 2.5 to 3
 Jet3eta2p5to3ResolutionGraph2023 = rootFile2023Jet3.Get("Eta2p5to3JetResolutionGraph")
 Jet3eta2p5to3ResolutionGraph2018 = rootFile2018Jet3.Get("Eta2p5to3JetResolutionGraph")
-RootHisttoPdf(outDirectory+"PlotJetResolution_Jet3_Eta2p5to3_sim2018and2023.pdf",Jet3eta2p5to3ResolutionGraph2018,Jet3eta2p5to3ResolutionGraph2023,"Jet Resolution","P_{t3} [GeV]","#eta 2.5-3",50,3500)
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet3_Eta2p5to3_sim2018and2023.pdf",Jet3eta2p5to3ResolutionGraph2018,Jet3eta2p5to3ResolutionGraph2023,"Jet Resolution","p_{T3} [GeV]","#eta 2.5-3",50,600,0.2)
 #eta 3 to 5
 Jet3eta3to5ResolutionGraph2023 = rootFile2023Jet3.Get("Eta3to5JetResolutionGraph")
 Jet3eta3to5ResolutionGraph2018 = rootFile2018Jet3.Get("Eta3to5JetResolutionGraph")
-RootHisttoPdf(outDirectory+"PlotJetResolution_Jet3_Eta3to5_sim2018and2023.pdf",Jet3eta3to5ResolutionGraph2018,Jet3eta3to5ResolutionGraph2023,"Jet Resolution","P_{t3} [GeV]","#eta 3-5",50,3500)
+RootHisttoPdf(outDirectory+"PlotJetResolution_Jet3_Eta3to5_sim2018and2023.pdf",Jet3eta3to5ResolutionGraph2018,Jet3eta3to5ResolutionGraph2023,"Jet Resolution","p_{T3} [GeV]","#eta 3-5",50,300,0.2)
